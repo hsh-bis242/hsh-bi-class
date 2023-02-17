@@ -1,7 +1,7 @@
 /**
- * White theme for reveal.js. This is the opposite of the 'black' theme.
+ * Hochschule Hannover theme for reveal.js.
  *
- * By Hakim El Hattab, http://hakim.se
+ * By Timo Cirkel
  */
 @import url(./fonts/source-sans-pro/source-sans-pro.css);
 section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
@@ -355,4 +355,13 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   .backgrounds {
     background-color: var(--r-background-color);
   }
+}
+
+body::after {
+  content: url(../../static/logo.svg);
+  width: 100px;
+  position: fixed;
+  bottom: 3em;
+  right: 3em;
+  z-index: 999;
 }
