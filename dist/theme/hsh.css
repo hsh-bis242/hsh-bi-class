@@ -361,7 +361,20 @@ body::after {
   content: url(../../static/logo.svg);
   width: 100px;
   position: fixed;
-  bottom: 3em;
+  bottom: 8em;
   right: 3em;
   z-index: 999;
+}
+
+/*********************************************
+ * Custom design
+ *********************************************/
+.grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto auto;
+}
+
+.griditem {
+  
 }
