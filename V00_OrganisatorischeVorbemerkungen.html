@@ -159,10 +159,9 @@
 					<h1>&Uuml;bungen</h1>
 					<ul>
 						<li>
-							Haben Sie Ende alle &Uuml;bungen bestanden, verbessert sich Ihre Modulnote um <b>zwei
-								Teilnoten</b>
-							(z.B. von 2,0 auf 1,3). Zwei versp&auml;tete/falsche Fertigstellungen oder fehlerhafte
-							pers&ouml;nliche Vorstellungen erlaubt.
+							Haben Sie am Ende alle &Uuml;bungen bestanden, verbessert sich Ihre Modulnote um <b>zwei
+							Teilnoten</b> (z.B. von 2,0 auf 1,3). Zwei versp&auml;tete/falsche Fertigstellungen oder
+							fehlerhafte pers&ouml;nliche Vorstellungen erlaubt.
 						</li>
 						<li>
 							<b>Voraussetzung</b> f&uuml;r Notenverbesserung: Pr&uuml;fungsleistung bestanden.
@@ -182,7 +181,7 @@
 							<b>Fertigstellung</b> der &Uuml;bungsaufgaben
 						</li>
 						<li>
-							In Moodle finden Sie die aktuelle Version von YYMMDD Ergebnisse BI &Uuml;bungen.xls mit
+							In Moodle finden Sie eine Ergebnisliste der &Uuml;bungen mit
 							sp&auml;testem Fertigstellungstermin.
 						</li>
 					</ul>
@@ -198,7 +197,7 @@
 							Dies ist auch die 2er Gruppe f&uuml;r die Hausarbeit
 						</li>
 						<li>
-							Bitte nutzen Sie den cryptpad.fr Link im Chat zum Eintragen!
+							Bitte treten Sie selbst einer freien Gruppe in Moodle bei
 						</li>
 					</ul>
 				</section>
@@ -211,7 +210,7 @@
 							eintragen und umgehend zur&uuml;cksenden.
 						</li>
 						<li>
-							Dann sende ich Ihnen das PWD f&uuml;r Ihre UID zu.
+							Dann senden wir Ihnen das PWD f&uuml;r Ihre UID zu.
 						</li>
 					</ul>
 				</section>
@@ -239,11 +238,7 @@
 							Gem&auml;&szlig; <a
 								href="https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/praxisphasen-bachelor-arbeiten-und-master-arbeiten">Leitlinie
 								f&uuml;r Abschlussarbeiten</a>.
-							<img id='qrcode'
-								src="https://api.qrserver.com/v1/create-qr-code/?data=https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/praxisphasen-bachelor-arbeiten-und-master-arbeiten&amp;size=100x100"
-								alt="QR-Code zu Leitlinien f&uuml;r Abschlussarbeiten"
-								title="Leitlinie f&uuml;r Abschlussarbeiten" width="100" height="100"
-								style="float:right">
+							<div id="qrcodeLeitlinien" style="float:right"></div>
 						</li>
 						<li>
 							Im Normalfall <b>eine</b> Endnote f&uuml;r die Gruppe. Aber: Die Anmerkungen zur
@@ -281,7 +276,7 @@
 					</ul>
 					<p>
 						Die aktuell g&uuml;ltige Planung der Pr&uuml;fungsleistung (Themen, Gruppen und Datum) findet
-						sich in Moodle in der aktuellen Version dieses Files.
+						sich in Moodle in der aktuellen Version dieser Slide.
 					</p>
 				</section>
 
@@ -311,7 +306,7 @@
 					</ul>
 					<p>
 						Vorschl&auml;ge f&uuml;r <b>Thema und Forschungsfrage</b> (max. zwei Themenalternativen) bis zum
-						<b>27.03.2023 (8 Uhr)</b> &uuml;ber Moodle einreichen. Bitte keine Erl&auml;uterungen,
+						<b>03.05.2023 (8 Uhr)</b> &uuml;ber Moodle einreichen. Bitte keine Erl&auml;uterungen,
 						Begr&uuml;ndungen etc. in der Mail.
 					</p>
 				</section>
@@ -321,10 +316,7 @@
 						<img src="static/V00/WSBIA20.png" height="300" width="auto">
 					</a>
 					<br>
-					<img id='qrcode'
-						src="https://api.qrserver.com/v1/create-qr-code/?data=https://fg-wi-bia.gi.de/veranstaltung/workshop-business-intelligence-analytics-wsbi-a20&amp;size=100x100"
-						alt="QR-Code zu WSBI 20: Workshop Business Intelligence & Analytics"
-						title="WSBI 20: Workshop Business Intelligence & Analytics" width="100" height="100">
+					<div id="qrcodeWSBI20"></div>
 				</section>
 				<section>
 					<h1>WSBI 2020 (1)</h1>
@@ -367,10 +359,7 @@
 						<img src="static/V00/WSBIA21.png" height="300" width="auto">
 					</a>
 					<br>
-					<img id='qrcode'
-						src="https://api.qrserver.com/v1/create-qr-code/?data=https://fg-wi-bia.gi.de/veranstaltung/workshop-business-intelligence-analytics-wsbia-2021&amp;size=100x100"
-						alt="QR-Code zu WSBI 21: Workshop Business Intelligence & Analytics"
-						title="WSBI 21: Workshop Business Intelligence & Analytics" width="100" height="100">
+					<div id="qrcodeWSBI21"></div>
 				</section>
 				<section>
 					<h1>WSBI 2021 (1)</h1>
@@ -476,20 +465,6 @@
 				</section>
 				<section>
 					<h1>Hausarbeit - Arbeitstechnik</h1>
-					<!-- <div class="grid">
-						<div class="griditem">
-							<a href="https://opac.tib.eu/DB=4.1/XMLPRS=N/PPN?PPN=1668655926">
-								<img
-									src="static/V00/Buchcover-Disterer-StudienarbeitenSchreiben.png"
-									alt="Buchcover des Buches Studien- und Abschlussarbeiten schreiben von Georg Disterer"
-									title="Georg Disterer: Studien- und Abschlussarbeiten schreiben"
-								>
-							</a>
-						</div>
-						<div class="griditem">
-							
-						</div>
-					</div> -->
 					<ul>
 						<li><a href="https://opac.tib.eu/DB=4.1/XMLPRS=N/PPN?PPN=1668655926">Disterer, G. (2019).
 								Studien- und Abschlussarbeiten schreiben: Seminar-, Bachelor- und Masterarbeiten in den
@@ -741,11 +716,7 @@
 						<li>Das frei w&auml;hlbare Thema gibt Ihnen die Chance, gem&auml;&szlig; Ihren Vorkenntnissen und Neigungen eigene Schwerpunkte zu setzen.</li>
 						<li>Eine breite Informationsrecherche ist unabdingbar:</li>
 						<ul>
-							<img id='qrcode'
-								src="https://api.qrserver.com/v1/create-qr-code/?data=https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/recherche-leitseite/&amp;size=100x100"
-								alt="QR-Code zu WI Recherche-Leitseite"
-								title="WI Recherche-Leitseite" width="100" height="100"
-								style="float:right">
+							<div id="qrcodeRechercheLeitseite" style="float:right"></div>
 							<li><a href="https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/recherche-leitseite/">WI Recherche-Leitseite</a></li>
 							<li>Web of Science / Scopus</li>
 							<li>Fachzeitschriften und Fachliteratur (Bibliothek, Hobsy)</li>
@@ -769,14 +740,7 @@
 						>
 					</a>
 					<br>
-					<img
-						id='qrcode'
-						src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.hs-hannover.de/ueber-uns/organisation/servicezentrum-beratung/language-center/schreibwerkstatt&amp;size=100x100"
-						alt="QR-Code zur Schreibwerkstatt"
-						title="Hochschule Hannover - Schreibwerkstatt"
-						width="100"
-						height="100"
-					>
+					<div id="qrcodeSchreibwerkstatt"></div>
 				</section>
 				<section>
 					<h1>Hausarbeit - Details (1)</h1>
@@ -804,6 +768,9 @@
 			<section>
 				<section>
 					<h1>Literatur</h1>
+					<p>
+						In Moodle finden Sie unter dem Thema Allgemeines eine Literaturliste
+					</p>
 				</section>
 				<section>
 					<h1>Literatur - Podcast</h1>
@@ -811,10 +778,7 @@
 						<div class="griditem">
 							<p>Der Podcast &uuml;ber Data, Dashboarding, Business Intelligence, Self Service, Analytics
 								& BI-Tools</p>
-							<img id='qrcode'
-								src="https://api.qrserver.com/v1/create-qr-code/?data=https://www.biordie.com/podcasts&amp;size=100x100"
-								alt="QR-Code zu BI or DIE Podcast" title="BI or DIE - Der Podcast" width="100"
-								height="100">
+							<div id="qrcodeBIorDIE"></div>
 						</div>
 						<div class="griditem">
 							<a href="https://www.biordie.com/podcasts">
@@ -848,6 +812,10 @@
 	<script src="plugin/notes/notes.js"></script>
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+	<script src="node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+	
 	<script>
 		// More info about initialization & config:
 		// - https://revealjs.com/bnitialization/
@@ -859,7 +827,15 @@
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
+
+		$('#qrcodeBIorDIE').qrcode({width: 100,height: 100,text: "https://www.biordie.com/podcasts"});
+		$('#qrcodeSchreibwerkstatt').qrcode({width: 100, height: 100, text: "https://www.hs-hannover.de/ueber-uns/organisation/servicezentrum-beratung/language-center/schreibwerkstatt"});
+		$('#qrcodeRechercheLeitseite').qrcode({width: 100, height: 100, text: "https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/recherche-leitseite"});
+		$('#qrcodeWSBI21').qrcode({width: 100, height: 100, text: "https://fg-wi-bia.gi.de/veranstaltung/workshop-business-intelligence-analytics-wsbia-2021"});
+		$('#qrcodeWSBI20').qrcode({width: 100, height: 100, text: "https://fg-wi-bia.gi.de/veranstaltung/workshop-business-intelligence-analytics-wsbi-a20"});
+		$('#qrcodeLeitlinien').qrcode({width: 100, height: 100, text: "https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/praxisphasen-bachelor-arbeiten-und-master-arbeiten"});
 	</script>
+
 </body>
 
 </html>
