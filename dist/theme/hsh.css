@@ -380,3 +380,7 @@ body::after {
 }
 
 tr:hover {background-color: #dc3c05;}
+
+figcaption {
+  font-size: x-small;
+}
