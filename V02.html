@@ -582,7 +582,17 @@
 				<section>
 					<h1>Jobsteuerung Evolution Batch</h1>
 					<p>Klassisches DWH ohne Streaming nutzt meist nur batch loading-jobs in bestimmten Zeit-Intervallen (daily, nightly, alle 4 oder 12 Stunden)</p>
-					<img src="./static/V02/jobsteuerung_evolution_batch.png" alt="">
+					<pre>
+						<code class="language-plantuml">
+						  @startuml
+						  Alice -> Bob: Authentication Request
+						  Bob --> Alice: Authentication Response
+						  Alice -> Bob: Another authentication Request
+						  Bob --> Alice: Another authentication Response
+						  @enduml
+						</code>
+					</pre>
+					<img src="./static/V02/batch.svg" alt="">
 				</section>
 
 				<section>
@@ -660,7 +670,6 @@
 				<h1>Virtuelle Fabrik</h1>
 				<p style="color:red">Abbildung nochmal zeigen</p>
 			</section>
-			
 					
 		</div>
 	</div>
@@ -672,6 +681,8 @@
 	
 	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 	<script src="node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@1.1.0/plugin/mermaid/mermaid.js"></script>
 	
 	<script>
 		// More info about initialization & config:
@@ -681,6 +692,10 @@
 			hash: true,
 			slideNumber: 'c/t',
 			center: false,
+
+			dependencies: [
+				{ src: 'http://cdn.jsdelivr.net/npm/reveal-plantuml' },
+			],
 
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
