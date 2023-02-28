@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 00 - Organisatorische
-		Vorbemerkungen</title>
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 02 - Technische Grundlagen</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
@@ -24,13 +23,12 @@
 
 			<section class="center">
 				<h1 class="r-fit-text">Business Intelligence</h1>
-				<h2 class="r-fit-text">Vorlesung 2</h2>
+				<h2 class="r-fit-text">Technische Grundlagen</h2>
 			</section>
 
-			<section>
-				<h1>BI-Stack Virtuelle Fabrik</h1>
-				<h2 style="color:red">ABBILDUNG EINFÜGEN</h2>
-			</section>
+			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="contain" data-background-repeat="no-repeat"></section>
+			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="105%" data-background-repeat="no-repeat" data-background-position="left top"></section>
+			
 			<section>
 				<h1>Datenquellen</h1>
 				<h2 style="color:red">ABBILDUNG EINFÜGEN</h2>
@@ -681,8 +679,6 @@
 	
 	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 	<script src="node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@1.1.0/plugin/mermaid/mermaid.js"></script>
 	
 	<script>
 		// More info about initialization & config:
@@ -692,21 +688,8 @@
 			hash: true,
 			slideNumber: 'c/t',
 			center: false,
-
-			dependencies: [
-				{ src: 'http://cdn.jsdelivr.net/npm/reveal-plantuml' },
-			],
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
-
-		$('#qrcodeBIorDIE').qrcode({width: 100,height: 100,text: "https://www.biordie.com/podcasts"});
-		$('#qrcodeSchreibwerkstatt').qrcode({width: 100, height: 100, text: "https://www.hs-hannover.de/ueber-uns/organisation/servicezentrum-beratung/language-center/schreibwerkstatt"});
-		$('#qrcodeRechercheLeitseite').qrcode({width: 100, height: 100, text: "https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/recherche-leitseite"});
-		$('#qrcodeWSBI21').qrcode({width: 100, height: 100, text: "https://fg-wi-bia.gi.de/veranstaltung/workshop-business-intelligence-analytics-wsbia-2021"});
-		$('#qrcodeWSBI20').qrcode({width: 100, height: 100, text: "https://fg-wi-bia.gi.de/veranstaltung/workshop-business-intelligence-analytics-wsbi-a20"});
-		$('#qrcodeLeitlinien').qrcode({width: 100, height: 100, text: "https://f4.hs-hannover.de/service/formulare-und-informationen/abteilung-wirtschaftsinformatik/praxisphasen-bachelor-arbeiten-und-master-arbeiten"});
 	</script>
 
 </body>
