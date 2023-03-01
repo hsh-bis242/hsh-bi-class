@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 02 - Technische Grundlagen</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section class="center">
+				<h1 class="r-fit-text">Business Intelligence</h1>
+				<h2 class="r-fit-text">Technische Grundlagen</h2>
+			</section>
+
+			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="contain" data-background-repeat="no-repeat"></section>
+			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="105%" data-background-repeat="no-repeat" data-background-position="left top"></section>
+			
+			<section>
+				<h1>Datenquellen</h1>
+				<h2 style="color:red">ABBILDUNG EINFÜGEN</h2>
+			</section>
+
+			<section>
+				<h1>Quellen und Heterogenität der Daten</h1>
+				<ul>
+					<li>Operative Systeme</li>
+					<li>Web
+						<ul>
+							<li>Öffentliche und interne Quellen</li>
+						</ul>
+					</li>
+					<li>Dateien</li>
+					<li>Lieferanten der Daten für das Data Warehouse
+						<ul>
+							<li>Gehören nicht direkt zum DWH</li>
+							<li>Können intern (Unternehmen) oder extern (z.B. staatl. Einrichtung) sein</li>
+							<li>Heterogen bzgl. Struktur, Inhalt und Schnittstellen (Datenbanken, Dateien)</li>
+							<li>Auswahl der Quellen und Qualität der Daten von besonderer Bedeutung</li>
+						</ul>
+					</li>
+				</ul>
+				<p>Herausforderung für Data Mart und Reporting Daten müssen Homogen transformiert und konsumiert werden in übergreifenden Strukturen.</p>
+			</section>
+
+			<section>
+				<h1>Klassifikationen Daten</h1>
+				<ul>
+					<li>Herkunft: intern, extern</li>
+					<li>Zeit: aktuell, historisch</li>
+					<li>Nutzungsebene: Primärdaten, Metadaten</li>
+					<li>Inhalt: Zahl, Zeichenkette, Grafik, Referenz, Dokument</li>
+					<li>Darstellung: numerisch, alphanumerisch, BLOB</li>
+					<li>Sprache und Zeichensatz</li>
+					<li>Vertraulichkeitsgrad</li>
+				</ul>
+				<p>Einige dieser Klassifikationen wirken sich auf die Data Mart Struktur und das Report Design aus</p>
+			</section>
+
+			<section>
+				<h1>Faktoren der Datenauswahl</h1>
+				<ul>
+					<li>Qualität der Quelldaten</li>
+					<li>Verfügbarkeit (rechtlich, sozial, technisch)</li>
+					<li>Preis für Erwerb der Daten (speziell bei externen Quellen)
+					</li>
+				</ul>
+				<p>Datenauswahl einer Anbindung wird oftmals auf Reporting Anforderungen aufgebaut (Top-Down)
+				</p>
+			</section>
+
+			<section>
+				<h1>Art der Daten</h1>
+				<ul>
+					<li>Snapshots: Quelle liefert immer kompletten Datenbestand
+						<ul>
+							<li>Neuer Lieferantenkatalog, neue Preisliste, etc.</li>
+							<li>Änderungen erkennen</li>
+							<li>Historie korrekt abbilden</li>
+						</ul>
+					</li>
+					<li>Logs: Quelle liefert jede Änderung
+						<ul>
+							<li>Transaktionslogs, Anwendungsgesteuertes Logging</li>
+							<li>Änderungen effizient einspielen</li>
+						</ul>
+					</li>
+					<li>Netto-Logs: Quelle liefert Netto-Änderungen
+						<ul>
+							<li>Katalogupdates, Snapshot-Deltas</li>
+							<li>Keine vollständige Historie möglich</li>
+							<li>Änderungen effizient einspielbar</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Datenquellen</h1>
+				<img src="./static/V02/datenquellen.png" alt="Schaubild Datenquellen">
+			</section>
+
+			<section>
+				<h1>Formen des Datenaustauschs</h1>
+				<ul>
+					<li>Dateien in verschiedenen Filesystemen (Lake Storage, SFTP, …)
+						<ul>
+							<li>Automatisch exportiert (JSON, XML, parquet, csv)</li>
+							<li>Manuell erstellt (Excel, plain text)</li>
+						</ul>
+					</li>
+					<li>APIs
+						<ul>
+							<li>Request body enthält Daten in fileformats (JSON, XML, plain text)</li>
+							<li>Streaming</li>
+						</ul>
+					</li>
+					<li>Shared database (direkter Zugriff oder replication)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Erwartung und Realität von Anbindungen</h1>
+				<img src="./static/V02/erwartung_und_realitaet_von_anbindungen.png" alt="Schaubild Datenquellen">
+			</section>
+
+			<section>
+				<h1>Aufbereitungsschritte der Daten bis zum Report</h1>
+				<ul>
+					<li>Primärschlüssel definieren und festlegen</li>
+					<li>Historisierung der Daten</li>
+					<li>Vereinheitlichung der Datentypen und Attributenamen</li>
+					<li>Gewährleistung der Datenqualität durch Transformationen</li>
+					<li>Deduplizierung</li>
+				</ul>
+				<p>Schritte werden abhängig von DWH Architektur und Datenmodellierung in anderen DWH-Layern durchgeführt (Data Vault, Persistent Staging Area)</p>
+			</section>
+
+			<section>
+				<h1>Fragestellungen bei Anbindungen</h1>
+				<ul>
+					<li>In welcher Schicht im DWH werden Daten bereinigt und gefiltert?</li>
+					<li>Wann wird die Datenqualität geprüft?</li>
+					<li>Muss Datenqualität über den gesamten Lade Prozess des DWHs geprüft werden?</li>
+					<li>Müssen Business Rules und Transformationen schon vor dem Laden angewendet werden?</li>
+				</ul>
+				<p>Einfluss auf diese Fragen haben die Datenschutzrechtliche Einordung der Daten, die Integrität, erlaubte Fehlertoleranz, die Genauigkeit der Daten, Kosten und die Performance.</p>
+			</section>
+
+			<section>
+				<h1>Push vs. Pull</h1>
+				<ul>
+					<li>PULL
+						<ul>
+							<li>Zum festgelegten Zeitpunkt als batch werden Daten aus der Quelle abgerufen</li>
+							<li>Re-run jederzeit möglich</li>
+							<li>Kein Realtime</li>
+						</ul>
+					</li>
+					<li>PUSH</li>
+					<ul>
+						<li>Nahe oder im Quellsystem integrierte Komponente, die Daten aufgrund eines Events überträgt</li>
+						<li>Zielsystem muss durchgängig verfügbar sein</li>
+					</ul>
+				</ul>
+			</section>
+
+			<section>
+				<h1>ETL vs. ELT</h1>
+				<div class="grid">
+					<div class="griditem">
+						<ul>
+							<li>ELT entstand aus Big Data und cloud-Ansätzen
+								<ul>
+									<li>Höhere Rechenkapazitäten und Parallelisierungstechniken ermöglichen es Rohdaten erst zu laden und im Zielsystem zu transformieren</li>
+								</ul>
+							</li>
+							<li>ETL klassischer DWH Ansatz
+								<ul>
+									<li>Bevor Daten ins DWH geladen werden finden schon Transformationen statt</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="griditem">
+						<img src="./static/V02/etl_elt.png" alt="">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h1>Warum ELT und ETL tools sinnvoll sind</h1>
+				<ul>
+					<li>Darstellung visuelle Datenfluss (Lineage)</li>
+					<li>GUIs und Editoren mit Einblick auf Datenbank, Bessere Benutzererfahrung </li>
+					<li>Datenerfassung, -transformation und -konsolidierung automatisieren</li>
+					<li>Komponenten oder Funktionalitäten zur Datenbereinigung und Auditing</li>
+					<li>Wiederverwendbarkeit von Logiken in templates</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Herausforderungen von Quellsysteme zum Report</h1>
+				<ul>
+					<li>Starke Heterogenität der Quellsysteme und Daten </li>
+					<li>Verschiedene Arten der Anbindung und Formate </li>
+					<li>Heterogene Daten zu einem konsistenten Data Mart zusammensetzen</li>
+					<li>Lade- und Aktualisierungszeitpunkte synchronisieren (Welche Daten müssen zu welchem Zeitpunkt im Report vorliegen)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Modernes Data Warehouse auch als Quelle</h1>
+				<img src="./static/V02/dwh_als_quelle.png" alt="">
+			</section>
+
+			<section>
+				<h1>Development und Deployment</h1>
+				<h2 style="color:red">Hier ein schönes Bild</h2>
+			</section>
+
+			<section>
+				<h1>Metadaten-Repository</h1>
+				<p>Repositories sind versionierte Verzeichnisse um unterschiedliche Versionen von Dateien zu verwalten.
+				</p>
+				<p>Im Data Warehouse enthält ein Metadaten-Repository:</p>
+				<ul>
+					<li>Transformationslogiken</li>
+					<li>Objekttypen(Tabellen, Views, …)</li>
+					<li>Attribute und Datentypen</li>
+					<li>Rechte und Rollen</li>
+					<li>Prozeduren, Parameter</li>
+					<li>…</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h1>Metadaten-Repository Code-Basis</h1>
+					<ul>
+						<li>Code
+							<ul>
+								<li>SQL statements und Skripte werden von den Entwicklern selbst geschrieben und ins Repository gepusht</li>
+								<li>Entwickler arbeiten lokal oder webbasiert mit einem gängigen Editor</li>
+							</ul>
+						</li>
+						<li>Low-Code
+							<ul>
+								<li>Ein Templating- oder Automatisierungstool übernimmt das erstellen von SQL code und generiert SQL-Skripte während der Laufzeit aus den templates</li>
+								<li>Entwickler arbeiten lokal oder webbasiert mit einem gängigen Editor oder in der GUI des Tools</li>
+								<li>Es werden die templates im Repository hinterlegt</li>
+							</ul>
+						</li>
+						<li>No-Code
+							<ul>
+								<li>Automatisierungstool das per GUI und bereitgestellten Funktionalitäten SQL-code vollständig generiert</li>
+								<li>Repository existiert wird aber vom Tool befüllt und genutzt, der Entwickler greift nicht direkt auf dieses zu</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Code Beispiel</h1>
+						<p>Rohe SQL-Skripte, die direkt auf der DB ausgeführt werden</p>
+						<pre><code data-trim data-noescape>
+							WITH row_rank_1 AS (
+								SELECT rr."ARTICLE_ARTICLEGROUP_HK", rr."ARTICLE_HK", rr."ARTICLEGROUP_HK", rr."CREATED_DTTM", rr."CREATED_SOURCE",
+									ROW_NUMBER() OVER(
+										PARTITION BY rr."ARTICLE_ARTICLEGROUP_HK"
+										ORDER BY rr."CREATED_DTTM"
+									) AS row_number
+								FROM CORE_DEV.dev.source_0_article AS rr
+								QUALIFY row_number = 1
+							),
+
+							row_rank_2 AS (
+								SELECT rr."ARTICLE_ARTICLEGROUP_HK", rr."ARTICLE_HK", rr."ARTICLEGROUP_HK", rr."CREATED_DTTM", rr."CREATED_SOURCE",
+									ROW_NUMBER() OVER(
+										PARTITION BY rr."ARTICLE_ARTICLEGROUP_HK"
+										ORDER BY rr."CREATED_DTTM"
+									) AS row_number
+								FROM CORE_DEV.dev.source_1_article AS rr
+								QUALIFY row_number = 1
+							),
+							</code></pre>
+				</section>
+
+				<section>
+					<h1>Low-Code Beispiel</h1>
+						<p>Beispiel DBT  (Transformation Tool) nutzt Jinja templates und generiert daraus den SQL-Code</p>
+						<pre><code data-trim data-noescape>
+							{%- set source_model = ["source_0_article",
+													"source_1_article"]   -%}
+
+							{%- set src_pk = "ARTICLE_ARTICLEGROUP_HK"          -%}
+							{%- set src_fk = ["ARTICLE_HK", "ARTICLEGROUP_HK"]  -%}
+							{%- set src_ldts = "CREATED_DTTM"            -%}
+							{%- set src_source = "CREATED_SOURCE"          -%}
+
+							{{ dbtvault.link(src_pk=src_pk, src_fk=src_fk, src_ldts=src_ldts,
+											src_source=src_source, source_model=source_model) }}
+						</code></pre>
+				</section>
+
+				<section>
+					<h1>No-Code Beispiel</h1>
+					<h2 style="color:red">Wherescape tbd</h2>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Arbeiten mit einem Code Repository (git)</h1>
+					<p>git ist ein Versionierung-Kontroll- und Managementsystem von Dateien</p>
+					<ul>
+						<li>Verteiltes System und kein zentraler Server notwendig</li>
+						<li>Verschiedene Anbieter von git
+							<ul>
+								<li>Azure DevOps, AWS-CodeCommit, Google Cloud-Quellrepositorys</li>
+								<li>GitHub</li>
+								<li>Gitlabs</li>
+								<li>Bitbucket</li>
+								<li>…</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>git Kommandos</h1>
+					<ul>
+						<li><code>git clone {Pfad zum remote repository}</code>
+						<ul>
+							<li>Erstellt eine Arbeitskopie auf dem lokalen Rechner des Entwicklers</li>
+						</ul></li>
+
+						<li><code>git checkout {branchname}</code>
+						<ul>
+							<li>Wechselt den Entwicklungszweig im Repository</li>
+						</ul></li>
+
+						<li><code>git add {files or directory}</code>
+							<ul>
+								<li>Fügt Änderungen zur Stage hinzu bevor ein commit erstellt wird</li>
+							</ul></li>
+							
+						<li><code>git commit -m "{message}"</code>
+							<ul>
+								<li>Alle gestagten files werden in einen snapshot verpackt, ein commit entspricht einer Änderung in der Historie</li>
+							</ul></li>
+
+						<li><code>git merge</code>
+							<ul>
+								<li>Zwei auseinanderlaufende branches werden wieder vereint</li>
+							</ul></li>
+
+						<li><code>git push</code>
+							<ul>
+								<li>Der lokale branch wird auf dem remote Repository veröffentlicht</li>
+							</ul></li>
+
+						<li><code>git pull</code>
+							<ul>
+								<li>Lädt den aktuellen Stand des branches aus dem remote Repository und merged mit dem lokalen branch</li>
+							</ul></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Beispiel Workflow in git</h1>
+					<ol>
+						<li>git clone ssh://user@host/path/to/repo.git</li>
+						<li>git checkout main</li>
+						<li>git fetch origin</li>
+						<li>git reset --hard origin/main</li>
+						<li>git checkout -b new-feature</li>
+						<li>Entwickler ändert files</li>
+						<li>git push origin new-feature</li>
+						<li>git status</li>
+						<li>git add {some-file}</li>
+						<li>git commit</li>
+					</ol>
+				</section>
+
+				<section>
+					<h1>Beispiel Workflow in git</h1>
+					<ol start="11">
+						<li>Entwickler ändert weitere files</li>
+						<li>git status</li>
+						<li>git add {some-file}</li>
+						<li>git commit</li>
+						<li>git pull</li>
+						<li>git merge origin/main</li>
+						<li>git push origin new-feature</li>
+						<li>Entwickler erstellt Pull Request im Management Tool z.B. Azure DevOps</li>
+						<li>Test und Review des feature branches von einem weiteren Entwickler und anschließend merge in main</li>
+					</ol>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Deployment und Test automation</h1>
+					<p>Ein DWH besteht im Regelfall nicht nur aus einer produktiven Instanz, folgende gängige Environment Architekturen existieren</p>
+					<ul>
+						<li>2-Stages: Development und Production
+							<ul>
+								<li>Entwickler nutzen Development zum Entwickeln und Testen</li>
+							</ul>
+						</li>
+						<li>3-Stages: Development, Test und Production
+							<ul>
+								<li>Entwickler nutzen Development zum Entwickeln</li>
+								<li>Test zum überprüfen der Änderungen</li>
+							</ul>
+						</li>
+					</ul>
+					<p>Entscheidung der Architektur hängt ab von <strong>Kosten, Datenschut und Testmanagement</strong></p>
+				</section>
+
+				<section>
+					<h1>Deployment und Test automation</h1>
+					<img src="./static/V02/deployment_und_testautomation.png" alt="">
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Deployments in BI Projekten</h1>
+				<ul>
+					<li>Environment Strategien:
+						<ul>
+							<li>Blue-Green Deployment</li>
+							<li>Jeder Entwickler hat ein Environment</li>
+						</ul>
+					</li>
+					<li>Git-Branching:
+						<ul>
+							<li>Release-branches</li>
+							<li>Zusätzlicher develop-branch neben main/master branch</li>
+							<li>Trunk based deployment branch</li>
+						</ul>
+					</li>
+					<li>Organisatorisches:
+						<ul>
+							<li>Deployment Time-Slots</li>
+							<li>Manuelles vs. automatisiertes Deployment</li>
+							<li>BI Projekte entwickeln sich mehr zu professioneller Softwareentwicklung</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Datenbanken</h1>
+					<p>Ein Data Warehouse ist keine Datenbank!<br>
+						Ein Data Warehouse benötigt eine Datenbank und ist dabei die zentrale Komponente.<br>
+						Arten von Datenbanken:</p>
+					<ul>
+						<li><strong>Relational</strong> (Oracle, MySQL, MSSQL, Postgres, Snowflake)</li>
+						<li>Time Series (InfluxDB)</li>
+						<li>Hierarchisch (IMS)</li>
+						<li>Netzwerkartig (neo4j)</li>
+						<li>Objektorientiert (db4o)</li>
+						<li>No-SQL oder Dokumenten-orientiert (MongoDB)</li>
+						<li>Key-Value (Redis)</li>
+						<li>Wide column (Hbase)</li>
+						<li>Search Engines (Elasticsearch)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Welche Datenbank passt für mein Data Warehouse?</h1>
+					<p>Folgende Aspekte müssen berücksichtigt werden:</p>
+					<ul>
+						<li>Datenmenge</li>
+						<li>Flüchtigkeit der Daten</li>
+						<li>Verschachtelung und Hierarchien werden benötigt</li>
+						<li>Flexibilität der Datenstrukturen</li>
+						<li>Cloud oder on-Premise</li>
+						<li>Skillset der Developer</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Data Streaming</h1>
+				<ul>
+					<li>Ursprung der Daten:
+						<ul>
+							<li>IoT wie z.B. Kassensysteme, Sensoren, Logs, tracking auf websites</li>
+						</ul>
+					</li>
+					<li>Herausforderungen für ein DWH:
+						<ul>
+							<li>Menge und Integrität der Daten können schwanken und sind oftmals schwer einschätzbar (Blockaden möglich)</li>
+							<li>Reihenfolge und zeitliche Abfolge sollte gewährleistet werden</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Master Data Management MDM</h1>
+				<ul>
+					<li>Prinzip des Golden Records</li>
+					<li>Beispiel: Alle Kundendaten aus verschiedenen Systemen des Unternehmens werden gemerged um die Stammdaten eines Kunden sauber abzubilden oder eine einheitliche Defintion von Ländercodes und Länder-Bezeichungen soll übergreifend im Unternehmen verwendet werden</li>
+					<li>MDM hat ein eignen Tool-Stack und ergänzt ein Data Warehouse oftmals</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Data Katalog</h1>
+				<p>Ein Data Katalog ist ein zentraler Dokumentation und Metadaten Service. Es werden folgende Informationen in diesem hinterlegt:</p>
+				<ul>
+					<li>Wer hat Zugriff auf welche Daten? Datenschutz relevante Informationen Zugangsdaten und Zugangsmöglichkeiten (Rechte und Rollen)</li>
+					<li>Infos zu den Datenquellen</li>
+					<li>Tabellennamen, Attribute, Wertebereiche, Datentypen</li>
+					<li>Business Logiken von Objekten oder KPIs</li>
+					<li>Lineage der Daten</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Report</h1>
+				<p style="color:red">Nur Verweis auf Timos Part?</p>
+			</section>
+
+			<section>
+				<h1>Data Mining and analytics</h1>
+				<p style="color:red">Nur Verweis auf Timos Part?</p>
+			</section>
+
+			<section>
+			
+				<section>
+					<h1>Jobsteuerung und Alerting</h1>
+					<p style="color:red">Schönes Bild</p>
+				</section>
+
+				<section>
+					<h1>Jobsteuerung</h1>
+					<ul>
+						<li>Gehört oftmals zum Funktionsumfang von ETL/ELT Tools</li>
+						<li>In der Cloud als Service
+							<ul>
+								<li>AWS Step Functions</li>
+								<li>Azure Data Factory</li>
+								<li>Google Cloud Scheduler</li>
+							</ul>
+						</li>
+						<li>OpenSource
+							<ul>
+								<li>Apache Airflow</li>
+								<li>Apache NiFi</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Jobsteuerung Evolution Batch</h1>
+					<p>Klassisches DWH ohne Streaming nutzt meist nur batch loading-jobs in bestimmten Zeit-Intervallen (daily, nightly, alle 4 oder 12 Stunden)</p>
+					<pre>
+						<code class="language-plantuml">
+						  @startuml
+						  Alice -> Bob: Authentication Request
+						  Bob --> Alice: Authentication Response
+						  Alice -> Bob: Another authentication Request
+						  Bob --> Alice: Another authentication Response
+						  @enduml
+						</code>
+					</pre>
+					<img src="./static/V02/batch.svg" alt="">
+				</section>
+
+				<section>
+					<h1>Jobsteuerung Evolution Lambda</h1>
+					<p>Real-time und streaming Datenquellen wurden zuerst im Big Data Umfeld genutzt aber werden immer stärker im Data Warehouse integriert Kontext.</p>
+					<p>Lambda Architektur: Batch-jobs mit Real-time-jobs werden vereinigt in einem integrierenden Serving Layer</p>
+					<img src="./static/V02/jobsteuerung_evolution_lambda.png" alt="">
+				</section>
+
+				<section>
+					<h1>Jobsteuerung Evolution Kappa</h1>
+					<p>Die neuste Evolution ist die Kappa Architektur die alle Daten event-basiert mit der Gleichen code und infrastruktur basis verarbeitet egal ob diese mit großer Datenmenge als batch oder konstant in kleinerer Menge als stream eintreffen</p>
+					<img src="./static/V02/jobsteuerung_evolution_kappa.png" alt="">
+				</section>
+
+				<section>
+					<h1>Metadaten zur Steuerung</h1>
+					<div class="grid_40">
+						<div class="griditem">
+							<ul>
+								<li>Workflow oder Scheduling Tools mit DAG (Directed Acyclic Graph) nutzen</li>
+								<li>Legt Load-Reihenfolge der Objekte im DWH fest</li>
+								<li>ETL Tools haben im Normalfall integrierte DAG Funktionalität</li>
+								<li>In Projekten oft anzutreffen wenn kein ETL-Tool genutzt wird, ein internes Metadaten-framework das mit Proceduren gesteuert wird (hohe Komplexität und Wartung)</li>
+							</ul>
+						</div>
+						<div class="griditem">
+							<img src="./static/V02/dbt.png" alt="">
+						</div>
+					</div>
+					
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Alerting und Monitoring</h1>
+				<ul>
+					<li>Gehört zum Funktionsumfang von Enterprise ETL/ELT Tools</li>
+					<li>Zumeist auf Basis von Metadaten und selbstgeschriebenen SQL-Test, die Ergebnisse in SQL-Tabellen wegschreiben </li>
+					<li>Cloudbasierte Web-App greift auf die geloggten Tabellen zu und versendet Emails oder schreibt in chats (MS Teams)</li>
+					<li>Datenbanken-Anbieter haben ein technisches Monitoring bereits eingebaut</li>
+					<li>Fachliches Monitoring ➡️ Reports</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Zusammenfassung</h1>
+				<ul>
+					<li>Anbindungen
+						<ul>
+							<li>Quellsysteme, Datenformate</li>
+							<li>Jobsteuerung</li>
+							<li>ETL/ELT</li>
+						</ul>
+					</li>
+					<li>Development und Deployment
+						<ul>
+							<li>Git und Repositories</li>
+							<li>Deployment und test automation</li>
+						</ul>
+					</li>
+					<li>Verarbeitung
+						<ul>
+							<li>Datenbanken</li>
+							<li>Data Streaming</li>
+							<li>Data Katalog und MDM</li>
+						</ul>
+					</li>
+					<li>Jobsteuerung und Alerting</li>
+				</ul>
+			</section>
+
+			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="contain" data-background-repeat="no-repeat"></section>
+			<section class="center" data-background-image="https://i.giphy.com/media/E1UU9Bercy12KoZMij/giphy.webp" data-background-size="contain" data-background-repeat="no-repeat">
+				<h1>Fragen?</h1>
+			</section>
+					
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+	<script src="node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+	
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: false,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
