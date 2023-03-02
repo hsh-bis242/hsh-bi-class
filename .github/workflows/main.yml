@@ -24,6 +24,6 @@ jobs:
               username: "sftp_user@bis-242.doerffler.com"
               server: "ssh.strato.de"
               port: 22
-              remote_path: ''
+              remote_path: '/'
               sftp_only: true
               password: ${{ secrets.ftp_password }}
