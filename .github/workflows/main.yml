@@ -1,0 +1,29 @@
+name: Push Slides to Strato Webspace
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: deploy
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: npm install
+        - run: npm run build --if-present
+        - name: deploy file
+          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+          with:
+              username: "bis-242"
+              server: "bis-242.wp.hs-hannover.de"
+              port: 22
+              remote_path: ''
+              sftp_only: true
+              password: ${{ secrets.ftp_password }}
