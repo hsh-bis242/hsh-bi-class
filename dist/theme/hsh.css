@@ -384,6 +384,14 @@ body::after {
   grid-template-columns: 40% auto;
 }
 
-.griditem {}
+figcaption {
+  font-size: x-small;
+}
 
-tr:hover {background-color: #dc3b055d;}
+.griditem {
+  
+}
+
+tr:hover {
+  background-color: #dc3b055d;
+}
