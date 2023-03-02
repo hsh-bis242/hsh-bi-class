@@ -21,8 +21,8 @@ jobs:
         - name: deploy file
           uses: wlixcc/SFTP-Deploy-Action@v1.2.4
           with:
-              username: "bis-242"
-              server: "bis-242.wp.hs-hannover.de"
+              username: "sftp_user@bis-242.doerffler.com"
+              server: "ssh.strato.de"
               port: 22
               remote_path: ''
               sftp_only: true
