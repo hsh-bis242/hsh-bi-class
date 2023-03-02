@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 03 - Data Marts</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section class="center">
+				<h1 class="r-fit-text">Business Intelligence</h1>
+				<h2 class="r-fit-text">Data Marts</h2>
+			</section>
+
+			<section>
+				<h1>Gliederung der Vorlesung Business Intelligence</h1>
+				<h2 style="color:red">???</h2>
+			</section>
+
+			<section>
+				<h1>Gliederung</h1>
+				<h2 style="color:red">???</h2>
+			</section>
+
+			<section>
+				<h1>Data Marts</h1>
+				<h2 style="color:red">??? Abbildung ???</h2>
+			</section>
+
+			<section>
+				<h1>Data Mart Einordnung</h1>
+				<ul>
+					<li>Externe (Teil-)Sicht auf das Data Warehouse</li>
+					<li>Subjektorientiert</li>
+					<li>Deckt Anforderungen einer speziellen Nutzergruppe ab</li>
+					<li>Kann aber auch im Sinne es Golden Records übergreifend im gesamten Unternehmen vorhanden sein (Standardisierung vs. Individualisierung)</li>
+					<li>Struktur der Data Marts hängt immer stark von Reporting Anforderungen ab (Unterschied Controlling & Marketing)</li>
+					<li>Trennung nach Historisierung und Aktualität</li>
+					<li>Unterschiedliche Aggregationsstufen</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Gründe für Data Marts</h1>
+				<ul>
+					<li>Eigenständigkeit</li>
+					<li>Datenschutz</li>
+					<li>Lastverteilung</li>
+					<li>Datenvolumen</li>
+					<li>Vereinfachung</li>
+					<li>Verarbeitung durch OLAP Software</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Vorgehen Data Mart</h1>
+				<ul>
+					<li>Anforderungsanalyse (Scope definieren)</li>
+					<li>Entitäten, Attribute und Quelltabellen in unterliegenden DWH-Layer identifizieren </li>
+					<li>Berechnungslogiken der KPIs festlegen</li>
+					<li>Fakten und Dimensionen bestimmen</li>
+					<li>Relationale Umsetzung in Star oder Snowflake Schema</li>
+					<li>Abschließend Übergabe Dokumentation für Erstellung Cubes in SSAS, PowerCubes oder MDDB oder direkt als Reports auf Basis des relationalen Data Marts</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Aggregation und Filter Data Mart</h1>
+				<ul>
+					<li>Beschränkung auf Teile des Schemas nur bestimmte Kennzahlen oder Dimensionen</li>
+					<li>Inhaltliche Beschränkung, nur bestimmte Filialen oder das letzte Jahresergebnis</li>
+					<li>Verringerung der Granularität nur Artikelgruppen</li>
+					<li>Zeitlicher Horizont und Historisierung Beschränkung z.B. auf Monatsergebnisse </li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Fakten</h1>
+
+				<section>
+					<h2 style="color:red">??? Abbildung ???</h2>
+				</section>
+
+				<section>
+					<ul>
+						<li>KPIs - Gewinn, Umsatz, Kosten </li>
+						<li>Messgrößen meist aggregiert (verschiedene Fakten wenn andere Granularität gewünscht)</li>
+						<li>Attribute sind meist arithmetisch ermittelt</li>
+						<li>Typen von Fakten
+							<ul>
+								<li>Transaktion – Niedrige Granularität, eine Zeile pro Transaktion</li>
+								<li>Periodischer Snapshot – Eine bestimmter Zeitintervall baut oftmals auf Transaktionsebene auf</li>
+								<li>Akkumulierter Snapshot – Pro Zeile wird ein definierter Vorgang abgebildet mit Start und Ende (beinhaltet oftmals placeholder, z.B. retouren bei einem Einkauf)</li>
+								<li>Temporaler Snapshot – Bildet den täglichen Stand ab stellt dar in welchen Zeitraum ein Datensatz gültig ist und wann eine transaktion durchgeführt wurde</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<h1>Summentypen</h1>
+				<ul>
+					<li><strong>FLOW – Addictive Fact</strong>
+						<ul>
+							<li>zeitraumbezogen (pro Zeiteinheit) </li>
+							<li>Beliebig aggregierbar </li>
+							<li>Beispiel: Bestellmenge eines Artikels pro Tag </li>
+						</ul>
+					</li>
+					<li><strong>STOCK Maß über Zeitraum – semi-Addictive Fact</strong>
+						<ul>
+							<li>Beliebig aggregierbar mit Ausnahme temporaler Dimension </li>
+							<li>Beispiel: Lagerbestand, Einwohnerzahl</li>
+						</ul>
+					</li>
+					<li><strong>VALUE – PER – UNIT(VPU) - non-Addictive Fact</strong>
+						<ul>
+							<li>zeitpunktbezogen (zum Zeitpunkt) </li>
+							<li>Aktuelle Zustände, die nicht summierbar sind </li>
+							<li>Zulässig nur: MIN(), MAX(), AVG() </li>
+							<li>Beispiele: Preis, Wechselkurs, Steuersatz</li>
+						</ul>
+					</li>
+					<li><strong>Besonderheit - Factless fact</strong>
+						<ul>
+							<li>Beinhaltet nur Schlüssel der Dimensionen – Bridge zwischen Dimensionen</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Voraussetzungen eines Fakts</h1>
+				<ul>
+					<li>Uniqueness Wert einer Kennzahl nur einmal im Fakt </li>
+					<li>Surrogate Keys nötig bei temporaler Betrachtung</li>
+					<li>Werte einer höheren Aggregationsstufe lassen sich von Werten niederer Aggregationsstufe errechnen
+						<ul>
+							<li>Stadt ➡️ Bundesland ➡️ Land</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h1>Modellierung im Data Mart</h1>
+					<h2 style="color:red">??? Abbildung ???</h2>
+				</section>
+
+				<section>
+					<h1>Snowflake</h1>
+					<h2 style="color:red">??? Abbildung ???</h2>
+				</section>
+
+				<section>
+					<h1>Star</h1>
+					<h2 style="color:red">??? Abbildung ???</h2>
+				</section>
+
+				<section>
+					<h1>Star vs. Snowflake</h1>
+					<div class="grid">
+						<div>
+							<h2>Star</h2>
+							<ul>
+								<li>Hierarchien sind in den Dimensionen enthalten</li>
+								<li>Einzelne joins</li>
+								<li>Simples Design</li>
+								<li>Denormalized = bessere Query Performance</li>
+								<li>Höhere Redundanzen</li>
+								<li>Single Point of truth in Dimensionen</li>
+								<li>Cube processing performanter<br><br></li>
+							</ul>
+						</div>
+						<div>
+							<h2>Snowflake</h2>
+							<ul>
+								<li>Hierarchien sind in separaten Tabellen abgebildet</li>
+								<li>Eine Verkettung von joins</li>
+								<li>Komplexes Design</li>
+								<li>Normalized = schlechtere Query Performance</li>
+								<li>Niedrige Redundanzen</li>
+								<li>Daten sind gesplittet über die Dimensionen</li>
+								<li>Cube processing performanter</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Slowly Changing Dimensions (SCD)</h1>
+					<ul>
+						<li>In den Data Marts wird selten nur der Current-Datensatz gefordert</li>
+						<li>Definierte Historische Struktur
+							<ul>
+								<li>Realtime oder min/sek Taktung</li>
+								<li>Tagesaktuell</li>
+								<li>Wöchentlich</li>
+								<li>Monatlich</li>
+							</ul>
+						</li>
+						<li>Historische Wahrheit</li>
+						<li>Rückwirkende Historie und/oder aktuelle Historie aufbauen</li>
+					</ul>
+				</section>
+				<section style="font-size: 20px">
+					<h1>SCD Typ 0 - Insert Only</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="fragment">
+					<p><strong> Daten am 01. 03.2023</strong></p>
+						<table>
+							<thead>
+								<tr>
+									<th>Kundenummer</th>
+									<th>Name</th>
+									<th>Straße</th>
+									<th>Hausnummer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>4</td>
+									<td>Rudert</td>
+									<td>Hauptstr.</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Behrens</td>
+									<td>Sandelstr.</td>
+									<td>18</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="fragment">
+						<p><strong>Resultat</strong></p>
+						<table>
+							<thead>
+								<tr>
+									<th>Kundenummer</th>
+									<th>Name</th>
+									<th>Straße</th>
+									<th>Hausnummer</th>
+									<th>GültigVon</th>
+									<th>GültigBis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Müller</td>
+									<td>Am Weg</td>
+									<td>3</td>
+									<td>01.02.2023</td>
+									<td>31.12.9999</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Schmidt</td>
+									<td>Breitestr.</td>
+									<td>25</td>
+									<td>01.02.2023</td>
+									<td>31.12.9999</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Behrens</td>
+									<td>Mittelweg</td>
+									<td>5</td>
+									<td>01.02.2023</td>
+									<td>31.12.9999</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Rudert</td>
+									<td>Hauptstr.</td>
+									<td>1</td>
+									<td><strong>01.03.2023</strong></td>
+									<td>31.12.9999</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section style="font-size: 20px">
+					<h1>SCD Typ 1 - Update & Insert</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p><strong> Daten am 01. 03.2023</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Sandelstr.</td>
+								<td>18</td>
+							</tr>
+						</tbody>
+					</table>
+
+				<div class="fragment">
+					<p><strong>Resultat</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Sandelstr.</strong></td>
+								<td><strong>18</strong></td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+								<td><strong>01.03.2023</strong></td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</section>
+
+				<section style="font-size: 20px">
+					<h1>SCD Typ 2 - Update GültigBis & Insert</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p><strong> Daten am 01. 03.2023</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Sandelstr.</td>
+								<td>18</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="fragment">
+					<p><strong>Resultat</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Sandelstr.</strong></td>
+								<td><strong>18</strong></td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+								<td>01.03.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Mittelweg.</strong></td>
+								<td><strong>5</strong></td>
+								<td><strong>01.02.2023</strong></td>
+								<td><strong>01.03.2023</strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</section>
+
+				<section style="font-size: 20px">
+					<h1>SCD Typ 3 - Alter Table (add column(s)) & Update & Insert</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p><strong> Daten am 01. 03.2023</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Sandelstr.</td>
+								<td>18</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="fragment">
+					<p><strong>Resultat</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>NeueStraße</th>
+								<th>Hausnummer</th>
+								<th>NeueHausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Mittelweg</strong></td>
+								<td><strong>Sandelstr.</strong></td>
+								<td><strong>5</strong></td>
+								<td><strong>18</strong></td>
+								<td><strong>01.03.2023</strong></td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+								<td>1</td>
+								<td><strong>01.03.2023</strong></td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</section>
+			</section>
+
+			<section>
+				<h1>Historisierung mögliche Architekturen</h1>
+				<p>Mögliche Architekturen die Änderungen an historisierten Objekten berücksichtigen müssen:</p>
+				<ul>
+					<li>Anpassung des historischen Datenmaterials an neue Strukturen
+						<ul>
+							<li>Gute Lösung bei kleinen Datenbestand </li>
+							<li>alte Strukturen und Historie sind nicht vorhanden </li>
+						</ul>
+					</li>
+					<li>Separate Speicherung des historischen Datenbestandes zusätzlich zu neuen Strukturen
+						<ul>
+							<li>Für großen Datenbestand </li>
+							<li>Komplexität für Anwender</li>
+							<li>alte Strukturen abrufbar </li>
+						</ul>
+					</li>
+					<li>Aufbau paralleler Hierarchien mit allen Strukturen
+						<ul>
+							<li>Dimensionsstruktur komplex </li>
+							<li>beliebiges Reporting möglich </li>
+						</ul>
+					</li>
+					<li>Gültigkeitsstempel beliebige Strukturen abrufbar
+						<ul>
+							<li>Performancefrage</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h1>Dimensionen</h1>
+					<h2 style="color:red">??? Abbildung ???</h2>
+				</section>
+
+				<section>
+					<h1>Dimensionen</h1>
+					<ul>
+						<li>Zeit, Raum, Objekt</li>
+						<li>Unterteilung nach Jahr, Quartal, Monat</li>
+						<li>Beschreiben Sicht auf die KPIs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hierarchie in Dimensionen</h1>
+					<div class="grid g_top">
+						<div>
+							<p><strong>Parallele Hierarchie</strong></p>
+							<img src="./static/V03/parallele_hierarchie.png" alt="">
+						</div>
+						<div>
+							<p><strong>Einfache Hierarchie</strong></p>
+							<p>Bundesland ➡️ Stadt ➡️ Filiale</p>
+						</div>
+					</div>
+					<p>Primärschlüssel und Entitätstyp bestimmen Granularität einer Dimension</p>
+				</section>
+
+				<section>
+					<h1>Typen von Dimensionen</h1>
+					<ul>
+						<li>Conformed Dimension</li>
+						<li>Outrigger Dimension</li>
+						<li>Shrunken Dimension</li>
+						<li>Role-Playing Dimension</li>
+						<li>Dimension to Dimension Table</li>
+						<li>Junk Dimension</li>
+						<li>Degenerate Dimension</li>
+						<li>Swappable Dimension</li>
+						<li>Step Dimension</li>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<h1>Unabhängige Data Marts (fast lane)</h1>
+				<img src="./static/V03/unabhängige_datamarts.png" alt="">
+			</section>
+
+			<section>
+				<section>
+					<h1>Materialisierungstypen von Objekten</h1>
+					<ul>
+						<li>Views</li>
+						<li>External Views</li>
+						<li>Materialised view</li>
+						<li>Tables
+							<ul>
+								<li>CREATE OR REPLACE</li>
+								<li>Incremental (Strategien: Merge, Delete und Insert, SCD2)</li>
+								<li>Datenbankspezifisch wie z.B. Snowflake Transient und Timetravel</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Materialisierungsformen und Szenarien</h1>
+					<ul>
+						<li>Views ➡️ Bei kleinen Objekten mit geringer Komplexität mit wenigen Zugriffen am Tag
+							<ul>
+								<li>Immer aktuell</li>
+								<li>Langsam bei großen Datenmengen oder komplexen Logiken</li>
+							</ul>
+						</li>
+						<li>Tables
+							<ul>
+								<li>Neue Einträge in den Quelldaten werden nicht automatisch hinzugefügt</li>
+								<li>Rebuilds der Tabellen kann Zeit in Anspruch nehmen</li>
+								<li>Benötigt Load-jobs</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Datenqualität</h1>
+				<h2 style="color:red">??? Abbildung ???</h2>
+			</section>
+
+			<section>
+				<h1>Data Lineage</h1>
+				<ul>
+					<li>Koordinierte Reihenfolge hilft Bottlenecks zu identifizieren</li>
+					<li>Impact analysieren, bei Änderungen und Fehlern Abhängigkeiten zwischen Objekten in der Datenbank erkennen</li>
+					<li>Identifikation von Materialisation Strategie von einzelnen Objekten</li>
+					<li>Tools wie dbt zielen mehr auf einen modularen Ansatz aus der klassischen Objektorientierten Programmierung </li>
+					<li>No Wall of Code oder Spaghetti code</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Umgang mit Datenqualitätsproblemen</h1>
+				<ul>
+					<li>Testen der Daten bevor sie geladen werden
+						<ul>
+							<li>fehlgeschlagene Tests ➡️ Daten werden nicht geladen </li>
+							<li>fehlgeschlagene Tests ➡️ Daten werden trotzdem geladen (Fehlerschwere gering)</li>
+							<li>fehlgeschlagene Tests ➡️ Daten werden teilweise geladen (Filterung)</li>
+						</ul>
+					</li>
+					<li>Nicht alle Datenqualitätsprobleme können vor dem Laden festgestellt werden</li>
+					<li>Testen der Daten nachdem sie geladen werden
+						<ul>
+							<li>fehlgeschlagene Tests ➡️ Tabellen werden zurückgesetzt
+								<ul>
+									<li>Der aktuelle Load wird ignoriert und ein neuer Load angefordert</li>
+									<li>Bis zur Klärung der Fehler muss bei einer SCD2 Logik die Ladestrecke deaktiviert werden, Gefahr falscher Historie</li>
+								</ul>
+							</li>
+							<li>fehlgeschlagene Tests ➡️ Daten werden erstmal übernommen und durch späteren Load bereinigt (Fehlerschwere gering)</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Datenfehler Klassifikation</h1>
+				<img src="./static/V03/datenfehler_qualifikation.png" alt="">
+				<p>[Rahm Do 2000, Leser Naumann 2007]</p>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Schematische Heterogenität</h1>
+					<ul>
+						<li>Ursache: Entwurfsautonomie unterschiedliche Modellierung
+							<ul>
+								<li>Unterschiedliche Normalisierung </li>
+								<li>Was ist Relation, was Attribut, was Wert? </li>
+								<li>Aufteilung von Daten in Tabellen </li>
+								<li>Redundanzen aus Quellsystemen </li>
+								<li>Schlüssel </li>
+							</ul>
+						</li>
+						<li>In SQL nicht gut unterstützt
+							<ul>
+								<li>INSERT hat nur eine Zieltabelle </li>
+								<li>SQL greift auf Daten zu, nicht auf Schemaelemente </li>
+								<li>Erfordert meist Programmierung</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Schematische Heterogenität - Mapping</h1>
+					<ul>
+						<li>Datentransformationen zwischen zwei Systemen JSON - XML </li>
+						<li>Entwickler Quellsysteme kennen nicht Zielbild des Data Marts
+							<ul>
+								<li>Führt zu verschachtelten und komplexen Exporten</li>
+								<li>Quell und Zielschema berücksichtigen</li>
+								<li>Geschachtelt vs. flache Exporte</li>
+								<li>Normalisiert vs. denormalisiert Exporte</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Anforderungen an Datenqualität</h1>
+				<ul>
+					<li>Konsistenz (Widerspruchsfreiheit)</li>
+					<li>Korrektheit (Übereinstimmung mit Realität) </li>
+					<li>Vollständigkeit (z.B. Abwesenheit von fehlenden Werten oder Attributen)</li>
+					<li>Genauigkeit (z.B. Anzahl der Nachkommastellen)</li>
+					<li>Granularität (z.B. tagesgenaue Daten)</li>
+					<li>Zeitnähe (Wann wurde die letzte Änderung durchgeführt vs. Auftreten der Datenänderung)</li>
+					<li>Relevanz (Wie wichtig sind die Daten?)</li>
+					<li>Zuverlässigkeit (Nachvollziehbarkeit der Entstehung und Vertrauenswürdigkeit des Lieferanten)</li>
+					<li>Verständlichkeit (inhaltlich und technisch / strukturell für jeweilige Zielgruppe)</li>
+					<li>Verwendbarkeit (geeignetes Format, Zweckdienlichkeit)</li>
+					<li>Einheitlichkeit (Datenformat)</li>
+					<li>Eindeutigkeit (Interpretierbarkeit) und Schlüsselintegrität (Schlüssel und Referenzen)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Häufige Fehler</h1>
+				<section>
+					<ul>
+						<li>Eindeutigkeit verletzt (Deduplizierung)</li>
+						<li>Unterschiedliche Repräsentation (Business Logik)</li>
+						<li>Widersprüchliche Werte (Business Logik)</li>
+						<li>Referentielle Integrität verletzt (Business Logik)</li>
+						<li>Unvollständig (not null)</li>
+						<li>Duplicates (distinct, group by, ranking and filter)</li>
+						<li>Default-Werte (replace)</li>
+						<li>Unzulässige Ausprägungen (accepted values)</li>
+						<li>Tippfehler (Business Logik)</li>
+						<li>Falsche Datentypen (constraints)</li>
+						<li>Relationship missing (foreign key checks)</li>
+					</ul>
+				</section>
+
+				<section style="font-size: 23px">
+					<p>Customer</p>
+					<table>
+						<thead>
+							<tr>
+								<th>KNr</th>
+								<th>Name</th>
+								<th>Geb.datum</th>
+								<th>Alter</th>
+								<th>Geschl.</th>
+								<th>Telefon</th>
+								<th>PLZ</th>
+								<th>EMAIL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller, Michael</td>
+								<td>23.06.1985</td>
+								<td>47</td>
+								<td>M</td>
+								<td>64324</td>
+								<td>30419</td>
+								<td>NULL</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Thorsten Schmidt</td>
+								<td>15.04.88</td>
+								<td>34</td>
+								<td>W</td>
+								<td>015143733689</td>
+								<td>33999</td>
+								<td>NULL</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Tom Behrens</td>
+								<td>30.02.1999</td>
+								<td>24</td>
+								<td>F</td>
+								<td>015353212634</td>
+								<td>30457</td>
+								<td>m.muster@m.de</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>PLZ</p>
+					<table>
+						<thead>
+							<th>PLZ</th>
+							<th>Ort</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>30419</td>
+								<td>Stuttgart-Pfaffenwald</td>
+							</tr>
+							<tr>
+								<td>30453</td>
+								<td>Hannover-Lin-Mitte</td>
+							</tr>
+							<tr>
+								<td>30457</td>
+								<td>Hannover-Mühlenberg</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section style="font-size: 23px">
+					<p>Customer</p>
+					<table>
+						<thead>
+							<tr>
+								<th>KNr</th>
+								<th>Name</th>
+								<th>Geb.datum</th>
+								<th>Alter</th>
+								<th>Geschl.</th>
+								<th>Telefon</th>
+								<th>PLZ</th>
+								<th>EMAIL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="color: red">1</td>
+								<td style="color: blue">Müller, Michael</td>
+								<td style="color: orange">23.06.1985</td>
+								<td style="color: orange">47</td>
+								<td>M</td>
+								<td style="color: rebeccapurple">64324</td>
+								<td>30419</td>
+								<td style="color: crimson">NULL</td>
+							</tr>
+							<tr>
+								<td style="color: red">1</td>
+								<td>Thorsten Schmidt</td>
+								<td>15.04.88</td>
+								<td>34</td>
+								<td>W</td>
+								<td>015143733689</td>
+								<td style="color: teal">33999</td>
+								<td style="color: crimson">NULL</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Tom Behrens</td>
+								<td>30.02.1999</td>
+								<td>24</td>
+								<td style="color: yellowgreen">F</td>
+								<td>015353212634</td>
+								<td>30457</td>
+								<td>m.muster@m.de</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>PLZ</p>
+					<table>
+						<thead>
+							<th>PLZ</th>
+							<th>Ort</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>30419</td>
+								<td style="color: red">Stuttgart-Pfaffenwald</td>
+							</tr>
+							<tr>
+								<td>30453</td>
+								<td style="color: red">Hannover-Lin-Mitte</td>
+							</tr>
+							<tr>
+								<td>30457</td>
+								<td>Hannover-Mühlenberg</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Prozesszyklus Datenqualität</h1>
+				<img src="./static/V03/prozesszyklus.png" alt="">
+			</section>
+
+			<section>
+				<h1>Formatierung der Daten</h1>
+				<ul>
+					<li>Standardisierung Datentypen
+						<ul>
+							<li>Datumsangaben</li>
+							<li>Maßeinheiten</li>
+						</ul>
+					</li>
+					<li>Lesbarkeit - Kodierungen ersetzen</li>
+					<li>Filtern und löschen unnötiger Bestandteile</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Data Scrubbing and Cleaning</h1>
+				<ul>
+					<li>Business Rules werden genutzt für eine Deduplizierung von Datensätzen</li>
+					<li>Abweichungen bereinigen bei z.B. Transaktionen und Überweisungen (Retouren und Discounts)</li>
+					<li>Fehlende Daten auffüllen ➡️ NULL Values ungern gesehen in Reports</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Datengröße und Problematiken</h1>
+				<ul>
+					<li>Längere Ladezeiten und im Ursprung Design ist das DWH für tägliche batch-loads entworfen
+						<ul>
+							<li>Daten liegen über verschiedene Schichten oft Redundant vor</li>
+						</ul>
+					</li>
+					<li>Bei schnelleren Ladezyklen muss Reihenfolge eingehalten werden für Historisierung </li>
+					<li>Viele kleine verschachtelte files in kurzen Intervallen können zu Deadlocks führen</li>
+				</ul>
+				<p>Der Weg über das Data Warehouse manchmal nicht die richtige Lösung um Daten zu Verarbeiten und in Reports zu präsentieren</p>
+			</section>
+
+			<section>
+				<h1>Skalierbarkeit - Improve Performance</h1>
+				<ul>
+					<li>Query Optimisation</li>
+					<li>Indexing </li>
+					<li>Compression</li>
+					<li>Aggregation - schon in den ersten Schichten</li>
+					<li>Vertikales Partitioning</li>
+					<li>Archive “old” data</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Data Ownership</h1>
+				<ul>
+					<li>Eigentümer und Verantwortlicher der Daten innerhalb der Organisation</li>
+					<li>Entscheidung Wie, Wo und von Wem Daten genutzt werden dürfen</li>
+					<li>Kann inhaltliche Fragen zu den Daten beantworten und kann den Bezug zur Realität darstellen</li>
+					<li>Legt Anspruch an Datenqualität und fachlichen Tests fest</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Monitoring und Test-Trigger</h1>
+				<ul>
+					<li>Nicht nur technische Tests automatisieren auch immer fachliche Tests automatisiert testen
+						<ul>
+							<li>Freud Detection </li>
+							<li>Anomalien</li>
+						</ul>
+					</li>
+					<li>Arten von Triggern
+						<ul>
+							<li>Strategien Log-basiert</li>
+							<li>Zeitstempel und Zeitvergleich</li>
+							<li>Snapshots und vergleich mit vorherigen Stand</li>
+						</ul>
+					</li>
+					<li>Tests ausführen basierend auf Änderungen an der Quelle
+						<ul>
+							<li>Push vs Pull</li>
+							<li>Regelmäßige Zeitintervalle
+								<ul>
+									<li>Nachts, am Wochenende, alle 4 oder 12 Stunden</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Indexstrukturen</h1>
+				<h2 style="color:red">Wenn noch Platz ist</h2>
+			</section>
+
+			<section class="center" data-background-image="https://i.giphy.com/media/l0HlT86IOp6nE9he0/giphy.webp" data-background-size="contain" data-background-repeat="no-repeat"></section>
+					
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+	<script src="node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+	
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: false,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
