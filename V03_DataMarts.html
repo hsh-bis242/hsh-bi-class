@@ -205,7 +205,931 @@
 			</section>
 
 			<section>
-				<h1>Slowly Changing Dimensions (SCD)</h1>
+				<section>
+					<h1>Slowly Changing Dimensions (SCD)</h1>
+					<ul>
+						<li>In den Data Marts wird selten nur der Current-Datensatz gefordert</li>
+						<li>Definierte Historische Struktur
+							<ul>
+								<li>Realtime oder min/sek Taktung</li>
+								<li>Tagesaktuell</li>
+								<li>Wöchentlich</li>
+								<li>Monatlich</li>
+							</ul>
+						</li>
+						<li>Historische Wahrheit</li>
+						<li>Rückwirkende Historie und/oder aktuelle Historie aufbauen</li>
+					</ul>
+				</section>
+				<section style="font-size: 20px">
+					<h1>SCD Typ 0 - Insert Only</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="fragment">
+					<p><strong> Daten am 01. 03.2023</strong></p>
+						<table>
+							<thead>
+								<tr>
+									<th>Kundenummer</th>
+									<th>Name</th>
+									<th>Straße</th>
+									<th>Hausnummer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>4</td>
+									<td>Rudert</td>
+									<td>Hauptstr.</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Behrens</td>
+									<td>Sandelstr.</td>
+									<td>18</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="fragment">
+						<p><strong>Resultat</strong></p>
+						<table>
+							<thead>
+								<tr>
+									<th>Kundenummer</th>
+									<th>Name</th>
+									<th>Straße</th>
+									<th>Hausnummer</th>
+									<th>GültigVon</th>
+									<th>GültigBis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Müller</td>
+									<td>Am Weg</td>
+									<td>3</td>
+									<td>01.02.2023</td>
+									<td>31.12.9999</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Schmidt</td>
+									<td>Breitestr.</td>
+									<td>25</td>
+									<td>01.02.2023</td>
+									<td>31.12.9999</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Behrens</td>
+									<td>Mittelweg</td>
+									<td>5</td>
+									<td>01.02.2023</td>
+									<td>31.12.9999</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Rudert</td>
+									<td>Hauptstr.</td>
+									<td>1</td>
+									<td><strong>01.03.2023</strong></td>
+									<td>31.12.9999</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section style="font-size: 20px">
+					<h1>SCD Typ 1 - Update & Insert</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p><strong> Daten am 01. 03.2023</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Sandelstr.</td>
+								<td>18</td>
+							</tr>
+						</tbody>
+					</table>
+
+				<div class="fragment">
+					<p><strong>Resultat</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Sandelstr.</strong></td>
+								<td><strong>18</strong></td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+								<td><strong>01.03.2023</strong></td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</section>
+
+				<section style="font-size: 20px">
+					<h1>SCD Typ 2 - Update GültigBis & Insert</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p><strong> Daten am 01. 03.2023</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Sandelstr.</td>
+								<td>18</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="fragment">
+					<p><strong>Resultat</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Sandelstr.</strong></td>
+								<td><strong>18</strong></td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+								<td>01.03.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Mittelweg.</strong></td>
+								<td><strong>5</strong></td>
+								<td><strong>01.02.2023</strong></td>
+								<td><strong>01.03.2023</strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</section>
+
+				<section style="font-size: 20px">
+					<h1>SCD Typ 3 - Alter Table (add column(s)) & Update & Insert</h1>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Mittelweg</td>
+								<td>5</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p><strong> Daten am 01. 03.2023</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>Hausnummer</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td>Sandelstr.</td>
+								<td>18</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="fragment">
+					<p><strong>Resultat</strong></p>
+					<table>
+						<thead>
+							<tr>
+								<th>Kundenummer</th>
+								<th>Name</th>
+								<th>Straße</th>
+								<th>NeueStraße</th>
+								<th>Hausnummer</th>
+								<th>NeueHausnummer</th>
+								<th>GültigVon</th>
+								<th>GültigBis</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller</td>
+								<td>Am Weg</td>
+								<td>Am Weg</td>
+								<td>3</td>
+								<td>3</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Schmidt</td>
+								<td>Breitestr.</td>
+								<td>Breitestr.</td>
+								<td>25</td>
+								<td>25</td>
+								<td>01.02.2023</td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Behrens</td>
+								<td><strong>Mittelweg</strong></td>
+								<td><strong>Sandelstr.</strong></td>
+								<td><strong>5</strong></td>
+								<td><strong>18</strong></td>
+								<td><strong>01.03.2023</strong></td>
+								<td>31.12.9999</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Rudert</td>
+								<td>Hauptstr.</td>
+								<td>Hauptstr.</td>
+								<td>1</td>
+								<td>1</td>
+								<td><strong>01.03.2023</strong></td>
+								<td>31.12.9999</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				</section>
+			</section>
+
+			<section>
+				<h1>Historisierung mögliche Architekturen</h1>
+				<p>Mögliche Architekturen die Änderungen an historisierten Objekten berücksichtigen müssen:</p>
+				<ul>
+					<li>Anpassung des historischen Datenmaterials an neue Strukturen
+						<ul>
+							<li>Gute Lösung bei kleinen Datenbestand </li>
+							<li>alte Strukturen und Historie sind nicht vorhanden </li>
+						</ul>
+					</li>
+					<li>Separate Speicherung des historischen Datenbestandes zusätzlich zu neuen Strukturen
+						<ul>
+							<li>Für großen Datenbestand </li>
+							<li>Komplexität für Anwender</li>
+							<li>alte Strukturen abrufbar </li>
+						</ul>
+					</li>
+					<li>Aufbau paralleler Hierarchien mit allen Strukturen
+						<ul>
+							<li>Dimensionsstruktur komplex </li>
+							<li>beliebiges Reporting möglich </li>
+						</ul>
+					</li>
+					<li>Gültigkeitsstempel beliebige Strukturen abrufbar
+						<ul>
+							<li>Performancefrage</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h1>Dimensionen</h1>
+					<h2 style="color:red">??? Abbildung ???</h2>
+				</section>
+
+				<section>
+					<h1>Dimensionen</h1>
+					<ul>
+						<li>Zeit, Raum, Objekt</li>
+						<li>Unterteilung nach Jahr, Quartal, Monat</li>
+						<li>Beschreiben Sicht auf die KPIs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hierarchie in Dimensionen</h1>
+					<div class="grid g_top">
+						<div>
+							<p><strong>Parallele Hierarchie</strong></p>
+							<img src="./static/V03/parallele_hierarchie.png" alt="">
+						</div>
+						<div>
+							<p><strong>Einfache Hierarchie</strong></p>
+							<p>Bundesland ➡️ Stadt ➡️ Filiale</p>
+						</div>
+					</div>
+					<p>Primärschlüssel und Entitätstyp bestimmen Granularität einer Dimension</p>
+				</section>
+
+				<section>
+					<h1>Typen von Dimensionen</h1>
+					<ul>
+						<li>Conformed Dimension</li>
+						<li>Outrigger Dimension</li>
+						<li>Shrunken Dimension</li>
+						<li>Role-Playing Dimension</li>
+						<li>Dimension to Dimension Table</li>
+						<li>Junk Dimension</li>
+						<li>Degenerate Dimension</li>
+						<li>Swappable Dimension</li>
+						<li>Step Dimension</li>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<h1>Unabhängige Data Marts (fast lane)</h1>
+				<img src="./static/V03/unabhängige_datamarts.png" alt="">
+			</section>
+
+			<section>
+				<section>
+					<h1>Materialisierungstypen von Objekten</h1>
+					<ul>
+						<li>Views</li>
+						<li>External Views</li>
+						<li>Materialised view</li>
+						<li>Tables
+							<ul>
+								<li>CREATE OR REPLACE</li>
+								<li>Incremental (Strategien: Merge, Delete und Insert, SCD2)</li>
+								<li>Datenbankspezifisch wie z.B. Snowflake Transient und Timetravel</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Materialisierungsformen und Szenarien</h1>
+					<ul>
+						<li>Views ➡️ Bei kleinen Objekten mit geringer Komplexität mit wenigen Zugriffen am Tag
+							<ul>
+								<li>Immer aktuell</li>
+								<li>Langsam bei großen Datenmengen oder komplexen Logiken</li>
+							</ul>
+						</li>
+						<li>Tables
+							<ul>
+								<li>Neue Einträge in den Quelldaten werden nicht automatisch hinzugefügt</li>
+								<li>Rebuilds der Tabellen kann Zeit in Anspruch nehmen</li>
+								<li>Benötigt Load-jobs</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Datenqualität</h1>
+				<h2 style="color:red">??? Abbildung ???</h2>
+			</section>
+
+			<section>
+				<h1>Data Lineage</h1>
+				<ul>
+					<li>Koordinierte Reihenfolge hilft Bottlenecks zu identifizieren</li>
+					<li>Impact analysieren, bei Änderungen und Fehlern Abhängigkeiten zwischen Objekten in der Datenbank erkennen</li>
+					<li>Identifikation von Materialisation Strategie von einzelnen Objekten</li>
+					<li>Tools wie dbt zielen mehr auf einen modularen Ansatz aus der klassischen Objektorientierten Programmierung </li>
+					<li>No Wall of Code oder Spaghetti code</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Umgang mit Datenqualitätsproblemen</h1>
+				<ul>
+					<li>Testen der Daten bevor sie geladen werden
+						<ul>
+							<li>fehlgeschlagene Tests ➡️ Daten werden nicht geladen </li>
+							<li>fehlgeschlagene Tests ➡️ Daten werden trotzdem geladen (Fehlerschwere gering)</li>
+							<li>fehlgeschlagene Tests ➡️ Daten werden teilweise geladen (Filterung)</li>
+						</ul>
+					</li>
+					<li>Nicht alle Datenqualitätsprobleme können vor dem Laden festgestellt werden</li>
+					<li>Testen der Daten nachdem sie geladen werden
+						<ul>
+							<li>fehlgeschlagene Tests ➡️ Tabellen werden zurückgesetzt
+								<ul>
+									<li>Der aktuelle Load wird ignoriert und ein neuer Load angefordert</li>
+									<li>Bis zur Klärung der Fehler muss bei einer SCD2 Logik die Ladestrecke deaktiviert werden, Gefahr falscher Historie</li>
+								</ul>
+							</li>
+							<li>fehlgeschlagene Tests ➡️ Daten werden erstmal übernommen und durch späteren Load bereinigt (Fehlerschwere gering)</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Datenfehler Klassifikation</h1>
+				<img src="./static/V03/datenfehler_qualifikation.png" alt="">
+				<p>[Rahm Do 2000, Leser Naumann 2007]</p>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Schematische Heterogenität</h1>
+					<ul>
+						<li>Ursache: Entwurfsautonomie unterschiedliche Modellierung
+							<ul>
+								<li>Unterschiedliche Normalisierung </li>
+								<li>Was ist Relation, was Attribut, was Wert? </li>
+								<li>Aufteilung von Daten in Tabellen </li>
+								<li>Redundanzen aus Quellsystemen </li>
+								<li>Schlüssel </li>
+							</ul>
+						</li>
+						<li>In SQL nicht gut unterstützt
+							<ul>
+								<li>INSERT hat nur eine Zieltabelle </li>
+								<li>SQL greift auf Daten zu, nicht auf Schemaelemente </li>
+								<li>Erfordert meist Programmierung</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Schematische Heterogenität - Mapping</h1>
+					<ul>
+						<li>Datentransformationen zwischen zwei Systemen JSON - XML </li>
+						<li>Entwickler Quellsysteme kennen nicht Zielbild des Data Marts
+							<ul>
+								<li>Führt zu verschachtelten und komplexen Exporten</li>
+								<li>Quell und Zielschema berücksichtigen</li>
+								<li>Geschachtelt vs. flache Exporte</li>
+								<li>Normalisiert vs. denormalisiert Exporte</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Anforderungen an Datenqualität</h1>
+				<ul>
+					<li>Konsistenz (Widerspruchsfreiheit)</li>
+					<li>Korrektheit (Übereinstimmung mit Realität) </li>
+					<li>Vollständigkeit (z.B. Abwesenheit von fehlenden Werten oder Attributen)</li>
+					<li>Genauigkeit (z.B. Anzahl der Nachkommastellen)</li>
+					<li>Granularität (z.B. tagesgenaue Daten)</li>
+					<li>Zeitnähe (Wann wurde die letzte Änderung durchgeführt vs. Auftreten der Datenänderung)</li>
+					<li>Relevanz (Wie wichtig sind die Daten?)</li>
+					<li>Zuverlässigkeit (Nachvollziehbarkeit der Entstehung und Vertrauenswürdigkeit des Lieferanten)</li>
+					<li>Verständlichkeit (inhaltlich und technisch / strukturell für jeweilige Zielgruppe)</li>
+					<li>Verwendbarkeit (geeignetes Format, Zweckdienlichkeit)</li>
+					<li>Einheitlichkeit (Datenformat)</li>
+					<li>Eindeutigkeit (Interpretierbarkeit) und Schlüsselintegrität (Schlüssel und Referenzen)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Häufige Fehler</h1>
+				<section>
+					<ul>
+						<li>Eindeutigkeit verletzt (Deduplizierung)</li>
+						<li>Unterschiedliche Repräsentation (Business Logik)</li>
+						<li>Widersprüchliche Werte (Business Logik)</li>
+						<li>Referentielle Integrität verletzt (Business Logik)</li>
+						<li>Unvollständig (not null)</li>
+						<li>Duplicates (distinct, group by, ranking and filter)</li>
+						<li>Default-Werte (replace)</li>
+						<li>Unzulässige Ausprägungen (accepted values)</li>
+						<li>Tippfehler (Business Logik)</li>
+						<li>Falsche Datentypen (constraints)</li>
+						<li>Relationship missing (foreign key checks)</li>
+					</ul>
+				</section>
+
+				<section style="font-size: 23px">
+					<p>Customer</p>
+					<table>
+						<thead>
+							<tr>
+								<th>KNr</th>
+								<th>Name</th>
+								<th>Geb.datum</th>
+								<th>Alter</th>
+								<th>Geschl.</th>
+								<th>Telefon</th>
+								<th>PLZ</th>
+								<th>EMAIL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Müller, Michael</td>
+								<td>23.06.1985</td>
+								<td>47</td>
+								<td>M</td>
+								<td>64324</td>
+								<td>30419</td>
+								<td>NULL</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Thorsten Schmidt</td>
+								<td>15.04.88</td>
+								<td>34</td>
+								<td>W</td>
+								<td>015143733689</td>
+								<td>33999</td>
+								<td>NULL</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Tom Behrens</td>
+								<td>30.02.1999</td>
+								<td>24</td>
+								<td>F</td>
+								<td>015353212634</td>
+								<td>30457</td>
+								<td>m.muster@m.de</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>PLZ</p>
+					<table>
+						<thead>
+							<th>PLZ</th>
+							<th>Ort</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>30419</td>
+								<td>Stuttgart-Pfaffenwald</td>
+							</tr>
+							<tr>
+								<td>30453</td>
+								<td>Hannover-Lin-Mitte</td>
+							</tr>
+							<tr>
+								<td>30457</td>
+								<td>Hannover-Mühlenberg</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section style="font-size: 23px">
+					<p>Customer</p>
+					<table>
+						<thead>
+							<tr>
+								<th>KNr</th>
+								<th>Name</th>
+								<th>Geb.datum</th>
+								<th>Alter</th>
+								<th>Geschl.</th>
+								<th>Telefon</th>
+								<th>PLZ</th>
+								<th>EMAIL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="color: red">1</td>
+								<td style="color: blue">Müller, Michael</td>
+								<td style="color: orange">23.06.1985</td>
+								<td style="color: orange">47</td>
+								<td>M</td>
+								<td style="color: rebeccapurple">64324</td>
+								<td>30419</td>
+								<td style="color: crimson">NULL</td>
+							</tr>
+							<tr>
+								<td style="color: red">1</td>
+								<td>Thorsten Schmidt</td>
+								<td>15.04.88</td>
+								<td>34</td>
+								<td>W</td>
+								<td>015143733689</td>
+								<td style="color: teal">33999</td>
+								<td style="color: crimson">NULL</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Tom Behrens</td>
+								<td>30.02.1999</td>
+								<td>24</td>
+								<td style="color: yellowgreen">F</td>
+								<td>015353212634</td>
+								<td>30457</td>
+								<td>m.muster@m.de</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<p>PLZ</p>
+					<table>
+						<thead>
+							<th>PLZ</th>
+							<th>Ort</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>30419</td>
+								<td style="color: red">Stuttgart-Pfaffenwald</td>
+							</tr>
+							<tr>
+								<td>30453</td>
+								<td style="color: red">Hannover-Lin-Mitte</td>
+							</tr>
+							<tr>
+								<td>30457</td>
+								<td>Hannover-Mühlenberg</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Prozesszyklus Datenqualität</h1>
+				<img src="./static/V03/prozesszyklus.png" alt="">
+			</section>
+
+			<section>
+				<h1>Formatierung der Daten</h1>
+				<ul>
+					<li>Standardisierung Datentypen
+						<ul>
+							<li>Datumsangaben</li>
+							<li>Maßeinheiten</li>
+						</ul>
+					</li>
+					<li>Lesbarkeit - Kodierungen ersetzen</li>
+					<li>Filtern und löschen unnötiger Bestandteile</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Data Scrubbing and Cleaning</h1>
+				<ul>
+					<li>Business Rules werden genutzt für eine Deduplizierung von Datensätzen</li>
+					<li>Abweichungen bereinigen bei z.B. Transaktionen und Überweisungen (Retouren und Discounts)</li>
+					<li>Fehlende Daten auffüllen ➡️ NULL Values ungern gesehen in Reports</li>
+				</ul>
 			</section>
 
 

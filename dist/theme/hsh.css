@@ -374,8 +374,14 @@ body::after {
  *********************************************/
 .grid {
   display: grid;
-  align-items: center;
   grid-template-columns: auto auto;
+}
+
+.g_center {
+  align-items: center;
+}
+.g_top {
+  align-items: top;
 }
 
 .grid_40 {
