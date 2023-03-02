@@ -1,98 +1,498 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Hochschule Hannover - Business Intelligence - Vorlesung 01 - Einf&uuml;hrung in die Business Intelligence</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/white.css">
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 00 - Einf&uuml;hrung in die
+		Business Intelligence</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Business Intelligence</h1>
+				<h2>Einf&uuml;hrung und Motivation</h2>
+			</section>
+			<section>
+				<h1>Einf&uuml;hrungsvideo: Lufthansa / Teradata</h1>
+				<iframe id="videoLufthansa" width="560" height="315"
+					src="//www.youtube.com/embed/oIhOqKHaTQg?enablejsapi=1&html5=1" frameborder="0"
+					allowfullscreen></iframe>
+			</section>
+			<section>
+				<h1>Einf&uuml;hrungsvideo: Tableau</h1>
+				<iframe id="videoTableau" width="560" height="315"
+					src="//www.youtube.com/embed/MlaiI7o2BvY?enablejsapi=1&html5=1" frameborder="0"
+					allowfullscreen></iframe>
+			</section>
+			<section>
+				<h1>Business Intelligence - Problemstellungen</h1>
+
+			</section>
+			<section data-background-iframe="index.html">
+			</section>
+			<section>
+				<h1>Gliederung - Einführung und Motivation</h1>
+				<ul>
+					<li>Definition</li>
+					<li>Architekturen</li>
+					<li>Abgrenzung OLTP</li>
+					<li>Anwendungen</li>
+					<ul>
+						<li>Reporting</li>
+						<li>Dashboards</li>
+						<li>OLAP</li>
+						<li>Data Mining</li>
+						<li>...</li>
+					</ul>
+					<li>Nutzergruppen</li>
+					<li>Anwendungsbeispiel: BI bei der Feuerwehr</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Definition</h1>
 				<section>
-					<h1>Business Intelligence</h1>
-					<h2>Einf&umml;hrung und Motivation</h2>
+					<h2>Business Intelligence</h2>
+					<figure>
+						<blockquote>
+							Begriffliche Klammer, die unterschiedliche Technologien und Konzepte im Umfeld der
+							entscheidungsunterstützenden Systeme zusammenführt und dabei eine
+							<b>entscheidungsorientierte Sammlung und Aufbereitung von Daten über das Unternehmen</b>
+							und dessen Umwelt sowie deren <b>Darstellung</b> in Form von geschäftsrelevanten
+							Informationen für <b>Analyse-, Planungs- und Steuerungszwecke</b> zum Gegenstand hat.
+						</blockquote>
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
+						</figcaption>
+					</figure>
 				</section>
 				<section>
-					<h1>Organisation</h1>
-					<table>
-						<tr>
-							<td>Zielgruppe:</td>
-							<td>
-								Bachelor Wirtschaftsinformatik (BIS) - Schwerpunkt BI​<br>
-								Bachelor Angewandte Mathematik (MAT)
-							</td>
-						</tr>
-						<tr>
-							<td>Voraussetzung:</td>
-							<td>BIS-241 Data Warehousing (Note oder Platz)​</td>
-						</tr>
-						<tr>
-							<td>Vorlesungszeit:</td>
-							<td>
-								Mittwoch (8:30 Uhr bis 11:45 Uhr)<br>
-								Pause ca. 10:00 Uhr bis 10:15 Uhr
-							</td>
-						</tr>
-						<tr>
-							<td>Vorlesungsraum:</td>
-							<td>Labor XY</td>
-						</tr>
-						<tr>
-							<td>Vorlesungsunterlagen:</td>
-							<td>
-								Zu finden in Moodle (Einschreibeschl&uuml;ssel Ith)
-								<a href="https://moodle.hs-hannover.de/course/view.php?id=22276">Business Intelligence, SoSe 2023, König, Cirkel, Steuerwald</a>
-							</td>
-						</tr>
-						<tr>
-							<td>Kontakt:</td>
-							<td>
-								<table>
-									<tr>
-										<td>E-Mail:</td>
-										<td>tcirkel@doerffler.com</td>
-									<tr>
-										<td>Telefon:</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>Büro:</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>Sprechstunde:</td>
-										<td>Nach Vereinbarung</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</table>
+					<h2><u>Prozessorientierte</u> Sichtweise</h2>
+					<figure>
+						<blockquote>
+							BI ist ein (kontinuierlicher) <b>Prozess</b>, der aus <b>fragmentierten, inhomogenen</b>
+							Unternehmungs-, Markt- und Wettbewerberdaten <b>Wissen</b> über eigene und fremde
+							Positionen,
+							Potenziale und Perspektiven <b>generiert</b>.
+						</blockquote>
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und
+							Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+							Berlin: Springer
+						</figcaption>
+					</figure>
 				</section>
-			</div>
+				<section>
+					<h2>Begriffsabgrenzung</h2>
+					<figure>
+						<img src="static/V01/Gluchowski-Abgrenzung_BI.png">
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und
+							Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+							Berlin: Springer
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section data-background-image="static/V01/btelligent-Referenzarchitektur_BI.png">
+
+				</section>
+				<section data-background-image="static/V01/btelligent-Referenzarchitektur_DataPlatforms.png">
+
+				</section>
+			</section>
+			<section>
+				<h1>Abgrenzung OLTP</h1>
+				<figure>
+					<img src="static/V01/Koenig-Anwendungssystempyramide.png">
+					<figcaption>
+						In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
+						und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+						Berlin: Springer
+					</figcaption>
+				</figure>
+			</section>
+			<section>
+				<section>
+					<h1>Anwendungen</h1>
+					<figure>
+						<img src="static/V01/btelligent-Referenzarchitektur_BI.png">
+						<figcaption>
+							b.telligent Deutschland GmbH (2022)
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								<b>
+									Reporting = Betriebliches Berichtswesen
+								</b>
+							</p>
+							<p>
+								<b>
+									Ziel:
+								</b> 
+								Die Mitarbeiter ereignis- oder zeitgesteuert mit relevanten Informationen versorgen. Es umfasst alle Personen, Organisationseinheiten, Vorschriften, Daten und Prozesse, die bei der Erzeugung und Weiterleitung von Berichten beteiligt sind.
+							</p>
+							<p>
+								<b>
+									Berichte:
+								</b>
+								<b>Dokumente</b>, die unterschiedliche Informationen für einen bestimmten Untersuchungszweck miteinander kombinieren und in aufbereiteter Form vorhalten.
+							</p>
+							<p>
+								Zielgruppe sind betriebliche <b>Fach- und F&uuml;hrungskr&auml;fte</b>. Sie bekommen in <b>periodischen Abst&auml;nden</b> oder im <b>Bedarfsfall</b> bestimmte Fakten geliefert, die helfen, Trends zu erkennen, Planungen durchzuf&uuml;hren oder Kontrollaufgaben  wahrzunehmen.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Reporting</h2>
+					<figure>
+						<img src="static/V01/Tableau_Reporting_Overview.png">
+						<figcaption>
+							https://www.tableau.com/de-de/products/desktop
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Reporting</h2>
+					<figure>
+						<img src="static/V01/Gluchowski-Reporting_BI.png">
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Dashboards</h2>
+					<figure>
+						<img src="static/V01/PowerBI_Dashboard_Overview_annotated.png">
+						<figcaption>
+							Microsoft PowerBI Desktop (https://powerbi.microsoft.com/de-de/desktop/)
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Dashboards</h2>
+					<figure>
+						<img src="static/V01/Koenig-Dashboard_USA.png">
+						<figcaption>
+							https://databoss.starschema.net/creating-simple-dashboard-tableau-talend-mysql/
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>OLAP</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								<b>
+									OLAP = Online Analytical Processing
+								</b>
+							</p>
+							<p>
+								Software-Technologie, die Managern wie auch qualifizierten Mitarbeitern aus den Fachabteilungen schnelle, interaktive und vielf&auml;ltige Zugriffe auf relevante und konsistente Informationen erm&ouml;glichen soll.
+							</p>
+							<p>
+								Im Vordergrund stehen dabei <b>dynamische und multidimensionale Analysen</b> auf <b>historischen, konsolidierten Datenbest&auml;nden</b>.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>OLAP</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								Multidimensionale Perspektiven auf verf&uuml;gbare quantitative Datenbest&auml;nde haben sich als geeignet erwiesen, um den Mitarbeitern einen flexiblen und intuitiven Zugang zu den ben&ouml;tigten Informationen zu er&ouml;ffnen.
+							</p>
+							<p>
+								<b>Multidimensionalit&auml;t</b> als zentrales Gestaltungsparadigma:
+							</p>
+							<p>
+								Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher Klassen logisch zusammengeh&ouml;riger Informationsobjekte aufgliedern.
+							</p>
+							<p>
+								Korrespondiert mit der naturgem&auml;ß mehrdimensionalen Problemsicht der Unternehmungsanalytiker.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>OLAP</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								Betriebswirtschaftliche <b>Kenngr&ouml;ßen</b> (= <b>Fakten</b>)
+							</p>
+								<ul>
+									<li>Umsatz</li>
+								</ul>
+							<p>
+								<b>Dimensionen</b>
+							</p>
+							<p>
+								<ul>
+									<li>Kunden</li>
+									<li>Artikel</li>
+									<li>Regionen</li>
+								</ul>
+							</p>
+							<p>
+								hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)
+							</p>
+							<p>
+								Dimensionen entlang derer sich betriebswirtschaftliche Kenngr&ouml;ßen im Zeitablauf untersuchen lassen.
+							</p>
+							<p>
+								Ums&auml;tze pro Monat in den verschiedenen Regionen und Produktgruppen
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>OLAP</h2>
+					<figure>
+						<img src="static/V01/Koenig-Wuerfeldarstellung_1.png">
+						<figcaption>
+							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>OLAP</h2>
+					<figure>
+						<img src="static/V01/Koenig-Wuerfeldarstellung_2.png">
+						<figcaption>
+							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>OLAP</h2>
+					<figure>
+						<img src="static/V01/Koenig-Fachlicher_Stern_OLAP.png">
+						<figcaption>
+							Fachlicher Stern (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>ROLAP</h2>
+					<figure>
+						<img src="static/V01/PowerBI_Sternschema.png">
+						<!-- 
+							<img src="static/V01/Koenig-Sternschema_ROLAP.png">
+						-->
+						<figcaption>
+							Sternschema (https://learn.microsoft.com/de-de/power-bi/guidance/star-schema)
+						</figcaption>
+						<!--
+						<figcaption>
+							Sternschema (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
+						</figcaption>
+						-->
+					</figure>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Data Mining</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								<b>Data Mining:</b>
+							</p>
+							<p>
+								Allgemein verwendbare, effiziente Methoden, die <b>autonom</b> aus <b>großen Rohdatenmengen</b> die bedeutsamsten und aussagekr&auml;ftigsten <b>Muster</b> identifizieren und sie dem Anwender als interessantes Wissen pr&auml;sentieren.
+							</p>
+							<p>
+								Erforschung von Strukturzusammenh&auml;ngen (Datenmustern) in Datenbanken
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Data Mining</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								Beispiel:
+							</p>
+							<p>
+								<b>Entscheidungsbaumverfahren</b> (Klassifizierung)
+							</p>
+							<p>
+								Zuordnung von Datenobjekten zu <b>vorgegebenen</b> Klassen
+							</p>
+							<p>
+								Es werden <b>Regeln generiert</b> und als Baumstruktur visualisiert, anhand derer sich neue Datenobjekte eindeutig klassifizieren lassen
+							</p>
+							<p>
+								Trainings- und eine Testmenge
+							</p>
+							<p>
+								leicht zugänglichen Interpretation
+							</p>
+						</div>
+						<div class="griditem">
+							<figure>
+								<img src="static/V01/Koenig-Beispiel_Data_Mining.png">
+								<figcaption>
+									www-lehre.inf.uos.de/~dbs/2005/skript/Images/Ps/kfz-risiko-baum.gif
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Anwendungen</h1>
+					<h2>Data Mining</h2>
+					<figure>
+						<img src="static/V01/Koenig-Beispiel_Predictive Analytics.png">
+						<figcaption>
+							http://blogs.gartner.com/it-glossary/files/2012/11/analytic-maturity.jpg
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+		<section>
+			<section>
+				<h1>Nutzergruppen</h1>
+				<h2>Informationskonsument</h2>
+				<div class="grid">
+					<div class="griditem">
+						<p>
+							Rufen zuvor aufbereitete und strukturierte Informationen ab, ohne diese weitergehend analysieren oder nach eigenen Kriterien neu und frei kombinieren zu wollen
+						</p>
+						<p>
+							Standardisierte Sichten , die in festen Rhythmen aktualisiert werden
+						</p>
+						<p>
+							Standardberichtswesen, insbesondere Vergleichsdarstellungen mit Abweichungen (z.B. Plan/Ist-Vergleiche) und Zeitreihen (z.B. Trends)
+						</p>
+						<p>
+							M&ouml;glichst einfacher Zugang zu den enthaltenen Informationen
+						</p>
+						<p>
+							Adressatengerechte Verteilung: Ausgereiftes Berechtigungs- und Rollenkonzept
+						</p>
+					</div>
+				</div>
+				</section>
+				<section>
+					<h1>Nutzergruppen</h1>
+					<h2>Analytiker</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								Nutzt flexible Navigationsm&ouml;glichkeiten im verf&uuml;gbaren Datenraum
+							</p>
+							<p>
+								Will auch nicht unmittelbar einsichtige Chancen und Risiken für die Unternehmung fr&uuml;hzeitig erkennen
+							</p>
+							<p>
+								W&uuml;nscht stufenweise Disaggregationsm&ouml;glichkeiten
+							</p>
+							<p>
+								Rascher L&ouml;sungsbedarf. Graphische Aufbereitung
+							</p>
+							<p>
+								Black-Box Ansatz: Komplexit&auml;t der technologischen Gesamtl&ouml;sung verbergen
+							</p>
+							<p>
+								Im Einzelfall stellt er Auswertungen auch einem gr&ouml;ßeren Benutzerkreis zur Verf&uuml;gung
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Nutzergruppen</h1>
+					<h2>Spezialist</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>
+								Spezialistentum bezieht sich sowohl auf die eingesetzten statistischen, mathematischen oder &ouml;konomischen Methoden als auch auf die verwendeten Softwarewerkzeuge
+							</p>
+							<p>
+								Widmen sich formal komplizierten Aufgabenstellungen und greifen bei der Bearbeitung auf anspruchsvolle Werkzeuge mit weit reichender analytischer Funktionalit&auml;t zur&uuml;ck
+							</p>
+							<p>
+								&Uuml;ber aufw&auml;ndige Korrelationen Ursache-Wirkungszusammenh&auml;nge erkennen
+							</p>
+							<p>
+								Entwirft ggfs. eigene L&ouml;sungsverfahren. Kennt Datenstrukturen
+							</p>
+							<p>
+								Statistiker, Mathematiker oder Informatiker
+							</p>
+							<p>
+								Herausforderung: Analyseergebnisse derart aufzubereiten, dass diese im Rahmen der Entscheidungsfindung auch genutzt werden k&ouml;nnen
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Nutzergruppen</h1>
+					<h2>Zuordnung von BI-Nutzergruppen zu Architekturkomponenten</h2>
+					<figure>
+						<img src="static/V01/Koenig-Nutzergruppen_zu_Architekturkomponenten.png">
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer
+						</figcaption>
+					</figure>
+				</section>
+		</section>
+	</section>
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
 </html>
