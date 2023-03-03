@@ -36,7 +36,90 @@
 				</ol>
 			</section>
 			<section>
+				<h1>Beitritt zu einer Übungsgruppe</h1>
+				<p>
+					Bitte suchen Sie sich einen Übungspartner und treten mit ihm gemeinsam einer der leeren bereits in Moodle angelegten Gruppen (BI2300X) bei.
+				</p>
+			</section>
+			<section>
+				<section>
+					<h1>Zugang zu Microsoft Azure und BI-Server</h1>
+					<p>
+						Sobald Sie und ihre Übungspartner einer Übungsgruppe beigetreten sind, melden Sie sich bitte bei uns. Wir werden Ihnen dann ihre persönlichen Zugangsdaten zum Azure und BI-Server kommunizieren.
+					</p>
+					<p>
+						Bitte versuchen Sie sich mit den erhaltenen Benutzerdaten in <a href="https://portal.azure.com">Microsoft Azure</a> einzuloggen. Beachten Sie auch die Hinweise auf der folgenden Folie.
+					</p>
+				</section>
+				<section>
+					<h1>Hinweise zum Microsoft Azure Account</h1>
+					<p>
+						Ändern Sie Ihr Passwort mit der ersten Anmeldung und teilen Sie das neue Passwort einem der Dozenten in einer Nachricht per Moodle mit.
+					</p>
+					<p>
+						Mit Ihrer Passwortänderung bestätigen Sie, dass Sie mit Ihrer (Team-)UID sorgsam umgehen werden und Probleme direkt an den Dozenten melden. 
+						Starten Sie nur die in den Übungen angegebenen Services in den angegebenen Konfigurationen. Löschen bzw. Pausieren Sie die Services wie angegeben. 
+						Im Zweifel löschen Sie Services und kontaktieren Sie Ihren Dozenten.
+						Es gilt die Benutzungsordnung für die Informationsverarbeitungssysteme der Hochschule Hannover (IVS-BO) 
+						(siehe <a href="service.it.hs-hannover.de/media/documents/ivs-bo.pdf">service.it.hs-hannover.de/media/documents/ivs-bo.pdf</a>)
+					</p>
+					<p>
+						Eine Weitergabe der UID und des Passwortes an Dritte ist nicht zulässig!
+					</p>
+				</section>
+			</section>
+			<section>
+				<h1>Hochfahren einer SQL-Datenbank in Azure</h1>
+				<p>
+					Führen Sie bitte folgendes Statement in <a href="https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-9.4.0">Azure Powershell</a> aus:
+				</p>
+				<pre>
+					<code>
+						# Connect-AzAccount
+						# The SubscriptionId in which to create these objects
+						$SubscriptionId = ''
+						# Set the resource group name and location for your server
+						$resourceGroupName = "myResourceGroup-$(Get-Random)"
+						$location = "westus2"
+						# Set an admin login and password for your server
+						$adminSqlLogin = "SqlAdmin"
+						$password = "ChangeYourAdminPassword1"
+						# Set server name - the logical server name has to be unique in the system
+						$serverName = "server-$(Get-Random)"
+						# The sample database name
+						$databaseName = "mySampleDatabase"
+						# The ip address range that you want to allow to access your server
+						$startIp = "0.0.0.0"
+						$endIp = "0.0.0.0"
 
+						# Set subscription 
+						Set-AzContext -SubscriptionId $subscriptionId 
+
+						# Create a resource group
+						$resourceGroup = New-AzResourceGroup -Name $resourceGroupName -Location $location
+
+						# Create a server with a system wide unique server name
+						$server = New-AzSqlServer -ResourceGroupName $resourceGroupName `
+							-ServerName $serverName `
+							-Location $location `
+							-SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $adminSqlLogin, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
+
+						# Create a server firewall rule that allows access from the specified IP range
+						$serverFirewallRule = New-AzSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
+							-ServerName $serverName `
+							-FirewallRuleName "AllowedIPs" -StartIpAddress $startIp -EndIpAddress $endIp
+
+						# Create a blank database with an S0 performance level
+						$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
+							-ServerName $serverName `
+							-DatabaseName $databaseName `
+							-RequestedServiceObjectiveName "S0" `
+							-SampleName "AdventureWorksLT"
+
+						# Clean up deployment 
+						# Remove-AzResourceGroup -ResourceGroupName $resourceGroupName
+					</code>
+				</pre>
 			</section>
 		</div>
 	</div>
