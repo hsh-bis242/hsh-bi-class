@@ -27,18 +27,8 @@
 			</section>
 
 			<section>
-				<h1>Gliederung der Vorlesung Business Intelligence</h1>
-				<h2 style="color:red">???</h2>
-			</section>
-
-			<section>
-				<h1>Gliederung</h1>
-				<h2 style="color:red">???</h2>
-			</section>
-
-			<section>
 				<h1>Data Marts</h1>
-				<h2 style="color:red">??? Abbildung ???</h2>
+				<img src="./static/V03/data-marts.jpg" alt="Schaubild Datenquellen">
 			</section>
 
 			<section>
@@ -92,7 +82,7 @@
 				<h1>Fakten</h1>
 
 				<section>
-					<h2 style="color:red">??? Abbildung ???</h2>
+					<img src="./static/V03/factDimension.png" alt="Schaubild Datenquellen" height="600">
 				</section>
 
 				<section>
@@ -104,73 +94,121 @@
 							<ul>
 								<li>Transaktion – Niedrige Granularität, eine Zeile pro Transaktion</li>
 								<li>Periodischer Snapshot – Eine bestimmter Zeitintervall baut oftmals auf Transaktionsebene auf</li>
-								<li>Akkumulierter Snapshot – Pro Zeile wird ein definierter Vorgang abgebildet mit Start und Ende (beinhaltet oftmals placeholder, z.B. retouren bei einem Einkauf)</li>
-								<li>Temporaler Snapshot – Bildet den täglichen Stand ab stellt dar in welchen Zeitraum ein Datensatz gültig ist und wann eine transaktion durchgeführt wurde</li>
+								<li>Akkumulierter Snapshot – Pro Zeile wird ein definierter Vorgang abgebildet mit Start und Ende (beinhaltet oftmals placeholder, z.B. Retouren bei einem Einkauf)</li>
+								<li>Temporaler Snapshot – Bildet den täglichen Stand ab, in welchen Zeitraum ein Datensatz gültig ist und wann eine Transaktion durchgeführt wurde</li>
 							</ul>
 						</li>
 					</ul>
 				</section>
+
+				<section>
+					<h1>Summentypen</h1>
+					<ul>
+						<li><strong>FLOW – Addictive Fact</strong>
+							<ul>
+								<li>zeitraumbezogen (pro Zeiteinheit) </li>
+								<li>Beliebig aggregierbar </li>
+								<li>Beispiel: Bestellmenge eines Artikels pro Tag </li>
+							</ul>
+						</li>
+						<li><strong>STOCK Maß über Zeitraum – semi-Addictive Fact</strong>
+							<ul>
+								<li>Beliebig aggregierbar mit Ausnahme temporaler Dimension </li>
+								<li>Beispiel: Lagerbestand, Einwohnerzahl</li>
+							</ul>
+						</li>
+						<li><strong>VALUE – PER – UNIT(VPU) - non-Addictive Fact</strong>
+							<ul>
+								<li>Zeitpunktbezogen (zum Zeitpunkt) </li>
+								<li>Aktuelle Zustände, die nicht summierbar sind </li>
+								<li>Zulässig nur: MIN(), MAX(), AVG() </li>
+								<li>Beispiele: Preis, Wechselkurs, Steuersatz</li>
+							</ul>
+						</li>
+						<li><strong>Besonderheit - Factless fact</strong>
+							<ul>
+								<li>Beinhaltet nur Schlüssel der Dimensionen – Bridge zwischen Dimensionen</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+	
+				<section>
+					<h1>Voraussetzungen eines Fakts</h1>
+					<ul>
+						<li>Uniqueness Wert einer Kennzahl nur einmal im Fakt </li>
+						<li>Surrogate Keys nötig bei temporaler Betrachtung</li>
+						<li>Werte einer höheren Aggregationsstufe lassen sich von Werten niederer Aggregationsstufe errechnen
+							<ul>
+								<li>Stadt ➡️ Bundesland ➡️ Land</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
 			</section>
 
 			<section>
-				<h1>Summentypen</h1>
-				<ul>
-					<li><strong>FLOW – Addictive Fact</strong>
-						<ul>
-							<li>zeitraumbezogen (pro Zeiteinheit) </li>
-							<li>Beliebig aggregierbar </li>
-							<li>Beispiel: Bestellmenge eines Artikels pro Tag </li>
-						</ul>
-					</li>
-					<li><strong>STOCK Maß über Zeitraum – semi-Addictive Fact</strong>
-						<ul>
-							<li>Beliebig aggregierbar mit Ausnahme temporaler Dimension </li>
-							<li>Beispiel: Lagerbestand, Einwohnerzahl</li>
-						</ul>
-					</li>
-					<li><strong>VALUE – PER – UNIT(VPU) - non-Addictive Fact</strong>
-						<ul>
-							<li>zeitpunktbezogen (zum Zeitpunkt) </li>
-							<li>Aktuelle Zustände, die nicht summierbar sind </li>
-							<li>Zulässig nur: MIN(), MAX(), AVG() </li>
-							<li>Beispiele: Preis, Wechselkurs, Steuersatz</li>
-						</ul>
-					</li>
-					<li><strong>Besonderheit - Factless fact</strong>
-						<ul>
-							<li>Beinhaltet nur Schlüssel der Dimensionen – Bridge zwischen Dimensionen</li>
-						</ul>
-					</li>
-				</ul>
+				<section>
+					<h1>Dimensionen</h1>
+					<img src="./static/V03/factDimension.png" alt="Schaubild Datenquellen" height="600">
+				</section>
+
+				<section>
+					<h1>Dimensionen</h1>
+					<ul>
+						<li>Zeit, Raum, Objekt</li>
+						<li>Unterteilung nach Jahr, Quartal, Monat</li>
+						<li>Beschreiben Sicht auf die KPIs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Hierarchie in Dimensionen</h1>
+					<div class="grid g_top">
+						<div>
+							<p><strong>Parallele Hierarchie</strong></p>
+							<img src="./static/V03/parallele_hierarchie.png" alt="">
+						</div>
+						<div>
+							<p><strong>Einfache Hierarchie</strong></p>
+							<p>Bundesland ➡️ Stadt ➡️ Filiale</p>
+						</div>
+					</div>
+					<p>Primärschlüssel und Entitätstyp bestimmen Granularität einer Dimension</p>
+				</section>
+
+				<section>
+					<h1>Typen von Dimensionen</h1>
+					<ul>
+						<li>Conformed Dimension</li>
+						<li>Outrigger Dimension</li>
+						<li>Shrunken Dimension</li>
+						<li>Role-Playing Dimension</li>
+						<li>Dimension to Dimension Table</li>
+						<li>Junk Dimension</li>
+						<li>Degenerate Dimension</li>
+						<li>Swappable Dimension</li>
+						<li>Step Dimension</li>
+					</ul>
+				</section>
 			</section>
 
-			<section>
-				<h1>Voraussetzungen eines Fakts</h1>
-				<ul>
-					<li>Uniqueness Wert einer Kennzahl nur einmal im Fakt </li>
-					<li>Surrogate Keys nötig bei temporaler Betrachtung</li>
-					<li>Werte einer höheren Aggregationsstufe lassen sich von Werten niederer Aggregationsstufe errechnen
-						<ul>
-							<li>Stadt ➡️ Bundesland ➡️ Land</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
 
 			<section>
 				<section>
 					<h1>Modellierung im Data Mart</h1>
-					<h2 style="color:red">??? Abbildung ???</h2>
+					<img src="./static/V03/modelDM.jpg" alt="" height="600">
 				</section>
 
 				<section>
 					<h1>Snowflake</h1>
-					<h2 style="color:red">??? Abbildung ???</h2>
+					<img src="./static/V03/Snowflake_schema.png" alt="" height="600">
 				</section>
 
 				<section>
 					<h1>Star</h1>
-					<h2 style="color:red">??? Abbildung ???</h2>
+					<img src="./static/V03/Star_Schema.png" alt="" height="600">
 				</section>
 
 				<section>
@@ -712,84 +750,43 @@
 					</table>
 				</div>
 				</section>
-			</section>
-
-			<section>
-				<h1>Historisierung mögliche Architekturen</h1>
-				<p>Mögliche Architekturen die Änderungen an historisierten Objekten berücksichtigen müssen:</p>
-				<ul>
-					<li>Anpassung des historischen Datenmaterials an neue Strukturen
-						<ul>
-							<li>Gute Lösung bei kleinen Datenbestand </li>
-							<li>alte Strukturen und Historie sind nicht vorhanden </li>
-						</ul>
-					</li>
-					<li>Separate Speicherung des historischen Datenbestandes zusätzlich zu neuen Strukturen
-						<ul>
-							<li>Für großen Datenbestand </li>
-							<li>Komplexität für Anwender</li>
-							<li>alte Strukturen abrufbar </li>
-						</ul>
-					</li>
-					<li>Aufbau paralleler Hierarchien mit allen Strukturen
-						<ul>
-							<li>Dimensionsstruktur komplex </li>
-							<li>beliebiges Reporting möglich </li>
-						</ul>
-					</li>
-					<li>Gültigkeitsstempel beliebige Strukturen abrufbar
-						<ul>
-							<li>Performancefrage</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<section>
-					<h1>Dimensionen</h1>
-					<h2 style="color:red">??? Abbildung ???</h2>
-				</section>
 
 				<section>
-					<h1>Dimensionen</h1>
+					<h1>Historisierung mögliche Architekturen</h1>
+					<p>Mögliche Architekturen die Änderungen an historisierten Objekten berücksichtigen müssen:</p>
 					<ul>
-						<li>Zeit, Raum, Objekt</li>
-						<li>Unterteilung nach Jahr, Quartal, Monat</li>
-						<li>Beschreiben Sicht auf die KPIs</li>
+						<li>Anpassung des historischen Datenmaterials an neue Strukturen
+							<ul>
+								<li>Gute Lösung bei kleinen Datenbestand </li>
+								<li>alte Strukturen und Historie sind nicht vorhanden </li>
+							</ul>
+						</li>
+						<li>Separate Speicherung des historischen Datenbestandes zusätzlich zu neuen Strukturen
+							<ul>
+								<li>Für großen Datenbestand </li>
+								<li>Komplexität für Anwender</li>
+								<li>alte Strukturen abrufbar </li>
+							</ul>
+						</li>
+						<li>Aufbau paralleler Hierarchien mit allen Strukturen
+							<ul>
+								<li>Dimensionsstruktur komplex </li>
+								<li>beliebiges Reporting möglich </li>
+							</ul>
+						</li>
+						<li>Gültigkeitsstempel beliebige Strukturen abrufbar
+							<ul>
+								<li>Performancefrage</li>
+							</ul>
+						</li>
 					</ul>
 				</section>
 
-				<section>
-					<h1>Hierarchie in Dimensionen</h1>
-					<div class="grid g_top">
-						<div>
-							<p><strong>Parallele Hierarchie</strong></p>
-							<img src="./static/V03/parallele_hierarchie.png" alt="">
-						</div>
-						<div>
-							<p><strong>Einfache Hierarchie</strong></p>
-							<p>Bundesland ➡️ Stadt ➡️ Filiale</p>
-						</div>
-					</div>
-					<p>Primärschlüssel und Entitätstyp bestimmen Granularität einer Dimension</p>
-				</section>
-
-				<section>
-					<h1>Typen von Dimensionen</h1>
-					<ul>
-						<li>Conformed Dimension</li>
-						<li>Outrigger Dimension</li>
-						<li>Shrunken Dimension</li>
-						<li>Role-Playing Dimension</li>
-						<li>Dimension to Dimension Table</li>
-						<li>Junk Dimension</li>
-						<li>Degenerate Dimension</li>
-						<li>Swappable Dimension</li>
-						<li>Step Dimension</li>
-					</ul>
-				</section>
 			</section>
+
+
+
+			
 
 			<section>
 				<h1>Unabhängige Data Marts (fast lane)</h1>
@@ -835,54 +832,53 @@
 			</section>
 
 			<section>
-				<h1>Datenqualität</h1>
-				<h2 style="color:red">??? Abbildung ???</h2>
-			</section>
-
-			<section>
-				<h1>Data Lineage</h1>
-				<ul>
-					<li>Koordinierte Reihenfolge hilft Bottlenecks zu identifizieren</li>
-					<li>Impact analysieren, bei Änderungen und Fehlern Abhängigkeiten zwischen Objekten in der Datenbank erkennen</li>
-					<li>Identifikation von Materialisation Strategie von einzelnen Objekten</li>
-					<li>Tools wie dbt zielen mehr auf einen modularen Ansatz aus der klassischen Objektorientierten Programmierung </li>
-					<li>No Wall of Code oder Spaghetti code</li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>Umgang mit Datenqualitätsproblemen</h1>
-				<ul>
-					<li>Testen der Daten bevor sie geladen werden
-						<ul>
-							<li>fehlgeschlagene Tests ➡️ Daten werden nicht geladen </li>
-							<li>fehlgeschlagene Tests ➡️ Daten werden trotzdem geladen (Fehlerschwere gering)</li>
-							<li>fehlgeschlagene Tests ➡️ Daten werden teilweise geladen (Filterung)</li>
-						</ul>
-					</li>
-					<li>Nicht alle Datenqualitätsprobleme können vor dem Laden festgestellt werden</li>
-					<li>Testen der Daten nachdem sie geladen werden
-						<ul>
-							<li>fehlgeschlagene Tests ➡️ Tabellen werden zurückgesetzt
-								<ul>
-									<li>Der aktuelle Load wird ignoriert und ein neuer Load angefordert</li>
-									<li>Bis zur Klärung der Fehler muss bei einer SCD2 Logik die Ladestrecke deaktiviert werden, Gefahr falscher Historie</li>
-								</ul>
-							</li>
-							<li>fehlgeschlagene Tests ➡️ Daten werden erstmal übernommen und durch späteren Load bereinigt (Fehlerschwere gering)</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>Datenfehler Klassifikation</h1>
-				<img src="./static/V03/datenfehler_qualifikation.png" alt="">
-				<p>[Rahm Do 2000, Leser Naumann 2007]</p>
-			</section>
-
-			<section>
-
+				<section>
+					<h1>Datenqualität</h1>
+					<img src="./static/V03/dataquality.jpg" alt="">
+				</section>		
+				<section>
+					<h1>Data Lineage</h1>
+					<ul>
+						<li>Koordinierte Reihenfolge hilft Bottlenecks zu identifizieren</li>
+						<li>Impact analysieren, bei Änderungen und Fehlern Abhängigkeiten zwischen Objekten in der Datenbank erkennen</li>
+						<li>Identifikation von Materialisation Strategie von einzelnen Objekten</li>
+						<li>Tools wie dbt zielen mehr auf einen modularen Ansatz aus der klassischen Objektorientierten Programmierung </li>
+						<li>No Wall of Code oder Spaghetti code</li>
+					</ul>
+				</section>
+	
+				<section>
+					<h1>Umgang mit Datenqualitätsproblemen</h1>
+					<ul>
+						<li>Testen der Daten bevor sie geladen werden
+							<ul>
+								<li>fehlgeschlagene Tests ➡️ Daten werden nicht geladen </li>
+								<li>fehlgeschlagene Tests ➡️ Daten werden trotzdem geladen (Fehlerschwere gering)</li>
+								<li>fehlgeschlagene Tests ➡️ Daten werden teilweise geladen (Filterung)</li>
+							</ul>
+						</li>
+						<li>Nicht alle Datenqualitätsprobleme können vor dem Laden festgestellt werden</li>
+						<li>Testen der Daten nachdem sie geladen werden
+							<ul>
+								<li>fehlgeschlagene Tests ➡️ Tabellen werden zurückgesetzt
+									<ul>
+										<li>Der aktuelle Load wird ignoriert und ein neuer Load angefordert</li>
+										<li>Bis zur Klärung der Fehler muss bei einer SCD2 Logik die Ladestrecke deaktiviert werden, Gefahr falscher Historie</li>
+									</ul>
+								</li>
+								<li>fehlgeschlagene Tests ➡️ Daten werden erstmal übernommen und durch späteren Load bereinigt (Fehlerschwere gering)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+	
+				<section>
+					<h1>Datenfehler Klassifikation</h1>
+					<img src="./static/V03/datenfehler_qualifikation.png" alt="">
+					<p>[Rahm Do 2000, Leser Naumann 2007]</p>
+				</section>
+	
+	
 				<section>
 					<h1>Schematische Heterogenität</h1>
 					<ul>
@@ -904,7 +900,7 @@
 						</li>
 					</ul>
 				</section>
-				
+					
 				<section>
 					<h1>Schematische Heterogenität - Mapping</h1>
 					<ul>
@@ -920,29 +916,28 @@
 					</ul>
 				</section>
 
-			</section>
-
-			<section>
-				<h1>Anforderungen an Datenqualität</h1>
-				<ul>
-					<li>Konsistenz (Widerspruchsfreiheit)</li>
-					<li>Korrektheit (Übereinstimmung mit Realität) </li>
-					<li>Vollständigkeit (z.B. Abwesenheit von fehlenden Werten oder Attributen)</li>
-					<li>Genauigkeit (z.B. Anzahl der Nachkommastellen)</li>
-					<li>Granularität (z.B. tagesgenaue Daten)</li>
-					<li>Zeitnähe (Wann wurde die letzte Änderung durchgeführt vs. Auftreten der Datenänderung)</li>
-					<li>Relevanz (Wie wichtig sind die Daten?)</li>
-					<li>Zuverlässigkeit (Nachvollziehbarkeit der Entstehung und Vertrauenswürdigkeit des Lieferanten)</li>
-					<li>Verständlichkeit (inhaltlich und technisch / strukturell für jeweilige Zielgruppe)</li>
-					<li>Verwendbarkeit (geeignetes Format, Zweckdienlichkeit)</li>
-					<li>Einheitlichkeit (Datenformat)</li>
-					<li>Eindeutigkeit (Interpretierbarkeit) und Schlüsselintegrität (Schlüssel und Referenzen)</li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>Häufige Fehler</h1>
+	
 				<section>
+					<h1>Anforderungen an Datenqualität</h1>
+					<ul>
+						<li>Konsistenz (Widerspruchsfreiheit)</li>
+						<li>Korrektheit (Übereinstimmung mit Realität) </li>
+						<li>Vollständigkeit (z.B. Abwesenheit von fehlenden Werten oder Attributen)</li>
+						<li>Genauigkeit (z.B. Anzahl der Nachkommastellen)</li>
+						<li>Granularität (z.B. tagesgenaue Daten)</li>
+						<li>Zeitnähe (Wann wurde die letzte Änderung durchgeführt vs. Auftreten der Datenänderung)</li>
+						<li>Relevanz (Wie wichtig sind die Daten?)</li>
+						<li>Zuverlässigkeit (Nachvollziehbarkeit der Entstehung und Vertrauenswürdigkeit des Lieferanten)</li>
+						<li>Verständlichkeit (inhaltlich und technisch / strukturell für jeweilige Zielgruppe)</li>
+						<li>Verwendbarkeit (geeignetes Format, Zweckdienlichkeit)</li>
+						<li>Einheitlichkeit (Datenformat)</li>
+						<li>Eindeutigkeit (Interpretierbarkeit) und Schlüsselintegrität (Schlüssel und Referenzen)</li>
+					</ul>
+				</section>
+	
+					
+				<section>
+					<h1>Häufige Fehler</h1>
 					<ul>
 						<li>Eindeutigkeit verletzt (Deduplizierung)</li>
 						<li>Unterschiedliche Repräsentation (Business Logik)</li>
@@ -957,7 +952,7 @@
 						<li>Relationship missing (foreign key checks)</li>
 					</ul>
 				</section>
-
+	
 				<section style="font-size: 23px">
 					<p>Customer</p>
 					<table>
@@ -1006,7 +1001,7 @@
 							</tr>
 						</tbody>
 					</table>
-
+	
 					<p>PLZ</p>
 					<table>
 						<thead>
@@ -1029,7 +1024,7 @@
 						</tbody>
 					</table>
 				</section>
-
+	
 				<section style="font-size: 23px">
 					<p>Customer</p>
 					<table>
@@ -1078,7 +1073,7 @@
 							</tr>
 						</tbody>
 					</table>
-
+	
 					<p>PLZ</p>
 					<table>
 						<thead>
@@ -1101,27 +1096,30 @@
 						</tbody>
 					</table>
 				</section>
+	
+	
+				<section>
+					<h1>Prozesszyklus Datenqualität</h1>
+					<img src="./static/V03/prozesszyklus.png" alt="">
+				</section>
+	
+				<section>
+					<h1>Formatierung der Daten</h1>
+					<ul>
+						<li>Standardisierung Datentypen
+							<ul>
+								<li>Datumsangaben</li>
+								<li>Maßeinheiten</li>
+							</ul>
+						</li>
+						<li>Lesbarkeit - Kodierungen ersetzen</li>
+						<li>Filtern und löschen unnötiger Bestandteile</li>
+					</ul>
+				</section>
 
 			</section>
 
-			<section>
-				<h1>Prozesszyklus Datenqualität</h1>
-				<img src="./static/V03/prozesszyklus.png" alt="">
-			</section>
-
-			<section>
-				<h1>Formatierung der Daten</h1>
-				<ul>
-					<li>Standardisierung Datentypen
-						<ul>
-							<li>Datumsangaben</li>
-							<li>Maßeinheiten</li>
-						</ul>
-					</li>
-					<li>Lesbarkeit - Kodierungen ersetzen</li>
-					<li>Filtern und löschen unnötiger Bestandteile</li>
-				</ul>
-			</section>
+			
 
 			<section>
 				<h1>Data Scrubbing and Cleaning</h1>
@@ -1143,7 +1141,7 @@
 					<li>Bei schnelleren Ladezyklen muss Reihenfolge eingehalten werden für Historisierung </li>
 					<li>Viele kleine verschachtelte files in kurzen Intervallen können zu Deadlocks führen</li>
 				</ul>
-				<p>Der Weg über das Data Warehouse manchmal nicht die richtige Lösung um Daten zu Verarbeiten und in Reports zu präsentieren</p>
+				<p>Design-Entscheidung: Der Pfad über ein Data Warehouse muss nicht immer die gewählt werden um Daten in Reports zu präsentieren</p>
 			</section>
 
 			<section>
@@ -1198,8 +1196,14 @@
 			</section>
 
 			<section>
-				<h1>Indexstrukturen</h1>
-				<h2 style="color:red">Wenn noch Platz ist</h2>
+				<h1>Zusammenfassung</h1>
+				<ul>
+					<li>Data Mart - Architektur</li>
+					<li>Datenqualität</li>
+					<li>Historisierung</li>
+					<li>Materialisierung</li>
+					<li>Scrubbing, cleaning, testing und ownership</li>
+				</ul>
 			</section>
 
 			<section class="center" data-background-image="https://i.giphy.com/media/l0HlT86IOp6nE9he0/giphy.webp" data-background-size="contain" data-background-repeat="no-repeat"></section>
@@ -1222,7 +1226,7 @@
 		Reveal.initialize({
 			hash: true,
 			slideNumber: 'c/t',
-			center: false,
+			center: true,
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
