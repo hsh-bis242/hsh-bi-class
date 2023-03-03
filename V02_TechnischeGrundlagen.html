@@ -28,11 +28,6 @@
 
 			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="contain" data-background-repeat="no-repeat"></section>
 			<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="105%" data-background-repeat="no-repeat" data-background-position="left top"></section>
-			
-			<section>
-				<h1>Datenquellen</h1>
-				<h2 style="color:red">ABBILDUNG EINFÜGEN</h2>
-			</section>
 
 			<section>
 				<h1>Quellen und Heterogenität der Daten</h1>
@@ -53,7 +48,7 @@
 						</ul>
 					</li>
 				</ul>
-				<p>Herausforderung für Data Mart und Reporting Daten müssen Homogen transformiert und konsumiert werden in übergreifenden Strukturen.</p>
+				<p>Herausforderung für Data Mart und Reporting Daten müssen Homogen transformiert und konsumiert werden in übergreifenden Strukturen</p>
 			</section>
 
 			<section>
@@ -87,7 +82,7 @@
 				<ul>
 					<li>Snapshots: Quelle liefert immer kompletten Datenbestand
 						<ul>
-							<li>Neuer Lieferantenkatalog, neue Preisliste, etc.</li>
+							<li>Neuer Lieferantenkatalog, neue Preisliste </li>
 							<li>Änderungen erkennen</li>
 							<li>Historie korrekt abbilden</li>
 						</ul>
@@ -213,7 +208,7 @@
 			</section>
 
 			<section>
-				<h1>Herausforderungen von Quellsysteme zum Report</h1>
+				<h1>Herausforderungen der ETL/ELT Prozesse</h1>
 				<ul>
 					<li>Starke Heterogenität der Quellsysteme und Daten </li>
 					<li>Verschiedene Arten der Anbindung und Formate </li>
@@ -229,7 +224,10 @@
 
 			<section>
 				<h1>Development und Deployment</h1>
-				<h2 style="color:red">Hier ein schönes Bild</h2>
+			</section>
+
+			<section>
+				<img src="./static/V02/deploymentFabrik.jpg" alt="">
 			</section>
 
 			<section>
@@ -259,7 +257,7 @@
 						</li>
 						<li>Low-Code
 							<ul>
-								<li>Ein Templating- oder Automatisierungstool übernimmt das erstellen von SQL code und generiert SQL-Skripte während der Laufzeit aus den templates</li>
+								<li>Ein Templating- oder Automatisierungstool übernimmt das Erstellen von SQL code und generiert SQL-Skripte während der Laufzeit aus den templates</li>
 								<li>Entwickler arbeiten lokal oder webbasiert mit einem gängigen Editor oder in der GUI des Tools</li>
 								<li>Es werden die templates im Repository hinterlegt</li>
 							</ul>
@@ -318,7 +316,7 @@
 
 				<section>
 					<h1>No-Code Beispiel</h1>
-					<h2 style="color:red">Wherescape tbd</h2>
+					<img src="./static/V02/coalesceNoCode.jpg" alt="">
 				</section>
 			</section>
 
@@ -431,7 +429,7 @@
 							</ul>
 						</li>
 					</ul>
-					<p>Entscheidung der Architektur hängt ab von <strong>Kosten, Datenschut und Testmanagement</strong></p>
+					<p>Entscheidung der Architektur hängt ab von <strong>Kosten, Datenschutz und Testmanagement</strong></p>
 				</section>
 
 				<section>
@@ -461,7 +459,7 @@
 						<ul>
 							<li>Deployment Time-Slots</li>
 							<li>Manuelles vs. automatisiertes Deployment</li>
-							<li>BI Projekte entwickeln sich mehr zu professioneller Softwareentwicklung</li>
+							<li>BI-Projekte entwickeln sich stärker hin zu professioneller Softwareentwicklung</li>
 						</ul>
 					</li>
 				</ul>
@@ -473,6 +471,7 @@
 					<h1>Datenbanken</h1>
 					<p>Ein Data Warehouse ist keine Datenbank!<br>
 						Ein Data Warehouse benötigt eine Datenbank und ist dabei die zentrale Komponente.<br>
+						<br>
 						Arten von Datenbanken:</p>
 					<ul>
 						<li><strong>Relational</strong> (Oracle, MySQL, MSSQL, Postgres, Snowflake)</li>
@@ -493,7 +492,7 @@
 					<ul>
 						<li>Datenmenge</li>
 						<li>Flüchtigkeit der Daten</li>
-						<li>Verschachtelung und Hierarchien werden benötigt</li>
+						<li>Verschachtelung und Hierarchien der Datenbasis</li>
 						<li>Flexibilität der Datenstrukturen</li>
 						<li>Cloud oder on-Premise</li>
 						<li>Skillset der Developer</li>
@@ -520,11 +519,16 @@
 			</section>
 
 			<section>
+				<img src="./static/V02/mdmDataKatalog.jpg" alt="">
+			</section>
+
+			<section>
 				<h1>Master Data Management MDM</h1>
 				<ul>
 					<li>Prinzip des Golden Records</li>
-					<li>Beispiel: Alle Kundendaten aus verschiedenen Systemen des Unternehmens werden gemerged um die Stammdaten eines Kunden sauber abzubilden oder eine einheitliche Defintion von Ländercodes und Länder-Bezeichungen soll übergreifend im Unternehmen verwendet werden</li>
-					<li>MDM hat ein eignen Tool-Stack und ergänzt ein Data Warehouse oftmals</li>
+					<li>Beispiel: Alle Kundendaten aus verschiedenen Systemen des Unternehmens werden gemerged um die Stammdaten eines Kunden sauber abzubilden</li>
+					<li>Eine einheitliche Defintion von Ländercodes und Länder-Bezeichungen soll übergreifend im Unternehmen verwendet werden</li>
+					<li>MDM hat ein eigenen Tool-Stack und ergänzt ein Data Warehouse oftmals</li>
 				</ul>
 			</section>
 
@@ -541,21 +545,6 @@
 			</section>
 
 			<section>
-				<h1>Report</h1>
-				<p style="color:red">Nur Verweis auf Timos Part?</p>
-			</section>
-
-			<section>
-				<h1>Data Mining and analytics</h1>
-				<p style="color:red">Nur Verweis auf Timos Part?</p>
-			</section>
-
-			<section>
-			
-				<section>
-					<h1>Jobsteuerung und Alerting</h1>
-					<p style="color:red">Schönes Bild</p>
-				</section>
 
 				<section>
 					<h1>Jobsteuerung</h1>
@@ -580,41 +569,31 @@
 				<section>
 					<h1>Jobsteuerung Evolution Batch</h1>
 					<p>Klassisches DWH ohne Streaming nutzt meist nur batch loading-jobs in bestimmten Zeit-Intervallen (daily, nightly, alle 4 oder 12 Stunden)</p>
-					<pre>
-						<code class="language-plantuml">
-						  @startuml
-						  Alice -> Bob: Authentication Request
-						  Bob --> Alice: Authentication Response
-						  Alice -> Bob: Another authentication Request
-						  Bob --> Alice: Another authentication Response
-						  @enduml
-						</code>
-					</pre>
 					<img src="./static/V02/batch.svg" alt="">
 				</section>
 
 				<section>
 					<h1>Jobsteuerung Evolution Lambda</h1>
-					<p>Real-time und streaming Datenquellen wurden zuerst im Big Data Umfeld genutzt aber werden immer stärker im Data Warehouse integriert Kontext.</p>
+					<p>Real-time und streaming Datenquellen wurden zuerst im Big Data Umfeld genutzt aber werden immer stärker im Data Warehouse Kontext verwendet</p>
 					<p>Lambda Architektur: Batch-jobs mit Real-time-jobs werden vereinigt in einem integrierenden Serving Layer</p>
 					<img src="./static/V02/jobsteuerung_evolution_lambda.png" alt="">
 				</section>
 
 				<section>
 					<h1>Jobsteuerung Evolution Kappa</h1>
-					<p>Die neuste Evolution ist die Kappa Architektur die alle Daten event-basiert mit der Gleichen code und infrastruktur basis verarbeitet egal ob diese mit großer Datenmenge als batch oder konstant in kleinerer Menge als stream eintreffen</p>
+					<p>Die neuste Evolution ist die Kappa Architektur die alle Daten event-basiert nach dem gleichen Verfahren, code-Basis und Infrastruktur verarbeitet, dabei spielt die Datenmenge und Art des Datentransfers eine untergeordnete Rolle</p>
 					<img src="./static/V02/jobsteuerung_evolution_kappa.png" alt="">
 				</section>
 
 				<section>
 					<h1>Metadaten zur Steuerung</h1>
+					<p>Workflow oder Scheduling Tools mit DAG (Directed Acyclic Graph) nutzen</p>
 					<div class="grid_40">
 						<div class="griditem">
 							<ul>
-								<li>Workflow oder Scheduling Tools mit DAG (Directed Acyclic Graph) nutzen</li>
-								<li>Legt Load-Reihenfolge der Objekte im DWH fest</li>
+								<li>Load-Reihenfolge der Objekte im DWH fest</li>
 								<li>ETL Tools haben im Normalfall integrierte DAG Funktionalität</li>
-								<li>In Projekten oft anzutreffen wenn kein ETL-Tool genutzt wird, ein internes Metadaten-framework das mit Proceduren gesteuert wird (hohe Komplexität und Wartung)</li>
+								<li>Alternative: Internes Metadaten-Framework das mit Proceduren und einen Workflow-Tool (Azure Data Factory) gesteuert wird (Interne-Entwicklung, hohe Komplexität und Wartung)</li>
 							</ul>
 						</div>
 						<div class="griditem">
@@ -638,12 +617,17 @@
 			</section>
 
 			<section>
+				<h1>Reporting und Analytics</h1>
+				<img src="./static/V02/reportingAnalyticsFabrik.jpg" alt="">
+			</section>
+
+			<section>
 				<h1>Zusammenfassung</h1>
 				<ul>
 					<li>Anbindungen
 						<ul>
 							<li>Quellsysteme, Datenformate</li>
-							<li>Jobsteuerung</li>
+							<li>Push vs. Pull</li>
 							<li>ETL/ELT</li>
 						</ul>
 					</li>
@@ -651,16 +635,18 @@
 						<ul>
 							<li>Git und Repositories</li>
 							<li>Deployment und test automation</li>
-						</ul>
-					</li>
-					<li>Verarbeitung
-						<ul>
 							<li>Datenbanken</li>
 							<li>Data Streaming</li>
-							<li>Data Katalog und MDM</li>
 						</ul>
 					</li>
-					<li>Jobsteuerung und Alerting</li>
+					<li>Steuerungs- und Informationsmanagement
+						<ul>
+							<li>Data Katalog und MDM</li>
+							<li>Metadatensteuerung</li>
+							<li>Monitoring</li>
+						</ul>
+					</li>
+					
 				</ul>
 			</section>
 
