@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 01 - Zugang zur Infrastruktur
+	</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Übung Business Intelligence</h1>
+				<h2>Zugang zur Infrastruktur</h2>
+			</section>
+			<section>
+				<h1>Aufgabenstellung</h1>
+				<ol>
+					<li>Beitreten einer Übungsgruppe in Moodle</li>
+					<li>Zugang zu Microsoft Azure und BI-Server herstellen</li>
+					<li>Hochfahren einer eigenen SQL-Datenbank in Azure</li>
+					<li>Import des Übungsdatensatzes in die SQL-Datenbank</li>
+					<li>Installation von dbt</li>
+				</ol>
+			</section>
+			<section>
+				<h1>Beitritt zu einer Übungsgruppe</h1>
+				<p>
+					Bitte suchen Sie sich einen Übungspartner und treten mit ihm gemeinsam einer der leeren bereits in
+					Moodle angelegten Gruppen (BI2300X) bei.
+				</p>
+			</section>
+			<section>
+				<section>
+					<h1>Zugang zu Microsoft Azure und BI-Server</h1>
+					<p>
+						Sobald Sie und ihre Übungspartner einer Übungsgruppe beigetreten sind, melden Sie sich bitte bei
+						uns. Wir werden Ihnen dann ihre persönlichen Zugangsdaten zum Azure und BI-Server kommunizieren.
+					</p>
+					<p>
+						Bitte versuchen Sie sich mit den erhaltenen Benutzerdaten in <a
+							href="https://portal.azure.com">Microsoft Azure</a> einzuloggen. Beachten Sie auch die
+						Hinweise auf der folgenden Folie.
+					</p>
+				</section>
+				<section>
+					<h1>Hinweise zum Microsoft Azure Account</h1>
+					<p>
+						Ändern Sie Ihr Passwort mit der ersten Anmeldung und teilen Sie das neue Passwort einem der
+						Dozenten in einer Nachricht per Moodle mit.
+					</p>
+					<p>
+						Mit Ihrer Passwortänderung bestätigen Sie, dass Sie mit Ihrer (Team-)UID sorgsam umgehen werden
+						und Probleme direkt an den Dozenten melden.
+						Starten Sie nur die in den Übungen angegebenen Services in den angegebenen Konfigurationen.
+						Löschen bzw. Pausieren Sie die Services wie angegeben.
+						Im Zweifel löschen Sie Services und kontaktieren Sie Ihren Dozenten.
+						Es gilt die Benutzungsordnung für die Informationsverarbeitungssysteme der Hochschule Hannover
+						(IVS-BO)
+						(siehe <a
+							href="service.it.hs-hannover.de/media/documents/ivs-bo.pdf">service.it.hs-hannover.de/media/documents/ivs-bo.pdf</a>)
+					</p>
+					<p>
+						Eine Weitergabe der UID und des Passwortes an Dritte ist nicht zulässig!
+					</p>
+				</section>
+			</section>
+			<section>
+				<h1>Hochfahren einer SQL-Datenbank in Azure</h1>
+				<p>
+					Führen Sie bitte folgendes Statement in <a
+						href="https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-9.4.0">Azure
+						Powershell</a> aus:
+				</p>
+				<pre>
+					<code data-line-numbers="|2-3"># Set an admin login and password for your server
+$groupName = "bi23020"
+$password = "ChangeYourAdminPassword1OrStickWithm7eUAFZnD8aF"
+
+# The SubscriptionId in which to create these objects
+$SubscriptionId = '1f75bacb-8d7d-4e96-87cb-f7e4216886e5'
+# Set server name - the logical server name has to be unique in the system
+$serverName = $groupName + "-exercise-sql"
+$resourceGroupName = "rgBI"
+$location = "westeurope"
+# The sample database name
+$databaseName = $groupName + "-db"
+# The ip address range that you want to allow to access your server
+$startIp = "0.0.0.0"
+$endIp = "255.255.255.255"
+
+# Set subscription 
+Set-AzContext -SubscriptionId $subscriptionId 
+
+# Create a server with a system wide unique server name
+$server = New-AzSqlServer -ResourceGroupName $resourceGroupName `
+	-ServerName $serverName `
+	-Location $location `
+	-SqlAdministratorCredentials $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $groupName, $(ConvertTo-SecureString -String $password -AsPlainText -Force))
+
+# Create a server firewall rule that allows access from everywhere
+$serverFirewallRule = New-AzSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
+	-ServerName $serverName `
+	-FirewallRuleName "AllAccess" -StartIpAddress $startIp -EndIpAddress $endIp
+
+# Create a serverless database with AdventureWorks sample data
+$database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
+	-ServerName $serverName `
+	-DatabaseName $databaseName `
+	-Edition "GeneralPurpose" `
+	-Vcore 2 `
+	-ComputeGeneration "Gen5" `
+	-ComputeModel Serverless `
+	-SampleName "AdventureWorksLT"
+					</code>
+				</pre>
+				<p>Tragen Sie im Script oben bitte Ihren Gruppennamen und ein beliebiges Passwort ein.</p>
+			</section>
+			<section data-visibility="hidden">
+				<h1>Import des Übungsdatensatzes</h1>
+				<p>Der Übungsdatensatz wird Ihnen in einem Azure-Speicherkonto zur Verfügung gestellt. Mit folgendem Befehl (bitte wieder in <a href="https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-9.4.0">Azure Powershell</a> ausführen) wird der Importvorgang gestartet:</p>
+				<pre>
+					<code># Set an admin login and password for your server
+$groupName = "bi23020"
+$password = "ChangeYourAdminPassword1OrStickWithm7eUAFZnD8aF"
+
+# The SubscriptionId in which to create these objects
+$SubscriptionId = '1f75bacb-8d7d-4e96-87cb-f7e4216886e5'
+# Set server name - the logical server name has to be unique in the system
+$serverName = $groupName + "-exercise-sql"
+$resourceGroupName = "rgBI"
+# The sample database name
+$databaseName = $groupName + "bikeshop-db"
+
+# Import bacpac to database
+$importRequest = New-AzSqlDatabaseImport -ResourceGroupName $resourceGroupName `
+    -ServerName $serverName `
+    -DatabaseName $databaseName `
+    -DatabaseMaxSizeBytes 100GB `
+    -StorageKeyType "StorageAccessKey" `
+    -StorageKey $(Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName).Value[0] `
+    -StorageUri "https://$storageaccountname.blob.core.windows.net/$storageContainerName/$bacpacFilename" `
+    -Edition "Standard" `
+    -ServiceObjectiveName "S0" `
+    -AdministratorLogin "$adminSqlLogin" `
+    -AdministratorLoginPassword $(ConvertTo-SecureString -String $password -AsPlainText -Force)</code>
+				</pre>
+				<p>Es kann ein paar Minuten dauern, bis der oben genannte Befehl abgeschlossen ist.</p>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>

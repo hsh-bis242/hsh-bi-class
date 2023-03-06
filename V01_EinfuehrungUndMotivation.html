@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 00 - Einf&uuml;hrung in die
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 01 - Einf&uuml;hrung in die
 		Business Intelligence</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
@@ -27,19 +27,51 @@
 			</section>
 			<section>
 				<h1>Einf&uuml;hrungsvideo: Lufthansa / Teradata</h1>
-				<iframe id="videoLufthansa" width="560" height="315"
+				<iframe id="videoLufthansa" width="700" height="400"
 					src="//www.youtube.com/embed/oIhOqKHaTQg?enablejsapi=1&html5=1" frameborder="0"
 					allowfullscreen></iframe>
+				<aside class="notes">
+					LH: 4:37 min
+					Tableau: 3:32 min
+
+					Was ist hier anders als bei anderen WI Themen?
+					Zielgruppe Entscheider
+					Datenanalyse
+					Datenquelle: Operative Systeme
+				</aside>
 			</section>
 			<section>
 				<h1>Einf&uuml;hrungsvideo: Tableau</h1>
-				<iframe id="videoTableau" width="560" height="315"
+				<iframe id="videoTableau" width="700" height="400"
 					src="//www.youtube.com/embed/MlaiI7o2BvY?enablejsapi=1&html5=1" frameborder="0"
 					allowfullscreen></iframe>
 			</section>
 			<section>
-				<h1>Business Intelligence - Problemstellungen</h1>
-
+				<h1>Problemstellungen</h1>
+				<section>
+					<h2>Beispielfragestellungen</h2>
+					<figure>
+						<ul>
+							<li>Kann ich auf der Grundlage unzuverlässiger Daten solide Geschäftsentscheidungen treffen?</li>
+							<li>Wer ist mein Kunde?</li>
+							<li>Wie steht es um mein Geschäft?</li>
+							<li>Wie viele gültige Kundenverträge habe ich aktuell in Umlauf?</li>
+							<li>Wie günstig kann ich mein Produkt anbieten, ohne Verluste zu erwirtschaften?</li>
+						</ul>
+					</figure>
+				</section>
+				<section>
+					<h2>Integration der IT-Landschaft</h2>
+				</section>
+				<section>
+					<h2>Technologieüberfluss</h2>
+					<figure>
+						<img src="static/V01/2021_Barc_TechnologyMapForDataAnalytics.png">
+						<figcaption>
+							Keller (2022). <a href="https://barc.com/de/barc-technology-map-for-data-analytics/">BARC Technology Map for Data & Analytics</a>
+						</figcaption>
+					</figure>
+				</section>
 			</section>
 			<section data-background-iframe="index.html">
 			</section>
@@ -58,6 +90,7 @@
 						<li>...</li>
 					</ul>
 					<li>Nutzergruppen</li>
+					<li>Rollen in BI-Projekten</li>
 					<li>Anwendungsbeispiel: BI bei der Feuerwehr</li>
 				</ul>
 			</section>
@@ -79,6 +112,20 @@
 							Springer
 						</figcaption>
 					</figure>
+					<aside class="notes">
+						Ursprung: Überlegungen der Gartner Group aus dem Jahre 1996.
+
+						Fragestellungen und Aufgaben (Bsp. Retail)
+						Überprüfung des Warensortiments zur Erkennung von Ladenhütern oder Verkaufsschlagern
+						Standortanalyse zur Einschätzung der Rentabilität von Niederlassungen
+						Untersuchung der Wirksamkeit von Marketing-Aktionen
+						Auswertung von Kundenbefragungen, Reklamationen bzgl. bestimmter Produkte etc.
+						Analyse des Lagerbestandes
+						Warenkorbanalyse mit Hilfe der Kassenbons
+
+						In welchem Bundesland ist der Absatz des Produktes X in 2010 im Vergleich zu 2009 prozentual am
+						stärksten angestigen?
+					</aside>
 				</section>
 				<section>
 					<h2><u>Prozessorientierte</u> Sichtweise</h2>
@@ -95,17 +142,30 @@
 							Berlin: Springer
 						</figcaption>
 					</figure>
+					<aside class="notes">
+						Weniger Werkzeug- und Anwendungsorientiert
+						Wissen führt zwangsläufig zu operativen/taktischen/strategischen Aktionen, die verändernd auf
+						die vorhandenen Strukturen und Abläufe einwirken
+						Closed Loop - permanente Anpassung an sich ändernde Umweltsituationen
+
+						Natürlich auch Techniken und Werkzeuge erforderlich
+					</aside>
 				</section>
 				<section>
 					<h2>Begriffsabgrenzung</h2>
 					<figure>
-						<img src="static/V01/Gluchowski-Abgrenzung_BI.png">
+						<img src="static/V01/Gluchowski-Abgrenzung_BI.png" height="480">
 						<figcaption>
 							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und
 							Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
 							Berlin: Springer
 						</figcaption>
 					</figure>
+					<aside class="notes">
+						Abgrenzung zur DWH Vorlesung
+						BI Schwerpunkte: Datenauswertung (insbesondere Anwendung): CPM, BPM, aCRM, Controlling,
+						Dashboard, Predictive Analytics
+					</aside>
 				</section>
 			</section>
 			<section>
@@ -126,158 +186,164 @@
 						Berlin: Springer
 					</figcaption>
 				</figure>
+				<aside class="notes">
+					Online Transaction Processing
+					Operative Systeme
+					Transaktionale Systeme
+				</aside>
 			</section>
 			<section>
+				<h1>Anwendungen</h1>
 				<section>
-					<h1>Anwendungen</h1>
 					<figure>
-						<img src="static/V01/btelligent-Referenzarchitektur_BI.png">
+						<!--<img src="static/V01/btelligent-Referenzarchitektur_BI.png"
+							style="clip-path: ellipse(100px 150px at 88% 50%);">
+						-->
+						<div class="r-stack">
+							<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+							<svg height="480" width="850">
+								<ellipse cx="730" cy="240" rx="100" ry="150" fill-opacity="0.0"
+  								style="stroke:var(--hsh_orange);stroke-width:2" />
+							</svg>
+						</div>
 						<figcaption>
 							b.telligent Deutschland GmbH (2022)
 						</figcaption>
 					</figure>
+
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								<b>
-									Reporting = Betriebliches Berichtswesen
-								</b>
-							</p>
+					<h2>Reporting</h2>
+					<h3>Betriebliches Berichtswesen</h3>
 							<p>
 								<b>
 									Ziel:
-								</b> 
-								Die Mitarbeiter ereignis- oder zeitgesteuert mit relevanten Informationen versorgen. Es umfasst alle Personen, Organisationseinheiten, Vorschriften, Daten und Prozesse, die bei der Erzeugung und Weiterleitung von Berichten beteiligt sind.
+								</b>
+								Die Mitarbeiter ereignis- oder zeitgesteuert mit relevanten Informationen versorgen. Es
+								umfasst alle Personen, Organisationseinheiten, Vorschriften, Daten und Prozesse, die bei
+								der Erzeugung und Weiterleitung von Berichten beteiligt sind.
 							</p>
 							<p>
 								<b>
 									Berichte:
 								</b>
-								<b>Dokumente</b>, die unterschiedliche Informationen für einen bestimmten Untersuchungszweck miteinander kombinieren und in aufbereiteter Form vorhalten.
+								<b>Dokumente</b>, die unterschiedliche Informationen für einen bestimmten
+								Untersuchungszweck miteinander kombinieren und in aufbereiteter Form vorhalten.
 							</p>
 							<p>
-								Zielgruppe sind betriebliche <b>Fach- und F&uuml;hrungskr&auml;fte</b>. Sie bekommen in <b>periodischen Abst&auml;nden</b> oder im <b>Bedarfsfall</b> bestimmte Fakten geliefert, die helfen, Trends zu erkennen, Planungen durchzuf&uuml;hren oder Kontrollaufgaben  wahrzunehmen.
+								Zielgruppe sind betriebliche <b>Fach- und F&uuml;hrungskr&auml;fte</b>. Sie bekommen in
+								<b>periodischen Abst&auml;nden</b> oder im <b>Bedarfsfall</b> bestimmte Fakten
+								geliefert, die helfen, Trends zu erkennen, Planungen durchzuf&uuml;hren oder
+								Kontrollaufgaben wahrzunehmen.
 							</p>
-						</div>
-					</div>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Reporting</h2>
 					<figure>
-						<img src="static/V01/Tableau_Reporting_Overview.png">
+						<img src="static/V01/Tableau_Reporting_Overview.png" height="480">
 						<figcaption>
 							https://www.tableau.com/de-de/products/desktop
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Reporting</h2>
 					<figure>
 						<img src="static/V01/Gluchowski-Reporting_BI.png">
 						<figcaption>
-							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Dashboards</h2>
 					<figure>
-						<img src="static/V01/PowerBI_Dashboard_Overview_annotated.png">
+						<img src="static/V01/PowerBI_Dashboard_Overview_annotated.png" height="480">
 						<figcaption>
 							Microsoft PowerBI Desktop (https://powerbi.microsoft.com/de-de/desktop/)
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Dashboards</h2>
 					<figure>
-						<img src="static/V01/Koenig-Dashboard_USA.png">
+						<img src="static/V01/Koenig-Dashboard_USA.png" height="480">
 						<figcaption>
 							https://databoss.starschema.net/creating-simple-dashboard-tableau-talend-mysql/
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								<b>
-									OLAP = Online Analytical Processing
-								</b>
-							</p>
-							<p>
-								Software-Technologie, die Managern wie auch qualifizierten Mitarbeitern aus den Fachabteilungen schnelle, interaktive und vielf&auml;ltige Zugriffe auf relevante und konsistente Informationen erm&ouml;glichen soll.
-							</p>
-							<p>
-								Im Vordergrund stehen dabei <b>dynamische und multidimensionale Analysen</b> auf <b>historischen, konsolidierten Datenbest&auml;nden</b>.
-							</p>
-						</div>
-					</div>
+					<h3>Online Analytical Processing</h3>
+					<p>
+						Software-Technologie, die Managern wie auch qualifizierten Mitarbeitern aus den Fachabteilungen
+						schnelle, interaktive und vielf&auml;ltige Zugriffe auf relevante und konsistente Informationen
+						erm&ouml;glichen soll.
+					</p>
+					<p>
+						Im Vordergrund stehen dabei <b>dynamische und multidimensionale Analysen</b> auf
+						<b>historischen, konsolidierten Datenbest&auml;nden</b>.
+					</p>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								Multidimensionale Perspektiven auf verf&uuml;gbare quantitative Datenbest&auml;nde haben sich als geeignet erwiesen, um den Mitarbeitern einen flexiblen und intuitiven Zugang zu den ben&ouml;tigten Informationen zu er&ouml;ffnen.
-							</p>
-							<p>
-								<b>Multidimensionalit&auml;t</b> als zentrales Gestaltungsparadigma:
-							</p>
-							<p>
-								Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher Klassen logisch zusammengeh&ouml;riger Informationsobjekte aufgliedern.
-							</p>
-							<p>
-								Korrespondiert mit der naturgem&auml;ß mehrdimensionalen Problemsicht der Unternehmungsanalytiker.
-							</p>
-						</div>
-					</div>
+					<p>
+						Multidimensionale Perspektiven auf verf&uuml;gbare quantitative Datenbest&auml;nde haben sich
+						als geeignet erwiesen, um den Mitarbeitern einen flexiblen und intuitiven Zugang zu den
+						ben&ouml;tigten Informationen zu er&ouml;ffnen.
+					</p>
+					<p>
+						<b>Multidimensionalit&auml;t</b> als zentrales Gestaltungsparadigma:
+					</p>
+					<p>
+						Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher Klassen
+						logisch zusammengeh&ouml;riger Informationsobjekte aufgliedern.
+					</p>
+					<p>
+						Korrespondiert mit der naturgem&auml;ß mehrdimensionalen Problemsicht der
+						Unternehmungsanalytiker.
+					</p>
+					<aside class="notes">
+						Informationssysteme, die betrieblichen Fach- und Führungskräften bei ihren Entscheidungsaufgaben
+						wertvolle Unterstützung liefern wollen, müssen sich an dem Geschäftsverständnis bzw. an der
+						Sichtweise auf die eigene Unternehmung orientieren.
+						Multidimensionalität
+						- Form der logischen Anordnung quantitativer, betriebswirtschaftlicher Größen
+					</aside>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								Betriebswirtschaftliche <b>Kenngr&ouml;ßen</b> (= <b>Fakten</b>)
-							</p>
-								<ul>
-									<li>Umsatz</li>
-								</ul>
-							<p>
-								<b>Dimensionen</b>
-							</p>
-							<p>
-								<ul>
-									<li>Kunden</li>
-									<li>Artikel</li>
-									<li>Regionen</li>
-								</ul>
-							</p>
-							<p>
-								hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)
-							</p>
-							<p>
-								Dimensionen entlang derer sich betriebswirtschaftliche Kenngr&ouml;ßen im Zeitablauf untersuchen lassen.
-							</p>
-							<p>
-								Ums&auml;tze pro Monat in den verschiedenen Regionen und Produktgruppen
-							</p>
-						</div>
-					</div>
+					<p>
+						Betriebswirtschaftliche <b>Kenngr&ouml;ßen</b> (= <b>Fakten</b>)
+					</p>
+					<ul>
+						<li>Umsatz</li>
+					</ul>
+					<p>
+						<b>Dimensionen</b>
+					</p>
+					<p>
+					<ul>
+						<li>Kunden</li>
+						<li>Artikel</li>
+						<li>Regionen</li>
+					</ul>
+					</p>
+					<p>
+						hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)
+					</p>
+					<p>
+						Dimensionen entlang derer sich betriebswirtschaftliche Kenngr&ouml;ßen im Zeitablauf untersuchen
+						lassen.
+					</p>
+					<p>
+						Ums&auml;tze pro Monat in den verschiedenen Regionen und Produktgruppen
+					</p>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
 					<figure>
 						<img src="static/V01/Koenig-Wuerfeldarstellung_1.png">
@@ -287,30 +353,28 @@
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
 					<figure>
-						<img src="static/V01/Koenig-Wuerfeldarstellung_2.png">
+						<img src="static/V01/Koenig-Wuerfeldarstellung_2.png" height="480">
 						<figcaption>
 							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
 					<figure>
 						<img src="static/V01/Koenig-Fachlicher_Stern_OLAP.png">
 						<figcaption>
-							Fachlicher Stern (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
+							Fachlicher Stern (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business
+							Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>ROLAP</h2>
 					<figure>
-						<img src="static/V01/PowerBI_Sternschema.png">
+						<img src="static/V01/PowerBI_Sternschema.png" height="480">
 						<!-- 
 							<img src="static/V01/Koenig-Sternschema_ROLAP.png">
 						-->
@@ -325,24 +389,33 @@
 					</figure>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Data Mining</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								<b>Data Mining:</b>
-							</p>
-							<p>
-								Allgemein verwendbare, effiziente Methoden, die <b>autonom</b> aus <b>großen Rohdatenmengen</b> die bedeutsamsten und aussagekr&auml;ftigsten <b>Muster</b> identifizieren und sie dem Anwender als interessantes Wissen pr&auml;sentieren.
-							</p>
-							<p>
-								Erforschung von Strukturzusammenh&auml;ngen (Datenmustern) in Datenbanken
-							</p>
-						</div>
-					</div>
+					<p>
+						Allgemein verwendbare, effiziente Methoden, die <b>autonom</b> aus <b>großen Rohdatenmengen</b>
+						die bedeutsamsten und aussagekr&auml;ftigsten <b>Muster</b> identifizieren und sie dem Anwender
+						als interessantes Wissen pr&auml;sentieren.
+					</p>
+					<p>
+						Erforschung von Strukturzusammenh&auml;ngen (Datenmustern) in Datenbanken
+					</p>
+					<aside class="notes">
+						Die Analyse von gespeicherten Daten als wissenschaftliche Disziplin ist primär den quantitativen
+						Methoden und hier insbesondere der Statistik zuzuordnen.
+						DM: Interdisziplinärerer Forschungsansatz, der seine Wurzeln in der Statistik, Mathematik und
+						Künstlichen Intelligenz findet.
+
+						Utopie der aktiven Informationssysteme, die Analysen generieren und sachkompetent
+						diagnostizieren, um vielleicht sogar handlungsbezogene Empfehlungen zu geben.
+
+						Es bleibt festzuhalten, dass KDD und Data Mining über klassische statistische Verfahren der
+						Datenmustererkennung hinausgehen, da unter Einbeziehung von großen bereinigten und
+						harmonisierten Datenbeständen (die z. B. in einem Data Warehouse vorgehalten werden)
+						umfangreiche Datenpopulationen verfügbar gemacht werden und zudem verschiedene Verfahren zur
+						Mustererkennung parallel am Datenbestand erprobt werden können.
+						=&gt; Durchbruch, Renaissance
+					</aside>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Data Mining</h2>
 					<div class="grid">
 						<div class="griditem">
@@ -352,18 +425,21 @@
 							<p>
 								<b>Entscheidungsbaumverfahren</b> (Klassifizierung)
 							</p>
-							<p>
-								Zuordnung von Datenobjekten zu <b>vorgegebenen</b> Klassen
-							</p>
-							<p>
-								Es werden <b>Regeln generiert</b> und als Baumstruktur visualisiert, anhand derer sich neue Datenobjekte eindeutig klassifizieren lassen
-							</p>
-							<p>
-								Trainings- und eine Testmenge
-							</p>
-							<p>
-								leicht zugänglichen Interpretation
-							</p>
+							<ul>
+								<li>
+									Zuordnung von Datenobjekten zu <b>vorgegebenen</b> Klassen
+								</li>
+								<li>
+									Es werden <b>Regeln generiert</b> und als Baumstruktur visualisiert, anhand derer
+									sich neue Datenobjekte eindeutig klassifizieren lassen
+								</li>
+								<li>
+									Trainings- und eine Testmenge
+								</li>
+								<li>
+									leicht zugänglichen Interpretation
+								</li>
+							</ul>
 						</div>
 						<div class="griditem">
 							<figure>
@@ -374,9 +450,21 @@
 							</figure>
 						</div>
 					</div>
+					<aside class="notes">
+						Konsequenzen des EuGH-Spruchs Gleicher Tarif für alle
+						01.03.2011, 17:11
+						Fragen und Antworten. Der kleine Unterschied wird größer: Frauen zahlen für viele Angebote bei
+						Versicherungen mehr als Männer. Damit ist nach einem EU-Urteil jetzt Schluss. Doch billiger wird
+						es wohl für niemanden.
+						Ein Urteil mit noch unkalkulierbaren Folgen: Versicherungen müssen künftig einheitliche Tarife
+						für Frauen und Männer anbieten. Unterschiedliche Prämien auf Grundlage des Geschlechts sind nach
+						einem Urteil des Europäischen Gerichtshofes (EuGH) diskriminierend. Entsprechende
+						Ausnahmeklauseln müssen bis Ende 2012 abgeschafft werden, entschied das höchste europäische
+						Gericht in Luxemburg. Das Urteil wird sich auf die Tarife jedes Einzelnen auswirken- nicht immer
+						positiv.
+					</aside>
 				</section>
 				<section>
-					<h1>Anwendungen</h1>
 					<h2>Data Mining</h2>
 					<figure>
 						<img src="static/V01/Koenig-Beispiel_Predictive Analytics.png">
@@ -386,94 +474,198 @@
 					</figure>
 				</section>
 			</section>
-		<section>
 			<section>
 				<h1>Nutzergruppen</h1>
-				<h2>Informationskonsument</h2>
-				<div class="grid">
-					<div class="griditem">
-						<p>
-							Rufen zuvor aufbereitete und strukturierte Informationen ab, ohne diese weitergehend analysieren oder nach eigenen Kriterien neu und frei kombinieren zu wollen
-						</p>
-						<p>
-							Standardisierte Sichten , die in festen Rhythmen aktualisiert werden
-						</p>
-						<p>
-							Standardberichtswesen, insbesondere Vergleichsdarstellungen mit Abweichungen (z.B. Plan/Ist-Vergleiche) und Zeitreihen (z.B. Trends)
-						</p>
-						<p>
-							M&ouml;glichst einfacher Zugang zu den enthaltenen Informationen
-						</p>
-						<p>
-							Adressatengerechte Verteilung: Ausgereiftes Berechtigungs- und Rollenkonzept
-						</p>
-					</div>
-				</div>
+				<section>
+					<h2>Informationskonsument</h2>
+					<p>
+						Rufen zuvor aufbereitete und strukturierte Informationen ab, ohne diese weitergehend
+						analysieren oder nach eigenen Kriterien neu und frei kombinieren zu wollen
+					</p>
+					<p>
+						Standardisierte Sichten , die in festen Rhythmen aktualisiert werden
+					</p>
+					<p>
+						Standardberichtswesen, insbesondere Vergleichsdarstellungen mit Abweichungen (z.B.
+						Plan/Ist-Vergleiche) und Zeitreihen (z.B. Trends)
+					</p>
+					<p>
+						M&ouml;glichst einfacher Zugang zu den enthaltenen Informationen
+					</p>
+					<p>
+						Adressatengerechte Verteilung: Ausgereiftes Berechtigungs- und Rollenkonzept
+					</p>
+					<aside class="notes">
+						Standardberichtswesen, das fest definierte Auswertungen zumeist periodisch nach Ablauf
+						vorgegebener zeitlicher Intervalle erstellt und in identischer Form unterschiedlichen Empfängern
+						zur Verfügung stellt. Diese basieren auf einer zuvor durchgeführten Informationsbedarfsanalyse
+						oder sind schlicht historisch gewachsen.
+						Unterstützung diverser Endgeräte.
+					</aside>
 				</section>
 				<section>
-					<h1>Nutzergruppen</h1>
 					<h2>Analytiker</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								Nutzt flexible Navigationsm&ouml;glichkeiten im verf&uuml;gbaren Datenraum
-							</p>
-							<p>
-								Will auch nicht unmittelbar einsichtige Chancen und Risiken für die Unternehmung fr&uuml;hzeitig erkennen
-							</p>
-							<p>
-								W&uuml;nscht stufenweise Disaggregationsm&ouml;glichkeiten
-							</p>
-							<p>
-								Rascher L&ouml;sungsbedarf. Graphische Aufbereitung
-							</p>
-							<p>
-								Black-Box Ansatz: Komplexit&auml;t der technologischen Gesamtl&ouml;sung verbergen
-							</p>
-							<p>
-								Im Einzelfall stellt er Auswertungen auch einem gr&ouml;ßeren Benutzerkreis zur Verf&uuml;gung
-							</p>
-						</div>
-					</div>
+					<p>
+						Nutzt flexible Navigationsm&ouml;glichkeiten im verf&uuml;gbaren Datenraum
+					</p>
+					<p>
+						Will auch nicht unmittelbar einsichtige Chancen und Risiken für die Unternehmung
+						fr&uuml;hzeitig erkennen
+					</p>
+					<p>
+						W&uuml;nscht stufenweise Disaggregationsm&ouml;glichkeiten
+					</p>
+					<p>
+						Rascher L&ouml;sungsbedarf. Graphische Aufbereitung
+					</p>
+					<p>
+						Black-Box Ansatz: Komplexit&auml;t der technologischen Gesamtl&ouml;sung verbergen
+					</p>
+					<p>
+						Im Einzelfall stellt er Auswertungen auch einem gr&ouml;ßeren Benutzerkreis zur
+						Verf&uuml;gung
+					</p>
+					<aside class="notes">
+						Zusammenfassend handelt es sich hier um den typischen Benutzer von Tabellenkalkulationssystemen,
+						der gerne weiter führende Strukturierungshilfen und Navigationsoptionen aufgreift, um sich frei
+						und selbständig im Datenraum zu bewegen.
+					</aside>
 				</section>
 				<section>
-					<h1>Nutzergruppen</h1>
-					<h2>Spezialist</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>
-								Spezialistentum bezieht sich sowohl auf die eingesetzten statistischen, mathematischen oder &ouml;konomischen Methoden als auch auf die verwendeten Softwarewerkzeuge
-							</p>
-							<p>
-								Widmen sich formal komplizierten Aufgabenstellungen und greifen bei der Bearbeitung auf anspruchsvolle Werkzeuge mit weit reichender analytischer Funktionalit&auml;t zur&uuml;ck
-							</p>
-							<p>
-								&Uuml;ber aufw&auml;ndige Korrelationen Ursache-Wirkungszusammenh&auml;nge erkennen
-							</p>
-							<p>
-								Entwirft ggfs. eigene L&ouml;sungsverfahren. Kennt Datenstrukturen
-							</p>
-							<p>
-								Statistiker, Mathematiker oder Informatiker
-							</p>
-							<p>
-								Herausforderung: Analyseergebnisse derart aufzubereiten, dass diese im Rahmen der Entscheidungsfindung auch genutzt werden k&ouml;nnen
-							</p>
-						</div>
-					</div>
+					<h2>Spezialist / Poweruser</h2>
+					<p>
+						Spezialistentum bezieht sich sowohl auf die eingesetzten statistischen, mathematischen
+						oder &ouml;konomischen Methoden als auch auf die verwendeten Softwarewerkzeuge
+					</p>
+					<p>
+						Widmen sich formal komplizierten Aufgabenstellungen und greifen bei der Bearbeitung auf
+						anspruchsvolle Werkzeuge mit weit reichender analytischer Funktionalit&auml;t
+						zur&uuml;ck
+					</p>
+					<p>
+						&Uuml;ber aufw&auml;ndige Korrelationen Ursache-Wirkungszusammenh&auml;nge erkennen
+					</p>
+					<p>
+						Entwirft ggfs. eigene L&ouml;sungsverfahren. Kennt Datenstrukturen
+					</p>
+					<p>
+						Statistiker, Mathematiker oder Informatiker
+					</p>
+					<p>
+						Herausforderung: Analyseergebnisse derart aufzubereiten, dass diese im Rahmen der
+						Entscheidungsfindung auch genutzt werden k&ouml;nnen
+					</p>
 				</section>
 				<section>
-					<h1>Nutzergruppen</h1>
 					<h2>Zuordnung von BI-Nutzergruppen zu Architekturkomponenten</h2>
 					<figure>
 						<img src="static/V01/Koenig-Nutzergruppen_zu_Architekturkomponenten.png">
 						<figcaption>
-							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
 						</figcaption>
 					</figure>
 				</section>
-		</section>
-	</section>
+				<aside class="notes">
+					Spezialist greift vorwiegend direkt auf die methodenorientierten Funktionsbausteine zurück, um
+					anspruchsvolle Datenanalysen vorzunehmen, auch wenn er dabei funktionale Komplexität und wenig
+					benutzungsfreundliche Oberflächen in Kauf nehmen muss. Sein Misstrauen gegenüber den angenehmen und
+					leicht erlernbaren Zugriffs- und Ausgabewerkzeugen geht im Einzelfall soweit, dass er ihnen
+					unterstellt, im Hintergrund verfügbare Verfahren zu unterschlagen oder Analyseergebnisse zu
+					verfälschen.
+					Analytiker setzt Funktionalitäten der navigationsorientierten Analyse ein und bewegt sich möglichst
+					frei im Datenbestand. Einfache Methoden werden zwar wahrgenommen und angewendet, allerdings nur,
+					wenn diese zu unmittelbar nachvollziehbaren und einsichtigen Resultaten führen, welche das
+					Analyseergebnis unmittelbar verbessern.
+					Informationskonsument benutzt Tools, die in der Bereitstellungsschicht abgelegtes Datenmaterial nach
+					festen Mustern aufbereiten und ausgeben. Großes Gewicht erfährt dabei eine zweckkonforme optische
+					Aufbereitung des angezeigten Datenmaterials entsprechend fest definierter Vorgaben.
+				</aside>
+			</section>
+			<section>
+				<h1>Rollen in BI-Projekten</h1>
+				<figure>
+					<img src="static/V01/2023_Cirkel_Projektrollen.jpg">
+					<figcaption>
+						Eigene Darstellung
+					</figcaption>
+				</figure>
+			</section>
+			<section>
+				<h1>Anwendungsbeispiel</h1>
+				<section>
+					<figure>
+						<iframe src="static/V01/2010_HilgersSchwieren_MitBIGegenWohnungsbrand.pdf" height="480"
+							width="900"></iframe>
+
+						<figcaption>
+							Hilgers, D., & Schwieren, W. (2010) Mit Business Intelligence gegen den Wohnungsbrand.
+							Wirtschaftinformatik und Management. 01/2010.
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h2>Zentrales Ziel der Feuerwehren</h2>
+					<p>Spätesten 13 Minuten nach Brandausbruch sollen die ersten Einsatzkräfte vor Ort sein</p>
+					<ul>
+						<li>DWH sammelt die Daten vergangener Einsätze</li>
+						<ul>
+							<li>Daten aus dem Notruf</li>
+							<li>Status / GPS-Daten der Fahrzeuge</li>
+							<li>Schadensausbreitung</li>
+							<li>Unfälle in der Mannschaft</li>
+							<li>Geschätzter Sachschaden</li>
+						</ul>
+						<li>Zeiten für zurückliegende Einsätze darstellen</li>
+						<ul>
+							<li>Zielerreichung darstellen</li>
+							<li>Unterversorgte Regionen identifizieren</li>
+							<li>Bau weiterer Feuerwehren: Argumentationsgrundlage gegenüber Stadtrat, Kämmerer</li>
+						</ul>
+					</ul>
+				</section>
+				<section>
+					<h2>Fragestellungen</h2>
+					<ul>
+						<li>Veränderung der Eintreffzeit durch eine neue Autobahnauffahrt?</li>
+						<li>Wie oft wurden Leitern der Feuerwehr eingesetzt, obwohl ein zweiter Fluchtweg vorhanden war?
+						</li>
+						<ul>
+							<li>Diskrepanz zwischen Brandschutzkonzepten und Realität</li>
+						</ul>
+						<li>Welchen Einfluss haben Rauchmelder auf die Anzahl geretteter Personen?</li>
+						<ul>
+							<li>Nachweis der Nützlichkeit von Rauchmeldern</li>
+						</ul>
+						<li>Verunglücken besonders junge bzw. alte Feuerwehrleute häufiger?</li>
+						<ul>
+							<li>Auswirkungen auf die Schulung von Feuerwehrleuten</li>
+						</ul>
+						<li>Welche Gebäudewerte konnten durch die Feuerwehreinsätze gerettet werden?</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Anwendungen</h2>
+					<ul>
+						<li>Erstellung von Berichten an die Aufsichtsbehörden</li>
+						<li>Dashboards zur Information der Leitung über aktuelle Einsatzverläufe und Zielerreichung</li>
+						<li>Vorhersage von Brandereignissen</li>
+						<ul>
+							<li>Verknüpfung vieler Basisdaten, Beispiel</li>
+							<ul>
+								<li>Einsatzhistorie</li>
+								<li>Bevölkerungsdaten</li>
+								<li>Geografische Daten, Infrastruktur, Flächennutzung</li>
+								<li>Lebensstandard</li>
+								<li>Polizeidaten</li>
+							</ul>
+							<li>Passende Planung von Einsatzkräften beim Ausrücken und in der Bereitschaft</li>
+						</ul>
+					</ul>
+				</section>
+			</section>
+
 		</div>
 	</div>
 
