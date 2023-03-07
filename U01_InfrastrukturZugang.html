@@ -32,7 +32,7 @@
 					<li>Zugang zu Microsoft Azure und BI-Server herstellen</li>
 					<li>Hochfahren einer eigenen SQL-Datenbank in Azure</li>
 					<li>Import des Übungsdatensatzes in die SQL-Datenbank</li>
-					<li>Installation von dbt</li>
+					<li>Azure Devops Repository anlegen</li>
 				</ol>
 			</section>
 			<section>
@@ -128,11 +128,36 @@ $database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
 				</pre>
 				<p>Tragen Sie im Script oben bitte Ihren Gruppennamen und ein beliebiges Passwort ein.</p>
 			</section>
-			<section data-visibility="hidden">
-				<h1>Import des Übungsdatensatzes</h1>
-				<p>Der Übungsdatensatz wird Ihnen in einem Azure-Speicherkonto zur Verfügung gestellt. Mit folgendem Befehl (bitte wieder in <a href="https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-9.4.0">Azure Powershell</a> ausführen) wird der Importvorgang gestartet:</p>
-				<pre>
-					<code># Set an admin login and password for your server
+			<section>
+				<section>
+					<h1>Import des Übungsdatensatzes</h1>
+					<grid class="grid">
+						<div class="griditem">
+							<p>
+								Wenn Sie das Script auf der vorherigen Folie ausgef&uuml;hrt haben, wird automatisch der
+								&Uuml;bungsdatensatz <b>AdventureWorksLT</b> in die Datenbank geladen. F&uuml;r Sie ist
+								nichts weiter zu tun.
+							</p>
+							<p>
+								Bitte prüfen Sie den Zugriff auf Ihre Datenbankinstanz mit einem DBMS-Tool Ihrer Wahl.
+								Wir empfehlen <a
+									href="https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16">Microsoft
+									SQL Server Management Studio 19</a>.
+							</p>
+						</div>
+						<div class="griditem">
+							<img src="static/U01/SSMS-AWStructure.png">
+						</div>
+					</grid>
+				</section>
+				<section data-visibility="hidden">
+					<h1>Import weiterer Übungsdatens&auml;tze</h1>
+					<p>Der Übungsdatensatz wird Ihnen in einem Azure-Speicherkonto zur Verfügung gestellt. Mit folgendem
+						Befehl (bitte wieder in <a
+							href="https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-9.4.0">Azure
+							Powershell</a> ausführen) wird der Importvorgang gestartet:</p>
+					<pre>
+						<code># Set an admin login and password for your server
 $groupName = "bi23020"
 $password = "ChangeYourAdminPassword1OrStickWithm7eUAFZnD8aF"
 
@@ -146,18 +171,53 @@ $databaseName = $groupName + "bikeshop-db"
 
 # Import bacpac to database
 $importRequest = New-AzSqlDatabaseImport -ResourceGroupName $resourceGroupName `
-    -ServerName $serverName `
-    -DatabaseName $databaseName `
-    -DatabaseMaxSizeBytes 100GB `
-    -StorageKeyType "StorageAccessKey" `
-    -StorageKey $(Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName).Value[0] `
-    -StorageUri "https://$storageaccountname.blob.core.windows.net/$storageContainerName/$bacpacFilename" `
-    -Edition "Standard" `
-    -ServiceObjectiveName "S0" `
-    -AdministratorLogin "$adminSqlLogin" `
-    -AdministratorLoginPassword $(ConvertTo-SecureString -String $password -AsPlainText -Force)</code>
-				</pre>
-				<p>Es kann ein paar Minuten dauern, bis der oben genannte Befehl abgeschlossen ist.</p>
+	-ServerName $serverName `
+	-DatabaseName $databaseName `
+	-DatabaseMaxSizeBytes 100GB `
+	-StorageKeyType "StorageAccessKey" `
+	-StorageKey $(Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName).Value[0] `
+	-StorageUri "https://$storageaccountname.blob.core.windows.net/$storageContainerName/$bacpacFilename" `
+	-Edition "Standard" `
+	-ServiceObjectiveName "S0" `
+	-AdministratorLogin "$adminSqlLogin" `
+	-AdministratorLoginPassword $(ConvertTo-SecureString -String $password -AsPlainText -Force)</code>
+					</pre>
+					<p>Es kann ein paar Minuten dauern, bis der oben genannte Befehl abgeschlossen ist.</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Anlegen eines Git-Repository in Azure Devops</h1>
+					<p>Rufen Sie bitte <a
+							href="https://go.microsoft.com/fwlink/?LinkId=2014881&campaign=acom~azure~devops~services~main~hero&githubsi=true&clcid=0x407&culture=de-de&country=de">dev.azure.com</a>
+						in einem Webbrowser auf und loggen Sie sich nach einem Klick auf "Start free" mit Ihren
+						Benutzerdaten ein.</p>
+					<img src="static/U01/azureDevops-startButton.png">
+					<p>Sie werden nun aufgefordert eine neue Organisation anzulegen. Benennen Sie diese bitte nach dem
+						Schema <b>"hsh-bi230XX"</b>. Als Projektnamen tragen Sie bitte <b>"Uebung-BI23"</b> ein.</p>
+					<img src="static/U01/azureDevops-createProject.png">
+				</section>
+				<section>
+					<h1>Berechtigen Sie uns auf Ihr Projekt (1/2)</h1>
+					<p>
+						Berechtigen Sie uns zum Zugriff auf Ihr Devops-Projekt. Klicken Sie im Einstiegsbildschirm Ihrer
+						Organisation (<b>dev.azure.com/hsh-bi230XX</b>) auf "<b>Organization Settings</b>". Dann wählen
+						Sie "<b>Users</b>" und klicken auf "<b>Add Users</b>".
+					</p>
+					<img src="static/U01/azureDevops-organizationSettings.png" height="190">
+					<img src="static/U01/azureDevops-addUserToOrg1.png" height="190">
+				</section>
+				<section>
+					<h1>Berechtigen Sie uns auf Ihr Projekt (2/2)</h1>
+					<grid class="grid">
+						<div class="griditem">
+							<p>Nun f&uuml;gen Sie den Benutzer <b>bi23001@hshannoverde.onmicrosoft.com</b> mit dem Access Level <b>Basic</b> Ihrer Organisation hinzu und ordnen ihm auch direkt Ihr Projekt <b>Uebung-BI23</b> zu.</p>
+						</div>
+						<div class="griditem">
+							<img src="static/U01/azureDevops-addUserToOrg2.png">
+						</div>
+					</grid>
+				</section>
 			</section>
 		</div>
 	</div>
