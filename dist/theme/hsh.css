@@ -362,11 +362,12 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 body::after {
   content: url(../../static/logo.svg);
-  width: 5em;
+  width: 5vw;
+  min-width: 30px;
   position: fixed;
-  bottom: 8em;
-  right: 3em;
-  z-index: 999;
+  bottom: 130px;
+  right: 50px;
+  z-index: -1;
 }
 
 /*********************************************
@@ -388,6 +389,11 @@ body::after {
   display: grid;
   align-items: center;
   grid-template-columns: 40% auto;
+}
+
+.grid_50 {
+  display: grid;
+  grid-template-columns: 50% auto;
 }
 
 figcaption {
@@ -418,4 +424,14 @@ tr:hover {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.customer-logo {
+  padding: 30px;
+}
+
+.profile_image {
+  height:300px;
+  border-right: solid var(--hsh_orange) 15px;
+  border-radius: 5px;
 }
