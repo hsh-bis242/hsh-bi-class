@@ -367,7 +367,7 @@ body::after {
   position: fixed;
   bottom: 130px;
   right: 50px;
-  z-index: 999;
+  z-index: -1;
 }
 
 /*********************************************
