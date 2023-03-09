@@ -391,6 +391,11 @@ body::after {
   grid-template-columns: 40% auto;
 }
 
+.grid_50 {
+  display: grid;
+  grid-template-columns: 50% auto;
+}
+
 figcaption {
   font-size: x-small;
 }
@@ -419,4 +424,14 @@ tr:hover {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.customer-logo {
+  padding: 30px;
+}
+
+.profile_image {
+  height:300px;
+  border-right: solid var(--hsh_orange) 15px;
+  border-radius: 5px;
 }
