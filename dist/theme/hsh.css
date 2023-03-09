@@ -435,3 +435,7 @@ tr:hover {
   border-right: solid var(--hsh_orange) 15px;
   border-radius: 5px;
 }
+
+div.pdf-page {
+  background:  rgb(255, 255, 255,0)!important;
+}
