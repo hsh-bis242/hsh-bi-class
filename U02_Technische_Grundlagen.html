@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 01 - Zugang zur Infrastruktur
+	</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Übung Business Intelligence</h1>
+				<h2>technische Grundlagen</h2>
+			</section>
+				<section>
+					<h1>Installation Editor</h1>
+					<p>
+						Auf dem Rechner des Teams sollte ein Code-Editor installiert sein.
+					</p>
+					<p>
+						Empfehlung: Herunterladen und installieren von <a href="https://code.visualstudio.com/download">Visual Studio Code</a>
+					</p>
+				</section>
+				<section>
+					<h1>Installation git</h1>
+					<p>
+						Direkt über Visual Studio Code
+					</p>
+					<img src="./static/U02/git-visual_studio.png" alt="" height="300">	
+					<p>
+						Alternative: Download und manuelle Installation über <a
+							href="https://git-scm.com/download/win">git-scm</a>
+						hierbei die Standard-Einstellungen bei Installation übernehmen
+					</p>
+				</section>
+			</section>
+			<section>
+				<h1>Klonen des Repositories auf den lokalen Rechner</h1>
+				<p>
+					Aus dem DevOps Repository, welches in der vorherigen Übung angelegt wurde die http-clone-URL kopieren
+					<a href="https://go.microsoft.com/fwlink/?LinkId=2014881&campaign=acom~azure~devops~services~main~hero&githubsi=true&clcid=0x407&culture=de-de&country=de">dev.azure.com</a>
+				</p>
+				<img src="./static/U02/clone URL.png" alt="" height="150">	
+				<p>
+					Einen Ordner auf dem Rechner wählen oder erstellen in dem das Repo geklont werden sollte,
+					diesen Ordner in einem Terminal/Command-line Fenster öffnen und folgendes Statement ausführen und die gekopierte URL einsetzen:
+				<pre>
+					<code>git clone URL-HIER-EINSETZEN</code>
+				</pre>
+					
+				</p>
+				<p>
+					Eine erneute Anmeldung mit dem Azure Microsoft-User ist erforderlich
+				</p>
+			</section>
+			<section>
+				<section>
+					<h1>Installation python</h1>
+					<p>
+						Python (<a href="https://www.python.org/downloads/">python.org</a>) installieren, wenn es nicht bereits auf dem Rechner installiert ist
+					</p>
+					<p>
+						checkmark setzen bei "Add python.exe to PATH"
+					</p>
+					<img src="./static/U02/python_path.jpg" alt="" height="300">			
+				</section>
+				<section>
+					<h1>Installation python</h1>
+					<p>
+						Im python installer "customize installation" auswählen und checkmark setzen bei pip, falls nicht bereits gesetzt
+					</p>
+					<img src="./static/U02/python-installer.jpg" alt="" height="300">
+				</section>
+				<section>
+					<h1>Installation python</h1>
+					<p>
+						Falls Python bereits installiert ist aber kein pip kann alternativ in der Command-line dieser Befehl pip installieren
+						<pre>
+							<code>py -m ensurepip --upgrade</code>
+						</pre>
+					</p>			
+				</section>
+			</section>
+			<section>
+				<h1>Installation dbt</h1>
+				<p>
+					Auf der Command-line dbt mittels pip installieren
+				</p>
+				<pre>
+					<code>pip install dbt-sqlserver</code>
+				</pre>
+				Hinweis: Ein Neustart kann hier erforderlich sein damit pip genutzt werden kann bei Windows, die ENVIRONMENT PATH Variablen werden erst nach einen Neustart gesetzt
+			</section>	
+			<section>
+				<h1>dbt Projekt initialisieren</h1>
+				<p>
+					Einen Terminal/Command-line Fenster öffnen im Ordner in dem das Repository in den ersten Schritten der Übung geklont wurde
+				</p>
+				<pre>
+					<code>dbt init</code>
+				</pre>
+				<p>
+					Bei der Installation als Projektnamen HSH_BI eingeben und die 1 für SQL-Server auswählen und bestätigen
+				</p>
+			</section>	
+			<section>
+				<h1>dbt Projekt initialisieren</h1>
+				<p>
+					Ein dbt-Projekt hat auch immer ein profiles.yml file, welches die Connection Infos zur Datennbak enthält, mittels dieses Befehls kann der Speicherort der Datei ermittelt werden
+				</p>
+				<pre>
+					<code>dbt debug --config-dir</code>
+				</pre>
+				<p>
+					Den "start" Befehl der aus diesem command erzeugt wird auf der command-line ausführen, dann sollte sich der Speicherpfad der profiles.yml öffnen, im Normalfall existiert diese noch nicht
+				</p>
+			</section>	
+			<section>
+				<h1>profiles.yml erstellen</h1>
+				<p>
+					Im Ordner aus dem vorherigen Schritt ein "profiles.yml" file erstellen mit folgenden Inhalt 
+				</p>
+				<p>
+					In server, database und user xx mit der Gruppennummer ersetzen, ebenfalls das Passwort aus der ersten Übung für den Azure SQL Server einsetzen
+				</p>
+				<pre>
+				  <code>HSH_BI:
+	target: dev
+	outputs:
+		dev:
+			type: sqlserver
+			driver: 'ODBC Driver 18 for SQL Server' # (The ODBC Driver installed on your system)
+			server: bi230xx-exercise-sql.database.windows.net
+			port: 1433
+			database: bi230xx-db
+			schema: SalesLT
+			user: bi230xx
+			password: xxxxxx</code>
+				</pre>
+			</section>
+			<section>
+				<h1>Konfiguration Testen</h1>
+				<p>
+					Im Ordner HSH_BI dieses command-line statement ausführen
+				</p>
+				<pre>
+					<code>dbt debug</code>
+				</pre>
+				<p>
+					Wenn die Ausführung erfolgreich war, werden diese Ergebnisse angezeigt:
+				</p>
+				<img src="./static/U02/dbtDebug01.jpg" alt="" height="80">
+				<img src="./static/U02/dbtDebug02.jpg" alt="" height="80" width="400">
+
+				<p>
+					Sollte der "Connection test" fehlschlagen könnte der ODBC Treiber auf dem Rechner noch fehlen. Diesen bitte herunterladen auf 
+					<a href="https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver15">microsoft.com</a> und installieren 
+				</p>
+			</section>
+			<section>
+				<h1>dbt run test</h1>
+				<p>
+					Im Ordner HSH_BI dieses command-line statement ausführen
+				</p>
+				<pre>
+					<code>dbt run</code>
+				</pre>
+				<p>
+					Dieser Befehl erstellt die test models aus dem Folder models/example/ des dbt-Projekts in der Datenbank, 
+					bitte dies einmal mit dem gewählten DBMS-Tool prüfen, ob die Tabelle 
+					my_first_dbt_model
+					und die view
+					my_second_dbt_model
+					in der Datenbank erstellt wurden
+				</p>
+			</section>
+			<section>
+				<h1>Repo aktualisieren</h1>
+				DBT ist nun vollständig eingerichtet und es kann vom Rechner Datenbank-Objekte erzeugt und getestet werden in der Azure Cloud.
+				<br>
+				<br>
+				Abschließend sollte das dbt-Projekt noch in das DevOps Repo synchronisiert werden. Im Repository-Ordner (eine Ebene höher als der HSH_BI Ordner), 
+				den gesamten HSH_BI Ordner auf den git stash packen mit
+				<pre>
+					<code>git add HSH_BI</code>
+				</pre>
+				Die Änderungen in ein commit packen
+				<pre>
+					<code>git commit -m "initial dbt project"</code>
+				</pre>
+				Der Aktuelle Stand wird in das remote Repository gepusht
+				<pre>
+					<code>git push</code>
+				</pre>
+			</section>
+			<section>
+				<h1>Übung Erfolgskriterien</h1>
+				<p>
+					Die dbt Test-view und der Test-Table sind in der Datenbank angelegt
+				</p>
+				<p>
+					Das dbt project wurde ins DevOps-Repository übertragen 
+				</p>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
