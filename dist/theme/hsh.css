@@ -439,3 +439,15 @@ tr:hover {
 div.pdf-page {
   background:  rgb(255, 255, 255,0)!important;
 }
+
+.tiny {
+  font-size: 8px;
+}
+
+.box {
+  display: inline-block;
+  background-color: yellow;
+  padding: 4px 10px;
+  border: 1px solid var(--hsh_orange);
+}
+

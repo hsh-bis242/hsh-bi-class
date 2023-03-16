@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 05 - Online Analytical Processing (OLAP)</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section class="center">
+				<h1 class="r-fit-text">Business Intelligence</h1>
+				<h2 class="r-fit-text">Online Analytical Processing (OLAP)</h2>
+			</section>
+
+			<section>
+				<h1>Gliederung der Vorlesung Business Intelligence</h1>
+				<ul>
+					<li>Business Intelligence: Einführung und Motivation</li>
+					<li>Reporting</li>
+					<li><strong>Online Analytical Processing (OLAP)</strong></li>
+					<li>Dashboards (Datenvisualisierung)</li>
+					<li style="color:gray">BI in der Cloud</li>
+					<li style="color:lightgray">Corporate Performance Management</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Gliederung</h1>
+				<h2>Online Analytical Processing (OLAP)</h2>
+				<ul>
+					<li>OLAP - Einführung</li>
+					<li>OLAP - Definition</li>
+					<li>OLAP - Betriebswirtschaftliche Einsatzbereiche</li>
+					<li>Regeln und Kriterien für OLAP Systeme - Codd</li>
+					<li>OLAP - Navigation</li>
+					<li>OLAP - Frontend</li>
+					<li>Speicherung multidimensionaler Daten - MOLAP</li>
+					<li>Speicherung multidimensionaler Daten - ROLAP</li>
+					<li>OLAP Server</li>
+					<li>SSAS</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Einordnung</h1>
+				<img src="./static/V05/einordnung.png" alt="">
+				<p class="tiny">Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer</p>
+			</section>
+
+			<section>
+				<h1>OLAP - Einführung</h1>
+				<ul>
+					<li><u>Multidimensionale Perspektiven</u> auf verfügbare quantitative Datenbestände haben sich als geeignet erwiesen, um den Mitarbeitern einen <u>flexiblen und intuitiven Zugang</u> zu den benötigten Informationen zu eröffnen.</li>
+					<li><strong>Multidimensionalität</strong> als zentrales Gestaltungsparadigma:
+						<ul>
+							<li>Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher Klassen logisch zusammengehöriger Informationsobjekte aufgliedern.
+							<li>Korrespondiert mit der <u>naturgemäß mehrdimensionalen Problemsicht der Unternehmungsanalytiker.</u>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>OLAP - Einführung</h1>
+				<ul>
+					<li>Betriebswirtschaftliche Kenngrößen (= <strong>Fakten</strong>)
+						<ul>
+							<li>Umsatz</li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li><strong>Dimensionen</strong>
+						<ul>
+							<li>Kunden, Artikel, Regionen</li>
+							<li>hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)</li>
+							<li>Slowly Changing Dimensions</li>
+							<li>Dimensionen entlang derer sich betriebswirtschaftliche Kenngrößen im Zeitablauf untersuchen lassen.</li>
+							<li>Umsätze pro Monat in den verschiedenen Regionen und Produktgruppen</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>OLAP - Definition</h1>
+				<blockquote>
+					<ul>
+						<li>Software-Technologie, die Managern wie auch qualifizierten Mitarbeitern aus den Fachabteilungen </li>
+						<li>schnelle, interaktive und vielfältige Zugriffe auf relevante und konsistente Informationen ermöglichen soll. </li>
+						<li>Im Vordergrund stehen dabei dynamische und multidimensionale Analysen auf historischen, konsolidierten Datenbeständen.</li>
+					</ul>
+				</blockquote>
+				<p class="tiny">Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer</p>
+			</section>
+
+			<section>
+				<h1>OLAP - Einführung</h1>
+				<img src="./static/V05/cube.png" alt="" height="550px">
+				<p class="tiny">Einführung in die multidimensionale Datenmodellierung mit ADAPT Christian Kurze BI-Praktikum IBM – WS 2008/09. TU Chemnitz</p>
+			</section>
+			
+			<section>
+				<h1>OLAP - Betriebswirtschaftliche Einsatzbereiche</h1>
+				<p>Einsatz multidimensionaler Systeme nach Funktionsbereichen</p>
+				<img src="./static/V05/barchart.png" alt="">
+				<p class="tiny">Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer</p>
+			</section>
+			<section>
+				<h1>OLAP - Betriebswirtschaftliche Einsatzberiche</h1>
+				<p><strong>Vertriebscontrolling:Klassischer Einsatzbereich</strong></p>
+				<ul>
+					<li>Analyse von Erlösen und Absatzmengen</li>
+					<li>Zeit-, Kunden- und Artikeldimensionen</li>
+					<li>Vergleiche Ist-Zahlen vs. Planzahlen</li>
+					<li>Aufdecken von Abweichungsursachen</li>
+					<li>Integration externer demografische und makroökonomische Daten</li>
+					<li>80/20-Analysen</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
+				<p><strong>"Providing OLAP to User-Analysts: An IT Mandate"</strong></p>
+				<img src="./static/V05/regeln_kriterien_text.jpg" alt="">
+				<div class="box">Materialien: 1993_OLAP_Codd.pdf</div>
+				<p class="tiny">Codd, Edgar F.; Codd, Sally B.; Salley, Clynch T. (1993): Providing OLAP (On-Line Analytical Processing) to User-Analysts: An IT-Mandate, White Paper, o. O. 1993</p>
+			</section>
+
+			<section style="font-size:22px">
+				<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
+				<ol>
+					<li>Multidimensionale Denkweise (Kernanforderungen):
+						<ol>
+							<li>Mehrdimensionale konzeptionelle Perspektiven</li>
+							<li>Grundprinzipien der gleichgestellten Dimensionen</li>
+							<li>Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg</li>
+							<li>Unbegrenzte Dimensions- und Aggregationsstufen</li>
+						</ol>
+					</li>
+					<li>Zweck: Schnelle Ad-Hoc-Analysen (Kernanforderung):
+						<ol>
+							<li>Stabile Antwortzeiten bei der Berichterstattung</li>
+						</ol>
+					</li>
+					<li>Technische Anforderungen:
+						<ol>
+							<li>Transparenz</li>
+							<li>Zugriffsmöglichkeit</li>
+							<li>Mehrbenutzerfähigkeit</li>
+						</ol>
+					</li>
+					<li>Implementierungshinweise:
+						<ol>
+							<li>Client/Server Architektur</li>
+							<li>Dynamische Verwaltung „dünn besetzter“ Matrizen</li>
+						</ol>
+					</li>
+					<li>Sonstige Anforderungen:
+						<ol>
+							<li>Intuitive Datenmanipulation</li>
+							<li>Flexibles Berichtswesen</li>
+						</ol>
+					</li>
+				</ol>
+			</section>
+
+			<section>
+				<h1>OLAP - Navigation</h1>
+				<p>Würfeldarstellung mehrdimensional strukturierter Daten</p>
+				<img src="./static/V05/olap_navigation.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Navigation</h1>
+				<p>Präsentation und Navigation</p>
+				<img src="./static/V05/olap_navigation2.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Navigation</h1>
+				<p>Präsentation und Navigation - Rotation des Datenwürfels</p>
+				<img src="./static/V05/olap_navigation3.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Navigation</h1>
+				<p>Präsentation und Navigation - Rotation des Datenwürfels</p>
+				<img src="./static/V05/olap_navigation4.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Navigation</h1>
+				<p>Präsentation und Navigation - Drill Down</p>
+				<img src="./static/V05/olap_navigation5.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Navigation</h1>
+				<p>Präsentation und Navigation - Drill Across</p>
+				<img src="./static/V05/olap_navigation6.png" alt="">
+				<p class="tiny">Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische Anwendungen. Vieweg. 2010</p>
+			</section>
+
+			<section>
+				<h1>OLAP - Frontend</h1>
+				<p>Cognos Powerplay</p>
+				<img src="./static/V05/cognos_powerplay.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Frontend</h1>
+				<p>Cognos Powerplay</p>
+				<img src="./static/V05/cognos_powerplay2.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Frontend</h1>
+				<p>Microsoft PowerBI</p>
+				<img src="./static/V05/powerbi.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Frontend</h1>
+				<p>Erweiterungen handelsüblicher Standardsoftwarepakete: Beispiel Palo</p>
+				<img src="./static/V05/Palo.png" alt="">
+			</section>
+
+			<section>
+				<h1>OLAP - Frontend</h1>
+				<p>Pivot Tabellen</p>
+				<img src="./static/V05/pivot.png" alt="">
+				<p class="tiny">Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz</p>
+			</section>
+
+			<section>
+				<h1>OLAP - Frontend</h1>
+				<p>Web Browser</p>
+				<img src="./static/V05/browser.png" alt="">
+				<p class="tiny">Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz</p>
+			</section>
+
+			<section>
+				<h1>Speicherung multidimensionaler Daten</h1>
+				<p>Speicherung (logisch) multidimensionaler Daten</p>
+				<img src="./static/V05/speicherung_multidimensionaler_daten.png" alt="">
+				<p class="tiny">Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische Anwendungen. Vieweg. 2010</p>
+			</section>
+
+			<section>
+				<h1>Speicherung multidimensionaler Daten</h1>
+				<p>Speicherung (logisch) multidimensionaler Daten - SSAS</p>
+				<img src="./static/V05/speicherung_multidimensionaler_daten2.png" alt="">
+			</section>
+
+
+
+			<section class="center" data-background-image="https://i.giphy.com/media/cn7GcSZ1KWqO7CJw1B/giphy.webp" data-background-size="contain" data-background-repeat="no-repeat"></section>
+					
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+	<script src="node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+	
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
