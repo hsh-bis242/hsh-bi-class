@@ -267,6 +267,159 @@
 				<img src="./static/V05/speicherung_multidimensionaler_daten2.png" alt="">
 			</section>
 
+			<section>
+				<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+				<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
+				<h2>(physisch) multidimensionalen Datenbank </h2>
+				<ul>
+					<li>Datenbanksystem, das die auf konzeptioneller Ebene dargestellten multidimensionalen Datenstrukturen auch in ihrer physischen Datenbank- und Speicherstruktur umsetzt (Multidimensionales DBMS = MDBMS). </li>
+					<li>Multidimensionales OLAP (MOLAP)</li>
+					<li>Komprimierte , multidimensionale Arrays</li>
+					<li>Als File abgespeichert</li>
+					<li>Aggregate (über die Hierarchien) werden nach dem Laden durch die OLAP Engine berechnet & gespeichert</li>
+					<li>Abfragesprachen: MDX </li>
+					<li>XML/A für administrative Aufgaben</li>
+				</ul>
+			</section>
+
+			<section style="font-size:20px">
+				<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+				<h3>Multidimensionale Datenbanksysteme</h3>
+				<div class="grid_50">
+					<div>
+						<h4>Vorteile</h4>
+						<ul>
+							<li>Intuitiven Analysesprachen</li>
+							<li>Hohe Performanz komplexer analytischer Auswertungen</li>
+							<li>Vorberechnete Aggregate beschleunigen das Antwortzeitverhalten</li>
+							<li>Geringerer Speicherbedarf (Kompression, keine Indizierung)</li>
+							<li>Weniger Disk I/Os</li>
+						</ul>
+					</div>
+					<div>
+						<h4>Nachteile</h4>
+						<ul>
+							<li>Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)</li>
+							<li>Skaliert schlecht bei wachsender Zahl von Dimensionen</li>
+							<li>Herstellerabhängige, proprietäre Datenbanksysteme</li>
+							<li>Herausforderung: Datenwürfel mit dünn besetzte Dimensionen</li>
+							<li>Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable Zeiträume in Anspruch</li>
+							<li>Schulungsaufwand für neue Technologie</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+				<h3>Multidimensionale Datenbanksysteme</h3>
+				<blockquote>
+					<strong>Note:</strong> The term <em>multidimensional database</em> is often confused with the term <em>online analytical processing</em>, but these terms hafe different meanings. An MDB is the database, and OLAP is the activity used to analyze the database. The confusion is aused by the word <em>OLAP cube</em>. An OLAP cube has the same meaning as an MDB; it means a multidimensional database.
+				</blockquote>
+				<p class="tiny">nach: V. Rainardi, Building a Data Warehouse: With Examples in SQL Server. Seite 58
+				</p>
+			</section>
+
+			<section>
+				<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+				<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
+				<h2>(physisch) relationaler Datenbank </h2>
+				<ul>
+					<li>als zweidimensionale Objektdaten (Zweidimensionale Tabellen)</li>
+					<li>mehrdimensional verbunden durch Metadaten</li>
+					<li>in einem relationalen Server-Datenbanksystem (RDBMS)</li>
+					<li>ROLAP </li>
+					<li>Stern Schema</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+				<h3>Vorteile RDBMS</h3>
+				<ul>
+					<li>Bewährte Technologie</li>
+					<li>Know How</li>
+					<li>Standardisierte Datenbanksprache (SQL)</li>
+					<li>Viele Tools, Open Source</li>
+					<li>Skalierbar, Performance</li>
+					<li>Kompatibilität, Plattformunabhängigkeit</li>
+				</ul>
+			</section>
+
+			<section style="font-size:24px">
+				<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+				<div class="grid_50">
+					<div>
+						<h4>Sternschema allgemein</h4>
+						<ul>
+							<li>Mehrere Dimensionstabellen, die sich auf eine Faktentabelle beziehen</li>
+							<li>Die Faktentabelle enthält diejenigen Attribute, die die betrieblichen Erfolgsfaktoren messen</li>
+							<li>Jede 1:n Beziehung wird durch Schlüssel der Dimensionstabelle und Fremdschlüssel der Faktentabelle vermittelt</li>
+							<li>Die Dimensionstabellen enthalten meist symbolische und diskrete Attribute. Dies erlaubt die Auswahl, Zusammenfassung und Navigation der Fakten</li>
+						</ul>
+					</div>
+					<div>
+						<img src="./static/V05/ROLAP.png" alt="">
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h1>Speicherung mulidimensionaler Daten</h1>
+				<img src="./static/V05/Colliat.png" alt="">
+				<div class="box">Materialien: 1996_OLAP_Colliat</div>
+				<p class="tiny">Colliat, George. "OLAP, relational, and multidimensional database systems." ACM Sigmod Record 25.3 (1996): 64-69.</p>
+			</section>
+
+			<section>
+				<h1>OLAP Server</h1>
+				<p>Multidimensionale Datenbanksysteme - Produkte</p>
+				<div class="r-stack">
+					<img class="fragment fade-out" src="./static/V05/OLAP_Server.png" alt="">
+					<img class="fragment fade-in-then-out" src="./static/V05/OLAP_Server2.png" alt="">
+					<img class="fragment current-visible" src="./static/V05/OLAP_Server3.png" alt="">
+				</div>
+				<p class="tiny">en.wikipedia.org/wiki/Comparison_of_OLAP_Servers (Zugriff am 19.04.2017)</p>
+			</section>
+
+			<section>
+				<h1>SSAS</h1>
+				<p>Fertiger Cube in SSMS</p>
+				<div class="grid_50">
+					<img src="./static/V05/SSAS_1.png" alt="">
+					<img src="./static/V05/SSAS_2.png" alt="">
+				</div>
+			</section>
+
+			<section>
+				<h1>SSAS</h1>
+				<p>Cubestruktur in SSDT definieren</p>
+				<img src="./static/V05/SSAS_3.png" alt="">
+			</section>
+
+			<section>
+				<h1>SSAS</h1>
+				<p>Cubestruktur in SSDT definieren - Dimensionshierarchie</p>
+				<img src="./static/V05/SSAS_4.png" alt="">
+			</section>
+
+			<section>
+				<h1>Azure Analysis Services</h1>
+				<img src="./static/V05/Azure.png" alt="">
+				<p class="tiny"><a href="https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview">https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview</a> (Zugriff am 20.10.2020)</p>
+			</section>
+
+			<section>
+				<h1>Azure Analysis Services</h1>
+				<img src="./static/V05/Azure_2.png" alt="">
+				<p class="tiny"><a href="https://phantomdb.files.wordpress.com/2017/12/image.png">https://phantomdb.files.wordpress.com/2017/12/image.png</a> (Zugriff am 20.10.2020)</p>
+			</section>
+
+			<section>
+				<h1>Zusammenfassung</h1>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/yoE6bgJv08E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+				<p><a href="https://www.youtube.com/watch?v=yoE6bgJv08E" class="tiny">https://www.youtube.com/watch?v=yoE6bgJv08E</a></p>
+			</section>
 
 
 			<section class="center" data-background-image="https://i.giphy.com/media/cn7GcSZ1KWqO7CJw1B/giphy.webp" data-background-size="contain" data-background-repeat="no-repeat"></section>
