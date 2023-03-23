@@ -1,0 +1,27 @@
+{
+  "theme": "default",
+  "themeVariables": {
+    "nodeBorder" : "#dc3c05",
+    "mainBkg" : "#dc3b055d",
+    "nodeTextColor" : "#000000",
+    "fontFamily": "arial",
+    "fontSize": "18px"
+ }
+}
+
+Klassifizierung:
+flowchart TD
+    A[Berichtssysteme] --> B[Aktive Berichtssysteme]
+    A --> C[Passive Berichtssysteme]
+    B --> D[Periodische Berichtssysteme]
+    B --> E[Aperiodische Berichtssysteme]
+    C --> F[Ad-Hoc-Berichtssysteme]
+
+Prozesse:
+flowchart TD
+    A[Berichtsgestaltung und -erstellung] --> B[Berichtsverwaltung]
+    A --> C[Berichtsverteilung]
+    B --> C
+    A --> D
+    C --> D
+    B --> D[Berichtsaufnahme und -diskussion]
