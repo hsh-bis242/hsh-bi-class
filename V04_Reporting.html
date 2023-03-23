@@ -188,6 +188,205 @@
 				</section>
 			</section>
 			<section>
+				<section>
+					<h1>Berichtsgeneratoren - Reportingtechnologien</h1>
+					<p><b>Berichtsgeneratoren</b></p>
+					<ul>
+						<li>Software-Werkzeuge, die über die reine Abfragefunktionalität hinaus noch Möglichkeiten zur inhaltlichen und optischen Anreicherung bieten.</li>
+						<li>Einsetzbar für Standardberichte, Ad-hoc-Auswertungen (und freien Navigation im Datenbestand).</li>
+						<li>Scheduling, Rollen- und Sicherheitskonzepte, Push vs. Pull Verfahren</li>
+						<li><b>Pixelgenaues</b> Layouting</li>
+					</ul>
+					<p><b>Dezentrale Organisation</b> des Berichtswesens</p>
+						<ul>
+							<li>mit vollständiger Funktionalität am Arbeitsplatz</li>
+							<li>Die steigende Quantität und Komplexität unternehmungsinterner Berichte ist mit den herkömmlichen Berichtsgeneratoren und Hardwarearchitekturen kaum noch zu bewältigen.</li>
+							<li>Konsistentes Unternehmungsreporting?</li>
+							<li>Fehlende Dokumentation (der Reports und der Datenbanken)</li>
+						</ul>
+					<aside class="notes">
+						Im einfachsten Fall: SQL Abfrage auf Datenbank ...
+						Auch: Abfragegeneratoren (eher ad-hoc, SQL wird generiert)
+						Wie viel muss der Designer von den darunter liegenden Datenstrukturen verstehen?
+						DWH oder Cube ideale Ausgangsbasis ...
+
+						- Einteilung in Druckseiten, Kopf- und Fußzeile etc.
+						- konditionierte Formatierung (z.B. für Exception Reporting)
+						- Erstellung abgeleiteter Größen zur Berichtslaufzeit.
+						- Konvertierungs- und Formatierungsfunktionen.
+						- Two Pass Reporting
+						- Grafiken
+
+						Lösungsansatz: Managed Query Environments mit semantischer Zwischenschicht zwischen datenbankinternen Bezeichnungen und Benutzerviews.
+
+						Publikation von Berichten im Internet: Web-Reporting
+					</aside>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren</h1>
+					<h2>Microsoft SQL Server Reporting Services (SSRS)</h2>
+					
+							<figure style="float:right">
+								<img src="static/V04/MSFT-ssrb-designview.png" width="400">
+								<figcaption>
+									<a href="https://learn.microsoft.com/en-us/sql/reporting-services/report-builder/report-design-view-report-builder">Report Design View (Report Builder)</a>
+								</figcaption>
+							</figure>
+							<p>Bereitstellen von relevanten Informationen im gesamten Unternehmen</p>
+							<p>Microsoft SQL Server Reporting Services ist eine vollständige, serverbasierte Plattform für eine Vielzahl an Reporting-Anforderungen.</p>
+							<p><b>Erstellen</b> Sie ausführliche Berichte, nutzen Sie umfangreiche Visualisierungsfeatures sowie einzigartige und flexible Designmöglichkeiten.</p>
+							<p><b>Verwalten</b> und skalieren Sie die Auslastung durch das Reporting.</p>
+							<p><b>Bereitstellen</b>: Stellen Sie personalisierte, interaktive Berichte im Intranet bzw. Internet bereit und bieten Sie so allen Benutzern dynamisch die für sie relevanten Berichte an.</p>
+
+						<!--
+							<div class="griditem">
+								<figure>
+									<img src="static/V04/MSFT-power-bi-report-builder-sample-invoice.png" height="480">
+									<figcaption>
+										<a href="https://learn.microsoft.com/de-de/power-bi/paginated-reports/report-builder-power-bi">Power BI Report Builder</a>
+									</figcaption>
+								</figure>
+							</div>
+						-->
+					<aside class="notes">
+						-> Übung
+
+						WYSIWYG
+
+						Microsoft SQL Server 2008 R2 Report Builder 3.0 bietet Geschäfts- und Hauptbenutzern eine intuitive Berichterstellungsumgebung. 
+						Es werden alle Funktionen von SQL Server 2008 R2 Reporting Services unterstützt. 
+
+						Informationskonsument - Analytiker. Nicht: Spezialist
+
+						SQL Server Reporting Services (SSRS) ist ein Server-basiertes Berichtgenerierungssystem von Microsoft. 
+						Es kann zur Vorbereitung und produktiven Erzeugung verschiedener Arten interaktiver oder vorgefertigter Berichte verwendet werden. 
+						Visual Studio - BIDS
+
+						Azevedo: Enge Verbindung mit MS Office Sharepoint Server. Einbindung der Berichte in Portallösung.
+
+					</aside>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren</h1>
+					<h2>SSRS - Komponentenarchitektur</h2>
+					<figure>
+						<img src="static/V04/MSFT-reporting-serv-arch.gif" height="480">
+						<figcaption>
+							<a href="https://learn.microsoft.com/de-de/sql/reporting-services/report-server-sharepoint/reporting-services-report-server?view=sql-server-ver16">Vergleich zwischen nativen Berichtsservern und SharePoint-Berichtsservern in Reporting Services</a>
+						</figcaption>
+					</figure>
+					<!--
+					<figure>
+							<img src="static/V04/MSFT-report-server-2022-coho-winery.png" height="480">
+							<figcaption>
+								<a href="https://learn.microsoft.com/de-de/sql/reporting-services/create-deploy-and-manage-mobile-and-paginated-reports?view=sql-server-ver16">Was ist SQL Server Reporting Services (SSRS)?</a>
+							</figcaption>
+						</figure>
+					-->
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren - SAP Crystal Reports</h1>
+					<p><b>Create Reports</b></p>
+					<figure style="float: right">
+						<img src="static/V04/SAP-CrystalReports.jpg" width="400">
+						<figcaption>
+							<a href="https://www.sap.com/products/technology-platform/crystal-reports.html">SAP Crystal Reports</a>
+						</figcaption>
+					</figure>
+					<p><b>Flexible Reporting</b><br>Add flexibility to your reporting with the use of product wizards and parameters.</p>
+					<p><b>Pixel-perfect documents</b><br>Provide pixel-perfect documents and forms with highly formatted contents</p>
+					<p><b>Embed images and bar codes</b><br>Go beyond regular business reports by embedding dynamic images and bar codes.</p>
+					<p><b>Sharing and exporting</b><br>Easily report sharing by exporting data to popular formats</p>
+					
+					<aside class="notes">
+						Crystal Reports (Crystal Report) ist eine Software zur Erstellung von Berichten. Mit Crystal Reports können Informationen aus Datenbanken oder Textdateien abgerufen, verarbeitet und in Form von Grafiken und Tabellen dargestellt werden. Eine Verteilung der Berichte über Web-Technologien ist mit Hilfe von Crystal Reports Server, Business Objects Enterprise oder über Eclipse/Java bzw. .NET Laufzeitumgebungen möglich.
+
+						Crystal Reports wurde ursprünglich von der 1984 in Vancouver, B. C., Kanada, gegründeten Firma „Crystal Services“ entwickelt. 
+
+						Seit der Übernahme im Jahr 2003 wird Crystal Reports durch Business Objects weiterentwickelt.  Anfang 2008 wurde Business Objects von SAP übernommen. 
+
+						Die derzeit aktuelle Version ist Crystal Reports 2013.
+
+						Zu den verwendeten Datenquellen für Crystal Reports gehören:
+						* relationale Datenbanksysteme (RDBMS) wie Oracle, Sybase, IBM DB2, Ingres, Microsoft Access, Microsoft SQL Server, MySQL, PostgreSQL[1], Interbase, etc.
+						* Tabellenkalkulationen aus z. B. Microsoft Excel, OpenOffice.org
+						* Textdateien
+						* Formatierte Dateien wie z. B. XML
+						* sowie Datenquellen die über Web Service, ODBC, JDBC oder OLAP ansprechbar sind.
+
+						Zu den Ausgabeoptionen von Crystal Reports gehören unter anderem Papierausdrucke, formatierte Textdateien wie z. B. CSV oder XML-Dateien, RPT-Dateien im Crystal-Report-Format, HTML-, PDF-, Excel- oder Word-Dateien
+					</aside>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren - SAP Crystal Reports</h1>
+					<div class="grid">
+						<div class="griditem">
+							<p><b>Share Data</b></p>
+							<p><b>User interface in multiple languages</b><br>Benefit from a user interface available in up to 28 languages.</p>
+							<p><b>Defined user rights</b><br>Manage user rights to access, view, refresh, export, or print reports.</p>
+							<p><b>Mobile access</b><br>Enable mobile access to self-service business intelligence reports.</p>
+						</div>
+						<div class="griditem">
+							<p><b>Access Data</b><p>
+							<p><b>Flat files<br></b>Connect to flat files like Microsoft Excel, text files, web logs, XML, and file systems.</p>
+							<p><b>Databases<br></b>Connect to databases like SAP HANA, Microsoft Access, Microsoft SQL Server, IBM DB2, Oracle, MySQL and PostgreSQL.</p>
+							<p><b>Data sources<br></b>Connect to JDBC and ODBC data sources as well as specific applications such as Sage or Salesforce.</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren - Open Source</h1>
+					<table>
+						<tr>
+							<th>Entwickler / Anbieter</th>
+							<th colspan="2">Aktuelle Version</th>
+							<th>Weitere Informationen</th>
+						</tr>
+						<tr>
+							<th rowspan="2">BIRT Project Management Committee / Actuate</th>
+							<td rowspan="2">Eclipse BIRT</td>
+							<td rowspan="2">2.5.2</td>
+							<td>www.eclipse.org/birt</td>
+						</tr>
+						<tr>
+							<td>www.actuate.com</td>
+						</tr>
+						<tr>
+							<th rowspan="3">Jaspersoft</th>
+							<td>iReport</td>
+							<td>3.1.7</td>
+							<td>jasperforge.org</td>
+						</tr>
+						<tr>
+							<td>(Jasper Server)</td>
+							<td>(3.7.0)</td>
+							<td>www.jaspersoft.com</td>
+						</tr>
+						<tr>
+							<td>(JasperReports)</td>
+							<td>(3.7.1)</td>
+						</tr>
+						<tr>
+						</tr>
+					</table>
+					<figure>
+						<figcaption>
+							Tabelle in Anlehnung an Open Source Business Intelligence. Haneke et al. Hanser. 2010
+						</figcaption>						
+					</figure>
+				</section>
+			</section>
+			<section>
+				<h1>The Future of Reporting</h1>
+				<figure>
+					<iframe src="static/V04/2019_BARC_Future-of-Reporting_EN.pdf" height="480"
+						width="900"></iframe>
+					<figcaption>
+						BARC (2019) The Future of Reporting - A Research Study
+					</figcaption>
+				</figure>
+			</section>
+			<section>
 				<h1>Literatur</h1>
 				<ul>
 					<li>Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
