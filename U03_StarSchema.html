@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 03 - Aufbau von Dimensionen und Fakten
+	</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Übung Business Intelligence</h1>
+				<h2>Aufbau von Dimensionen und Fakten</h2>
+			</section>
+			<section>
+				<h1>Aufgabenstellung</h1>
+				<p>Modellieren Sie ein Sternschema auf das dvdrental-Datenmodell</p>
+				<ul>
+					<li>Welche Fakten können Sie identifizieren?</li>
+					<li>Welche Dimensionen können Sie identifizieren?</li>
+					<li>Wie wird die Datumsdimension aufgebaut?</li>
+				</ul>
+			</section>
+			<section data-background="static/U01/dvd-rental-sample-database-diagram.png" data-background-size="contain">
+
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>

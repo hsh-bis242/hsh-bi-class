@@ -97,16 +97,15 @@ DROP TABLE vrs.customer;
 GO
 
 CREATE TABLE vrs.customer (
-    customer_id INT NOT NULL,
-	store_id INT NOT NULL,
+    customer_id INT PRIMARY KEY,
+	store_id INT,
 	first_name NVARCHAR(255),
 	last_name NVARCHAR(255),
 	email NVARCHAR(255),
 	address_id INT,
 	active TINYINT,
 	create_date DATETIME2,
-	last_update DATETIME2,
-	CONSTRAINT PK_customer PRIMARY KEY CLUSTERED (customer_id, store_id)
+	last_update DATETIME2
     );
 GO
 
@@ -287,4 +286,89 @@ GO
 BULK INSERT vrs.staff
 FROM 'csvcontainer/staff.csv'
 WITH (FORMAT='CSV', DATA_SOURCE = 'azureblobstorageDS', FIELDQUOTE = '"', FIELDTERMINATOR = ',', ROWTERMINATOR = '\n', FIRSTROW = 2);
+GO
+
+ALTER TABLE vrs.film_category
+	ADD CONSTRAINT FK_FilmCategory_Category FOREIGN KEY (category_id)
+		REFERENCES vrs.category (category_id);
+
+ALTER TABLE vrs.film_category
+	ADD CONSTRAINT FK_FilmCategory_Film FOREIGN KEY (film_id)
+		REFERENCES vrs.film (film_id);
+
+ALTER TABLE vrs.film
+	ADD CONSTRAINT FK_Film_Language FOREIGN KEY (language_id)
+		REFERENCES vrs.[language] (language_id);
+
+ALTER TABLE vrs.film_actor
+	ADD CONSTRAINT FK_FilmActor_Film FOREIGN KEY (film_id)
+		REFERENCES vrs.film (film_id);
+
+ALTER TABLE vrs.film_actor
+	ADD CONSTRAINT FK_FilmActor_Actor FOREIGN KEY (actor_id)
+		REFERENCES vrs.actor (actor_id);
+
+ALTER TABLE vrs.inventory
+	ADD CONSTRAINT FK_Inventory_Film FOREIGN KEY (film_id)
+		REFERENCES vrs.film (film_id);
+
+ALTER TABLE vrs.inventory
+	ADD CONSTRAINT FK_Inventory_Store FOREIGN KEY (store_id)
+		REFERENCES vrs.store (store_id);
+
+ALTER TABLE vrs.rental
+	ADD CONSTRAINT FK_Rental_Inventory FOREIGN KEY (inventory_id)
+		REFERENCES vrs.inventory (inventory_id);
+
+ALTER TABLE vrs.rental
+	ADD CONSTRAINT FK_Rental_Customer FOREIGN KEY (customer_id)
+		REFERENCES vrs.customer (customer_id);
+
+ALTER TABLE vrs.rental
+	ADD CONSTRAINT FK_Rental_Staff FOREIGN KEY (staff_id)
+		REFERENCES vrs.staff (staff_id);
+
+ALTER TABLE vrs.payment
+	ADD CONSTRAINT FK_Payment_Customer FOREIGN KEY (customer_id)
+		REFERENCES vrs.customer (customer_id);
+
+ALTER TABLE vrs.payment
+	ADD CONSTRAINT FK_Payment_Staff FOREIGN KEY (staff_id)
+		REFERENCES vrs.staff (staff_id);
+
+ALTER TABLE vrs.payment
+	ADD CONSTRAINT FK_Payment_Rental FOREIGN KEY (rental_id)
+		REFERENCES vrs.rental (rental_id);
+
+ALTER TABLE vrs.customer
+	ADD CONSTRAINT FK_Customer_Address FOREIGN KEY (address_id)
+		REFERENCES vrs.[address] (address_id);
+
+ALTER TABLE vrs.customer
+	ADD CONSTRAINT FK_Customer_Store FOREIGN KEY (store_id)
+		REFERENCES vrs.store (store_id);
+
+ALTER TABLE vrs.store
+	ADD CONSTRAINT FK_Store_Address FOREIGN KEY (address_id)
+		REFERENCES vrs.[address] (address_id);
+
+ALTER TABLE vrs.store
+	ADD CONSTRAINT FK_Store_Staff FOREIGN KEY (manager_staff_id)
+		REFERENCES vrs.staff (staff_id);
+
+ALTER TABLE vrs.staff
+	ADD CONSTRAINT FK_Staff_Address FOREIGN KEY (address_id)
+		REFERENCES vrs.[address] (address_id);
+
+ALTER TABLE vrs.staff
+	ADD CONSTRAINT FK_Staff_Store FOREIGN KEY (store_id)
+		REFERENCES vrs.store (store_id);
+
+ALTER TABLE vrs.city
+	ADD CONSTRAINT FK_City_Country FOREIGN KEY (country_id)
+		REFERENCES vrs.country (country_id);
+
+ALTER TABLE vrs.[address]
+	ADD CONSTRAINT FK_Address_City FOREIGN KEY (city_id)
+		REFERENCES vrs.city (city_id);
 GO
