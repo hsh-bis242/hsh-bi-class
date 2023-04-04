@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 04 - Reporting</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Business Intelligence</h1>
+				<h2>Reporting</h2>
+			</section>
+			<section>
+				<h1>Gliederung</h1>
+				<ul>
+					<li>Begriffsdefinition</li>
+					<li>Beispiel: Report</li>
+					<li>Betriebliches Berichtswesen</li>
+					<li>Berichtsgeneratoren</li>
+					<li>Mobile Reporting (Mobile BI)</li>
+					<li>Self Service BI</li>
+					<li>The Future of Reporting</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Einordnung</h1>
+				<figure>
+					<div class="r-stack">
+						<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+						<svg height="480" width="850">
+							<ellipse cx="700" cy="165" rx="40" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+						</svg>
+					</div>
+					<figcaption>
+						b.telligent Deutschland GmbH (2022)
+					</figcaption>
+				</figure>
+			</section>
+			<section>
+				<h1>Begriffsdefinition</h1>
+				<h2>Reporting</h2>
+				<h3>Betriebliches Berichtswesen</h3>
+				<p>
+					<b>
+						Ziel:
+					</b>
+					Die Mitarbeiter ereignis- oder zeitgesteuert mit relevanten Informationen versorgen. Es
+					umfasst alle Personen, Organisationseinheiten, Vorschriften, Daten und Prozesse, die bei
+					der Erzeugung und Weiterleitung von Berichten beteiligt sind.
+				</p>
+				<p>
+					<b>
+						Berichte:
+					</b>
+					<b>Dokumente</b>, die unterschiedliche Informationen für einen bestimmten
+					Untersuchungszweck miteinander kombinieren und in aufbereiteter Form vorhalten.
+				</p>
+				<p>
+					Zielgruppe sind betriebliche <b>Fach- und F&uuml;hrungskr&auml;fte</b>. Sie bekommen in
+					<b>periodischen Abst&auml;nden</b> oder im <b>Bedarfsfall</b> bestimmte Fakten
+					geliefert, die helfen, Trends zu erkennen, Planungen durchzuf&uuml;hren oder
+					Kontrollaufgaben wahrzunehmen.
+				</p>
+			</section>
+			<section>
+				<section>
+					<h1>Beispiel: Report</h1>
+					<figure>
+						<img src="static/V01/Gluchowski-Reporting_BI.png">
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Beispiel: Report</h1>
+					<figure>
+						<img src="static/V04/Rainardi-Beispielreport.png">
+						<figcaption>
+							V. Rainardi, Building a Data Warehouse: With Examples in SQL Server
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Beispiel: Report</h1>
+					<figure>
+						<img src="static/V04/Beispielreport.png">
+						<figcaption>
+							Abbildung nach Prof. Stephan König
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Beispiel: BWA</h1>
+					<figure>
+						<iframe data-src="static/V04/DATEV-19508_Musterauswertung BWA.pdf" height="480"
+							width="900"></iframe>
+						<figcaption>
+							<a href="https://www.datev.de/web/de/datev-shop/material/musterauswertung-bwa/">DATEV:
+								Musterauswertung BWA</a>
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Beispiel: Länderübergreifende Umsatzentwicklung</h1>
+					<figure>
+						<img src="static/V04/MSFT-paginated-report-sales-performance.png" height="480">
+						<figcaption>
+							<a
+								href="https://learn.microsoft.com/en-us/power-bi/paginated-reports/paginated-reports-samples">learn.microsoft.com</a>
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Beispiel: Personalreporting</h1>
+					<figure>
+						<img src="static/V04/DATAPINE-employee-performance-dashboard.png" height="480">
+						<figcaption>
+							<a href="https://www.datapine.com/de/artikel/reporting-berichtswesen-system">datapine:
+								Berichtswesen (Reporting)</a>
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Betriebliches Berichtswesen</h1>
+					<p><b>Einsatzbereiche und Nutzungspotenziale</b></p>
+					<p><b>Potenzielle Empfänger der Reports</b></p>
+					<ul>
+						<li>Fach- und Führungskräfte aller Hierarchieebenen und Abteilungen</li>
+						<li>Vor allem jedoch die <u>Informationskonsumenten</u>: Top-Management bis Sachbearbeiter.</li>
+					</ul>
+
+					<p><b>Standardberichte</b>: Periodisch. Befriedigen Informationsbedürfnis. Identische Form für
+						unterschiedliche Empfänger. Eher historisch.</p>
+					<p><b>Abweichungsberichte</b>: Zur Früherkennung bzw. Frühwarnung auf Basis geeigneter Indikatoren.
+					</p>
+					<p>(Bedarfsbericht)</p>
+					<aside class="notes">
+						Diese Nutzergruppen erheben sehr unterschiedliche Anforderungen an die formale und inhaltliche
+						Gestaltung einer angemessenen Informationsversorgung.
+						Besonders anspruchsvolle Berichte kombinieren als Expertise numerische, verbale und graphische
+						Abbildungstechniken in einem Bericht, um besonders bemerkenswerte Entwicklungen herauszustellen.
+					</aside>
+				</section>
+				<section>
+					<h1>Betriebliches Berichtswesen</h1>
+					<h2>Pyramide der Berichtsnutzer</h2>
+					<figure>
+						<img src="static/V04/Koenig-PyramideDerBerichtsnutzer.png">
+						<figcaption>
+							Nach: Avzevedo, P., Brosius, G., Dehnert, S., Neumann, B., & Scheerer, B. (2009) Business
+							Intelligence<br>
+							und Reporting mit Microsoft SQL Server 2008. Microsoft Press.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Azevedo: Adressatengerechte Informationsversorgung
+						reine Konsumenten gibt es kaum - interaktive Berichtsangebote bereitstellen
+						SSRS: Unterer bis mittlerer Bereich. Stellt keine OLAP Navigationsmerkmale bereit.
+						Pivot Tables (in Excel) decken den oberen Bereich ab.
+					</aside>
+				</section>
+				<section>
+					<h1>Betriebliches Berichtswesen</h1>
+					<h2>Klassifizierung</h2>
+					<figure>
+						<pre class="mermaid">
+							flowchart TD
+							A[Berichtssysteme] --> B[Aktive Berichtssysteme]
+							A --> C[Passive Berichtssysteme]
+							B --> D[Periodische Berichtssysteme]
+							B --> E[Aperiodische Berichtssysteme]
+							C --> F[Ad-Hoc-Berichtssysteme]
+						</pre>
+						<figcaption>Aus: Kemper, Mehanna, Unger. Business Intelligence - Grundlagen und praktische
+							Anwendungen.</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Betriebliches Berichtswesen</h1>
+					<h2>Merkmale zur Kennzeichnung und Gestaltung von Berichten</h2>
+					<figure>
+						<img src="static/V04/Gluchowski-Berichtsmerkmale.png">
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Berichtszweck
+						- zentrale Bedeutung
+						- Dabei dient die Dokumentation einer strukturierten Abbildung des Betriebsgeschehens und weist
+						vielfältige Überschneidungen mit dem internen und externen Rechnungswesen auf.
+						- Übrigen 3 korrespondieren mit Phasen des Entscheidungsprozesses
+
+						Berichtsinhalt
+						- Für die Nützlichkeit des Berichtes ist von entscheidender Bedeutung, dass die angebotenen
+						Informationen in einer zweckadäquaten Detaillierung vorliegen, Vergleichsinformationen für deren
+						angemessene Einordnung bereit stehen und das Informationsspektrum breit genug ausgelegt ist.
+
+						Berichtsform
+						- Graphisch oder textlich.
+
+						Berichtsinstanz
+						- Anforderungen müssen bekannt sein.
+						- Inhaltliche und technische Verantwortung.
+
+						Vielfältige konkurrierende und komplementäre Beziehungen: Beispiel: Genauigkeit - Aktualität
+
+						Insgesamt kann festgehalten werden, dass das betriebliche Berichtswesen einen hohen Stellenwert
+						bei der Informationsversorgung in den Unternehmungen einnimmt.
+						Probleme ergeben sich vor allem aus organisatorischen Gründen und aus der unüberschaubaren
+						Vielfalt unterschiedlicher Berichte, die historisch bedingt entstanden sind und deren
+						Berechtigung und Angemessenheit häufig nur ungern hinterfragt werden.
+					</aside>
+				</section>
+				<section>
+					<h1>Betriebliches Berichtswesen</h1>
+					<h2>Prozesse</h2>
+					<figure>
+						<pre class="mermaid">
+							flowchart TD
+							A[Berichtsgestaltung und -erstellung] --> B[Berichtsverwaltung]
+							A --> C[Berichtsverteilung]
+							B --> C
+							A --> D
+							C --> D
+							B --> D[Berichtsaufnahme und -diskussion]
+						</pre>
+						<figcaption>
+							Aus: Kemper, Mehanna, Unger. Business Intelligence - Grundlagen und praktische Anwendungen.
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Betriebliches Berichtswesen</h1>
+					<h2>Periodizität und typische Berichtsinhalte</h2>
+					<figure>
+						<img src="static/V04/2013-Taschner-PeriodizitaetUndTypischeBerichtsinhalte.png" height="480">
+						<figcaption>
+							Aus: Taschner, A., Management Reporting, Wiesbaden: Springer, 2013
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Berichtsgeneratoren - Reportingtechnologien</h1>
+					<p><b>Berichtsgeneratoren</b></p>
+					<ul>
+						<li>Software-Werkzeuge, die über die reine Abfragefunktionalität hinaus noch Möglichkeiten zur
+							inhaltlichen und optischen Anreicherung bieten.</li>
+						<li>Einsetzbar für Standardberichte, Ad-hoc-Auswertungen (und freien Navigation im
+							Datenbestand).</li>
+						<li>Scheduling, Rollen- und Sicherheitskonzepte, Push vs. Pull Verfahren</li>
+						<li><b>Pixelgenaues</b> Layouting</li>
+					</ul>
+					<p><b>Dezentrale Organisation</b> des Berichtswesens</p>
+					<ul>
+						<li>mit vollständiger Funktionalität am Arbeitsplatz</li>
+						<li>Die steigende Quantität und Komplexität unternehmungsinterner Berichte ist mit den
+							herkömmlichen Berichtsgeneratoren und Hardwarearchitekturen kaum noch zu bewältigen.</li>
+						<li>Konsistentes Unternehmungsreporting?</li>
+						<li>Fehlende Dokumentation (der Reports und der Datenbanken)</li>
+					</ul>
+					<aside class="notes">
+						Im einfachsten Fall: SQL Abfrage auf Datenbank ...
+						Auch: Abfragegeneratoren (eher ad-hoc, SQL wird generiert)
+						Wie viel muss der Designer von den darunter liegenden Datenstrukturen verstehen?
+						DWH oder Cube ideale Ausgangsbasis ...
+
+						- Einteilung in Druckseiten, Kopf- und Fußzeile etc.
+						- konditionierte Formatierung (z.B. für Exception Reporting)
+						- Erstellung abgeleiteter Größen zur Berichtslaufzeit.
+						- Konvertierungs- und Formatierungsfunktionen.
+						- Two Pass Reporting
+						- Grafiken
+
+						Lösungsansatz: Managed Query Environments mit semantischer Zwischenschicht zwischen
+						datenbankinternen Bezeichnungen und Benutzerviews.
+
+						Publikation von Berichten im Internet: Web-Reporting
+					</aside>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren</h1>
+					<h2>Microsoft SQL Server Reporting Services (SSRS)</h2>
+
+					<figure style="float:right">
+						<img src="static/V04/MSFT-ssrb-designview.png" width="400">
+						<figcaption>
+							<a
+								href="https://learn.microsoft.com/en-us/sql/reporting-services/report-builder/report-design-view-report-builder">Report
+								Design View (Report Builder)</a>
+						</figcaption>
+					</figure>
+					<p>Bereitstellen von relevanten Informationen im gesamten Unternehmen</p>
+					<p>Microsoft SQL Server Reporting Services ist eine vollständige, serverbasierte Plattform für eine
+						Vielzahl an Reporting-Anforderungen.</p>
+					<p><b>Erstellen</b> Sie ausführliche Berichte, nutzen Sie umfangreiche Visualisierungsfeatures sowie
+						einzigartige und flexible Designmöglichkeiten.</p>
+					<p><b>Verwalten</b> und skalieren Sie die Auslastung durch das Reporting.</p>
+					<p><b>Bereitstellen</b>: Stellen Sie personalisierte, interaktive Berichte im Intranet bzw. Internet
+						bereit und bieten Sie so allen Benutzern dynamisch die für sie relevanten Berichte an.</p>
+
+					<!--
+							<div class="griditem">
+								<figure>
+									<img src="static/V04/MSFT-power-bi-report-builder-sample-invoice.png" height="480">
+									<figcaption>
+										<a href="https://learn.microsoft.com/de-de/power-bi/paginated-reports/report-builder-power-bi">Power BI Report Builder</a>
+									</figcaption>
+								</figure>
+							</div>
+						-->
+					<aside class="notes">
+						-> Übung
+
+						WYSIWYG
+
+						Microsoft SQL Server 2008 R2 Report Builder 3.0 bietet Geschäfts- und Hauptbenutzern eine
+						intuitive Berichterstellungsumgebung.
+						Es werden alle Funktionen von SQL Server 2008 R2 Reporting Services unterstützt.
+
+						Informationskonsument - Analytiker. Nicht: Spezialist
+
+						SQL Server Reporting Services (SSRS) ist ein Server-basiertes Berichtgenerierungssystem von
+						Microsoft.
+						Es kann zur Vorbereitung und produktiven Erzeugung verschiedener Arten interaktiver oder
+						vorgefertigter Berichte verwendet werden.
+						Visual Studio - BIDS
+
+						Azevedo: Enge Verbindung mit MS Office Sharepoint Server. Einbindung der Berichte in
+						Portallösung.
+
+					</aside>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren</h1>
+					<h2>SSRS - Komponentenarchitektur</h2>
+					<figure>
+						<img src="static/V04/MSFT-reporting-serv-arch.gif" height="480">
+						<figcaption>
+							<a
+								href="https://learn.microsoft.com/de-de/sql/reporting-services/report-server-sharepoint/reporting-services-report-server?view=sql-server-ver16">Vergleich
+								zwischen nativen Berichtsservern und SharePoint-Berichtsservern in Reporting
+								Services</a>
+						</figcaption>
+					</figure>
+					<!--
+					<figure>
+							<img src="static/V04/MSFT-report-server-2022-coho-winery.png" height="480">
+							<figcaption>
+								<a href="https://learn.microsoft.com/de-de/sql/reporting-services/create-deploy-and-manage-mobile-and-paginated-reports?view=sql-server-ver16">Was ist SQL Server Reporting Services (SSRS)?</a>
+							</figcaption>
+						</figure>
+					-->
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren - SAP Crystal Reports</h1>
+					<p><b>Create Reports</b></p>
+					<figure style="float: right">
+						<img src="static/V04/SAP-CrystalReports.jpg" width="400">
+						<figcaption>
+							<a href="https://www.sap.com/products/technology-platform/crystal-reports.html">SAP Crystal
+								Reports</a>
+						</figcaption>
+					</figure>
+					<p><b>Flexible Reporting</b><br>Add flexibility to your reporting with the use of product wizards
+						and parameters.</p>
+					<p><b>Pixel-perfect documents</b><br>Provide pixel-perfect documents and forms with highly formatted
+						contents</p>
+					<p><b>Embed images and bar codes</b><br>Go beyond regular business reports by embedding dynamic
+						images and bar codes.</p>
+					<p><b>Sharing and exporting</b><br>Easily report sharing by exporting data to popular formats</p>
+
+					<aside class="notes">
+						Crystal Reports (Crystal Report) ist eine Software zur Erstellung von Berichten. Mit Crystal
+						Reports können Informationen aus Datenbanken oder Textdateien abgerufen, verarbeitet und in Form
+						von Grafiken und Tabellen dargestellt werden. Eine Verteilung der Berichte über Web-Technologien
+						ist mit Hilfe von Crystal Reports Server, Business Objects Enterprise oder über Eclipse/Java
+						bzw. .NET Laufzeitumgebungen möglich.
+
+						Crystal Reports wurde ursprünglich von der 1984 in Vancouver, B. C., Kanada, gegründeten Firma
+						„Crystal Services“ entwickelt.
+
+						Seit der Übernahme im Jahr 2003 wird Crystal Reports durch Business Objects weiterentwickelt.
+						Anfang 2008 wurde Business Objects von SAP übernommen.
+
+						Die derzeit aktuelle Version ist Crystal Reports 2013.
+
+						Zu den verwendeten Datenquellen für Crystal Reports gehören:
+						* relationale Datenbanksysteme (RDBMS) wie Oracle, Sybase, IBM DB2, Ingres, Microsoft Access,
+						Microsoft SQL Server, MySQL, PostgreSQL[1], Interbase, etc.
+						* Tabellenkalkulationen aus z. B. Microsoft Excel, OpenOffice.org
+						* Textdateien
+						* Formatierte Dateien wie z. B. XML
+						* sowie Datenquellen die über Web Service, ODBC, JDBC oder OLAP ansprechbar sind.
+
+						Zu den Ausgabeoptionen von Crystal Reports gehören unter anderem Papierausdrucke, formatierte
+						Textdateien wie z. B. CSV oder XML-Dateien, RPT-Dateien im Crystal-Report-Format, HTML-, PDF-,
+						Excel- oder Word-Dateien
+					</aside>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren - SAP Crystal Reports</h1>
+					<div class="grid">
+						<div class="griditem">
+							<p><b>Share Data</b></p>
+							<p><b>User interface in multiple languages</b><br>Benefit from a user interface available in
+								up to 28 languages.</p>
+							<p><b>Defined user rights</b><br>Manage user rights to access, view, refresh, export, or
+								print reports.</p>
+							<p><b>Mobile access</b><br>Enable mobile access to self-service business intelligence
+								reports.</p>
+						</div>
+						<div class="griditem">
+							<p><b>Access Data</b>
+							<p>
+							<p><b>Flat files<br></b>Connect to flat files like Microsoft Excel, text files, web logs,
+								XML, and file systems.</p>
+							<p><b>Databases<br></b>Connect to databases like SAP HANA, Microsoft Access, Microsoft SQL
+								Server, IBM DB2, Oracle, MySQL and PostgreSQL.</p>
+							<p><b>Data sources<br></b>Connect to JDBC and ODBC data sources as well as specific
+								applications such as Sage or Salesforce.</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Berichtsgeneratoren - Open Source</h1>
+					<table>
+						<tr>
+							<th>Entwickler / Anbieter</th>
+							<th colspan="2">Aktuelle Version</th>
+							<th>Weitere Informationen</th>
+						</tr>
+						<tr>
+							<th>Eclipse Foundation</th>
+							<td>Eclipse BIRT</td>
+							<td>4.13.0</td>
+							<td>
+								<a href="https://www.eclipse.org/birt">www.eclipse.org/birt</a>
+							</td>
+						</tr>
+						<tr>
+							<th>Jaspersoft</th>
+							<td>
+								Jaspersoft Studio<br>
+								(Jasper Server)<br>
+								JasperReports
+							</td>
+							<td>
+								8.0
+							</td>
+							<td>
+								<a href="https://www.jasperforge.org">www.jasperforge.org</a><br>
+								<a href="https://www.jaspersoft.com">www.jaspersoft.com</a>
+							</td>
+						</tr>
+						<tr>
+							<th>Hitachi Vantara</th>
+							<td>
+								Pentaho Report Designer
+							</td>
+							<td>
+								9.4
+							</td>
+							<td>
+								<a href="https://www.pentaho.com">www.pentaho.com</a><br>
+								<a href="https://community.pentaho.com">community.pentaho.com</a>
+							</td>
+						</tr>
+					</table>
+					<figure>
+						<figcaption>
+							Tabelle in Anlehnung an Open Source Business Intelligence. Haneke et al. Hanser. 2010
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Mobile Reporting - Einordnung</h1>
+					<figure>
+						<div class="r-stack">
+							<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+							<svg height="480" width="850">
+								<ellipse cx="720" cy="150" rx="75" ry="40" fill-opacity="0.0"
+									style="stroke:var(--hsh_orange);stroke-width:2" />
+							</svg>
+						</div>
+						<figcaption>
+							b.telligent Deutschland GmbH (2022)
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Mobile Reporting - Szenarien</h1>
+					<figure>
+						<img src="static/V04/2013-MuellerLenz-SzenarienMobilesBI.png" height="480">
+						<figcaption>
+							Müller, R., Lenz, H-J., Business Intelligence, Heidelberg 2013
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Mobile Reporting - Nutzen</h1>
+					<figure>
+						<img src="static/V04/2013-Wilms-MobileBINutzen.png">
+						<figcaption>
+							Wilms, J., Gansor, T., Unterbörsch, T. (2013) - Mobile BI in der Praxis - Enabler für mehr
+							Nutzen aus BI-Systeme
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Mobile Reporting - Perspektive</h1>
+					<figure>
+						<img src="static/V04/2013-Wilms-MobileBIPerspektive.png">
+						<figcaption>
+							Wilms, J., Gansor, T., Unterbörsch, T. (2013) - Mobile BI in der Praxis - Enabler für mehr
+							Nutzen aus BI-Systeme
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Mobile Reporting - Gestaltungsprinzipien</h1>
+					<figure>
+						<img src="static/V04/2013-Stippich-MobileBIGestaltungsprinzipien.png">
+						<figcaption>
+							Stippich, D., Mobile Reporting: Spielzeug für den CEO oder echter Nutzen. rechnungswesen &
+							controlling. Ausgabe 3/2013
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Self Service BI Systeme</h1>
+					<figure>
+						<img src="static/V04/MSFT-power-bi-overview-blocks.png" height="480">
+						<figcaption>
+							<a href="https://learn.microsoft.com/en-us/power-bi/fundamentals/power-bi-overview">What is
+								Power BI?</a>
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Self Service BI - Definition</h1>
+					<figure>
+						<blockquote>
+							SSBI should, on one hand, empower casual users to perform custom analytics and to derive
+							actionable information from large amounts of multifaceted data without having to involve BI
+							specialists. Power users, on the other hand, can accomplish their tasks with SSBI more
+							easily and quickly than before.
+						</blockquote>
+						<figcaption>
+							Alpar, P., Schulz, M., Self-Service Business Intelligence, Wiesbaden: Springer, 2016
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Immer mehr Daten auf der einen und ein flächendeckenderer Einsatz von BI im Unternehmen haben
+						den Falschenhals BI-Experten noch enger gemacht.
+						Um dem zu Begegnen setzen Unternehmen verstärkt auf "Self Service BI".
+
+						Unfortunately, just as visual
+						programming tools don’t make people better programmers,
+						visual modeling tools don’t make people better modelers. In
+						fact, new tools can make things worse by misleading users
+						into thinking they are doing Bgood^ analytics simply because
+						they are able to complete an analysis. In order to truly democratize analytics, we need tools
+						that support decision-making
+						around the model-building process and not simply mask the
+						complexity of statistics and coding.
+
+						In one example, a company compiled a portfolio
+						of 26,000 reports after a few years of employing SSBI
+						(Eckerson 2008). The company has subsequently abandoned this approach and created 300 standard
+						reports that
+						met most of the existing informational needs.
+					</aside>
+				</section>
+				<section>
+					<h1>Self Service Level</h1>
+					<figure>
+						<img src="static/V04/2016-Alpar_SelfServiceLevels.png">
+						<figcaption>
+							Alpar, P., Schulz, M., Self-Service Business Intelligence, Wiesbaden: Springer, 2016
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Self Service BI Anwendungen</h1>
+					<div class="r-stack">
+
+						<figure class="fragment fade-out" data-fragment-index="0">
+							<img src="static/V02/reportingAnalyticsFabrik.png" height="480">
+							<figcaption>
+								Eigene Darstellung
+							</figcaption>
+						</figure>
+						<figure class="fragment current-visible" data-fragment-index="0">
+							<img src="static/V04/2022_Gartner_TheMagicQuadrantForAnalyticsAndBusinessIntelligencePlatforms.png"
+								height="480">
+							<figcaption>
+								Gartner, Magic Quadrant for Analytics and Business Intelligence Platforms, 2022
+							</figcaption>
+						</figure>
+
+					</div>
+					<aside class="notes">
+						Through products such as SAS Enterprise Miner, IBM
+						SPSS Modeler, and RapidMiner, we are seeing the emergence
+						of visual analytics model-building tools in the same way that
+						we saw the emergence of visual programming tools 20 years
+						ago. These tools seek to Bdemocratize^ analytics (see
+						Henschen 2014; HBR Analytic Services 2012) through the
+						realization of Bself-service^ BI, making advanced data analysis accessible to a wider audience
+
+						Mit mehr Rechenleistung und besseren Tools wird Self Service BI immer greifbarer.
+					</aside>
+				</section>
+			</section>
+			<section>
+				<h1>The Future of Reporting</h1>
+				<figure>
+					<iframe data-src="static/V04/2019_BARC_Future-of-Reporting_EN.pdf" height="480"
+						width="900"></iframe>
+					<figcaption>
+						BARC (2019) The Future of Reporting - A Research Study
+					</figcaption>
+				</figure>
+			</section>
+			<section>
+				<h1>Literatur</h1>
+				<ul>
+					<li>Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+						Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+						Springer</li>
+					<li>Taschner, A., Management Reporting, Wiesbaden: Springer, 2013</li>
+				</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+	<script type="module">
+		import mermaid from './node_modules/mermaid/dist/mermaid.esm.mjs';
+		mermaid.initialize(
+			{
+				startOnLoad: true,
+				theme: 'neutral',
+				themeVariables: {
+					"nodeBorder": "#dc3c05",
+					"mainBkg": "#dc3b055d",
+					"nodeTextColor": "#000000",
+					"fontSize": "18px"
+				}
+			}
+		);
+	</script>
+
+</body>
+
+</html>
