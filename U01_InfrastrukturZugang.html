@@ -85,7 +85,8 @@
 						Powershell</a> aus:
 				</p>
 				<pre>
-					<code data-line-numbers="|2-3"># Set an admin login and password for your server
+					<code data-trim data-line-numbers="|2-3">
+# Set an admin login and password for your server
 $groupName = "bi23020"
 $password = "ChangeYourAdminPassword1OrStickWithm7eUAFZnD8aF"
 
@@ -96,7 +97,7 @@ $serverName = $groupName + "-exercise-sql"
 $resourceGroupName = "rgBI"
 $location = "westeurope"
 # The sample database name
-$databaseName = $groupName + "-db"
+$databaseName = $groupName + "dvdrental"
 # The ip address range that you want to allow to access your server
 $startIp = "0.0.0.0"
 $endIp = "255.255.255.255"
@@ -122,8 +123,7 @@ $database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
 	-Edition "GeneralPurpose" `
 	-Vcore 2 `
 	-ComputeGeneration "Gen5" `
-	-ComputeModel Serverless `
-	-SampleName "AdventureWorksLT"
+	-ComputeModel Serverless"
 					</code>
 				</pre>
 				<p>Tragen Sie im Script oben bitte Ihren Gruppennamen und ein beliebiges Passwort ein.</p>
@@ -131,58 +131,41 @@ $database = New-AzSqlDatabase  -ResourceGroupName $resourceGroupName `
 			<section>
 				<section>
 					<h1>Import des Übungsdatensatzes</h1>
-					<grid class="grid">
-						<div class="griditem">
-							<p>
-								Wenn Sie das Script auf der vorherigen Folie ausgef&uuml;hrt haben, wird automatisch der
-								&Uuml;bungsdatensatz <b>AdventureWorksLT</b> in die Datenbank geladen. F&uuml;r Sie ist
-								nichts weiter zu tun.
-							</p>
-							<p>
-								Bitte prüfen Sie den Zugriff auf Ihre Datenbankinstanz mit einem DBMS-Tool Ihrer Wahl.
-								Wir empfehlen <a
-									href="https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16">Microsoft
-									SQL Server Management Studio 19</a>.
-							</p>
-						</div>
-						<div class="griditem">
-							<img src="static/U01/SSMS-AWStructure.png">
-						</div>
-					</grid>
-				</section>
-				<section data-visibility="hidden">
-					<h1>Import weiterer Übungsdatens&auml;tze</h1>
-					<p>Der Übungsdatensatz wird Ihnen in einem Azure-Speicherkonto zur Verfügung gestellt. Mit folgendem
-						Befehl (bitte wieder in <a
-							href="https://learn.microsoft.com/en-us/powershell/azure/get-started-azureps?view=azps-9.4.0">Azure
-							Powershell</a> ausführen) wird der Importvorgang gestartet:</p>
+					<p>Wir importieren den Übungsdatensatz "dvdrental" in die neue Datenbank.</p>
+					<p>
+						Dazu stellen Sie die Verbindung zu Ihrer Datenbankinstanz mit einem DBMS-Tool Ihrer Wahl her. Wir empfehlen <a
+						href="https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16">Microsoft SQL Server Management Studio 19</a>.</p>
+					<p>
+						Sobald die Verbindung hergestellt ist, führen Sie folgendes SQL-Statement aus. Es stellt die Verbindung zum Azure Speicherkonto her, auf dem wir die dvdrental-Daten zur Verfügung stellen. 
+					</p>
 					<pre>
-						<code># Set an admin login and password for your server
-$groupName = "bi23020"
-$password = "ChangeYourAdminPassword1OrStickWithm7eUAFZnD8aF"
+						<code data-trim data-line-numbers="|5">
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'ChangeYourAdminPassword1OrStickWithm7eUAFZnD8aF';
 
-# The SubscriptionId in which to create these objects
-$SubscriptionId = '1f75bacb-8d7d-4e96-87cb-f7e4216886e5'
-# Set server name - the logical server name has to be unique in the system
-$serverName = $groupName + "-exercise-sql"
-$resourceGroupName = "rgBI"
-# The sample database name
-$databaseName = $groupName + "bikeshop-db"
-
-# Import bacpac to database
-$importRequest = New-AzSqlDatabaseImport -ResourceGroupName $resourceGroupName `
-	-ServerName $serverName `
-	-DatabaseName $databaseName `
-	-DatabaseMaxSizeBytes 100GB `
-	-StorageKeyType "StorageAccessKey" `
-	-StorageKey $(Get-AzStorageAccountKey -ResourceGroupName $resourceGroupName -StorageAccountName $storageAccountName).Value[0] `
-	-StorageUri "https://$storageaccountname.blob.core.windows.net/$storageContainerName/$bacpacFilename" `
-	-Edition "Standard" `
-	-ServiceObjectiveName "S0" `
-	-AdministratorLogin "$adminSqlLogin" `
-	-AdministratorLoginPassword $(ConvertTo-SecureString -String $password -AsPlainText -Force)</code>
+CREATE DATABASE SCOPED CREDENTIAL AzureBlobStorageCredential
+WITH IDENTITY = 'SHARED ACCESS SIGNATURE',
+SECRET = 'sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-03-28T20:04:19Z&st=2023-03-28T12:04:19Z&spr=https&sig=RSX715rHzTB%2FUiz%2BD4Xe8Sa3%2FmcvYfGUy2QXbRy1uVo%3D';
+	
+CREATE EXTERNAL DATA SOURCE azureblobstorageDS
+WITH ( TYPE = BLOB_STORAGE, 
+LOCATION = 'https://videorentalstorageacc.blob.core.windows.net',
+CREDENTIAL= AzureBlobStorageCredential);
+						</code>
 					</pre>
-					<p>Es kann ein paar Minuten dauern, bis der oben genannte Befehl abgeschlossen ist.</p>
+				</section>
+				<section>
+					<h1>Import des Übungsdatensatzes</h1>
+					<div class="grid">
+						<div class="griditem">
+							<p>Der Übungsdatensatz liegt in Form mehrere CSV-Dateien auf dem Azure Speicherkonto bereit. Das Laden dieser Daten kann mit folgendem, umfangreichen SQL-Statement durchgeführt werden: <a download href="static/U01/Scripts/01-BulkInsertData.sql">BulkinsertData.sql</a></p>
+						</div>
+						<div class="griditem">
+							<figure>
+								<img src="static/U01/dvd-rental-sample-database-diagram.png" height="480">
+								<figcaption><a href="https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/">PostgreSQL Tutorial</a></figcaption>
+							</figure>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section>
@@ -211,7 +194,9 @@ $importRequest = New-AzSqlDatabaseImport -ResourceGroupName $resourceGroupName `
 					<h1>Berechtigen Sie uns auf Ihr Projekt (2/2)</h1>
 					<grid class="grid">
 						<div class="griditem">
-							<p>Nun f&uuml;gen Sie den Benutzer <b>bi23001@hshannoverde.onmicrosoft.com</b> mit dem Access Level <b>Basic</b> Ihrer Organisation hinzu und ordnen ihm auch direkt Ihr Projekt <b>Uebung-BI23</b> zu.</p>
+							<p>Nun f&uuml;gen Sie den Benutzer <b>bi23001@hshannoverde.onmicrosoft.com</b> mit dem
+								Access Level <b>Basic</b> Ihrer Organisation hinzu und ordnen ihm auch direkt Ihr
+								Projekt <b>Uebung-BI23</b> zu.</p>
 						</div>
 						<div class="griditem">
 							<img src="static/U01/azureDevops-addUserToOrg2.png">
