@@ -37,8 +37,11 @@
 					<li>Regeln und Kriterien für OLAP Systeme - Codd</li>
 					<li>Navigation</li>
 					<li>Frontend</li>
-					<li>Speicherung multidimensionaler Daten - MOLAP</li>
-					<li>Speicherung multidimensionaler Daten - ROLAP</li>
+					<li>Speicherung multidimensionaler Daten</li>
+					<ul>
+						<li>MOLAP</li>
+						<li>ROLAP</li>
+					</ul>
 					<li>OLAP Server</li>
 					<li>SSAS</li>
 				</ul>
@@ -199,7 +202,9 @@
 					<figure>
 						<img src="./static/V05/barchart.png" height="480">
 						<figcaption>
-							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin: Springer
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
 						</figcaption>
 					</figure>
 				</section>
@@ -220,346 +225,641 @@
 			</section>
 
 			<section>
-				<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
-				<p><b>"Providing OLAP to User-Analysts: An IT Mandate"</b></p>
-				<img src="./static/V05/regeln_kriterien_text.jpg" alt="">
-				<div class="box">Materialien: 1993_OLAP_Codd.pdf</div>
-				<p class="tiny">Codd, Edgar F.; Codd, Sally B.; Salley, Clynch T. (1993): Providing OLAP (On-Line
-					Analytical Processing) to User-Analysts: An IT-Mandate, White Paper, o. O. 1993</p>
-				<aside class="notes">
-					Zwölf Evaluationsregeln, die bei Erfüllung die OLAP-Fähigkeit von Informationssystemen garantieren sollen.
 
-					Auch wenn die Ehrenhaftigkeit der Motivation, welche die Autoren zur Publikation der Regeln veranlasst hat, heftig umstritten ist, sollen die Regeln schon wegen ihrer historischen Bedeutung im folgenden dargestellt und erläutert werden.
+				<section>
+					<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
+					<p><b>"Providing OLAP to User-Analysts: An IT Mandate"</b></p>
+					<figure>
+						<img src="./static/V05/regeln_kriterien_text.jpg" height="400">
+						<figcaption>
+							Codd, Edgar F.; Codd, Sally B.; Salley, Clynch T. (1993): Providing OLAP (On-Line
+							Analytical Processing) to User-Analysts: An IT-Mandate, White Paper, o. O. 1993
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Zwölf Evaluationsregeln, die bei Erfüllung die OLAP-Fähigkeit von Informationssystemen
+						garantieren sollen.
 
-					Kritische Bewertung
+						Auch wenn die Ehrenhaftigkeit der Motivation, welche die Autoren zur Publikation der Regeln
+						veranlasst hat, heftig umstritten ist, sollen die Regeln schon wegen ihrer historischen
+						Bedeutung im folgenden dargestellt und erläutert werden.
 
-					Unscharfe Trennung zwischen fachlich konzeptionellen Anforderungen und technischen Realisierungsaspekten.
-					Regel 6: Bestimmte Dimensionen jedoch - wie z. B. die Zeitdimension - unterscheiden sich erheblich von den übrigen Dimensionen.
-					Breiter Interpretationsspielraum.
+						Kritische Bewertung
 
-					So bleibt etwa unklar, ob die konzeptionellen mehrdimensionalen Datensichten auch eine zwingende Nutzung spezieller Speicher- und Datenverwaltungstechniken impliziert oder ob die verbreiteten relationalen Datenbanksysteme auch hier zum Einsatz gelangen können.
+						Unscharfe Trennung zwischen fachlich konzeptionellen Anforderungen und technischen
+						Realisierungsaspekten.
+						Regel 6: Bestimmte Dimensionen jedoch - wie z. B. die Zeitdimension - unterscheiden sich
+						erheblich von den übrigen Dimensionen.
+						Breiter Interpretationsspielraum.
 
-					#############################
+						So bleibt etwa unklar, ob die konzeptionellen mehrdimensionalen Datensichten auch eine zwingende
+						Nutzung spezieller Speicher- und Datenverwaltungstechniken impliziert oder ob die verbreiteten
+						relationalen Datenbanksysteme auch hier zum Einsatz gelangen können.
 
-					Andere Ansätze: FASMI: Fast Analysis of Shared Multidimensional Information (Pendse/Creeth)
-					- max. 20 Sekunden Antwortzeit
-					- Die Analysefunktionalität soll die Anforderungen erfüllen, die im spezifischen Anwendungsfall benötigt werden. 
-					- (finanz-) mathematische oder statistische Berechnungen
-					- „What-If-“ und „How to achieve“-Betrachtungen
-					- erweiterte Navigationshilfen (Drill-Down, Roll-Up) 
-					- Trendanalysen
+						#############################
 
-					- intuitive Bedienung per Maus
-					- Als zentrales Kriterium ebenfalls die konzeptionelle Multidimensionalität mit der Unterstützung komplexer Hierarchien.
+						Andere Ansätze: FASMI: Fast Analysis of Shared Multidimensional Information (Pendse/Creeth)
+						- max. 20 Sekunden Antwortzeit
+						- Die Analysefunktionalität soll die Anforderungen erfüllen, die im spezifischen Anwendungsfall
+						benötigt werden.
+						- (finanz-) mathematische oder statistische Berechnungen
+						- „What-If-“ und „How to achieve“-Betrachtungen
+						- erweiterte Navigationshilfen (Drill-Down, Roll-Up)
+						- Trendanalysen
 
-					=> Begriff konnte sich aber in der breiten Öffentlichkeit nicht durchsetzen.
-				</aside>
-			</section>
+						- intuitive Bedienung per Maus
+						- Als zentrales Kriterium ebenfalls die konzeptionelle Multidimensionalität mit der
+						Unterstützung komplexer Hierarchien.
 
-			<section style="font-size:22px">
-				<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
-				<ol>
-					<li>Multidimensionale Denkweise (Kernanforderungen):
-						<ol>
-							<li>Mehrdimensionale konzeptionelle Perspektiven</li>
-							<li>Grundprinzipien der gleichgestellten Dimensionen</li>
-							<li>Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg</li>
-							<li>Unbegrenzte Dimensions- und Aggregationsstufen</li>
-						</ol>
-					</li>
-					<li>Zweck: Schnelle Ad-Hoc-Analysen (Kernanforderung):
-						<ol>
-							<li>Stabile Antwortzeiten bei der Berichterstattung</li>
-						</ol>
-					</li>
-					<li>Technische Anforderungen:
-						<ol>
-							<li>Transparenz</li>
-							<li>Zugriffsmöglichkeit</li>
-							<li>Mehrbenutzerfähigkeit</li>
-						</ol>
-					</li>
-					<li>Implementierungshinweise:
-						<ol>
-							<li>Client/Server Architektur</li>
-							<li>Dynamische Verwaltung „dünn besetzter“ Matrizen</li>
-						</ol>
-					</li>
-					<li>Sonstige Anforderungen:
-						<ol>
-							<li>Intuitive Datenmanipulation</li>
-							<li>Flexibles Berichtswesen</li>
-						</ol>
-					</li>
-				</ol>
-			</section>
+						=> Begriff konnte sich aber in der breiten Öffentlichkeit nicht durchsetzen.
+					</aside>
+				</section>
 
-			<section>
-				<h1>Navigation</h1>
-				<p>Würfeldarstellung mehrdimensional strukturierter Daten</p>
-				<img src="./static/V05/olap_navigation.png" alt="">
-			</section>
+				<section>
+					<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
+					<ol class="r-fit-text">
+						<li>Multidimensionale Denkweise (Kernanforderungen):
+							<ol>
+								<li>Mehrdimensionale konzeptionelle Perspektiven</li>
+								<li>Grundprinzipien der gleichgestellten Dimensionen</li>
+								<li>Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg</li>
+								<li>Unbegrenzte Dimensions- und Aggregationsstufen</li>
+							</ol>
+						</li>
+						<li>Zweck: Schnelle Ad-Hoc-Analysen (Kernanforderung):
+							<ol>
+								<li>Stabile Antwortzeiten bei der Berichterstattung</li>
+							</ol>
+						</li>
+						<li>Technische Anforderungen:
+							<ol>
+								<li>Transparenz</li>
+								<li>Zugriffsmöglichkeit</li>
+								<li>Mehrbenutzerfähigkeit</li>
+							</ol>
+						</li>
+						<li>Implementierungshinweise:
+							<ol>
+								<li>Client/Server Architektur</li>
+								<li>Dynamische Verwaltung „dünn besetzter“ Matrizen</li>
+							</ol>
+						</li>
+						<li>Sonstige Anforderungen:
+							<ol>
+								<li>Intuitive Datenmanipulation</li>
+								<li>Flexibles Berichtswesen</li>
+							</ol>
+						</li>
+					</ol>
+					<aside class="notes">
+						(1) Mehrdimensionale konzeptionelle Perspektiven
+						Mehrdimensionale Datenstrukturen, in denen der Anwender frei und flexibel navigieren kann.
+						(2) Transparenz
+						Homogene Benutzeroberfläche, die sich in die bestehende Arbeitsplatzumgebung einfügt.
+						Keine technischen Details.
+						Kein formaler Unterschied zwischen Informationseinheiten aus unterschiedlichen Quellen.
+						(3) Zugriffsmöglichkeit
+						Datenzugriff auf möglichst viele heterogene unternehmungsinterne und -externe Datenquellen und
+						Datenformate.
+						Offene Architektur. Konvertierungsregeln
+						Für den Anwender eine einheitliche, konsistente Datensicht gewährleisten
+						(4) Stabile Antwortzeiten bei der Berichterstattung
+						Den logischen Gedankenfluss und die Aufmerksamkeit des Systemanwenders auch bei komplexen
+						Abfragen nicht unnötig unterbrechen.
+						Selbst bei überproportionaler Zunahme der Anzahl der Dimensionen und/oder des Datenvolumens
+						sollten die Anwendungen keine signifikanten Änderungen der Antwortzeiten aufweisen.
+						(5) Client/Server Architektur
+						Speicherung und Zugriffe zentral statt auf lokalen Rechnern ausführen.
+						Es muss sowohl eine verteilte Programmausführung als auch eine verteilte Datenhaltung
+						realisierbar sein.
+						Insbesondere für den mobilen Einsatz auf Laptops ist eine Replizierung der Datenbestände zu
+						ermöglichen.
+						Auch muss der Zugriff auf die Datenbasis mit unterschiedlichen Front-End-Werkzeugen
+						gewährleistet sein.
+						Proprietäre Lösungen, bei denen Server- und Desktop-Komponenten aus einer Hand angeboten werden,
+						die jedoch dokumentierte Schnittstellen vermissen lassen, sind im Zeitalter offener Systeme
+						nicht mehr gefragt.
+						(6) Grundprinzipien der gleichgestellten Dimensionen
+						Die strukturelle und funktionale Äquivalenz der Dimensionen muss gewährleistet sein.
+						Es existiert ein einheitlicher Befehlsumfang zum Aufbauen, Strukturieren, Bearbeiten, Pflegen
+						und Auswerten der Dimensionen.
+						(7) Dynamische Verwaltung „dünn besetzter“ Matrizen
+						Nicht jedes Dimensionselement geht mit allen Elementen anderer Dimensionen werttragende
+						Verbindungen ein.
+						Beispiel: Nicht jedes Produkt einer Unternehmung wird in jedem Land auch angeboten.
+						(8) Mehrbenutzerfähigkeit
+						Sicherheitskonzept, abgestufte Benutzerprofile
+						(9) Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg
+						Über die verschiedenen Dimensionen hinweg werden Operationen für eine ausgereifte Datenanalyse
+						benötigt, z. B. zur Kennzahlenberechnung.
+						(10) Intuitive Datenmanipulation
+						Ergonomie, geringer Lernaufwand
+						Drill-Down, Drill-Up, Slicing, Dicing
+						(11) Flexibles Berichtswesen
+						Standardauswertungen und Ad-hoc-Auswertungen
+						(12) Unbegrenzte Dimensions- und Aggregationsstufen
+						Typisch: 15 - 20 Dimensionen
+					</aside>
+				</section>
 
-			<section>
-				<h1>Navigation</h1>
-				<p>Präsentation und Navigation</p>
-				<img src="./static/V05/olap_navigation2.png" alt="">
-			</section>
-
-			<section>
-				<h1>Navigation</h1>
-				<p>Präsentation und Navigation - Rotation des Datenwürfels</p>
-				<img src="./static/V05/olap_navigation3.png" alt="">
-			</section>
-
-			<section>
-				<h1>Navigation</h1>
-				<p>Präsentation und Navigation - Rotation des Datenwürfels</p>
-				<img src="./static/V05/olap_navigation4.png" alt="">
-			</section>
-
-			<section>
-				<h1>Navigation</h1>
-				<p>Präsentation und Navigation - Drill Down</p>
-				<img src="./static/V05/olap_navigation5.png" alt="">
-			</section>
-
-			<section>
-				<h1>Navigation</h1>
-				<p>Präsentation und Navigation - Drill Across</p>
-				<img src="./static/V05/olap_navigation6.png" alt="">
-				<p class="tiny">Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische
-					Anwendungen. Vieweg. 2010</p>
-			</section>
-
-			<section>
-				<h1>Frontend</h1>
-				<p>Cognos Powerplay</p>
-				<img src="./static/V05/cognos_powerplay.png" alt="">
-			</section>
-
-			<section>
-				<h1>Frontend</h1>
-				<p>Cognos Powerplay</p>
-				<img src="./static/V05/cognos_powerplay2.png" alt="">
-			</section>
-
-			<section>
-				<h1>Frontend</h1>
-				<p>Microsoft PowerBI</p>
-				<img src="./static/V05/powerbi.png" alt="">
-			</section>
-
-			<section>
-				<h1>Frontend</h1>
-				<p>Erweiterungen handelsüblicher Standardsoftwarepakete: Beispiel Palo</p>
-				<img src="./static/V05/Palo.png" alt="">
-			</section>
-
-			<section>
-				<h1>Frontend</h1>
-				<p>Pivot Tabellen</p>
-				<img src="./static/V05/pivot.png" alt="">
-				<p class="tiny">Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz</p>
 			</section>
 
 			<section>
-				<h1>Frontend</h1>
-				<p>Web Browser</p>
-				<img src="./static/V05/browser.png" alt="">
-				<p class="tiny">Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz</p>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Würfeldarstellung mehrdimensional strukturierter Daten</h2>
+					<img src="./static/V05/olap_navigation.png" alt="">
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation</h2>
+					<img src="./static/V05/olap_navigation2.png" alt="">
+					<aside class="notes">
+						Das geht selbst auf einem Sternschema mit SQL schlecht: Kann zwar 2dim Antworttabellen erzeugen.
+						Ich brauche aber zum flexiblen Navigieren Filtermöglichkeiten (Slicing) - Besser Excel Pivot
+						Tabelle oder anderem OLAP Werkzeug
+
+						Entsprechende Sichten auf den Datenbestand finden sich in fast allen multidimensionalen
+						Systemen.
+						Sie dienen entweder als Ausgangspunkt für weitergehende betriebswirtschaftliche Analysen, als
+						Einstieg für eine freie Navigation im Datenbestand oder als Standardbericht.
+
+						Nullzeilenunterdrückung
+
+						Benutzer kann navigieren (im Gegensatz zum klassischen Reporting).
+						Maus
+
+						Ranging: Beliebige Elemente der Zeilen- und Spaltenkopfdimensionen ein oder ausblenden.
+						Slicing
+					</aside>
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Rotation des Datenwürfels</h2>
+					<img src="./static/V05/olap_navigation3.png" alt="">
+					<aside class="notes">
+						Drag and Drop.
+						Datenwürfel in alle Richtungen drehbar.
+
+						Abgebildet ist EINE Rotation!
+					</aside>
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Rotation des Datenwürfels</h2>
+					<img src="./static/V05/olap_navigation4.png" alt="">
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Drill Down</h2>
+					<img src="./static/V05/olap_navigation5.png" alt="">
+					<aside class="notes">
+						Hierarchieebenen
+						bis auf atomare Werte der Datenbasis
+
+						Roll-Up
+
+						Gebräuchliche Optionen der dynamischen Navigation
+
+						Sortierungen
+						Farbliche Kennzeichnungen
+					</aside>
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Drill Across</h2>
+					<figure>
+						<img src="./static/V05/olap_navigation6.png" alt="">
+						<figcaption>Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische
+							Anwendungen. Vieweg. 2010</figcaption>
+					</figure>
+				</section>
+
 			</section>
 
 			<section>
-				<h1>Speicherung multidimensionaler Daten</h1>
-				<p>Speicherung (logisch) multidimensionaler Daten</p>
-				<img src="./static/V05/speicherung_multidimensionaler_daten.png" alt="">
-				<p class="tiny">Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische
-					Anwendungen. Vieweg. 2010</p>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Cognos Powerplay</h2>
+					<img src="./static/V05/cognos_powerplay.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Cognos Powerplay</h2>
+					<img src="./static/V05/cognos_powerplay2.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Microsoft PowerBI</h2>
+					<img src="./static/V05/powerbi.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Erweiterungen handelsüblicher Standardsoftwarepakete</h2>
+					<p>Beispiel Palo</p>
+					<img src="./static/V05/Palo.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Pivottabellen</h2>
+					<figure>
+						<img src="./static/V05/pivot.png" alt="">
+						<figcaption>Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Web Browser</h2>
+					<figure>
+						<img src="./static/V05/browser.png" alt="">
+						<figcaption class="tiny">Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 
 			<section>
-				<h1>Speicherung multidimensionaler Daten</h1>
-				<p>Speicherung (logisch) multidimensionaler Daten - SSAS</p>
-				<img src="./static/V05/speicherung_multidimensionaler_daten2.png" alt="">
-			</section>
 
-			<section>
-				<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
-				<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
-				<h2>(physisch) multidimensionalen Datenbank </h2>
-				<ul>
-					<li>Datenbanksystem, das die auf konzeptioneller Ebene dargestellten multidimensionalen
-						Datenstrukturen auch in ihrer physischen Datenbank- und Speicherstruktur umsetzt
-						(Multidimensionales DBMS = MDBMS). </li>
-					<li>Multidimensionales OLAP (MOLAP)</li>
-					<li>Komprimierte , multidimensionale Arrays</li>
-					<li>Als File abgespeichert</li>
-					<li>Aggregate (über die Hierarchien) werden nach dem Laden durch die OLAP Engine berechnet &
-						gespeichert</li>
-					<li>Abfragesprachen: MDX </li>
-					<li>XML/A für administrative Aufgaben</li>
-				</ul>
-			</section>
+				<section>
+					<h1>Speicherung multidimensionaler Daten</h1>
+					<h2>Speicherung (logisch) multidimensionaler Daten</h2>
+					<figure>
+						<img src="./static/V05/speicherung_multidimensionaler_daten.png" alt="">
+						<figcaption>Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische
+							Anwendungen. Vieweg. 2010</figcaption>
+					</figure>
+					<aside class="notes">
+						Kemper/Baars/Mehanna:
+						Es hat sich heute die Meinung etabliert, dass OLAP einen aus Benutzersicht mehrdimensionalen
+						Datenraum aufspannt, der eine flexible, benutzerfreundliche Ad-hoc-Analyse erlaubt. Die
+						physikalische Datenhaltung kann demnach losgelöst von der Benutzersicht erfolgen. Für die
+						Repräsentation der Daten können somit alle denkbaren technischen Formen der Datenhaltung
+						herangezogen werden, wobei primär relationale und multidimensionale Datenhaltungssysteme zum
+						Einsatz kommen.
 
-			<section style="font-size:20px">
-				<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
-				<h3>Multidimensionale Datenbanksysteme</h3>
-				<div class="grid_50">
-					<div>
-						<h4>Vorteile</h4>
-						<ul>
-							<li>Intuitiven Analysesprachen</li>
-							<li>Hohe Performanz komplexer analytischer Auswertungen</li>
-							<li>Vorberechnete Aggregate beschleunigen das Antwortzeitverhalten</li>
-							<li>Geringerer Speicherbedarf (Kompression, keine Indizierung)</li>
-							<li>Weniger Disk I/Os</li>
-						</ul>
+						Beim relationalen OLAP (R-OLAP) kommen Star- und Snowflake-Schemata auf Basis von klassischen,
+						standardisierten relationalen Datenbanksystemen zum Einsatz (vgl. auch Kapitel 2.4.2 und Kapitel
+						2.4.3). Die Vorteile dieser Variante liegen in der hohen Stabilität und Sicherheit in
+						Anwendungsbereichen mit hohem Datenvolumen und großen Benutzerzahlen.
+
+						Multidimensionale OLAP-Systeme (M-OLAP) verwenden herstellerabhängige, proprietäre
+						Datenbanksysteme, die speziell auf eine hohe Performance in multidimensionalen Datenstrukturen
+						ausgerichtet sind (vgl. Kapitel 2.3.2). Die Vorteile dieser Lösung liegen demnach vor allem in
+						der Flexibilität und in dem Antwortzeitverhalten.
+
+						Das hybride OLAP (H-OLAP) ist eine Variante, welche die Vorteile beider Techniken vereint. So
+						erlauben diese OLAP-Systeme einen benutzertransparenten Übergang von relationaler und
+						physikalisch mehrdimensionaler Datenhaltung. Üblicherweise werden in diesen Architekturen
+						M-OLAP-Techniken bei den hochverdichteten Datenbereichen verwendet, die sich durch geringes
+						Datenvolumen und eine eher überschaubare Anzahl von Benutzern auszeichnet. Wenn der Benutzer
+						durch Drilldown- Navigation in detailliertere Datenbereiche vorstößt, wechselt er
+						benutzertransparent in die relationale Datenhaltung.
+
+						How about analyzing business transactions data stored in operational systems such as enterprise
+						resource planning (ERP) systems or an operational data store (ODS)? Is that classified as OLAP?
+						No, it is not OLAP. It is business analysis, but it is not OLAP. For the analysis to be OLAP, it
+						needs to be performed against a dimensional data warehouse, either stored in relational format
+						or stored in multidimensional format.
+						What if it is not interactive, but only a one-way interaction such as reading and analyzing
+						reports? Is that OLAP? No, that is reporting, not OLAP. OLAP is interactive; in other words, the
+						business analyst queries, and the system responds, repeatedly, as illustrated in Figure 12-3.
+						The response time is typically within seconds, not hours (although certain OLAP scenarios take
+						hours).
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten</h1>
+					<h2>Speicherung (logisch) multidimensionaler Daten - SSAS</h2>
+					<img src="./static/V05/speicherung_multidimensionaler_daten2.png" alt="">
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+					<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
+					<h2>(physisch) multidimensionalen Datenbank </h2>
+					<ul>
+						<li>Datenbanksystem, das die auf konzeptioneller Ebene dargestellten multidimensionalen
+							Datenstrukturen auch in ihrer physischen Datenbank- und Speicherstruktur umsetzt
+							(Multidimensionales DBMS = MDBMS). </li>
+						<li>Multidimensionales OLAP (MOLAP)</li>
+						<li>Komprimierte , multidimensionale Arrays</li>
+						<li>Als File abgespeichert</li>
+						<li>Aggregate (über die Hierarchien) werden nach dem Laden durch die OLAP Engine berechnet &
+							gespeichert</li>
+						<li>Abfragesprachen: MDX </li>
+						<li>XML/A für administrative Aufgaben</li>
+					</ul>
+					<aside class="notes">
+						Rainardi 377:
+						The structure stores the aggregate values as well as the base values, typically in compressed
+						multidimensional array format, rather than in RDBMS tables. Aggregate values are precomputed
+						summaries of the base values. Examples of multidimensional databases are Microsoft Analysis
+						Services, Hyperion Essbase, and Cognos PowerCube. The other terms that people use for a
+						multidimensional database are hypercube, cube, OLAP cube, multidimensional database (abbreviated
+						as MDB, MDD, or MDDB), and multidimensional data store (MDDS).
+
+						Physically, an MDB is a file. To help you understand how an MDB file is internally structured,
+						you can visualize it as a matrix or a cube.
+
+						Although logically an MDB looks like a cube (for three dimensions) or a hypercube (for four or
+						more dimensions), physically it is stored as compressed multidimensional arrays with offset
+						positioning.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+					<h2>Multidimensionale Datenbanksysteme</h2>
+					<div class="r-fit-text">
+						<div class="grid_50">
+							<div>
+								<h3>Vorteile</h3>
+								<ul>
+									<li>Intuitiven Analysesprachen</li>
+									<li>Hohe Performanz komplexer analytischer Auswertungen</li>
+									<li>Vorberechnete Aggregate beschleunigen das Antwortzeitverhalten</li>
+									<li>Geringerer Speicherbedarf (Kompression, keine Indizierung)</li>
+									<li>Weniger Disk I/Os</li>
+								</ul>
+							</div>
+							<div>
+								<h3>Nachteile</h3>
+								<ul>
+									<li>Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)</li>
+									<li>Skaliert schlecht bei wachsender Zahl von Dimensionen</li>
+									<li>Herstellerabhängige, proprietäre Datenbanksysteme</li>
+									<li>Herausforderung: Datenwürfel mit dünn besetzte Dimensionen</li>
+									<li>Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable
+										Zeiträume in
+										Anspruch</li>
+									<li>Schulungsaufwand für neue Technologie</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div>
-						<h4>Nachteile</h4>
-						<ul>
-							<li>Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)</li>
-							<li>Skaliert schlecht bei wachsender Zahl von Dimensionen</li>
-							<li>Herstellerabhängige, proprietäre Datenbanksysteme</li>
-							<li>Herausforderung: Datenwürfel mit dünn besetzte Dimensionen</li>
-							<li>Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable Zeiträume in
-								Anspruch</li>
-							<li>Schulungsaufwand für neue Technologie</li>
-						</ul>
+					<aside class="notes">
+						Multidimensional databases are typically used for business intelligence (BI), especially for
+						online analytical processing (OLAP) and data mining (DM). The advantages of using
+						multidimensional databases for OLAP and DM rather than a relational database such as a
+						dimensional data store (DSS) are that they use less disk space and have better performance. A
+						multidimensional database occupies less disk space compared to a relational dimensional database
+						(like DDS) because it is compressed and because it does not use indexing like a DDS. Instead, it
+						uses multidimensional offsetting to locate the data. A multidimensional database performs better
+						on OLAP operations because the aggregates are precalculated and because the way the data is
+						physically stored (compressed multidimensional array format with offset positioning) minimizes
+						the number of IO operations (disk reads), compared to storing tables in an RDBMS.
+
+						----------------------------------------------------------
+						Nachteile:
+						Direkter Schreibzugriff für den Endanwender (Relationale DB: Schwer wg. Summationstabellen &
+						Datenmodellierung) - Gut für What-If Betrachtungen.
+						Attributive Beschreibungen von Informationsobjekten kaum oder gar nicht vorgesehen.
+
+						On the other hand, the drawback of using a multidimensional database compared to using a
+						relational database is the processing time required for loading the database and calculating the
+						aggregate values. Whenever the relational source is updated, the MDB needs to be updated or
+						reprocessed; in other words, the aggregate cells need to be recalculated (it doesn’t have to be
+						done in real time). The second drawback is the scalability: an MDB may not scale well for a very
+						large database (multiple terabytes) or a large number of dimensions.
+
+						What do we use to manage multidimensional databases? The system that manages and operates
+						multidimensional databases is called a multidimensional database system (MDBMS).
+						Multidimensional database systems are also known as OLAP servers or cube engines.
+
+						Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)
+						Skaliert schlecht bei wachsender Zahl von Dimensionen
+						Herstellerabhängige, proprietäre Datenbanksysteme
+						Herausforderung: Datenwürfel mit dünn besetzte Dimensionen
+						Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable Zeiträume in Anspruch
+						Schulungsaufwand für neue Technologie
+						Nur wenige Plattformen (HW, OS) - Windows/Unix
+						Kaum parallele Prozessortechnologien nutzbar.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+					<h2>Multidimensionale Datenbanksysteme</h2>
+					<figure>
+						<blockquote>
+							<b>Note:</b> The term <em>multidimensional database</em> is often confused with the term
+							<em>online analytical processing</em>, but these terms hafe different meanings. An MDB is
+							the
+							database, and OLAP is the activity used to analyze the database. The confusion is aused by
+							the word
+							<em>OLAP cube</em>. An OLAP cube has the same meaning as an MDB; it means a multidimensional
+							database.
+						</blockquote>
+						<figcaption>
+							nach: V. Rainardi, Building a Data Warehouse: With Examples in SQL Server. Seite 58
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+					<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
+					<h2>(physisch) relationaler Datenbank </h2>
+					<ul>
+						<li>als zweidimensionale Objektdaten (Zweidimensionale Tabellen)</li>
+						<li>mehrdimensional verbunden durch Metadaten</li>
+						<li>in einem relationalen Server-Datenbanksystem (RDBMS)</li>
+						<li>ROLAP </li>
+						<li>Stern Schema</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+					<h2>Vorteile RDBMS</h2>
+					<ul>
+						<li>Bewährte Technologie</li>
+						<li>Know How</li>
+						<li>Standardisierte Datenbanksprache (SQL)</li>
+						<li>Viele Tools, Open Source</li>
+						<li>Skalierbar, Performance</li>
+						<li>Kompatibilität, Plattformunabhängigkeit</li>
+					</ul>
+
+					<aside class="notes">
+						Relationale Datenbanksysteme
+						Leistungsfähige Transaktionsverwaltungskomponenten koordinieren tausende elementarer Operationen
+						pro Sekunde, gewährleisten die Konsistenz der Daten und vermeiden lange Wartezeiten für die
+						angeschlossenen Benutzer.
+						Klassischer Einsatzbereich OLTP: Abarbeitung kurzer, wenige Tabellen betreffender Transaktionen.
+						Codd: Primär darauf ausgelegt, eine möglichst rasche und konsistenzgeprüfte Erfassung der
+						operativen Datenobjekte zu ermöglichen.
+						Ursprünglich nicht gedacht für die weitreichenden Anforderungen von Analyse und
+						Entscheidungsunterstützung.
+						Auch als Speicherkomponente eines multidimensionalen Informationssystems geeignet?
+
+						Seit vielen Jahren.
+						Terabyte beherrschbar.
+						SQL
+						Skalierbarkeit
+						Plattformunabhängigkeit (HW, OS)
+						Know How
+						Preiswerte Softwarewerkzeuge.
+						Höherer Verwaltungs-Overhead (Verbesserung durch Indextechniken)
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+					<div class="r-fit-text">
+						<div class="grid_50">
+							<div>
+								<h4>Sternschema allgemein</h4>
+								<ul>
+									<li>Mehrere Dimensionstabellen, die sich auf eine Faktentabelle beziehen</li>
+									<li>Die Faktentabelle enthält diejenigen Attribute, die die betrieblichen
+										Erfolgsfaktoren
+										messen</li>
+									<li>Jede 1:n Beziehung wird durch Schlüssel der Dimensionstabelle und Fremdschlüssel
+										der
+										Faktentabelle vermittelt</li>
+									<li>Die Dimensionstabellen enthalten meist symbolische und diskrete Attribute. Dies
+										erlaubt
+										die Auswahl, Zusammenfassung und Navigation der Fakten</li>
+								</ul>
+							</div>
+							<div>
+								<img src="./static/V05/ROLAP.png" alt="">
+							</div>
+						</div>
 					</div>
-				</div>
+				</section>
+
+				<section>
+					<h1>Speicherung mulidimensionaler Daten</h1>
+					<figure>
+						<iframe data-src="static/V05/1996_Colliat_OLAP.pdf" height="480" width="900"></iframe>
+						<figcaption>
+							Colliat, George. "OLAP, relational, and multidimensional database systems." ACM Sigmod
+							Record 25.3 (1996): 64-69.
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+			<section>
+
+				<section>
+					<h1>OLAP Server</h1>
+					<h2>Multidimensionale Datenbanksysteme - Produkte</h2>
+					<figure>
+						<div class="r-stack">
+							<img class="fragment fade-out" data-fragment-index="0" src="./static/V05/OLAP_Server.png"
+								alt="">
+							<img class="fragment current-visible" data-fragment-index="0"
+								src="./static/V05/OLAP_Server2.png" alt="">
+							<img class="fragment" src="./static/V05/OLAP_Server3.png" alt="">
+						</div>
+						<figcaption>en.wikipedia.org/wiki/Comparison_of_OLAP_Servers (Zugriff am 19.04.2017)
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Examples of an MDBMS are Microsoft SQL Server Analysis Services, Hyperion Essbase, and Cognos
+						PowerCube. Business Objects and MicroStrategy don’t have an MDBMS; they use ROLAP (I’ll talk
+						about ROLAP in the next section). The standard interface to connect to an MDBMS is XML for
+						Analysis (http://www. xmlforanalysis.com/), which is known as XMLA. For example, using SQL
+						Server Reporting Services, we can connect not only to Analysis Services cubes but also to
+						Hyperion Essbase cubes using XMLA. Microsoft, Hyperion (now owned by Oracle), SAP, and SAS
+						support XMLA. ADOMD.NET is a .NET data provider that uses XMLA to communicate the analytical
+						data sources.
+
+						Examples of OLAP tools are SSAS, Cognos BI 8 Analysis, Business Objects XI Release 2 Voyager,
+						and ProClarity Analytics 6.
+
+						An example of ROLAP is MicroStrategy OLAP Services. Examples of MOLAP are Cognos BI 8 Analysis
+						and ProClarity Analytics 6. Microsoft SQL Server Analysis Services (SSAS) supports both ROLAP
+						and MOLAP, plus it supports Hybrid Online Analytical Processing (HOLAP). HOLAP uses both
+						relational and multidimensional databases. SSAS databases can store the data in a relational
+						database, a multidimensional database, or both. When we set SSAS to store the data in HOLAP
+						mode, the base data (leaf level) is stored in SQL Server relational database tables, and the
+						aggregate data is stored in an MDB.
+					</aside>
+				</section>
+
 			</section>
 
 			<section>
-				<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
-				<h3>Multidimensionale Datenbanksysteme</h3>
-				<blockquote>
-					<b>Note:</b> The term <em>multidimensional database</em> is often confused with the term
-					<em>online analytical processing</em>, but these terms hafe different meanings. An MDB is the
-					database, and OLAP is the activity used to analyze the database. The confusion is aused by the word
-					<em>OLAP cube</em>. An OLAP cube has the same meaning as an MDB; it means a multidimensional
-					database.
-				</blockquote>
-				<p class="tiny">nach: V. Rainardi, Building a Data Warehouse: With Examples in SQL Server. Seite 58
-				</p>
-			</section>
 
-			<section>
-				<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
-				<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
-				<h2>(physisch) relationaler Datenbank </h2>
-				<ul>
-					<li>als zweidimensionale Objektdaten (Zweidimensionale Tabellen)</li>
-					<li>mehrdimensional verbunden durch Metadaten</li>
-					<li>in einem relationalen Server-Datenbanksystem (RDBMS)</li>
-					<li>ROLAP </li>
-					<li>Stern Schema</li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
-				<h3>Vorteile RDBMS</h3>
-				<ul>
-					<li>Bewährte Technologie</li>
-					<li>Know How</li>
-					<li>Standardisierte Datenbanksprache (SQL)</li>
-					<li>Viele Tools, Open Source</li>
-					<li>Skalierbar, Performance</li>
-					<li>Kompatibilität, Plattformunabhängigkeit</li>
-				</ul>
-			</section>
-
-			<section style="font-size:24px">
-				<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
-				<div class="grid_50">
-					<div>
-						<h4>Sternschema allgemein</h4>
-						<ul>
-							<li>Mehrere Dimensionstabellen, die sich auf eine Faktentabelle beziehen</li>
-							<li>Die Faktentabelle enthält diejenigen Attribute, die die betrieblichen Erfolgsfaktoren
-								messen</li>
-							<li>Jede 1:n Beziehung wird durch Schlüssel der Dimensionstabelle und Fremdschlüssel der
-								Faktentabelle vermittelt</li>
-							<li>Die Dimensionstabellen enthalten meist symbolische und diskrete Attribute. Dies erlaubt
-								die Auswahl, Zusammenfassung und Navigation der Fakten</li>
-						</ul>
+				<section>
+					<h1>SSAS</h1>
+					<p>Fertiger Cube in SSMS</p>
+					<div class="grid_50">
+						<img src="./static/V05/SSAS_1.png" alt="">
+						<img src="./static/V05/SSAS_2.png" alt="">
 					</div>
-					<div>
-						<img src="./static/V05/ROLAP.png" alt="">
-					</div>
-				</div>
+				</section>
+
+				<section>
+					<h1>SSAS</h1>
+					<p>Cubestruktur in SSDT definieren</p>
+					<img src="./static/V05/SSAS_3.png" alt="">
+				</section>
+
+				<section>
+					<h1>SSAS</h1>
+					<p>Cubestruktur in SSDT definieren - Dimensionshierarchie</p>
+					<img src="./static/V05/SSAS_4.png" alt="">
+				</section>
+
 			</section>
 
 			<section>
-				<h1>Speicherung mulidimensionaler Daten</h1>
-				<img src="./static/V05/Colliat.png" alt="">
-				<div class="box">Materialien: 1996_OLAP_Colliat</div>
-				<p class="tiny">Colliat, George. "OLAP, relational, and multidimensional database systems." ACM Sigmod
-					Record 25.3 (1996): 64-69.</p>
-			</section>
 
-			<section>
-				<h1>OLAP Server</h1>
-				<p>Multidimensionale Datenbanksysteme - Produkte</p>
-				<div class="r-stack">
-					<img class="fragment fade-out" src="./static/V05/OLAP_Server.png" alt="">
-					<img class="fragment fade-in-then-out" src="./static/V05/OLAP_Server2.png" alt="">
-					<img class="fragment current-visible" src="./static/V05/OLAP_Server3.png" alt="">
-				</div>
-				<p class="tiny">en.wikipedia.org/wiki/Comparison_of_OLAP_Servers (Zugriff am 19.04.2017)</p>
-			</section>
+				<section>
+					<h1>Azure Analysis Services</h1>
+					<figure>
+						<img src="./static/V05/Azure.png" alt="">
+						<figcaption><a
+								href="https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview">https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview</a>
+							(Zugriff am 20.10.2020)</figcaption>
+					</figure>
+				</section>
 
-			<section>
-				<h1>SSAS</h1>
-				<p>Fertiger Cube in SSMS</p>
-				<div class="grid_50">
-					<img src="./static/V05/SSAS_1.png" alt="">
-					<img src="./static/V05/SSAS_2.png" alt="">
-				</div>
-			</section>
+				<section>
+					<h1>Azure Analysis Services</h1>
+					<figure>
+						<img src="./static/V05/Azure_2.png" alt="">
+						<figcaption><a
+								href="https://phantomdb.files.wordpress.com/2017/12/image.png">https://phantomdb.files.wordpress.com/2017/12/image.png</a>
+							(Zugriff am 20.10.2020)</figcaption>
+					</figure>
+				</section>
 
-			<section>
-				<h1>SSAS</h1>
-				<p>Cubestruktur in SSDT definieren</p>
-				<img src="./static/V05/SSAS_3.png" alt="">
-			</section>
-
-			<section>
-				<h1>SSAS</h1>
-				<p>Cubestruktur in SSDT definieren - Dimensionshierarchie</p>
-				<img src="./static/V05/SSAS_4.png" alt="">
-			</section>
-
-			<section>
-				<h1>Azure Analysis Services</h1>
-				<img src="./static/V05/Azure.png" alt="">
-				<p class="tiny"><a
-						href="https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview">https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview</a>
-					(Zugriff am 20.10.2020)</p>
-			</section>
-
-			<section>
-				<h1>Azure Analysis Services</h1>
-				<img src="./static/V05/Azure_2.png" alt="">
-				<p class="tiny"><a
-						href="https://phantomdb.files.wordpress.com/2017/12/image.png">https://phantomdb.files.wordpress.com/2017/12/image.png</a>
-					(Zugriff am 20.10.2020)</p>
 			</section>
 
 			<section>
 				<h1>Zusammenfassung</h1>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/yoE6bgJv08E"
-					title="YouTube video player" frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					allowfullscreen></iframe>
-				<p><a href="https://www.youtube.com/watch?v=yoE6bgJv08E"
-						class="tiny">https://www.youtube.com/watch?v=yoE6bgJv08E</a></p>
+				<figure>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/yoE6bgJv08E" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe>
+					<figcaption>
+						<a href="https://www.youtube.com/watch?v=yoE6bgJv08E">Youtube</a>
+					</figcaption>
+				</figure>
 			</section>
 
 
-			<section class="center" data-background-image="https://i.giphy.com/media/cn7GcSZ1KWqO7CJw1B/giphy.webp"
+			<section data-background-image="https://i.giphy.com/media/cn7GcSZ1KWqO7CJw1B/giphy.webp"
 				data-background-size="contain" data-background-repeat="no-repeat"></section>
 
 			<section>
