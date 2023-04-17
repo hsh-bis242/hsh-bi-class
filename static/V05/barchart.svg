@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920.68 623.14">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        font-family: ArialMT, Arial;
+        font-size: 35px;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 1.5px;
+      }
+
+      .cls-4 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-5 {
+        fill: #fdb39b;
+        stroke: #dc3c05;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <line class="cls-3" x1="659.74" y1="548.6" x2="659.74" y2="535.83"/>
+  <line class="cls-3" x1="440.71" y1="548.6" x2="440.71" y2="535.83"/>
+  <line class="cls-3" x1="769.66" y1="548.6" x2="769.66" y2="535.83"/>
+  <line class="cls-3" x1="550.36" y1="548.6" x2="550.36" y2="535.83"/>
+  <line class="cls-3" x1="879.57" y1="548.6" x2="879.57" y2="535.83"/>
+  <line class="cls-3" x1="331.06" y1="461.11" x2="318.3" y2="461.11"/>
+  <line class="cls-3" x1="331.06" y1="386.72" x2="318.3" y2="386.72"/>
+  <line class="cls-3" x1="331.06" y1="312.34" x2="318.3" y2="312.34"/>
+  <line class="cls-3" x1="331.06" y1="237.96" x2="318.3" y2="237.96"/>
+  <line class="cls-3" x1="331.06" y1="163.57" x2="318.3" y2="163.57"/>
+  <line class="cls-3" x1="331.06" y1="89.19" x2="318.3" y2="89.19"/>
+  <line class="cls-3" x1="331.06" y1="14.81" x2="318.3" y2="14.81"/>
+  <rect class="cls-5" x="332.06" y="33.36" width="90.55" height="37.28"/>
+  <rect class="cls-5" x="332.06" y="107.74" width="100.34" height="37.28"/>
+  <rect class="cls-5" x="332.06" y="182.13" width="128.85" height="37.28"/>
+  <rect class="cls-5" x="332.06" y="256.51" width="205.79" height="37.28"/>
+  <rect class="cls-5" x="332.06" y="330.89" width="327.32" height="37.28"/>
+  <rect class="cls-5" x="332.06" y="405.28" width="434.55" height="37.28"/>
+  <rect class="cls-5" x="332.06" y="479.66" width="500.94" height="37.28"/>
+  <text class="cls-2" transform="translate(321.33 605.62)"><tspan x="0" y="0">0</tspan></text>
+  <text class="cls-2" transform="translate(351.16 64.44)"><tspan x="0" y="0">16,7</tspan></text>
+  <text class="cls-2" transform="translate(365.04 138.63)"><tspan x="0" y="0">18,1</tspan></text>
+  <text class="cls-2" transform="translate(391.65 212.5)"><tspan x="0" y="0">23,6</tspan></text>
+  <text class="cls-2" transform="translate(467.72 286.96)"><tspan x="0" y="0">37,5</tspan></text>
+  <text class="cls-2" transform="translate(587.89 361.18)"><tspan x="0" y="0">59,7</tspan></text>
+  <text class="cls-2" transform="translate(695.8 435.39)"><tspan x="0" y="0">79,2</tspan></text>
+  <text class="cls-2" transform="translate(760.12 510.39)"><tspan x="0" y="0">91,7</tspan></text>
+  <text class="cls-2" transform="translate(421.25 606.04)"><tspan x="0" y="0">20</tspan></text>
+  <text class="cls-2" transform="translate(530.9 605.62)"><tspan x="0" y="0">40</tspan></text>
+  <text class="cls-2" transform="translate(640.28 606.46)"><tspan x="0" y="0">60</tspan></text>
+  <text class="cls-2" transform="translate(750.19 605.62)"><tspan x="0" y="0">80</tspan></text>
+  <text class="cls-2" transform="translate(850.38 606.88)"><tspan x="0" y="0">100</tspan></text>
+  <text class="cls-2" transform="translate(121.11 64.44)"><tspan x="0" y="0">Produktion</tspan></text>
+  <text class="cls-2" transform="translate(169.77 138.63)"><tspan x="0" y="0">Logistik</tspan></text>
+  <text class="cls-2" transform="translate(150.3 212.51)"><tspan x="0" y="0">Personal</tspan></text>
+  <text class="cls-2" transform="translate(134.77 286.96)"><tspan x="0" y="0">Marketing</tspan></text>
+  <text class="cls-2" transform="translate(167.82 361.18)"><tspan class="cls-4" x="0" y="0">V</tspan><tspan class="cls-1" x="21.41" y="0">ertrieb</tspan></text>
+  <text class="cls-2" transform="translate(12.17 435.39)"><tspan x="0" y="0">Geschäftsführung</tspan></text>
+  <text class="cls-2" transform="translate(121.13 510.39)"><tspan x="0" y="0">Controlling</tspan></text>
+  <line class="cls-3" x1="331.06" y1="14.81" x2="331.06" y2="548.38"/>
+  <line class="cls-3" x1="318.97" y1="535.49" x2="879.57" y2="535.49"/>
+</svg>

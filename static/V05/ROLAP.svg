@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        text-decoration: underline;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        font-size: 30px;
+      }
+
+      .cls-4, .cls-3 {
+        letter-spacing: .05em;
+      }
+
+      .cls-5 {
+        fill: #fdb39b;
+      }
+
+      .cls-5, .cls-6 {
+        stroke: #dc3c05;
+      }
+
+      .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-5, .cls-6, .cls-7, .cls-9 {
+        stroke-width: 3px;
+      }
+
+      .cls-6 {
+        fill: #fec9b8;
+      }
+
+      .cls-7 {
+        fill: #a1e4f7;
+      }
+
+      .cls-7, .cls-9 {
+        stroke: #11a0c1;
+      }
+
+      .cls-2, .cls-3 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .cls-8 {
+        fill: none;
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      .cls-9 {
+        fill: #5cd0f0;
+      }
+
+      .cls-10 {
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-11 {
+        letter-spacing: .01em;
+      }
+
+      .cls-12 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-13 {
+        font-size: 28px;
+      }
+    </style>
+  </defs>
+  <g>
+    <line class="cls-8" x1="761.5" y1="248.09" x2="684.19" y2="325.9"/>
+    <polygon points="674.24 335.91 682.5 316.07 684.94 325.15 694.03 327.53 674.24 335.91"/>
+  </g>
+  <g>
+    <line class="cls-8" x1="315.1" y1="248.09" x2="392.27" y2="325.89"/>
+    <polygon points="402.21 335.91 382.43 327.51 391.53 325.14 393.97 316.06 402.21 335.91"/>
+  </g>
+  <g>
+    <rect class="cls-5" x="636.26" y="38.98" width="250.47" height="48.26"/>
+    <path class="cls-6" d="m636.26,87.23h250.47v132.26c0,15.78-12.81,28.6-28.6,28.6h-193.15c-15.85,0-28.72-12.87-28.72-28.72V87.23h0Z"/>
+  </g>
+  <g>
+    <rect class="cls-5" x="636.26" y="835.57" width="250.47" height="48.26"/>
+    <path class="cls-6" d="m636.26,883.83h250.47v132.26c0,15.78-12.81,28.6-28.6,28.6h-193.15c-15.85,0-28.72-12.87-28.72-28.72v-132.13h0Z"/>
+  </g>
+  <g>
+    <rect class="cls-5" x="189.86" y="38.98" width="250.47" height="48.26"/>
+    <path class="cls-6" d="m189.86,87.23h250.47v132.26c0,15.78-12.81,28.6-28.6,28.6h-193.15c-15.85,0-28.72-12.87-28.72-28.72V87.23h0Z"/>
+  </g>
+  <g>
+    <rect class="cls-5" x="189.86" y="835.57" width="250.47" height="48.26"/>
+    <path class="cls-6" d="m189.86,883.83h250.47v132.26c0,15.78-12.81,28.6-28.6,28.6h-193.15c-15.85,0-28.72-12.87-28.72-28.72v-132.13h0Z"/>
+  </g>
+  <g>
+    <rect class="cls-9" x="414.77" y="345.36" width="250.47" height="48.26"/>
+    <path class="cls-7" d="m414.77,393.62h250.47v319.66c0,15.78-12.81,28.6-28.6,28.6h-193.15c-15.85,0-28.72-12.87-28.72-28.72v-319.53h0Z"/>
+  </g>
+  <text class="cls-3" transform="translate(662.32 73.85)"><tspan x="0" y="0">Dimension B</tspan></text>
+  <text class="cls-10" transform="translate(645.27 122.72)"><tspan class="cls-1"><tspan x="0" y="0">Schlüssel</tspan></tspan><tspan class="cls-13"><tspan x="0" y="43">Beschreibung</tspan></tspan><tspan class="cls-13"><tspan x="0" y="76">Kategorie B1</tspan></tspan></text>
+  <text class="cls-3" transform="translate(662.32 870.44)"><tspan x="0" y="0">Dimension D</tspan></text>
+  <text class="cls-10" transform="translate(645.27 919.32)"><tspan class="cls-1"><tspan x="0" y="0">Schlüssel</tspan></tspan><tspan class="cls-13"><tspan x="0" y="43">Beschreibung</tspan></tspan><tspan class="cls-13"><tspan x="0" y="76">Kategorie D1</tspan></tspan></text>
+  <text class="cls-2" transform="translate(217.03 73.85)"><tspan class="cls-4" x="0" y="0">Dimension</tspan><tspan class="cls-11" x="166.85" y="0" xml:space="preserve"> A</tspan></text>
+  <text class="cls-10" transform="translate(198.87 122.72)"><tspan class="cls-1"><tspan x="0" y="0">Schlüssel</tspan></tspan><tspan class="cls-13"><tspan x="0" y="43">Beschreibung</tspan></tspan><tspan class="cls-13"><tspan x="0" y="76">Kategorie</tspan><tspan class="cls-12" x="119.86" y="76"> </tspan><tspan x="126.1" y="76">A1</tspan></tspan></text>
+  <text class="cls-3" transform="translate(215.92 870.44)"><tspan x="0" y="0">Dimension C</tspan></text>
+  <text class="cls-10" transform="translate(198.87 919.32)"><tspan class="cls-1"><tspan x="0" y="0">Schlüssel</tspan></tspan><tspan class="cls-13"><tspan x="0" y="43">Beschreibung</tspan></tspan><tspan class="cls-13"><tspan x="0" y="76">Kategorie C1</tspan></tspan></text>
+  <text class="cls-3" transform="translate(487.9 380.23)"><tspan x="0" y="0">Fakten</tspan></text>
+  <text class="cls-10" transform="translate(423.77 429.11)"><tspan class="cls-1"><tspan x="0" y="0">Schlüssel</tspan><tspan class="cls-12" x="128.39" y="0" xml:space="preserve"> A</tspan></tspan><tspan class="cls-1"><tspan x="0" y="43">Schlüssel B</tspan></tspan><tspan class="cls-1"><tspan x="0" y="86">Schlüssel C</tspan></tspan><tspan class="cls-1"><tspan x="0" y="129">Schlüssel D</tspan></tspan><tspan class="cls-13"><tspan x="0" y="172">Attribut 1</tspan></tspan><tspan class="cls-13"><tspan x="0" y="205">...</tspan></tspan></text>
+  <g>
+    <line class="cls-8" x1="315.1" y1="835.57" x2="391.79" y2="765.41"/>
+    <polygon points="402.21 755.88 393.02 775.31 391.01 766.13 382.04 763.32 402.21 755.88"/>
+  </g>
+  <g>
+    <line class="cls-8" x1="761.5" y1="835.57" x2="684.67" y2="765.41"/>
+    <polygon points="674.24 755.88 694.42 763.3 685.45 766.12 683.45 775.3 674.24 755.88"/>
+  </g>
+</svg>

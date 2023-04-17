@@ -1,0 +1,1607 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 05 - Online Analytical
+		Processing (OLAP)</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section class="center">
+				<h1 class="r-fit-text">Business Intelligence</h1>
+				<h2 class="r-fit-text">Online Analytical Processing (OLAP)</h2>
+			</section>
+
+			<section>
+				<h1>Gliederung</h1>
+				<h2>Online Analytical Processing (OLAP)</h2>
+				<ul>
+					<li>Einführung</li>
+					<li>Definition</li>
+					<li>Betriebswirtschaftliche Einsatzbereiche</li>
+					<li>Regeln und Kriterien für OLAP Systeme - Codd</li>
+					<li>Navigation</li>
+					<li>Frontend</li>
+					<li>Speicherung multidimensionaler Daten</li>
+					<ul>
+						<li>MOLAP</li>
+						<li>ROLAP</li>
+					</ul>
+					<li>OLAP Server</li>
+					<li>SSAS</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Einordnung</h1>
+				<figure>
+					<div class="r-stack">
+						<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+						<svg height="480" width="850">
+							<ellipse cx="720" cy="195" rx="70" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+						</svg>
+						<svg height="480" width="850">
+							<ellipse cx="585" cy="200" rx="45" ry="35" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+						</svg>
+						<svg height="480" width="850">
+							<ellipse cx="720" cy="255" rx="70" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+						</svg>
+					</div>
+					<figcaption>
+						b.telligent Deutschland GmbH (2022)
+					</figcaption>
+				</figure>
+				<aside class="notes">
+					Vorwort:
+					OLAP Grundidee: Nutzung des Informationssystems im Dialogbetrieb
+					Antwortzeiten - Gedankenfluss
+					Mit OLTP Systemen nicht zu schaffen
+					Reporting bietet nur begrenzte Navigationsmöglichkeiten
+
+					OLAP kann als Konzept verstanden werden, das dem Endbenutzer die Option eröffnet, eigene Hypothesen
+					über betriebswirtschaftliche Tatbestände und Zusammenhänge durch freie und intuitive Navigation im
+					verfügbaren Datenraum zu verifizieren.
+					-------------------
+
+					Data Warehouse Ausgangspunkt für weiterführende und ggf. aufwendige Analysen
+					- Planung & Prognose
+					- Diagnose & Interpretation
+
+					Wurzeln: Klassische Systeme für die Analyse betriebswirtschaftlicher Daten
+					- Planungssysteme
+					- Systeme des Operations Research
+					- Systeme der künstlichen Intelligenz
+					- Statistikpakete
+
+					Hypothesenverifizierung
+					- aktive Rolle des Anwenders, da er die Überprüfung seiner Annahme unmittelbar am System vornimmt
+					- OLAP
+
+					Hypothesengenerierung
+					- System deckt Beziehungen zwischen Objekten auf
+					- Data Mining
+				</aside>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Einführung</h1>
+					<ul>
+						<li><b>Multidimensionale Perspektiven</b> auf verfügbare quantitative Datenbestände haben sich
+							als geeignet erwiesen, um den Mitarbeitern einen <b>flexiblen und intuitiven Zugang</b> zu
+							den benötigten Informationen zu eröffnen.</li>
+						<li><b>Multidimensionalität</b> als zentrales Gestaltungsparadigma:
+							<ul>
+								<li>Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher
+									Klassen logisch zusammengehöriger Informationsobjekte aufgliedern.
+								<li>Korrespondiert mit der <b>naturgemäß mehrdimensionalen Problemsicht der
+										Unternehmungsanalytiker.</b>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes">
+						Informationssysteme, die betrieblichen Fach- und Führungskräften bei ihren Entscheidungsaufgaben
+						wertvolle Unterstützung liefern wollen, müssen sich an dem Geschäftsverständnis bzw. an der
+						Sichtweise auf die eigene Unternehmung orientieren.
+
+						Multidimensionalität
+						- Form der logischen Anordnung quantitativer, betriebswirtschaftlicher Größen
+					</aside>
+				</section>
+
+				<section>
+					<h1>Einführung</h1>
+					<ul>
+						<li>Betriebswirtschaftliche Kenngrößen (= <b>Fakten</b>)
+							<ul>
+								<li>Umsatz</li>
+							</ul>
+						</li>
+					</ul>
+					<ul>
+						<li><b>Dimensionen</b>
+							<ul>
+								<li>Kunden, Artikel, Regionen</li>
+								<li>hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)</li>
+								<li>Slowly Changing Dimensions</li>
+								<li>Dimensionen entlang derer sich betriebswirtschaftliche Kenngrößen im Zeitablauf
+									untersuchen lassen.</li>
+								<li>Umsätze pro Monat in den verschiedenen Regionen und Produktgruppen</li>
+							</ul>
+						</li>
+					</ul>
+
+					<aside class="notes">
+						Vor allem die EIS nutzten bereits vor mehr als zehn Jahren derartige mehrdimensionale
+						Sichtweisen, verzichteten jedoch zumeist darauf, dies explizit zu verbalisieren.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Einführung</h1>
+					<figure>
+						<img src="./static/V05/cube.svg" alt="" height="480px">
+						<figcaption>
+							Einführung in die multidimensionale Datenmodellierung mit ADAPT Christian Kurze
+							BI-Praktikum IBM - WS 2008/09. TU Chemnitz
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Definition</h1>
+				<figure>
+					<blockquote>
+						<ul>
+							<li>Software-Technologie, die Managern wie auch qualifizierten Mitarbeitern aus den
+								Fachabteilungen </li>
+							<li>schnelle, interaktive und vielfältige Zugriffe auf relevante und konsistente
+								Informationen
+								ermöglichen soll. </li>
+							<li>Im Vordergrund stehen dabei dynamische und multidimensionale Analysen auf historischen,
+								konsolidierten Datenbeständen.</li>
+						</ul>
+					</blockquote>
+					<figcaption>
+						Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und
+						Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+						Berlin: Springer
+					</figcaption>
+				</figure>
+				<aside class="notes">
+					Im Gegensatz zu OLTP Systemen
+				</aside>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Betriebswirtschaftliche Einsatzbereiche</h1>
+					<p>Einsatz multidimensionaler Systeme nach Funktionsbereichen</p>
+					<figure>
+						<img src="./static/V05/barchart.svg" height="480">
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+							Springer
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Betriebswirtschaftliche Einsatzbereiche</h1>
+					<p><b>Vertriebscontrolling: Klassischer Einsatzbereich</b></p>
+					<ul>
+						<li>Analyse von Erlösen und Absatzmengen</li>
+						<li>Zeit-, Kunden- und Artikeldimensionen</li>
+						<li>Vergleiche Ist-Zahlen vs. Planzahlen</li>
+						<li>Aufdecken von Abweichungsursachen</li>
+						<li>Integration externer demografische und makroökonomische Daten</li>
+						<li>80/20-Analysen</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
+					<figure>
+						<iframe data-src="static/V05/1993_Codd_OLAP.pdf" height="480" width="900"></iframe>
+						<figcaption>
+							Codd, Edgar F.; Codd, Sally B.; Salley, Clynch T. (1993): Providing OLAP (On-Line
+							Analytical Processing) to User-Analysts: An IT-Mandate, White Paper, o. O. 1993
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Zwölf Evaluationsregeln, die bei Erfüllung die OLAP-Fähigkeit von Informationssystemen
+						garantieren sollen.
+
+						Auch wenn die Ehrenhaftigkeit der Motivation, welche die Autoren zur Publikation der Regeln
+						veranlasst hat, heftig umstritten ist, sollen die Regeln schon wegen ihrer historischen
+						Bedeutung im folgenden dargestellt und erläutert werden.
+
+						Kritische Bewertung
+
+						Unscharfe Trennung zwischen fachlich konzeptionellen Anforderungen und technischen
+						Realisierungsaspekten.
+						Regel 6: Bestimmte Dimensionen jedoch - wie z. B. die Zeitdimension - unterscheiden sich
+						erheblich von den übrigen Dimensionen.
+						Breiter Interpretationsspielraum.
+
+						So bleibt etwa unklar, ob die konzeptionellen mehrdimensionalen Datensichten auch eine zwingende
+						Nutzung spezieller Speicher- und Datenverwaltungstechniken impliziert oder ob die verbreiteten
+						relationalen Datenbanksysteme auch hier zum Einsatz gelangen können.
+
+						#############################
+
+						Andere Ansätze: FASMI: Fast Analysis of Shared Multidimensional Information (Pendse/Creeth)
+						- max. 20 Sekunden Antwortzeit
+						- Die Analysefunktionalität soll die Anforderungen erfüllen, die im spezifischen Anwendungsfall
+						benötigt werden.
+						- (finanz-) mathematische oder statistische Berechnungen
+						- „What-If-“ und „How to achieve“-Betrachtungen
+						- erweiterte Navigationshilfen (Drill-Down, Roll-Up)
+						- Trendanalysen
+
+						- intuitive Bedienung per Maus
+						- Als zentrales Kriterium ebenfalls die konzeptionelle Multidimensionalität mit der
+						Unterstützung komplexer Hierarchien.
+
+						=> Begriff konnte sich aber in der breiten Öffentlichkeit nicht durchsetzen.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Regeln und Kriterien für OLAP Systeme - Codd</h1>
+					<ol class="r-fit-text">
+						<li>Multidimensionale Denkweise (Kernanforderungen):
+							<ol>
+								<li>Mehrdimensionale konzeptionelle Perspektiven</li>
+								<li>Grundprinzipien der gleichgestellten Dimensionen</li>
+								<li>Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg</li>
+								<li>Unbegrenzte Dimensions- und Aggregationsstufen</li>
+							</ol>
+						</li>
+						<li>Zweck: Schnelle Ad-Hoc-Analysen (Kernanforderung):
+							<ol>
+								<li>Stabile Antwortzeiten bei der Berichterstattung</li>
+							</ol>
+						</li>
+						<li>Technische Anforderungen:
+							<ol>
+								<li>Transparenz</li>
+								<li>Zugriffsmöglichkeit</li>
+								<li>Mehrbenutzerfähigkeit</li>
+							</ol>
+						</li>
+						<li>Implementierungshinweise:
+							<ol>
+								<li>Client/Server Architektur</li>
+								<li>Dynamische Verwaltung „dünn besetzter“ Matrizen</li>
+							</ol>
+						</li>
+						<li>Sonstige Anforderungen:
+							<ol>
+								<li>Intuitive Datenmanipulation</li>
+								<li>Flexibles Berichtswesen</li>
+							</ol>
+						</li>
+					</ol>
+					<aside class="notes">
+						(1) Mehrdimensionale konzeptionelle Perspektiven
+						Mehrdimensionale Datenstrukturen, in denen der Anwender frei und flexibel navigieren kann.
+						(2) Transparenz
+						Homogene Benutzeroberfläche, die sich in die bestehende Arbeitsplatzumgebung einfügt.
+						Keine technischen Details.
+						Kein formaler Unterschied zwischen Informationseinheiten aus unterschiedlichen Quellen.
+						(3) Zugriffsmöglichkeit
+						Datenzugriff auf möglichst viele heterogene unternehmungsinterne und -externe Datenquellen und
+						Datenformate.
+						Offene Architektur. Konvertierungsregeln
+						Für den Anwender eine einheitliche, konsistente Datensicht gewährleisten
+						(4) Stabile Antwortzeiten bei der Berichterstattung
+						Den logischen Gedankenfluss und die Aufmerksamkeit des Systemanwenders auch bei komplexen
+						Abfragen nicht unnötig unterbrechen.
+						Selbst bei überproportionaler Zunahme der Anzahl der Dimensionen und/oder des Datenvolumens
+						sollten die Anwendungen keine signifikanten Änderungen der Antwortzeiten aufweisen.
+						(5) Client/Server Architektur
+						Speicherung und Zugriffe zentral statt auf lokalen Rechnern ausführen.
+						Es muss sowohl eine verteilte Programmausführung als auch eine verteilte Datenhaltung
+						realisierbar sein.
+						Insbesondere für den mobilen Einsatz auf Laptops ist eine Replizierung der Datenbestände zu
+						ermöglichen.
+						Auch muss der Zugriff auf die Datenbasis mit unterschiedlichen Front-End-Werkzeugen
+						gewährleistet sein.
+						Proprietäre Lösungen, bei denen Server- und Desktop-Komponenten aus einer Hand angeboten werden,
+						die jedoch dokumentierte Schnittstellen vermissen lassen, sind im Zeitalter offener Systeme
+						nicht mehr gefragt.
+						(6) Grundprinzipien der gleichgestellten Dimensionen
+						Die strukturelle und funktionale Äquivalenz der Dimensionen muss gewährleistet sein.
+						Es existiert ein einheitlicher Befehlsumfang zum Aufbauen, Strukturieren, Bearbeiten, Pflegen
+						und Auswerten der Dimensionen.
+						(7) Dynamische Verwaltung „dünn besetzter“ Matrizen
+						Nicht jedes Dimensionselement geht mit allen Elementen anderer Dimensionen werttragende
+						Verbindungen ein.
+						Beispiel: Nicht jedes Produkt einer Unternehmung wird in jedem Land auch angeboten.
+						(8) Mehrbenutzerfähigkeit
+						Sicherheitskonzept, abgestufte Benutzerprofile
+						(9) Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg
+						Über die verschiedenen Dimensionen hinweg werden Operationen für eine ausgereifte Datenanalyse
+						benötigt, z. B. zur Kennzahlenberechnung.
+						(10) Intuitive Datenmanipulation
+						Ergonomie, geringer Lernaufwand
+						Drill-Down, Drill-Up, Slicing, Dicing
+						(11) Flexibles Berichtswesen
+						Standardauswertungen und Ad-hoc-Auswertungen
+						(12) Unbegrenzte Dimensions- und Aggregationsstufen
+						Typisch: 15 - 20 Dimensionen
+					</aside>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Würfeldarstellung mehrdimensional strukturierter Daten</h2>
+					<img src="./static/V05/olap_navigation.svg" alt="">
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation</h2>
+					<img src="./static/V05/olap_navigation2.svg" alt="">
+					<aside class="notes">
+						Das geht selbst auf einem Sternschema mit SQL schlecht: Kann zwar 2dim Antworttabellen erzeugen.
+						Ich brauche aber zum flexiblen Navigieren Filtermöglichkeiten (Slicing) - Besser Excel Pivot
+						Tabelle oder anderem OLAP Werkzeug
+
+						Entsprechende Sichten auf den Datenbestand finden sich in fast allen multidimensionalen
+						Systemen.
+						Sie dienen entweder als Ausgangspunkt für weitergehende betriebswirtschaftliche Analysen, als
+						Einstieg für eine freie Navigation im Datenbestand oder als Standardbericht.
+
+						Nullzeilenunterdrückung
+
+						Benutzer kann navigieren (im Gegensatz zum klassischen Reporting).
+						Maus
+
+						Ranging: Beliebige Elemente der Zeilen- und Spaltenkopfdimensionen ein oder ausblenden.
+						Slicing
+					</aside>
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Rotation des Datenwürfels</h2>
+					<img src="./static/V05/olap_navigation3.svg" height="480">
+					<aside class="notes">
+						Drag and Drop.
+						Datenwürfel in alle Richtungen drehbar.
+
+						Abgebildet ist EINE Rotation!
+					</aside>
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Rotation des Datenwürfels</h2>
+					<img src="./static/V05/olap_navigation4.svg" height="480">
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Drill Down</h2>
+					<img src="./static/V05/olap_navigation5.svg" height="480">
+					<aside class="notes">
+						Hierarchieebenen
+						bis auf atomare Werte der Datenbasis
+
+						Roll-Up
+
+						Gebräuchliche Optionen der dynamischen Navigation
+
+						Sortierungen
+						Farbliche Kennzeichnungen
+					</aside>
+				</section>
+
+				<section>
+					<h1>Navigation</h1>
+					<h2>Präsentation und Navigation - Drill Across</h2>
+					<figure>
+						<img src="./static/V05/olap_navigation6.svg" height="480">
+						<figcaption>Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische
+							Anwendungen. Vieweg. 2010</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Cognos Powerplay</h2>
+					<img src="./static/V05/cognos_powerplay.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Cognos Powerplay</h2>
+					<img src="./static/V05/cognos_powerplay2.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Microsoft PowerBI</h2>
+					<img src="./static/V05/powerbi.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Erweiterungen handelsüblicher Standardsoftwarepakete</h2>
+					<p>Beispiel Palo</p>
+					<img src="./static/V05/palo.png" alt="">
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Pivottabellen</h2>
+					<figure>
+						<img src="./static/V05/pivot.png" alt="">
+						<figcaption>Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Frontend</h1>
+					<h2>Web Browser</h2>
+					<figure>
+						<img src="./static/V05/browser.png" alt="">
+						<figcaption class="tiny">Quelle: Vorlesung Datenanalyse - Prof. Dr. Gluchowski - TU Chemnitz
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten</h1>
+					<h2>Speicherung (logisch) multidimensionaler Daten</h2>
+					<figure>
+						<img src="./static/V05/speicherung_multidimensionaler_daten.svg" height="480">
+						<figcaption>Aus: Kemper, Baars, Mehanna. Business Intelligence - Grundlagen und praktische
+							Anwendungen. Vieweg. 2010</figcaption>
+					</figure>
+					<aside class="notes">
+						Kemper/Baars/Mehanna:
+						Es hat sich heute die Meinung etabliert, dass OLAP einen aus Benutzersicht mehrdimensionalen
+						Datenraum aufspannt, der eine flexible, benutzerfreundliche Ad-hoc-Analyse erlaubt. Die
+						physikalische Datenhaltung kann demnach losgelöst von der Benutzersicht erfolgen. Für die
+						Repräsentation der Daten können somit alle denkbaren technischen Formen der Datenhaltung
+						herangezogen werden, wobei primär relationale und multidimensionale Datenhaltungssysteme zum
+						Einsatz kommen.
+
+						Beim relationalen OLAP (R-OLAP) kommen Star- und Snowflake-Schemata auf Basis von klassischen,
+						standardisierten relationalen Datenbanksystemen zum Einsatz (vgl. auch Kapitel 2.4.2 und Kapitel
+						2.4.3). Die Vorteile dieser Variante liegen in der hohen Stabilität und Sicherheit in
+						Anwendungsbereichen mit hohem Datenvolumen und großen Benutzerzahlen.
+
+						Multidimensionale OLAP-Systeme (M-OLAP) verwenden herstellerabhängige, proprietäre
+						Datenbanksysteme, die speziell auf eine hohe Performance in multidimensionalen Datenstrukturen
+						ausgerichtet sind (vgl. Kapitel 2.3.2). Die Vorteile dieser Lösung liegen demnach vor allem in
+						der Flexibilität und in dem Antwortzeitverhalten.
+
+						Das hybride OLAP (H-OLAP) ist eine Variante, welche die Vorteile beider Techniken vereint. So
+						erlauben diese OLAP-Systeme einen benutzertransparenten Übergang von relationaler und
+						physikalisch mehrdimensionaler Datenhaltung. Üblicherweise werden in diesen Architekturen
+						M-OLAP-Techniken bei den hochverdichteten Datenbereichen verwendet, die sich durch geringes
+						Datenvolumen und eine eher überschaubare Anzahl von Benutzern auszeichnet. Wenn der Benutzer
+						durch Drilldown- Navigation in detailliertere Datenbereiche vorstößt, wechselt er
+						benutzertransparent in die relationale Datenhaltung.
+
+						How about analyzing business transactions data stored in operational systems such as enterprise
+						resource planning (ERP) systems or an operational data store (ODS)? Is that classified as OLAP?
+						No, it is not OLAP. It is business analysis, but it is not OLAP. For the analysis to be OLAP, it
+						needs to be performed against a dimensional data warehouse, either stored in relational format
+						or stored in multidimensional format.
+						What if it is not interactive, but only a one-way interaction such as reading and analyzing
+						reports? Is that OLAP? No, that is reporting, not OLAP. OLAP is interactive; in other words, the
+						business analyst queries, and the system responds, repeatedly, as illustrated in Figure 12-3.
+						The response time is typically within seconds, not hours (although certain OLAP scenarios take
+						hours).
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten</h1>
+					<h2>Speicherung (logisch) multidimensionaler Daten - SSAS</h2>
+					<img src="./static/V05/speicherung_multidimensionaler_daten2.png" alt="">
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+					<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
+					<h2>(physisch) multidimensionalen Datenbank </h2>
+					<ul>
+						<li>Datenbanksystem, das die auf konzeptioneller Ebene dargestellten multidimensionalen
+							Datenstrukturen auch in ihrer physischen Datenbank- und Speicherstruktur umsetzt
+							(Multidimensionales DBMS = MDBMS). </li>
+						<li>Multidimensionales OLAP (MOLAP)</li>
+						<li>Komprimierte , multidimensionale Arrays</li>
+						<li>Als File abgespeichert</li>
+						<li>Aggregate (über die Hierarchien) werden nach dem Laden durch die OLAP Engine berechnet &
+							gespeichert</li>
+						<li>Abfragesprachen: MDX </li>
+						<li>XML/A für administrative Aufgaben</li>
+					</ul>
+					<aside class="notes">
+						Rainardi 377:
+						The structure stores the aggregate values as well as the base values, typically in compressed
+						multidimensional array format, rather than in RDBMS tables. Aggregate values are precomputed
+						summaries of the base values. Examples of multidimensional databases are Microsoft Analysis
+						Services, Hyperion Essbase, and Cognos PowerCube. The other terms that people use for a
+						multidimensional database are hypercube, cube, OLAP cube, multidimensional database (abbreviated
+						as MDB, MDD, or MDDB), and multidimensional data store (MDDS).
+
+						Physically, an MDB is a file. To help you understand how an MDB file is internally structured,
+						you can visualize it as a matrix or a cube.
+
+						Although logically an MDB looks like a cube (for three dimensions) or a hypercube (for four or
+						more dimensions), physically it is stored as compressed multidimensional arrays with offset
+						positioning.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+					<h2>Multidimensionale Datenbanksysteme</h2>
+					<div class="r-fit-text">
+						<div class="grid_50">
+							<div>
+								<h3>Vorteile</h3>
+								<ul>
+									<li>Intuitiven Analysesprachen</li>
+									<li>Hohe Performanz komplexer analytischer Auswertungen</li>
+									<li>Vorberechnete Aggregate beschleunigen das Antwortzeitverhalten</li>
+									<li>Geringerer Speicherbedarf (Kompression, keine Indizierung)</li>
+									<li>Weniger Disk I/Os</li>
+								</ul>
+							</div>
+							<div>
+								<h3>Nachteile</h3>
+								<ul>
+									<li>Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)</li>
+									<li>Skaliert schlecht bei wachsender Zahl von Dimensionen</li>
+									<li>Herstellerabhängige, proprietäre Datenbanksysteme</li>
+									<li>Herausforderung: Datenwürfel mit dünn besetzte Dimensionen</li>
+									<li>Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable
+										Zeiträume in
+										Anspruch</li>
+									<li>Schulungsaufwand für neue Technologie</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						Multidimensional databases are typically used for business intelligence (BI), especially for
+						online analytical processing (OLAP) and data mining (DM). The advantages of using
+						multidimensional databases for OLAP and DM rather than a relational database such as a
+						dimensional data store (DSS) are that they use less disk space and have better performance. A
+						multidimensional database occupies less disk space compared to a relational dimensional database
+						(like DDS) because it is compressed and because it does not use indexing like a DDS. Instead, it
+						uses multidimensional offsetting to locate the data. A multidimensional database performs better
+						on OLAP operations because the aggregates are precalculated and because the way the data is
+						physically stored (compressed multidimensional array format with offset positioning) minimizes
+						the number of IO operations (disk reads), compared to storing tables in an RDBMS.
+
+						----------------------------------------------------------
+						Nachteile:
+						Direkter Schreibzugriff für den Endanwender (Relationale DB: Schwer wg. Summationstabellen &
+						Datenmodellierung) - Gut für What-If Betrachtungen.
+						Attributive Beschreibungen von Informationsobjekten kaum oder gar nicht vorgesehen.
+
+						On the other hand, the drawback of using a multidimensional database compared to using a
+						relational database is the processing time required for loading the database and calculating the
+						aggregate values. Whenever the relational source is updated, the MDB needs to be updated or
+						reprocessed; in other words, the aggregate cells need to be recalculated (it doesn’t have to be
+						done in real time). The second drawback is the scalability: an MDB may not scale well for a very
+						large database (multiple terabytes) or a large number of dimensions.
+
+						What do we use to manage multidimensional databases? The system that manages and operates
+						multidimensional databases is called a multidimensional database system (MDBMS).
+						Multidimensional database systems are also known as OLAP servers or cube engines.
+
+						Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)
+						Skaliert schlecht bei wachsender Zahl von Dimensionen
+						Herstellerabhängige, proprietäre Datenbanksysteme
+						Herausforderung: Datenwürfel mit dünn besetzte Dimensionen
+						Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable Zeiträume in Anspruch
+						Schulungsaufwand für neue Technologie
+						Nur wenige Plattformen (HW, OS) - Windows/Unix
+						Kaum parallele Prozessortechnologien nutzbar.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - MOLAP</h1>
+					<h2>Multidimensionale Datenbanksysteme</h2>
+					<figure>
+						<blockquote>
+							<b>Note:</b> The term <em>multidimensional database</em> is often confused with the term
+							<em>online analytical processing</em>, but these terms hafe different meanings. An MDB is
+							the
+							database, and OLAP is the activity used to analyze the database. The confusion is aused by
+							the word
+							<em>OLAP cube</em>. An OLAP cube has the same meaning as an MDB; it means a multidimensional
+							database.
+						</blockquote>
+						<figcaption>
+							nach: V. Rainardi, Building a Data Warehouse: With Examples in SQL Server. Seite 58
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+					<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
+					<h2>(physisch) relationaler Datenbank </h2>
+					<ul>
+						<li>als zweidimensionale Objektdaten (Zweidimensionale Tabellen)</li>
+						<li>mehrdimensional verbunden durch Metadaten</li>
+						<li>in einem relationalen Server-Datenbanksystem (RDBMS)</li>
+						<li>ROLAP </li>
+						<li>Stern Schema</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+					<h2>Vorteile RDBMS</h2>
+					<ul>
+						<li>Bewährte Technologie</li>
+						<li>Know How</li>
+						<li>Standardisierte Datenbanksprache (SQL)</li>
+						<li>Viele Tools, Open Source</li>
+						<li>Skalierbar, Performance</li>
+						<li>Kompatibilität, Plattformunabhängigkeit</li>
+					</ul>
+
+					<aside class="notes">
+						Relationale Datenbanksysteme
+						Leistungsfähige Transaktionsverwaltungskomponenten koordinieren tausende elementarer Operationen
+						pro Sekunde, gewährleisten die Konsistenz der Daten und vermeiden lange Wartezeiten für die
+						angeschlossenen Benutzer.
+						Klassischer Einsatzbereich OLTP: Abarbeitung kurzer, wenige Tabellen betreffender Transaktionen.
+						Codd: Primär darauf ausgelegt, eine möglichst rasche und konsistenzgeprüfte Erfassung der
+						operativen Datenobjekte zu ermöglichen.
+						Ursprünglich nicht gedacht für die weitreichenden Anforderungen von Analyse und
+						Entscheidungsunterstützung.
+						Auch als Speicherkomponente eines multidimensionalen Informationssystems geeignet?
+
+						Seit vielen Jahren.
+						Terabyte beherrschbar.
+						SQL
+						Skalierbarkeit
+						Plattformunabhängigkeit (HW, OS)
+						Know How
+						Preiswerte Softwarewerkzeuge.
+						Höherer Verwaltungs-Overhead (Verbesserung durch Indextechniken)
+					</aside>
+				</section>
+
+				<section>
+					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
+					<div class="r-fit-text">
+						<div class="grid_50">
+							<div>
+								<h4>Sternschema allgemein</h4>
+								<ul>
+									<li>Mehrere Dimensionstabellen, die sich auf eine Faktentabelle beziehen</li>
+									<li>Die Faktentabelle enthält diejenigen Attribute, die die betrieblichen
+										Erfolgsfaktoren
+										messen</li>
+									<li>Jede 1:n Beziehung wird durch Schlüssel der Dimensionstabelle und Fremdschlüssel
+										der
+										Faktentabelle vermittelt</li>
+									<li>Die Dimensionstabellen enthalten meist symbolische und diskrete Attribute. Dies
+										erlaubt
+										die Auswahl, Zusammenfassung und Navigation der Fakten</li>
+								</ul>
+							</div>
+							<div>
+								<img src="./static/V05/ROLAP.svg" alt="">
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Speicherung mulidimensionaler Daten</h1>
+					<figure>
+						<iframe data-src="static/V05/1996_Colliat_OLAP.pdf" height="480" width="900"></iframe>
+						<figcaption>
+							Colliat, George. "OLAP, relational, and multidimensional database systems." ACM Sigmod
+							Record 25.3 (1996): 64-69.
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+			<section>
+
+				<section>
+					<h1>OLAP Server</h1>
+					<h2>General information</h2>
+					<figure>
+						<table style="font-size: 65%">
+							<thead>
+								<tr>
+									<th>OLAP server</th>
+									<th>Company</th>
+									<th><a href="https://en.wikipedia.org/wiki/Software_license"
+											title="Software license">License</a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Apache Doris
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/The_Apache_Software_Foundation"
+											title="The Apache Software Foundation">Apache Software Foundation</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Apache_License"
+											title="Apache License">Apache 2.0</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Druid" title="Apache Druid">Apache
+											Druid</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/The_Apache_Software_Foundation"
+											title="The Apache Software Foundation">Apache Software Foundation</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Apache_License"
+											title="Apache License">Apache 2.0</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Kylin" title="Apache Kylin">Apache
+											Kylin</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/The_Apache_Software_Foundation"
+											title="The Apache Software Foundation">Apache Software Foundation</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Apache_License"
+											title="Apache License">Apache 2.0</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Pinot" title="Apache Pinot">Apache
+											Pinot</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/The_Apache_Software_Foundation"
+											title="The Apache Software Foundation">Apache Software Foundation</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Apache_License"
+											title="Apache License">Apache 2.0</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/ClickHouse"
+											title="ClickHouse">ClickHouse</a>
+									</th>
+									<td><a rel="nofollow" class="external text"
+											href="https://clickhouse.com/">Clickhouse
+											Inc</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Apache_License"
+											title="Apache License">Apache 2.0</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Essbase" title="Essbase">Essbase</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/Oracle_Corporation"
+											title="Oracle Corporation">Oracle</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr style="background-color: #dc3b055d">
+									<th><a href="https://en.wikipedia.org/wiki/TM1">IBM
+											Cognos TM1</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/IBM" title="IBM">IBM</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/IcCube" title="IcCube">icCube</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/IcCube" title="IcCube">icCube</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Jedox" title="Jedox">Jedox OLAP
+											Server</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/Jedox" title="Jedox">Jedox</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Kyvos" title="Kyvos">Kyvos</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/Kyvos_Insights"
+											title="Kyvos Insights">Kyvos
+											Insights</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+
+								<tr style="background-color: #dc3b055d">
+									<th><a href="https://en.wikipedia.org/wiki/Microsoft_Analysis_Services"
+											title="Microsoft Analysis Services">Microsoft Analysis Services</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/Microsoft"
+											title="Microsoft">Microsoft</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Mondrian_OLAP_server"
+											title="Mondrian OLAP server">Mondrian OLAP
+											server</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/Pentaho" title="Pentaho">Pentaho</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Eclipse_Public_License"
+											title="Eclipse Public License">EPL</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Oracle_OLAP" title="Oracle OLAP">Oracle
+											Database OLAP Option</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/Oracle_Corporation"
+											title="Oracle Corporation">Oracle</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/SAP_NetWeaver_Business_Intelligence"
+											NetWeaver Business Intelligence">SAP
+											NetWeaver BW</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/SAP_AG" title="SAP AG">SAP</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/SAS_System" title="SAS System">SAS OLAP
+											Server</a>
+									</th>
+									<td><a href="https://en.wikipedia.org/wiki/SAS_Institute" title="SAS Institute">SAS
+											Institute</a>
+									</td>
+									<td><a href="https://en.wikipedia.org/wiki/Proprietary_software"
+											title="Proprietary software">Proprietary</a>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot></tfoot>
+						</table>
+						<figcaption>
+							<a href="https://en.wikipedia.org/wiki/Comparison_of_OLAP_Servers">en.wikipedia.org
+								(Zugriff
+								am 14.04.2023)</a>
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Examples of an MDBMS are Microsoft SQL Server Analysis Services, Hyperion Essbase, and Cognos
+						PowerCube. Business Objects and MicroStrategy don’t have an MDBMS; they use ROLAP (I’ll talk
+						about ROLAP in the next section). The standard interface to connect to an MDBMS is XML for
+						Analysis (http://www. xmlforanalysis.com/), which is known as XMLA. For example, using SQL
+						Server Reporting Services, we can connect not only to Analysis Services cubes but also to
+						Hyperion Essbase cubes using XMLA. Microsoft, Hyperion (now owned by Oracle), SAP, and SAS
+						support XMLA. ADOMD.NET is a .NET data provider that uses XMLA to communicate the analytical
+						data sources.
+
+						Examples of OLAP tools are SSAS, Cognos BI 8 Analysis, Business Objects XI Release 2 Voyager,
+						and ProClarity Analytics 6.
+
+						An example of ROLAP is MicroStrategy OLAP Services. Examples of MOLAP are Cognos BI 8 Analysis
+						and ProClarity Analytics 6. Microsoft SQL Server Analysis Services (SSAS) supports both ROLAP
+						and MOLAP, plus it supports Hybrid Online Analytical Processing (HOLAP). HOLAP uses both
+						relational and multidimensional databases. SSAS databases can store the data in a relational
+						database, a multidimensional database, or both. When we set SSAS to store the data in HOLAP
+						mode, the base data (leaf level) is stored in SQL Server relational database tables, and the
+						aggregate data is stored in an MDB.
+					</aside>
+				</section>
+				<section>
+					<h1>OLAP Server</h1>
+					<h2>Data Storage Modes</h2>
+					<figure>
+						<table style="font-size: 55%">
+
+							<thead>
+								<tr>
+									<th>OLAP server
+									</th>
+									<th><a href="https://en.wikipedia.org/wiki/MOLAP" title="MOLAP">MOLAP</a>
+									</th>
+									<th><a href="https://en.wikipedia.org/wiki/ROLAP" title="ROLAP">ROLAP</a>
+									</th>
+									<th><a href="https://en.wikipedia.org/wiki/HOLAP" title="HOLAP">HOLAP</a>
+									</th>
+									<th>Offline
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Apache Doris
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Druid" title="Apache Druid">Apache
+											Druid</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Kylin" title="Apache Kylin">Apache
+											Kylin</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+									<td>Yes
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Pinot" title="Apache Pinot">Apache
+											Pinot</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/ClickHouse"
+											title="ClickHouse">ClickHouse</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Essbase" title="Essbase">Essbase</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+									<td>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/IBM_Cognos_BI" Cognos BI">IBM
+											Cognos BI</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>
+									</td>
+								</tr>
+								<tr style="background-color: #dc3b055d">
+									<th><a href="https://en.wikipedia.org/wiki/TM1">IBM Cognos TM1</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+									<td><a rel="nofollow" class="external text"
+											href="http://www-01.ibm.com/support/knowledgecenter/SSVJ22_10.2.2/com.ibm.swg.ba.cognos.dsk_ug.10.2.2.doc/t_dsk_maintain_offline.html%23t_dsk_maintain_offline">Cognos
+											Insight Distributed mode</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/IcCube" title="IcCube">icCube</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+									<td><a rel="nofollow" class="external text"
+											href="http://www.iccube.com/support/documentation/user_guide/using/offline_cubes.html">Offline
+											Cubes</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Jedox" title="Jedox">Jedox OLAP
+											Server</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Kyvos" title="Kyvos">Kyvos</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+								</tr>
+								<tr style="background-color: #dc3b055d">
+									<th><a href="https://en.wikipedia.org/wiki/Microsoft_Analysis_Services"
+											title="Microsoft Analysis Services">Microsoft Analysis Services</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Local cubes,<br> <a href="https://en.wikipedia.org/wiki/PowerPivot">PowerPivot
+											for Excel</a>
+										,<br><a href="https://en.wikipedia.org/wiki/Power_BI">Power BI Desktop</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/MicroStrategy"
+											title="MicroStrategy">MicroStrategy Intelligence
+											Server</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td><a rel="nofollow" class="external text"
+											href="http://www.microstrategy.com/Software/Products/User_Interfaces/Office/">MicroStrategy
+											Office</a>,<br> <a rel="nofollow" class="external text"
+											href="http://www.microstrategy.com/Software/Products/Service_Modules/Report_Services/">Dynamic
+											Dashboards</a>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Mondrian_OLAP_server"
+											title="Mondrian OLAP server">Mondrian OLAP
+											server</a>
+									</th>
+									<td>No
+									</td>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Oracle_OLAP" title="Oracle OLAP">Oracle
+											Database OLAP Option</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>No
+									</td>
+									<td>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/SAP_NetWeaver_Business_Intelligence"
+											title="SAP NetWeaver Business Intelligence">SAP NetWeaver BW</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>No
+									</td>
+									<td>
+									</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/SAS_System" System">SAS OLAP
+											Server</a>
+									</th>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>Yes
+									</td>
+									<td>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot></tfoot>
+						</table>
+						<figcaption>
+							<a href="https://en.wikipedia.org/wiki/Comparison_of_OLAP_Servers">en.wikipedia.org
+								(Zugriff
+								am 14.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>OLAP Server</h1>
+					<h2>APIs and query languages</h2>
+					<figure>
+						<table style="font-size: 40%">
+							<thead>
+								<tr>
+									<th>OLAP server</th>
+									<th><a href="https://en.wikipedia.org/wiki/XML_for_Analysis"
+											title="XML for Analysis">XML for Analysis</a></th>
+									<th><a href="https://en.wikipedia.org/wiki/OLE_DB_for_OLAP"
+											title="OLE DB for OLAP">OLE DB for OLAP</a></th>
+									<th><a href="https://en.wikipedia.org/wiki/Multidimensional_Expressions"
+											title="Multidimensional Expressions">MDX</a></th>
+									<th><a href="https://en.wikipedia.org/wiki/Stored_procedures"
+											title="Stored procedures">Stored procedures</a></th>
+									<th>Custom functions</th>
+									<th><a href="https://en.wikipedia.org/wiki/SQL" title="SQL">SQL</a></th>
+									<th><a href="https://en.wikipedia.org/wiki/LINQ" title="LINQ">LINQ</a></th>
+									<th>Visualization</th>
+									<th><a href="https://en.wikipedia.org/wiki/JSON" title="JSON">JSON</a></th>
+									<th><a href="https://en.wikipedia.org/wiki/REST_API" title="REST API">REST API</a>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Apache Doris
+									</th>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Superset, Redash, Metabase, Tableau, Qlik, Pivot, PowerBI</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Druid" title="Apache Druid">Apache
+											Druid</a></th>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Druid SQL</td>
+									<td>No</td>
+									<td>Superset, <b>Pivot</b>, Redash</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Kylin" title="Apache Kylin">Apache
+											Kylin</a>
+									</th>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>
+									</td>
+									<td>Superset, Zeppelin, Tableau, Qlik, Redash, Microsoft Excel
+									</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Apache_Pinot" title="Apache Pinot">Apache
+											Pinot</a>
+									</th>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Superset, <b>Pivot</b>, Redash</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/ClickHouse"
+											title="ClickHouse">ClickHouse</a>
+									</th>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Superset, Zeppelin, Tableau, Qlik, Redash, DataLens</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Essbase" title="Essbase">Essbase</a></th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>SmartView (Excel-AddIn), Oracle Analytics Cloud, Narrative Reporting, Tableau,
+										IBM Cognos</td>
+									<td>?</td>
+									<td>Yes</td>
+								</tr>
+								<tr style="background-color: #dc3b055d">
+									<th><a href="https://en.wikipedia.org/wiki/TM1" title="TM1">IBM Cognos TM1</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>TM1 Web/TM1 Contributor, IBM Cognos Insight, IBM Performance Modeler, IBM Cognos
+										Cafe for Excel, Cognos BI, TM1 Perspectives for Excel
+									</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/IcCube" title="IcCube">icCube</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td><a href="https://en.wikipedia.org/wiki/Java_(programming_language)"
+											title="Java (programming language)">Java</a>, <a
+											href="https://en.wikipedia.org/wiki/R_(programming_language)"
+											title="R (programming language)">R</a></td>
+									<td>Yes</td>
+									<td>In the reporting</td>
+									<td>Yes</td>
+									<td>icCube reporting and all <a
+											href="https://en.wikipedia.org/wiki/XML_for_Analysis"
+											title="XML for Analysis">XMLA</a> compliant visualization tools like Excel, etc</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Jedox" title="Jedox">Jedox OLAP
+											Server</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Cube Rules, SVS Triggers</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Microsoft Excel, Qlik, Tableau, Jedox Web, Power BI</td>
+									<td>No</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Kyvos" title="Kyvos">Kyvos</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Kyvos Insights, Microsoft Excel, Qlik, Tableau, Power BI, MicroStrategy, IBM
+										Cognos, Business Objects, XLCubed, Looker, Altryx, and more
+									</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr style="background-color: #dc3b055d">
+									<th><a href="https://en.wikipedia.org/wiki/Microsoft_Analysis_Services"
+											title="Microsoft Analysis Services">Microsoft Analysis Services</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td><a href="https://en.wikipedia.org/wiki/.NET_Framework"
+											title=".NET Framework">.NET</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Microsoft Excel, SharePoint, Microsoft Power BI, and 70+ other visualization
+										tools</td>
+									<td>No</td>
+									<td>No</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/MicroStrategy"
+											title="MicroStrategy">MicroStrategy Intelligence Server</a>
+									</th>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Dossier, Dashboard, Reports</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Mondrian_OLAP_server"
+											title="Mondrian OLAP server">Mondrian OLAP server</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>?</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/Oracle_OLAP" title="Oracle OLAP">Oracle
+											Database OLAP Option</a>
+									</th>
+									<td>No</td>
+									<td>Yes</sup></td>
+									<td>Yes</sup></td>
+									<td><a href="https://en.wikipedia.org/wiki/Java_(programming_language)"
+											title="Java (programming language)">Java</a>, PL/SQL, <a
+											href="/w/index.php?title=OLAP_DML&amp;action=edit&amp;redlink=1" class="new"
+											title="OLAP DML (page does not exist)">OLAP DML</a></td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>?</td>
+									<td>?</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/SAP_NetWeaver_Business_Intelligence"
+											title="SAP NetWeaver Business Intelligence">SAP NetWeaver BW</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>?</td>
+									<td>?</td>
+									<td>?</td>
+								</tr>
+								<tr>
+									<th><a href="https://en.wikipedia.org/wiki/SAS_System" title="SAS System">SAS OLAP
+											Server</a>
+									</th>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>No</td>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Web Report Studio</td>
+									<td>?</td>
+									<td>?</td>
+								</tr>
+							</tbody>
+							<tfoot></tfoot>
+						</table>
+						<figcaption>
+							<a href="https://en.wikipedia.org/wiki/Comparison_of_OLAP_Servers">en.wikipedia.org
+								(Zugriff
+								am 14.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>SSAS</h1>
+					<p>Fertiger Cube in SSMS</p>
+					<div class="grid_50">
+						<img src="./static/V05/SSAS_1.png" alt="">
+						<img src="./static/V05/SSAS_2.png" alt="">
+					</div>
+				</section>
+
+				<section>
+					<h1>SSAS</h1>
+					<p>Cubestruktur in SSDT definieren</p>
+					<img src="./static/V05/SSAS_3.png" alt="">
+				</section>
+
+				<section>
+					<h1>SSAS</h1>
+					<p>Cubestruktur in SSDT definieren - Dimensionshierarchie</p>
+					<img src="./static/V05/SSAS_4.png" alt="">
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Azure Analysis Services</h1>
+					<figure>
+						<img src="./static/V05/Azure.png" alt="">
+						<figcaption><a
+								href="https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview">https://docs.microsoft.com/de-de/azure/analysis-services/analysis-services-overview</a>
+							(Zugriff am 20.10.2020)</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Azure Analysis Services</h1>
+					<figure>
+						<img src="./static/V05/Azure_2.png" alt="">
+						<figcaption><a
+								href="https://phantomdb.files.wordpress.com/2017/12/image.png">https://phantomdb.files.wordpress.com/2017/12/image.png</a>
+							(Zugriff am 20.10.2020)</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Zusammenfassung</h1>
+				<figure>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/yoE6bgJv08E" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe>
+					<figcaption>
+						<a href="https://www.youtube.com/watch?v=yoE6bgJv08E">Youtube</a>
+					</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h1>Literatur</h1>
+				<ul>
+					<li>Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+						Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+						Springer</li>
+				</ul>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
