@@ -217,8 +217,7 @@ CREATE TABLE vrs.payment (
 	staff_id INT,
 	rental_id INT,
 	amount DECIMAL(19,2),
-	payment_date DATETIME2,
-	last_update DATETIME2
+	payment_date DATETIME2
     );
 GO
 
