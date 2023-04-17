@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 587.3">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: ArialNarrow, Arial;
+        font-size: 37px;
+        letter-spacing: .02em;
+      }
+
+      .cls-2 {
+        font-size: 30px;
+      }
+
+      .cls-2, .cls-3 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        font-size: 42px;
+      }
+
+      .cls-4, .cls-5 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4, .cls-6 {
+        stroke-width: 3px;
+      }
+
+      .cls-5 {
+        stroke-width: 6.5px;
+      }
+
+      .cls-5, .cls-6 {
+        stroke-linecap: round;
+      }
+
+      .cls-6 {
+        fill: #fec9b8;
+        stroke: #dc3c05;
+        stroke-linejoin: round;
+      }
+    </style>
+  </defs>
+  <rect class="cls-6" x="74.29" y="145.97" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="74.29" y="210.27" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="74.29" y="274.56" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="138.59" y="145.97" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="138.59" y="210.27" width="64.3" height="64.3" rx="8.54" ry="8.54"/>
+  <rect class="cls-6" x="138.59" y="274.56" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="202.88" y="145.97" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="202.88" y="210.27" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="202.88" y="274.56" width="64.3" height="64.3"/>
+  <polygon class="cls-6" points="267.18 338.86 284.78 321.26 284.78 256.96 267.18 274.56 267.18 338.86"/>
+  <polygon class="cls-6" points="267.18 274.56 284.78 256.96 284.78 192.67 267.18 210.27 267.18 274.56"/>
+  <polygon class="cls-6" points="267.18 210.27 284.78 192.67 284.78 128.37 267.18 145.97 267.18 210.27"/>
+  <polygon class="cls-6" points="202.88 145.97 220.48 128.37 284.78 128.37 267.18 145.97 202.88 145.97"/>
+  <polygon class="cls-6" points="220.48 128.37 238.08 110.77 302.38 110.77 284.78 128.37 220.48 128.37"/>
+  <polygon class="cls-6" points="238.06 110.77 255.65 93.17 319.95 93.17 302.35 110.77 238.06 110.77"/>
+  <polygon class="cls-6" points="138.59 145.97 156.18 128.37 220.48 128.37 202.88 145.97 138.59 145.97"/>
+  <path class="cls-6" d="m161.85,122.7l9.35-9.35c1.65-1.65,3.89-2.58,6.23-2.58h52.72c2.93,0,4.39,3.54,2.32,5.61l-9.35,9.35c-1.69,1.69-3.98,2.64-6.37,2.64h-52.55c-2.96,0-4.44-3.58-2.35-5.67Z"/>
+  <polygon class="cls-6" points="173.76 110.77 191.36 93.17 255.65 93.17 238.06 110.77 173.76 110.77"/>
+  <polygon class="cls-6" points="74.29 145.97 91.89 128.37 156.18 128.37 138.59 145.97 74.29 145.97"/>
+  <polygon class="cls-6" points="91.89 128.37 109.49 110.77 173.78 110.77 156.18 128.37 91.89 128.37"/>
+  <polygon class="cls-6" points="109.46 110.77 127.06 93.17 191.36 93.17 173.76 110.77 109.46 110.77"/>
+  <polygon class="cls-6" points="284.78 192.67 302.38 175.07 302.38 110.77 284.78 128.37 284.78 192.67"/>
+  <path class="cls-6" d="m290.46,251.28l8.89-8.89c1.94-1.94,3.02-4.56,3.02-7.3v-51.98c0-2.97-3.59-4.45-5.68-2.35l-8.68,8.68c-2.07,2.07-3.24,4.89-3.24,7.82v51.68c0,2.97,3.59,4.45,5.68,2.35Z"/>
+  <polygon class="cls-6" points="284.78 321.25 302.38 303.65 302.38 239.36 284.78 256.96 284.78 321.25"/>
+  <polygon class="cls-6" points="302.35 175.1 319.95 157.5 319.95 93.2 302.35 110.8 302.35 175.1"/>
+  <polygon class="cls-6" points="302.35 239.39 319.95 221.79 319.95 157.5 302.35 175.1 302.35 239.39"/>
+  <polygon class="cls-6" points="302.35 303.68 319.95 286.08 319.95 221.79 302.35 239.39 302.35 303.68"/>
+  <line class="cls-4" x1="56.78" y1="143.59" x2="56.78" y2="341.24"/>
+  <line class="cls-4" x1="71.91" y1="356.36" x2="269.56" y2="356.36"/>
+  <line class="cls-4" x1="340.4" y1="289.12" x2="281.91" y2="347.61"/>
+  <text class="cls-2" transform="translate(38.17 293.24) rotate(-90)"><tspan x="0" y="0">Region</tspan></text>
+  <text class="cls-2" transform="translate(114.07 387.44)"><tspan x="0" y="0">Produkt</tspan></text>
+  <text class="cls-2" transform="translate(321.79 356.67) rotate(-45)"><tspan x="0" y="0">Zeit</tspan></text>
+  <rect class="cls-6" x="756.61" y="148.07" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="756.61" y="212.37" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="756.61" y="276.67" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="820.91" y="148.07" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="820.91" y="212.37" width="64.3" height="64.3" rx="8.73" ry="8.73"/>
+  <rect class="cls-6" x="820.91" y="276.67" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="885.2" y="148.07" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="885.2" y="212.37" width="64.3" height="64.3"/>
+  <rect class="cls-6" x="885.2" y="276.67" width="64.3" height="64.3"/>
+  <polygon class="cls-6" points="949.5 340.97 967.1 323.37 967.1 259.07 949.5 276.67 949.5 340.97"/>
+  <polygon class="cls-6" points="949.5 276.67 967.1 259.07 967.1 194.77 949.5 212.37 949.5 276.67"/>
+  <polygon class="cls-6" points="949.5 212.37 967.1 194.77 967.1 130.48 949.5 148.07 949.5 212.37"/>
+  <polygon class="cls-6" points="885.2 148.07 902.8 130.48 967.1 130.48 949.5 148.07 885.2 148.07"/>
+  <polygon class="cls-6" points="902.8 130.48 920.4 112.88 984.7 112.88 967.1 130.48 902.8 130.48"/>
+  <polygon class="cls-6" points="920.38 112.88 937.98 95.28 1002.27 95.28 984.67 112.88 920.38 112.88"/>
+  <polygon class="cls-6" points="820.91 148.07 838.51 130.48 902.8 130.48 885.2 148.07 820.91 148.07"/>
+  <path class="cls-6" d="m845,123.98l8.52-8.52c1.65-1.65,3.89-2.58,6.23-2.58h51.46c3.39,0,5.09,4.1,2.69,6.49l-8.47,8.47c-1.69,1.69-3.98,2.64-6.37,2.64h-51.38c-3.39,0-5.09-4.1-2.69-6.49Z"/>
+  <polygon class="cls-6" points="856.08 112.88 873.68 95.28 937.98 95.28 920.38 112.88 856.08 112.88"/>
+  <polygon class="cls-6" points="756.61 148.07 774.21 130.48 838.51 130.48 820.91 148.07 756.61 148.07"/>
+  <polygon class="cls-6" points="774.21 130.48 791.81 112.88 856.11 112.88 838.51 130.48 774.21 130.48"/>
+  <polygon class="cls-6" points="791.78 112.88 809.38 95.28 873.68 95.28 856.08 112.88 791.78 112.88"/>
+  <polygon class="cls-6" points="967.1 194.77 984.7 177.17 984.7 112.88 967.1 130.48 967.1 194.77"/>
+  <path class="cls-6" d="m973.06,253.11l9.05-9.05c1.66-1.66,2.59-3.91,2.59-6.26v-52.2c0-3.11-3.76-4.67-5.96-2.47l-9.08,9.08c-1.64,1.64-2.56,3.87-2.56,6.19v52.25c0,3.11,3.76,4.67,5.96,2.47Z"/>
+  <polygon class="cls-6" points="967.1 323.36 984.7 305.76 984.7 241.46 967.1 259.06 967.1 323.36"/>
+  <polygon class="cls-6" points="984.67 177.2 1002.27 159.6 1002.27 95.31 984.67 112.91 984.67 177.2"/>
+  <polygon class="cls-6" points="984.67 241.5 1002.27 223.9 1002.27 159.6 984.67 177.2 984.67 241.5"/>
+  <polygon class="cls-6" points="984.67 305.79 1002.27 288.19 1002.27 223.89 984.67 241.49 984.67 305.79"/>
+  <line class="cls-4" x1="739.11" y1="145.7" x2="739.11" y2="343.34"/>
+  <line class="cls-4" x1="754.23" y1="358.47" x2="951.88" y2="358.47"/>
+  <line class="cls-4" x1="1022.72" y1="291.23" x2="964.23" y2="349.72"/>
+  <text class="cls-2" transform="translate(720.49 301.19) rotate(-90)"><tspan x="0" y="0">Produkt</tspan></text>
+  <text class="cls-2" transform="translate(826.39 389.55)"><tspan x="0" y="0">Zeit</tspan></text>
+  <text class="cls-2" transform="translate(990.03 372.86) rotate(-45)"><tspan x="0" y="0">Region</tspan></text>
+  <g>
+    <line class="cls-5" x1="423.28" y1="221.79" x2="574.76" y2="221.79"/>
+    <polygon points="620.66 221.79 555.99 248.21 571.33 221.79 555.99 195.37 620.66 221.79"/>
+  </g>
+  <text class="cls-3" transform="translate(334.17 43.62)"><tspan x="0" y="0">Rotation (Pivoting)</tspan></text>
+  <text class="cls-1" transform="translate(332.94 453.73)"><tspan x="0" y="0">Rotation des Datenwürfels</tspan><tspan x="-30.92" y="38.48">durch Drehen oder Kippen, um</tspan><tspan x="-38.24" y="76.96">eine andere Perspektive auf die</tspan><tspan x="27.98" y="115.43">Daten zu ermöglichen.</tspan></text>
+</svg>
