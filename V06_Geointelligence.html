@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 06 - Geointelligence</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section class="center">
+				<h1 class="r-fit-text">Business Intelligence</h1>
+				<h2 class="r-fit-text">Geointelligence</h2>
+			</section>
+
+			<section>
+				<h1>Gliederung</h1>
+				<h2>Geointelligence</h2>
+				<ul>
+					<li>Einführung</li>
+					<li>Definition</li>
+					<li>Betriebswirtschaftliche Einsatzbereiche</li>
+					<li>Regeln und Kriterien für OLAP Systeme - Codd</li>
+					<li>Navigation</li>
+					<li>Frontend</li>
+					<li>Speicherung multidimensionaler Daten</li>
+					<ul>
+						<li>MOLAP</li>
+						<li>ROLAP</li>
+					</ul>
+					<li>OLAP Server</li>
+					<li>SSAS</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Einordnung</h1>
+				<figure>
+					<div class="r-stack">
+						<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+						<svg height="480" width="850">
+							<ellipse cx="720" cy="195" rx="70" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+						</svg>
+					</div>
+					<figcaption>
+						b.telligent Deutschland GmbH (2022)
+					</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h1>Literatur</h1>
+				<ul>
+					<li>Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
+						Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
+						Springer</li>
+				</ul>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>

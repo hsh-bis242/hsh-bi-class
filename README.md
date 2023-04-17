@@ -6,14 +6,14 @@ This repository contains the lecture notes for BIS-242 at Hannover University of
 There is a github action activated, which will automatically upload all pushes to the main branch to [bis-242.doerffler.com](http://bis-242.doerffler.com). We provide a link to each of the slide decks using [moodle](https://moodle.hs-hannover.de). We also upload a pdf of each slide deck to moodle.
 
 ## Best Practices / Style Guidelines
-### Mark things in images
+### Highlight things in an image
 You can combine the class "r-data-stack" and svg syntax to mark things on an image:
 
     <div class="r-stack">
-		  <img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
-			<svg height="480" width="850">
-			  <ellipse cx="720" cy="195" rx="70" ry="20" fill-opacity="0.0" style="stroke:var(--hsh_orange);stroke-width:2" />
-				</svg>
+	  <img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+		<svg height="480" width="850">
+		  <ellipse cx="720" cy="195" rx="70" ry="20" fill-opacity="0.0" style="stroke:var(--hsh_orange);stroke-width:2" />
+		</svg>
     </div>
 
 ### Quotation guidelines
@@ -22,9 +22,7 @@ Use `figure` and `figcaption` to quote an image:
     <figure>
 		<img src="./static/V05/barchart.svg" height="480">
 		<figcaption>
-          Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
-				  Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
-				  Springer
+          Gluchowski, (...)
 	  </figcaption>
 	</figure>
 
