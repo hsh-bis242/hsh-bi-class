@@ -70,34 +70,41 @@
 					</figcaption>
 				</figure>
 				<aside class="notes">
-					Vorwort:
+					<p>Vorwort:
 					OLAP Grundidee: Nutzung des Informationssystems im Dialogbetrieb
 					Antwortzeiten - Gedankenfluss
 					Mit OLTP Systemen nicht zu schaffen
-					Reporting bietet nur begrenzte Navigationsmöglichkeiten
+					Reporting bietet nur begrenzte Navigationsmöglichkeiten</p>
 
-					OLAP kann als Konzept verstanden werden, das dem Endbenutzer die Option eröffnet, eigene Hypothesen
+					<p>OLAP kann als Konzept verstanden werden, das dem Endbenutzer die Option eröffnet, eigene Hypothesen
 					über betriebswirtschaftliche Tatbestände und Zusammenhänge durch freie und intuitive Navigation im
-					verfügbaren Datenraum zu verifizieren.
+					verfügbaren Datenraum zu verifizieren.</p>
 					-------------------
 
-					Data Warehouse Ausgangspunkt für weiterführende und ggf. aufwendige Analysen
-					- Planung & Prognose
-					- Diagnose & Interpretation
-
-					Wurzeln: Klassische Systeme für die Analyse betriebswirtschaftlicher Daten
-					- Planungssysteme
-					- Systeme des Operations Research
-					- Systeme der künstlichen Intelligenz
-					- Statistikpakete
-
-					Hypothesenverifizierung
-					- aktive Rolle des Anwenders, da er die Überprüfung seiner Annahme unmittelbar am System vornimmt
-					- OLAP
-
-					Hypothesengenerierung
-					- System deckt Beziehungen zwischen Objekten auf
-					- Data Mining
+					<ul>
+						<li>Data Warehouse Ausgangspunkt für weiterführende und ggf. aufw&auml;ndige Analysen</li>
+						<ul>
+							<li>Planung & Prognose</li>
+							<li>Diagnose & Interpretation</li>
+						</ul>
+						<li>Wurzeln: Klassische Systeme für die Analyse betriebswirtschaftlicher Daten</li>
+						<ul>
+							<li>Planungssysteme</li>
+							<li>Systeme des Operations Research</li>
+							<li>Systeme der künstlichen Intelligenz</li>
+							<li>Statistikpakete</li>
+						</ul>
+						<li>Hypothesenverifizierung</li>
+						<ul>
+							<li>aktive Rolle des Anwenders, da er die Überprüfung seiner Annahme unmittelbar am System vornimmt</li>
+							<li>OLAP</li>
+						</ul>
+						<li>Hypothesengenerierung</li>
+						<ul>
+							<li>System deckt Beziehungen zwischen Objekten auf</li>
+							<li>Data Mining</li>
+						</ul>
+					</ul>
 				</aside>
 			</section>
 
@@ -609,7 +616,7 @@
 						</div>
 					</div>
 					<aside class="notes">
-						Multidimensional databases are typically used for business intelligence (BI), especially for
+						<p>Multidimensional databases are typically used for business intelligence (BI), especially for
 						online analytical processing (OLAP) and data mining (DM). The advantages of using
 						multidimensional databases for OLAP and DM rather than a relational database such as a
 						dimensional data store (DSS) are that they use less disk space and have better performance. A
@@ -618,33 +625,33 @@
 						uses multidimensional offsetting to locate the data. A multidimensional database performs better
 						on OLAP operations because the aggregates are precalculated and because the way the data is
 						physically stored (compressed multidimensional array format with offset positioning) minimizes
-						the number of IO operations (disk reads), compared to storing tables in an RDBMS.
+						the number of IO operations (disk reads), compared to storing tables in an RDBMS.</p>
 
-						----------------------------------------------------------
+						<p>----------------------------------------------------------
 						Nachteile:
 						Direkter Schreibzugriff für den Endanwender (Relationale DB: Schwer wg. Summationstabellen &
 						Datenmodellierung) - Gut für What-If Betrachtungen.
-						Attributive Beschreibungen von Informationsobjekten kaum oder gar nicht vorgesehen.
+						Attributive Beschreibungen von Informationsobjekten kaum oder gar nicht vorgesehen.</p>
 
-						On the other hand, the drawback of using a multidimensional database compared to using a
+						<p>On the other hand, the drawback of using a multidimensional database compared to using a
 						relational database is the processing time required for loading the database and calculating the
 						aggregate values. Whenever the relational source is updated, the MDB needs to be updated or
-						reprocessed; in other words, the aggregate cells need to be recalculated (it doesn’t have to be
+						reprocessed; in other words, the aggregate cells need to be recalculated (it doesn't have to be
 						done in real time). The second drawback is the scalability: an MDB may not scale well for a very
-						large database (multiple terabytes) or a large number of dimensions.
+						large database (multiple terabytes) or a large number of dimensions.</p>
 
-						What do we use to manage multidimensional databases? The system that manages and operates
+						<p>What do we use to manage multidimensional databases? The system that manages and operates
 						multidimensional databases is called a multidimensional database system (MDBMS).
-						Multidimensional database systems are also known as OLAP servers or cube engines.
+						Multidimensional database systems are also known as OLAP servers or cube engines.</p>
 
-						Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)
+						<p>Datenmenge auf kleinere bis mittlere Volumina beschränkt (wenige Terabyte)
 						Skaliert schlecht bei wachsender Zahl von Dimensionen
 						Herstellerabhängige, proprietäre Datenbanksysteme
 						Herausforderung: Datenwürfel mit dünn besetzte Dimensionen
 						Ladevorgänge bzw. Reorganisations-/Reindizierungsläufe nehmen inakzeptable Zeiträume in Anspruch
 						Schulungsaufwand für neue Technologie
 						Nur wenige Plattformen (HW, OS) - Windows/Unix
-						Kaum parallele Prozessortechnologien nutzbar.
+						Kaum parallele Prozessortechnologien nutzbar.</p>
 					</aside>
 				</section>
 
@@ -654,11 +661,9 @@
 					<figure>
 						<blockquote>
 							<b>Note:</b> The term <em>multidimensional database</em> is often confused with the term
-							<em>online analytical processing</em>, but these terms hafe different meanings. An MDB is
-							the
-							database, and OLAP is the activity used to analyze the database. The confusion is aused by
-							the word
-							<em>OLAP cube</em>. An OLAP cube has the same meaning as an MDB; it means a multidimensional
+							<em>online analytical processing</em>, but these terms have different meanings. An MDB is
+							the database, and OLAP is the activity used to analyze the database. The confusion is caused by
+							the word <em>OLAP cube</em>. An OLAP cube has the same meaning as an MDB; it means a multidimensional
 							database.
 						</blockquote>
 						<figcaption>
@@ -670,7 +675,7 @@
 				<section>
 					<h1>Speicherung multidimensionaler Daten - ROLAP</h1>
 					<p>Speicherung (logisch) multidimensionaler Daten in einer …</p>
-					<h2>(physisch) relationaler Datenbank </h2>
+					<h2>(physisch) relationalen Datenbank </h2>
 					<ul>
 						<li>als zweidimensionale Objektdaten (Zweidimensionale Tabellen)</li>
 						<li>mehrdimensional verbunden durch Metadaten</li>
@@ -941,24 +946,11 @@
 					</figure>
 					<aside class="notes">
 						Examples of an MDBMS are Microsoft SQL Server Analysis Services, Hyperion Essbase, and Cognos
-						PowerCube. Business Objects and MicroStrategy don’t have an MDBMS; they use ROLAP (I’ll talk
-						about ROLAP in the next section). The standard interface to connect to an MDBMS is XML for
-						Analysis (http://www. xmlforanalysis.com/), which is known as XMLA. For example, using SQL
-						Server Reporting Services, we can connect not only to Analysis Services cubes but also to
-						Hyperion Essbase cubes using XMLA. Microsoft, Hyperion (now owned by Oracle), SAP, and SAS
-						support XMLA. ADOMD.NET is a .NET data provider that uses XMLA to communicate the analytical
-						data sources.
+						PowerCube. Business Objects and MicroStrategy don't have an MDBMS; they use ROLAP (I'll talk
+						about ROLAP in the next section).
 
 						Examples of OLAP tools are SSAS, Cognos BI 8 Analysis, Business Objects XI Release 2 Voyager,
 						and ProClarity Analytics 6.
-
-						An example of ROLAP is MicroStrategy OLAP Services. Examples of MOLAP are Cognos BI 8 Analysis
-						and ProClarity Analytics 6. Microsoft SQL Server Analysis Services (SSAS) supports both ROLAP
-						and MOLAP, plus it supports Hybrid Online Analytical Processing (HOLAP). HOLAP uses both
-						relational and multidimensional databases. SSAS databases can store the data in a relational
-						database, a multidimensional database, or both. When we set SSAS to store the data in HOLAP
-						mode, the base data (leaf level) is stored in SQL Server relational database tables, and the
-						aggregate data is stored in an MDB.
 					</aside>
 				</section>
 				<section>
@@ -1219,6 +1211,15 @@
 								am 14.04.2023)</a>
 						</figcaption>
 					</figure>
+					<aside class="notes">
+						An example of ROLAP is MicroStrategy OLAP Services. Examples of MOLAP are Cognos BI 8 Analysis
+						and ProClarity Analytics 6. Microsoft SQL Server Analysis Services (SSAS) supports both ROLAP
+						and MOLAP, plus it supports Hybrid Online Analytical Processing (HOLAP). HOLAP uses both
+						relational and multidimensional databases. SSAS databases can store the data in a relational
+						database, a multidimensional database, or both. When we set SSAS to store the data in HOLAP
+						mode, the base data (leaf level) is stored in SQL Server relational database tables, and the
+						aggregate data is stored in an MDB.
+					</aside>
 				</section>
 
 				<section>
@@ -1506,6 +1507,14 @@
 								am 14.04.2023)</a>
 						</figcaption>
 					</figure>
+					<aside class="notes">
+						The standard interface to connect to an MDBMS is XML for
+						Analysis (http://www.xmlforanalysis.com/), which is known as XMLA. For example, using SQL
+						Server Reporting Services, we can connect not only to Analysis Services cubes but also to
+						Hyperion Essbase cubes using XMLA. Microsoft, Hyperion (now owned by Oracle), SAP, and SAS
+						support XMLA. ADOMD.NET is a .NET data provider that uses XMLA to communicate the analytical
+						data sources.
+					</aside>
 				</section>
 
 			</section>
