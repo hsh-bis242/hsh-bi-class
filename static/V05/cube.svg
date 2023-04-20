@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        letter-spacing: .04em;
+      }
+
+      .cls-3 {
+        font-family: ArialMT, Arial;
+        font-size: 23px;
+      }
+
+      .cls-4 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-5, .cls-2 {
+        font-family: Arial-BoldMT, Arial;
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      .cls-6 {
+        fill: none;
+      }
+
+      .cls-6, .cls-7, .cls-8, .cls-9 {
+        stroke-linecap: round;
+      }
+
+      .cls-6, .cls-9 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-7 {
+        fill: #fdb39b;
+      }
+
+      .cls-7, .cls-8 {
+        stroke: #dc3c05;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+
+      .cls-8 {
+        fill: #ffe4dc;
+      }
+
+      .cls-10 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-11 {
+        letter-spacing: -.04em;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="cls-8" x="260.18" y="251.14" width="159.1" height="159.1"/>
+    <rect class="cls-7" x="260.18" y="410.24" width="159.1" height="159.1"/>
+    <rect class="cls-8" x="260.18" y="569.33" width="159.1" height="159.1"/>
+    <rect class="cls-7" x="419.28" y="251.14" width="159.1" height="159.1"/>
+    <rect class="cls-8" x="419.28" y="410.24" width="159.1" height="159.1"/>
+    <rect class="cls-7" x="419.28" y="569.33" width="159.1" height="159.1"/>
+    <rect class="cls-8" x="578.38" y="251.14" width="159.1" height="159.1"/>
+    <rect class="cls-7" x="578.38" y="410.24" width="159.1" height="159.1"/>
+    <rect class="cls-8" x="578.38" y="569.33" width="159.1" height="159.1"/>
+    <polygon class="cls-7" points="737.47 728.43 781.02 684.88 781.02 525.78 737.47 569.33 737.47 728.43"/>
+    <polygon class="cls-8" points="737.47 569.33 781.02 525.78 781.02 366.69 737.47 410.24 737.47 569.33"/>
+    <polygon class="cls-7" points="737.47 410.24 781.02 366.69 781.02 207.59 737.47 251.14 737.47 410.24"/>
+    <polygon class="cls-7" points="578.38 251.14 621.93 207.59 781.02 207.59 737.47 251.14 578.38 251.14"/>
+    <polygon class="cls-8" points="621.93 207.59 665.47 164.04 824.57 164.04 781.02 207.59 621.93 207.59"/>
+    <polygon class="cls-7" points="665.41 164.04 708.96 120.49 868.05 120.49 824.51 164.04 665.41 164.04"/>
+    <polygon class="cls-8" points="419.28 251.14 462.83 207.59 621.93 207.59 578.38 251.14 419.28 251.14"/>
+    <polygon class="cls-7" points="462.83 207.59 506.38 164.04 665.47 164.04 621.93 207.59 462.83 207.59"/>
+    <polygon class="cls-8" points="506.31 164.04 549.86 120.49 708.96 120.49 665.41 164.04 506.31 164.04"/>
+    <polygon class="cls-7" points="260.18 251.14 303.73 207.59 462.83 207.59 419.28 251.14 260.18 251.14"/>
+    <polygon class="cls-8" points="303.73 207.59 347.28 164.04 506.38 164.04 462.83 207.59 303.73 207.59"/>
+    <polygon class="cls-7" points="347.22 164.04 390.76 120.49 549.86 120.49 506.31 164.04 347.22 164.04"/>
+    <polygon class="cls-8" points="781.02 366.69 824.57 323.14 824.57 164.04 781.02 207.59 781.02 366.69"/>
+    <polygon class="cls-7" points="781.02 525.78 824.57 482.24 824.57 323.14 781.02 366.69 781.02 525.78"/>
+    <polygon class="cls-8" points="781.02 684.86 824.57 641.32 824.57 482.22 781.02 525.77 781.02 684.86"/>
+    <polygon class="cls-7" points="824.51 323.21 868.05 279.66 868.05 120.57 824.51 164.11 824.51 323.21"/>
+    <polygon class="cls-8" points="824.51 482.31 868.05 438.76 868.05 279.66 824.51 323.21 824.51 482.31"/>
+    <polygon class="cls-7" points="824.51 641.39 868.05 597.84 868.05 438.74 824.51 482.29 824.51 641.39"/>
+    <text class="cls-3" transform="translate(298.16 325.42)"><tspan x="0" y="0">2039,70</tspan><tspan x="12.79" y="27">5.230</tspan></text>
+    <text class="cls-3" transform="translate(294.97 484.52)"><tspan x="0" y="0">4.500,60</tspan><tspan class="cls-4" x="10.44" y="27">1</tspan><tspan x="21.53" y="27">1.540</tspan></text>
+    <text class="cls-3" transform="translate(294.97 643.61)"><tspan x="0" y="0">8.067,15</tspan><tspan x="9.59" y="27">20.685</tspan></text>
+    <text class="cls-3" transform="translate(454.06 325.42)"><tspan x="0" y="0">3.753,36</tspan><tspan x="15.99" y="27">9.624</tspan></text>
+    <text class="cls-3" transform="translate(454.06 484.52)"><tspan x="0" y="0">1.412,19</tspan><tspan x="15.99" y="27">3.621</tspan></text>
+    <text class="cls-3" transform="translate(454.06 643.61)"><tspan x="0" y="0">9.697,35</tspan><tspan x="9.59" y="27">24.865</tspan></text>
+    <text class="cls-3" transform="translate(606.76 325.42)"><tspan x="0" y="0">23.463,00</tspan><tspan x="22.38" y="27">5.241</tspan></text>
+    <text class="cls-3" transform="translate(606.76 484.52)"><tspan x="0" y="0">12.417,50</tspan><tspan x="22.38" y="27">2.315</tspan></text>
+    <text class="cls-3" transform="translate(600.37 643.61)"><tspan x="0" y="0">246.181,50</tspan><tspan x="22.38" y="27">54.707</tspan></text>
+  </g>
+  <text class="cls-3" transform="translate(174.76 338.92)"><tspan x="0" y="0">Partner</tspan></text>
+  <text class="cls-3" transform="translate(78.96 194.05)"><tspan x="0" y="0">2007 - Q1</tspan></text>
+  <text class="cls-3" transform="translate(323.15 148.81)"><tspan x="0" y="0">M</tspan></text>
+  <text class="cls-3" transform="translate(279.87 193.78)"><tspan x="0" y="0">F</tspan></text>
+  <text class="cls-3" transform="translate(236.48 238.74)"><tspan x="0" y="0">J</tspan></text>
+  <text class="cls-3" transform="translate(172.18 498.02)"><tspan x="0" y="0">Katalog</tspan></text>
+  <text class="cls-3" transform="translate(173.47 657.11)"><tspan x="0" y="0">E-Shop</tspan></text>
+  <text class="cls-5" transform="translate(128.31 675.35) rotate(-90)"><tspan class="cls-1" x="0" y="0">Dimension </tspan><tspan class="cls-10" x="172.49" y="0">V</tspan><tspan class="cls-1" x="191.92" y="0">ertriebsweg</tspan></text>
+  <g>
+    <line class="cls-6" x1="901.99" y1="247.78" x2="727.47" y2="325.69"/>
+    <path d="m716.45,330.61c4.33-4.24,9.3-10.4,11.73-15.65l.74,10.09,7.02,7.28c-5.54-1.7-13.44-2.11-19.49-1.72Z"/>
+  </g>
+  <text class="cls-3" transform="translate(458.57 754.4)"><tspan x="0" y="0">1 kOhm</tspan></text>
+  <text class="cls-3" transform="translate(621.89 754.4)"><tspan x="0" y="0">250 μF</tspan></text>
+  <text class="cls-3" transform="translate(789.02 754.4)"><tspan x="0" y="0">Ebene Produkt</tspan></text>
+  <text class="cls-3" transform="translate(789.02 833.25)"><tspan x="0" y="0">Ebene </tspan><tspan class="cls-11" x="72.9" y="0">W</tspan><tspan x="93.75" y="0">arenuntergruppe</tspan></text>
+  <text class="cls-3" transform="translate(790.84 912.09)"><tspan x="0" y="0">Ebene </tspan><tspan class="cls-11" x="72.9" y="0">W</tspan><tspan x="93.75" y="0">arengruppe</tspan></text>
+  <text class="cls-3" transform="translate(292.43 754.4)"><tspan x="0" y="0">100 Ohm</tspan></text>
+  <polyline class="cls-6" points="339.73 764.43 339.73 785.59 419.28 785.59 498.83 785.59 498.83 764.43"/>
+  <line class="cls-6" x1="657.93" y1="764.43" x2="657.93" y2="785.59"/>
+  <line class="cls-6" x1="419.28" y1="785.59" x2="419.28" y2="806.75"/>
+  <line class="cls-6" x1="498.83" y1="864.43" x2="498.83" y2="885.59"/>
+  <polyline class="cls-6" points="419.28 843.27 419.28 864.43 657.93 864.43 657.93 843.27"/>
+  <line class="cls-6" x1="657.93" y1="785.59" x2="657.93" y2="806.75"/>
+  <line class="cls-6" x1="296.31" y1="140.57" x2="317.47" y2="140.57"/>
+  <line class="cls-6" x1="204.05" y1="185.81" x2="271.64" y2="185.81"/>
+  <line class="cls-6" x1="205.81" y1="230.51" x2="226.97" y2="230.51"/>
+  <g>
+    <line class="cls-6" x1="780.41" y1="746.17" x2="751.59" y2="746.17"/>
+    <polygon points="737.47 746.17 757.37 738.04 752.65 746.17 757.37 754.3 737.47 746.17"/>
+  </g>
+  <g>
+    <line class="cls-6" x1="780.41" y1="825.01" x2="751.59" y2="825.01"/>
+    <polygon points="737.47 825.01 757.37 816.88 752.65 825.01 757.37 833.14 737.47 825.01"/>
+  </g>
+  <g>
+    <line class="cls-6" x1="780.41" y1="903.85" x2="751.59" y2="903.85"/>
+    <polygon points="737.47 903.85 757.37 895.72 752.65 903.85 757.37 911.98 737.47 903.85"/>
+  </g>
+  <text class="cls-3" transform="translate(354.72 833.24)"><tspan x="0" y="0">Widerstände</tspan></text>
+  <text class="cls-3" transform="translate(923.53 261.56)"><tspan x="0" y="0">Umsatz</tspan></text>
+  <text class="cls-3" transform="translate(927.34 287.27)"><tspan x="0" y="0">Absatz</tspan></text>
+  <text class="cls-3" transform="translate(457.27 912.09)"><tspan x="0" y="0">Bauteile</tspan></text>
+  <text class="cls-3" transform="translate(579.92 833.24)"><tspan x="0" y="0">Kondensatoren</tspan></text>
+  <text class="cls-2" transform="translate(352.67 969.3)"><tspan x="0" y="0">Dimension Produkt</tspan></text>
+  <text class="cls-2" transform="translate(70.58 124.23)"><tspan x="0" y="0">Dimension Zeit</tspan></text>
+  <text class="cls-2" transform="translate(873.46 234.53)"><tspan x="0" y="0">Kennzahlen</tspan></text>
+  <line class="cls-9" x1="205.81" y1="230.51" x2="295.75" y2="140.57"/>
+</svg>
