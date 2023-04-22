@@ -21,9 +21,11 @@
 	<div class="reveal">
 		<div class="slides">
 
-			<section class="center">
-				<h1 class="r-fit-text">Business Intelligence</h1>
-				<h2 class="r-fit-text">Geointelligence</h2>
+			<section>
+				<div class="r-fit-text">
+					<h1>Business Intelligence</h1>
+					<h2>Geointelligence</h2>
+				</div>
 			</section>
 
 			<section>
@@ -33,9 +35,14 @@
 					<li>Einführung</li>
 					<li>Problembeschreibung</li>
 					<li>Anwendungsfälle</li>
-					<li>Technologien</li>
+					<li>Koordinatensysteme</li>
 					<li>Standardisierung</li>
-					<li>Datenformate</li>
+					<ul>
+						<li>Objekte</li>
+						<li>Methoden</li>
+						<li>Datenformate</li>
+					</ul>
+					<li>Technologien</li>
 					<li>Datenmodellierung</li>
 					<li>Datenquellen</li>
 				</ul>
@@ -60,33 +67,178 @@
 			<section>
 				<h1>Einf&uuml;hrung</h1>
 				<ul>
-					<li>R&auml;umliche (Spatial) Daten bieten oft großen Mehrwert bei Datenauswertungen</li>
+					<li>R&auml;umliche (Spatial) Daten bieten h&auml;ufig Mehrwert für Datenauswertungen</li>
 					<ul>
 						<li>Wetterdaten</li>
 						<li>Kartenmaterial</li>
 						<li>Demografie</li>
 						<li>Bewegungsdaten</li>
 					</ul>
-					<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden kommen dabei schnell an Ihre Grenzen</li>
+					<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden stoßen an Grenzen</li>
 					<li></li>
 				</ul>
 			</section>
 
 			<section>
-				<h1>Technologien</h1>
+				<h1>Problembeschreibung</h1>
+
+			</section>
+
+			<section>
+				<h1>Anwendungsfälle</h1>
+			</section>
+
+			<section>
+
+				<section>
+
+					<h1>Standardisierung</h1>
+					<img src="static/V06/Logo-OGC.svg" width="300">
+					<ul>
+						<li>Internationale gemeinnützige Organisation.</li>
+						<li>Gegründet 1994.</li>
+						<li>Legt <b>konsensual</b> allgemeing&uuml;ltige Standards für räumliche Daten und Dienste,
+							GIS-Datenverarbeitung und dem Teilen von Daten fest.</li>
+						<li>Besteht aus mehr als 370+ kommerziellen, gemeinnützigen, wissenschaftlichen und staatlichen
+							Organisationen weltweit.</li>
+					</ul>
+	
+					<aside class="notes">
+						<ul>
+							<li>Sorgt für eine erstaunliche Interoperabilit&auml;t zwischen unterschiedlichen Geoinformationssystemen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+
+					<h1>Standardisierung</h1>
+					<h2>ISO</h2>
+
+				</section>
+
+				<section>
+
+					<h1>Standardisierung - Klassen</h1>
+					<h2>Simple-Feature-Model</h2>
+					<figure>
+						<a href="https://www.ogc.org/standard/sfs/"><img src="static/V06/2020-Qgis-Simple_Feature_Model.png"></a>
+						<figcaption>
+							<a
+								href="https://docs.qgis.org/3.28/de/docs/training_manual/spatial_databases/simple_feature_model.html">QGIS
+								Documentation: Simple-Feature-Model</a>
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<ul>
+							<li>Bildet die Grundlage um räumliche Daten in SQL zu bearbeiten</li>
+							<li>Implementierung unter anderem in SQL Server und Postgres / Postgis</li>
+							<li>Definiert auch welche Methoden zum Vergleichen unterschiedlicher Objekte bereitgestellt werden müssen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+
+					<h1>Standardisierung</h1>
+					<h2>Methoden</h2>
+
+				</section>
+
+				<section>
+					<h1>Standardisierung - Datenformate</h1>
+					<ul>
+						<li><a href="https://gdal.org/index.html">GDAL/OGR</a> unterst&uuml;tzt 241 Datenformate (Stand 22.04.2023).</li>
+						<li>Unterscheidung zwischen raster- und vektorbasierten Datenformaten.</li>
+					</ul>
+					<figure>
+						<img src="static/V06/2019-Silva-Coira-RasterVsVector.png" height="450">
+						<figcaption>
+							<a href="https://doi.org/10.1371/journal.pone.0226943">Silva-Coira F, Paramá JR, Ladra S, López JR, Gutiérrez G (2020) Efficient processing of raster and vector data. PLoS ONE 15(1): e0226943.</a>
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<ul>
+							<li>Die meisten bekannten Grafikformate sind Rasterbasiert. Ausnahme: SVG (obviously)</li>
+							<li>Vektormodelle werden mit Points, Lines und Polygons aufgebaut</li>
+							<li>Rastermodelle werden aus Pixeln / Grid Cells aufgebaut</li>
+							<li>Rasterformate führen zu einem Pixel-Look</li>
+							<li>Unterscheidung zwischen Diskreten und Stetigen Rastern</li>
+								<ul>
+									<li>Diskrete Raster zur Beschreibung unterschiedlicher Kategorien (Wald = 1, Wasser = 2, Stadt = 3, Straße = 4)</li>
+									<li>Stetige Raster zur Beschreibung einer Variable in Abhängigkeit zueinander (Höhen, Temperaturen, etc.) </li>
+								</ul>
+							<li>Vorteile Vektor:</li>
+								<ul>
+									<li>Optisch oft ansprechender</li>
+									<li>Höhere Genauigkeit</li>
+									<li>Geeignet für Netzwerk- und Annäherungsanalysen</li>
+								</ul>
+							<li>Vorteile Raster:</li>
+								<ul>
+									<li>Höhere Performance</li>
+									<li>Berechnungen viel einfacher</li>
+								</ul>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+
+					<h1>Standardisierung - Datenformate</h1>
+					<h2>Geography Markup Language</h2>
+
+				</section>
+
+				<section>
+
+					<h1>Standardisierung - Datenformate</h1>
+					<h2>GeoJSON</h2>
+
+					<p><a href="https://datatracker.ietf.org/doc/html/rfc7946">Standard der IETF</a></p>
+
+				</section>
+
+				<section>
+
+					<h1>Standardisierung - Datenformate</h1>
+					<h2>ESRI Shapefile</h2>
+					<ul>
+						<li>Entworfen und gepflegt vom <a href="https://www.esri.com/content/dam/esrisites/sitecore-archive/Files/Pdfs/library/whitepapers/pdfs/shapefile.pdf">Environmental Systems Research Insitute, Inc. (ESRI)</a></li>
+					</ul>
+
+				</section>
 
 			</section>
 
 			<section>
 
-				<h1>Standardisierung</h1>
-				<h2>Simple-Feature-Model</h2>
-				<figure>
-					<img src="static/V06/2020-Qgis-Simple_Feature_Model.png">
-					<figcaption>
-						<a href="https://docs.qgis.org/3.28/de/docs/training_manual/spatial_databases/simple_feature_model.html">QGIS Documentation: Simple-Feature-Model</a>
-					</figcaption>
-				</figure>
+				<section>
+					<h1>Technologien</h1>
+					<h2>GDAL/OGR Library</h2>
+					<ul>
+						<li>Bibliothek zur Umwandlung verschiedener räumlicher Datenformate</li>
+						<li>Bildet die Grundlage vieler Tools zur Geodatenverarbeitung</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Technologien - Datenbanken</h1>
+
+				</section>
+
+				<section>
+					<h1>Technologien - Geodatenverarbeitung</h1>
+					<ul>
+						<li>Programmiersprachen (Python, Java, C#, R, etc.)</li>
+						<li>GIS-Software</li>
+						<li>BI-Tools (Power BI, Tableau, Qlik, etc.)</li>
+						<li>Webservices</li>
+					</ul>
+				</section>
+			
 			</section>
 
 			<section>
