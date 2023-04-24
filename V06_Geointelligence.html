@@ -33,8 +33,8 @@
 				<h2>Geointelligence</h2>
 				<ul>
 					<li>Einführung</li>
-					<li>Problembeschreibung</li>
-					<li>Anwendungsfälle</li>
+					<li>Problemdarstellung</li>
+					<li>Anwendungsf&auml;lle</li>
 					<li>Koordinatensysteme</li>
 					<li>Standardisierung</li>
 					<ul>
@@ -75,17 +75,157 @@
 						<li>Bewegungsdaten</li>
 					</ul>
 					<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden stoßen an Grenzen</li>
-					<li></li>
 				</ul>
 			</section>
 
 			<section>
-				<h1>Problembeschreibung</h1>
+				<h1>Problemdarstellung</h1>
 
 			</section>
 
 			<section>
 				<h1>Anwendungsfälle</h1>
+				<div class="grid">
+					<div class="griditem">
+						<ul>
+							<li>Darstellung von Informationen mit Raumbezug</li>
+							<li>Ergänzung bestehender Datensätze um Daten mit Raumbezug</li>
+							<li>Abbildung räumlicher Zusammenhänge als Datensatz</li>
+							<li>Navigation</li>
+							<li>Tracking</li>
+						</ul>
+					</div>
+					<div class="griditem">
+						<figure>
+							<img src="static/V06/2012-Alastair-Floorplan.png">
+							<figcaption>
+								Alastair, A., Pro Spatial with SQL Server 2012, London 2012
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Koordinatensysteme - Projektion der Erdkugel</h1>
+					<figure>
+						<img src="static/V06/2012-Alastair-Project3DModel.png" height="240">
+						<img src="static/V06/2012-Alastair-ProjectedCoordinateSystem.png" height="240">
+						<figcaption>
+							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Koordinatensysteme - Notation von Koordinaten</h1>
+
+					<ul style="font-size:smaller">
+
+						<figure style="float:right">
+							<img src="static/V06/2012-Alastair-GeographicCoordinateSystem.png">
+							<figcaption>
+								Alastair, A., Pro Spatial with SQL Server 2012, London 2012
+							</figcaption>
+						</figure>
+
+						<li>Breiten- und Längenkoordinaten sind Winkel und werden normalerweise in Grad
+							angegeben.</li>
+						<li>Längenwerte (Longitude), gemessen ab einem willkürlich festgelegten
+							Nullmeridian, reichen von -180° bis +180°.</li>
+						<li>Breitenwerte (Latitude), vom Äquator aus gemessen, reichen von -90° (Südpol)
+							bis
+							+90° (Nordpol).</li>
+						<li>Längengrade östlich des Nullmeridians werden normalerweise als positive
+							Werte
+							angegeben oder mit dem Buchstaben "E".</li>
+						<li>Die Längengrade westlich des Nullmeridians werden als negative Werte
+							angegeben
+							oder mit dem Suffix "W".</li>
+						<li>Ebenso werden die Breitengrade nördlich des Äquators als positive Werte oder
+							mit
+							"N" ausgedrückt,</li>
+						<li>während die südlich des Äquators gelegenen Breitengrade negativ sind oder
+							mit
+							dem Buchstaben "S" bezeichnet werden.</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h1>Koordinatensysteme - Notation von Koordinaten</h1>
+					<div class="r-fit-text">
+						<p>Es gibt verschiedene Schreibweisen für Koordinaten</p>
+						<ol>
+							<li>Meistverbreitet ist das DMS-System, auch als Sexagesimalformat bekannt. Jeder Grad wird
+								in 60 Minuten unterteilt. Jede Minute ist wiederum in 60 Sekunden unterteilt:
+								<b>51°15'32”</b>
+							</li>
+							<li>In GPS-Geräten werden häufig die Minuten in dezimaler Form ausgegeben:
+								<b>51:15.53333333</b>
+							</li>
+							<li>In der dezimalen Schreibweise werden einfach die Grade in deziamler Form dargestellt:
+								<b>51.25888889</b>
+							</li>
+						</ol>
+						<blockquote>Degrees + (Minutes / 60) + (Seconds / 3600) = Decimal Degrees</blockquote>
+					</div>
+				</section>
+
+				<section>
+					<h1>Koordinatensysteme - Geoid</h1>
+					<figure>
+						<div class="grid">
+							<div class="griditem">
+								<img src="static/V06/2012-Alastair-Geoid.png">
+							</div>
+							<div class="griditem">
+								<table style="font-size:smaller">
+									<thead>
+										<tr>
+											<th>Referenzsystem</th>
+											<th>Einsatzgebiet</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>Airy (1830)</th>
+											<td>Great Britain</td>
+										</tr>
+										<tr>
+											<th>Bessel (1841)</th>
+											<td>Czechoslovakia,<br>
+												Japan,<br>
+												South Korea</td>
+										</tr>
+										<tr>
+											<th>Clarke (1880)</th>
+											<td>Africa</td>
+										</tr>
+										<tr>
+											<th>NAD 27</th>
+											<td>North America</td>
+										</tr>
+										<tr>
+											<th>NAD 83</th>
+											<td>North America</td>
+										</tr>
+										<tr style="background-color: #dc3b055d">
+											<th>WGS 84</th>
+											<td>Global</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<figcaption>
+							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 
 			<section>
@@ -99,22 +239,19 @@
 						<li>Gegründet 1994.</li>
 						<li>Legt <b>konsensual</b> allgemeing&uuml;ltige Standards für räumliche Daten und Dienste,
 							GIS-Datenverarbeitung und dem Teilen von Daten fest.</li>
-						<li>Besteht aus mehr als 370+ kommerziellen, gemeinnützigen, wissenschaftlichen und staatlichen
-							Organisationen weltweit.</li>
+						<li>Setzt sich aus mehr als 370+ kommerziellen, gemeinnützigen, wissenschaftlichen und
+							staatlichen
+							Organisationen weltweit zusammen.</li>
 					</ul>
-	
+
 					<aside class="notes">
 						<ul>
-							<li>Sorgt für eine erstaunliche Interoperabilit&auml;t zwischen unterschiedlichen Geoinformationssystemen</li>
+							<li>Sorgt f&uuml;r Interoperabilit&auml;t zwischen unterschiedlichen Geoinformationssystemen
+							</li>
+							<li>Im Kontext Standardisierung kommt häufig ISO/TC (Technical Committee) 211 zur Sprache
+							</li>
 						</ul>
 					</aside>
-				</section>
-
-				<section>
-
-					<h1>Standardisierung</h1>
-					<h2>ISO</h2>
-
 				</section>
 
 				<section>
@@ -122,7 +259,8 @@
 					<h1>Standardisierung - Klassen</h1>
 					<h2>Simple-Feature-Model</h2>
 					<figure>
-						<a href="https://www.ogc.org/standard/sfs/"><img src="static/V06/2020-Qgis-Simple_Feature_Model.png"></a>
+						<a href="https://www.ogc.org/standard/sfs/"><img
+								src="static/V06/2020-Qgis-Simple_Feature_Model.png"></a>
 						<figcaption>
 							<a
 								href="https://docs.qgis.org/3.28/de/docs/training_manual/spatial_databases/simple_feature_model.html">QGIS
@@ -134,7 +272,8 @@
 						<ul>
 							<li>Bildet die Grundlage um räumliche Daten in SQL zu bearbeiten</li>
 							<li>Implementierung unter anderem in SQL Server und Postgres / Postgis</li>
-							<li>Definiert auch welche Methoden zum Vergleichen unterschiedlicher Objekte bereitgestellt werden müssen</li>
+							<li>Definiert auch welche Methoden zum Vergleichen unterschiedlicher Objekte bereitgestellt
+								werden müssen</li>
 						</ul>
 					</aside>
 				</section>
@@ -143,19 +282,52 @@
 
 					<h1>Standardisierung</h1>
 					<h2>Methoden</h2>
+					<figure>
+						<div class="grid">
+							<div class="griditem">
+								<img src="static/V06/2012-Alastair-GeometrieRelationships.png" height="480">
+							</div>
+							<div class="griditem">
+								<img src="static/V06/2012-Alastair-STIntersection.png" height="480">
+							</div>
+						</div>
+						<figcaption>
+							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
+						</figcaption>
+					</figure>
+					<!--<table>
+						<thead>
+							<tr>
+								<th>Methode</th>
+								<th>Beschreibung</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>STEquals()</th>
+								<td>Test ob beide Geometrien aus den selben Punkten bestehen.</td>
+							</tr>
+							<tr>
+
+							</tr>
+						</tbody>
+					</table>-->
 
 				</section>
 
 				<section>
 					<h1>Standardisierung - Datenformate</h1>
 					<ul>
-						<li><a href="https://gdal.org/index.html">GDAL/OGR</a> unterst&uuml;tzt 241 Datenformate (Stand 22.04.2023).</li>
+						<li><a href="https://gdal.org/index.html">GDAL/OGR</a> unterst&uuml;tzt 241 Datenformate (Stand
+							22.04.2023).</li>
 						<li>Unterscheidung zwischen raster- und vektorbasierten Datenformaten.</li>
 					</ul>
 					<figure>
 						<img src="static/V06/2019-Silva-Coira-RasterVsVector.png" height="450">
 						<figcaption>
-							<a href="https://doi.org/10.1371/journal.pone.0226943">Silva-Coira F, Paramá JR, Ladra S, López JR, Gutiérrez G (2020) Efficient processing of raster and vector data. PLoS ONE 15(1): e0226943.</a>
+							<a href="https://doi.org/10.1371/journal.pone.0226943">Silva-Coira F, Paramá JR, Ladra S,
+								López JR, Gutiérrez G (2020) Efficient processing of raster and vector data. PLoS ONE
+								15(1): e0226943.</a>
 						</figcaption>
 					</figure>
 
@@ -166,21 +338,23 @@
 							<li>Rastermodelle werden aus Pixeln / Grid Cells aufgebaut</li>
 							<li>Rasterformate führen zu einem Pixel-Look</li>
 							<li>Unterscheidung zwischen Diskreten und Stetigen Rastern</li>
-								<ul>
-									<li>Diskrete Raster zur Beschreibung unterschiedlicher Kategorien (Wald = 1, Wasser = 2, Stadt = 3, Straße = 4)</li>
-									<li>Stetige Raster zur Beschreibung einer Variable in Abhängigkeit zueinander (Höhen, Temperaturen, etc.) </li>
-								</ul>
+							<ul>
+								<li>Diskrete Raster zur Beschreibung unterschiedlicher Kategorien (Wald = 1, Wasser = 2,
+									Stadt = 3, Straße = 4)</li>
+								<li>Stetige Raster zur Beschreibung einer Variable in Abhängigkeit zueinander (Höhen,
+									Temperaturen, etc.) </li>
+							</ul>
 							<li>Vorteile Vektor:</li>
-								<ul>
-									<li>Optisch oft ansprechender</li>
-									<li>Höhere Genauigkeit</li>
-									<li>Geeignet für Netzwerk- und Annäherungsanalysen</li>
-								</ul>
+							<ul>
+								<li>Optisch oft ansprechender</li>
+								<li>Höhere Genauigkeit</li>
+								<li>Geeignet für Netzwerk- und Annäherungsanalysen</li>
+							</ul>
 							<li>Vorteile Raster:</li>
-								<ul>
-									<li>Höhere Performance</li>
-									<li>Berechnungen viel einfacher</li>
-								</ul>
+							<ul>
+								<li>Höhere Performance</li>
+								<li>Berechnungen viel einfacher</li>
+							</ul>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +363,9 @@
 
 					<h1>Standardisierung - Datenformate</h1>
 					<h2>Geography Markup Language</h2>
-
+					<p>
+						XML-basierte Auszeichnungssprache
+					</p>
 				</section>
 
 				<section>
@@ -206,7 +382,9 @@
 					<h1>Standardisierung - Datenformate</h1>
 					<h2>ESRI Shapefile</h2>
 					<ul>
-						<li>Entworfen und gepflegt vom <a href="https://www.esri.com/content/dam/esrisites/sitecore-archive/Files/Pdfs/library/whitepapers/pdfs/shapefile.pdf">Environmental Systems Research Insitute, Inc. (ESRI)</a></li>
+						<li>Entworfen und gepflegt vom <a
+								href="https://www.esri.com/content/dam/esrisites/sitecore-archive/Files/Pdfs/library/whitepapers/pdfs/shapefile.pdf">Environmental
+								Systems Research Insitute, Inc. (ESRI)</a></li>
 					</ul>
 
 				</section>
@@ -238,7 +416,32 @@
 						<li>Webservices</li>
 					</ul>
 				</section>
-			
+
+			</section>
+
+			<section>
+				<h1>Datenmodellierung</h1>
+				<h2>Am Beispiel Open Street Map</h2>
+			</section>
+
+			<section>
+				<h1>Datenquellen</h1>
+				<ul>
+					<li>Wetterdaten: <a href="https://opendata.dwd.de/">Deutscher Wetterdienst</a></li>
+					<li>Kartendaten: <a
+							href="https://gdz.bkg.bund.de/index.php/default/digitale-geodaten.html">Bundesamt für
+							Kartographie und Geodäsie</a></li>
+					<li>Demografiedaten</li>
+					<ul>
+						<li><a href="https://www.destatis.de/DE/Home/_inhalt.html">Statistisches Bundesamt</a></li>
+						<li><a href="https://ec.europa.eu/eurostat/de/web/gisco">GISCO</a></li>
+					</ul>
+					<li>Geolocation-Dienste</li>
+					<ul>
+						<li><a href="https://maps.google.de">Google Maps</a></li>
+						<li><a href="https://www.openstreetmap.org">OpenStreetMap</a></li>
+					</ul>
+				</ul>
 			</section>
 
 			<section>
