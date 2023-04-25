@@ -66,26 +66,41 @@
 
 			<section>
 				<h1>Einf&uuml;hrung</h1>
-				<ul>
-					<li>R&auml;umliche (Spatial) Daten bieten h&auml;ufig Mehrwert für Datenauswertungen</li>
+				<figure>
+					<img src="static/V06/2019-HSH-Studidashboard-Geodaten.png" height="480">
+					<figcaption>
+						Studentenprojekt der Hochschule Hannover im Sommersemester 2019
+					</figcaption>
+				</figure>
+				<aside class="notes">
 					<ul>
-						<li>Wetterdaten</li>
-						<li>Kartenmaterial</li>
-						<li>Demografie</li>
-						<li>Bewegungsdaten</li>
+						<li>R&auml;umliche (Spatial) Daten bieten h&auml;ufig Mehrwert für Datenauswertungen</li>
+						<ul>
+							<li>Wetterdaten</li>
+							<li>Kartenmaterial</li>
+							<li>Demografie</li>
+							<li>Bewegungsdaten</li>
+						</ul>
+						<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden stoßen an Grenzen</li>
 					</ul>
-					<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden stoßen an Grenzen</li>
-				</ul>
+				</aside>
 			</section>
 
 			<section>
 				<h1>Problemdarstellung</h1>
+				<h2>Am Beispiel eines Kundenprojektes</h2>
+				<img src="static/V06/2018-Cirkel-VehicleDataStream.png">
 				<aside class="notes">
 					<ul>
-						<li>Gegeben: Datensatz mit Fahrzeugkoordinaten alle ~5sek</li>
+						<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle 5Sek
+							ein Standort</li>
 						<li>Gesucht: Höhenunterschiede auf der Strecke (Bremsbelastung)</li>
 						<li>Werkzeug der Wahl: R mit "raster"-Package</li>
-						<li></li>
+						<li>Herausforderungen:</li>
+						<ul>
+							<li>Daten lagen in SQL Server Tabellen vor.</li>
+							<li>SQL Server hatten keine Internetverbindung</li>
+						</ul>
 					</ul>
 				</aside>
 			</section>
@@ -496,6 +511,7 @@
 				<section>
 					<h1>Technologien</h1>
 					<h2>GDAL/OGR Library</h2>
+					<img src="static/V06/Logo-GDAL.png">
 					<ul>
 						<li>Bibliothek zur Umwandlung verschiedener räumlicher Datenformate</li>
 						<li>Bildet die Grundlage vieler Tools zur Geodatenverarbeitung</li>
@@ -503,18 +519,120 @@
 				</section>
 
 				<section>
-					<h1>Technologien - Datenbanken</h1>
+					<h1>Technologien</h1>
+					<h2>Desktop GIS</h2>
 
+					<figure>
+						<div class="grid">
+							<div class="griditem">
+								<ul>
+									<li>Beispiel QGIS</li>
+									<li>Open Source</li>
+									<li>Seit 2007 Teil der OSGeo foundation</li>
+									<li>Funktionen</li>
+									<ul>
+										<li>Anzeigen</li>
+										<li>Editieren</li>
+										<li>Drucken</li>
+										<li>Analysieren</li>
+										<li>Plugins (C++ oder Python)</li>
+										<li>Server (WMS, WFS, WCS)</li>
+									</ul>
+								</ul>
+							</div>
+							<div class="griditem">
+								<img src="static/V06/2022-Loewe-QGIS.webp">
+							</div>
+						</div>
+						<br>
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+
+					</aside>
 				</section>
 
 				<section>
-					<h1>Technologien - Geodatenverarbeitung</h1>
+					<h1>Technologien - Datenbanken</h1>
+
+					<figure>
+						<div class="grid">
+							<div class="griditem" style="font-size:smaller">
+								<ul>
+									<li>Beispiel PostGIS</li>
+									<li>Geometriedatentypen:</li>
+									<ul>
+										<li>Points</li>
+										<li>LineStrings</li>
+										<li>Polygons</li>
+										<li>MultiPoints</li>
+										<li>MultiLineStrings</li>
+										<li>MultiPolygons</li>
+										<li>GeometryCollections</li>
+									</ul>
+									<li>Räumliche Funktionen:</li>
+									<ul>
+										<li>Distance (a)</li>
+										<li>Buffer (b)</li>
+										<li>Convex Hull (c)</li>
+										<li>Union (e)</li>
+										<li>Intersection (f)</li>
+										<li>Difference (g,h)</li>
+										<li>Symmetric Difference (i)</li>
+									</ul>
+								</ul>
+							</div>
+							<div class="griditem">
+								<img src="static/V06/2022-Loewe-PostGISFunctions.webp" height="480">
+							</div>
+						</div>
+						<br>
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<ul>
+							<li>d shows the polygons used for the spatial operations of (e)-(i); g shows the difference
+								of polygon A to polygon B; h shows the difference of polygon B to polygon A</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>Webservices</h2>
+					<figure>
+						<img src="static/V06/2022-Loewe-MapServerArchitecture.webp" height="480">
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>
+						Geodatenverarbeitung
+					</h2>
 					<ul>
 						<li>Programmiersprachen (Python, Java, C#, R, etc.)</li>
-						<li>GIS-Software</li>
 						<li>BI-Tools (Power BI, Tableau, Qlik, etc.)</li>
-						<li>Webservices</li>
 					</ul>
+					<figure>
+						<img src="static/V06/2022-Loewe-Geopython.webp" height="380">
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
 				</section>
 
 			</section>
@@ -674,16 +792,23 @@
 
 			<section>
 				<h1>Literatur</h1>
+				<ul>
+					<img src="static/V06/bookcover-applied_spatial_analysis_with_r.webp" height="250"
+						style="float:right">
+					<li>Bivand, R. S., Applied Spatial Data Analysis with R, Berlin 2008</li>
+					<img src="static/V06/bookcover-pro_spatial_with_sqlserver.webp" height="250" style="float:right">
+					<li>Alastair, A., Pro Spatial with SQL Server 2012, London 2012</li>
+					<img src="static/V06/bookcover-springer_handbook_of_geographic_information.webp" height="250"
+						style="float:right">
+					<li>Kresse, W., Danko, D., Springer Handbook of Geographic Information, Cham 2022</li>
+				</ul>
 				<div class="grid">
 					<div class="griditem">
-						<ul>
-							<li>Bivand, R. S., Applied Spatial Data Analysis with R, Berlin 2008</li>
-							<li>Alastair, A., Pro Spatial with SQL Server 2012, London 2012</li>
-						</ul>
 					</div>
 					<div class="griditem">
-						<img src="static/V06/bookcover-applied_spatial_analysis_with_r.webp" height="250">
-						<img src="static/V06/bookcover-pro_spatial_with_sqlserver.webp" height="250">
+
+
+
 					</div>
 				</div>
 			</section>
