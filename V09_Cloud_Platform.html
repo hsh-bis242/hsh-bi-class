@@ -26,9 +26,180 @@
 			</section>
 			<section>
 				<h1>Was ist cloud computing?</h1>
+				<p>"Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared
+					pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that
+					can be rapidly provisioned and released with minimal management effort or service provider interaction.
+					This cloud model is composed of five essential characteristics, three service models, and four deployment
+					models."</p>
+					<figcaption>
+						https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf
+					</figcaption>
+			</section>
+			<section>
+				<h1>Charakteristik - on-demand and self-service</h1>
+				<ul>
+					<li>Interaktion mit Admin oder irgendeiner Person fällt weg keine personelle Abhängigkeiten</li>
+					<li>Eigenständiges bereitstellen einer computing-ressource zu jeder Tageszeit</li>
+					<li>Ermöglicht flexible, spontane und agile Entwicklungsprozesse</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Charakteristik - broad network access</h1>
+				<ul>
+					<li>Sehr felxible Zugangsmöglichkeit um auf die computing-Ressourcen zuzugreifen</li>
+					<li>Alle Funktionalitäten über den Browser oder Apps erreichbar</li>
+					<li>Die Art und Konfiguration des clients Rechners spielt eine untergeordnete Rolle (Smartphone, tablet, iOS, Linux, ...)</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Charakteristik - resource pooling</h1>
+				<ul>
+					<li>Die potentiellen Ressourcen eines Nutzers werden mehreren Nutzern zur Verfügugn gestellt und sind nicht statisch reserviert</li>
+					<li>Multi-tenant - mehrere Kunden nutzen die gleiche computing Hardware ohne voneiannder zu wissen oder sich gegenseitig zu beeinträchtigen</li>
+					<li>Die Ressourcen werden verbrauchasabhängig verteilt</li>
+					<li>Nur begränzten Einfluss auf geo-location der Ressourcen meist nur über Region (North-europe) seltener über Land(Staat) oder Rechenzentrum</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Charakteristik - rapid elasticity</h1>
+				<ul>
+					<li>Beim hoch- oder runterskalieren der Ressourcen gibt es keine negativen Konsequenzen für den Nutzer</li>
+					<li>Theoretisch unbegrenzte Ressourcen - aber auch unbegrenzte Kosten</li>
+					<li>Die Ressourcen werden verbrauchasabhängig verteilt</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Charakteristik - measured service</h1>
+				<ul>
+					<li>Monitring der Verbräuche und Auslastung, ermöglicht Analyse wieviele Ressourcen benötigt werden um bestimmte tasks zu erfüllen</li>
+					<li>Kosten können verringert werden</li>
+					<li>Transparenz und Planungssicherheit</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Service Models - SASS - Software as a Service</h1>
+				<ul>
+					<li>Anwendungen können in der cloud infrastruktur genutzt werden</li>
+					<li>Hierbei kommt wieder die Charakteristik "broad network access" zu tragen Zugriff von vielen verschiedenen client-Plattformen</li>
+					<li>Der Nutzer hat keine Kontrolle über die Konfiguration der unterliegenden Komponenten wie z.B. das Betriebssystem, Speichertechnologie, Netzwerk oder Rechenkapazität </li>
+					<li>Azure SQL</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Service Models - IASS Infrastructure as a Service</h1>
+				<ul>
+					<li>Dem Nutzer wird eine Basis-infrastruktur zur Verfügung gestellt Speicher, Rechenkapazität und Netzwerke</li>
+					<li>Es kann eigenständig ein Betriebssystem und Software installiert werden</li>
+					<li>Erweiterte Konfigurationsmöglichkeiten über z.B. Netzwerkkomponenten können bereitgestellt werden (Firewall, Ports etc.)</li>
+					<li>VM und Container</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Service Models - PASS Platform as a Service</h1>
+				<ul>
+					<li>Ordnet sich zwischen SASS und IASS an</li>
+					<li>Nutzer bekommen eine Application vom Anbieter deployed in der cloud Infrastruktur</li>
+					<li>Diese Applikation kann komplett vom Nutzer konfiguriert werden</li>
+					<li>Zusätzlich können auch Konfigurationen für das Betriebssystem und den Speicher vorgenommen werden</li>
+					<li>App Engines</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Service Models - Weitere models</h1>
+				<ul>
+					<li>Database as a Service</li>
+					<li>Function as a Service</li>
+					<li>Bare Metal as a Service</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Deployment models</h1>
+				<ul>
+					<li>Private cloud - Für eine Organization wird exklusiv Infrastruktur bereitgestellt</li>
+					<li>Community cloud - Mehrere Organisationen mit gleichen Interessen teilen sich die cloud-Infrastruktur</li>
+					<li>Public Cloud - Die cloud Infrastruktur kann von jeder Institution oder natürlichen Person im Rahmen der festgelegten AGB genutzt werden</li>
+					<li>Hybrid Cloud - Zwei oder mehr getrennte cloud Infrastrukturen sind durch angeglichene Standards und Technologien miteinander kompatible, Daten und Anwendungen können portiert werden</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Microservices</h1>
+				<img src="static/V09/microservices.jpg" alt="Image 1" height="280">
+				<p>Unabhängig - Autonom - Dezentral - Lose verbunden</p>
+			</section>
+			<section>
+				<h1>Microservices</h1>
+				<ul>
+					<li>Viele komplexe Anwendungen sind intern monolithisch strukturiert, viele Komponenten die fest verbunden sind</li>
+					<li>Microservices sind alleinstehende Dienste und können uanbhängig gewartet und weiterentwickelt werden</li>
+					<li>Interaktion der Microservices mit APIs (REST)</li>
+					<li>Ein Microservices (und der Entwickler) kennt nur die Schnittstelle eines verbunden microservices und muss nichts über die interne Funktionsweise wissen</li>
+					<li>Organisatorischer Vorteil für Entwicklerteams - beschleunigte Entwicklungszyklen durch weniger Abhängigkeiten</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Microservices - Vorteile</h1>
+				<ul>
+					<li>Verteilte Entwicklung</li>
+					<li>Beständiges System</li>
+					<li>Hohe Skalierbarkeit</li>
+					<li>Ressourceneinsparung</li>
+					<li>Schutz vor Totalausfällen</li>
+					<li>Individuelle Anpassbarkeit</li>
+					<li>Einfacher Zugriff</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Microservices - Herausforderungen</h1>
+				<ul>
+					<li>Bei der Migration zu microservices die anpassung des Entwicklungsprozess</li>
+					<li>Tests schreiben</li>
+					<li>Versionierung - abwärtskompatibel</li>
+					<li>Deployment - musss automatisiert werden</li>
+					<li>Protokolle und Logs liegen verteilt</li>
+					<li>Keine zentrale Überwachung</li>
+					<li>Debugging</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Docker Container</h1>
+				<p>"A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings."</p>
+				<img src="static/V09/docker_architecture.png" alt="Image 1" height="300">
+				<figcaption>https://www.docker.com/resources/what-container/</figcaption>
+			</section>
+			<section>
+				<h1>Docker verglichen mit einer virtual machine</h1>
+				<img src="static/V09/docker.png" alt="Image 1" height="480">
+				<figcaption>
+					https://www.opc-router.de/was-ist-docker/
+				</figcaption>
+			</section>
+			<section>
+				<h1>Docker wichtige Begriffe</h1>
+				<ul>
+					<li>Dockerfile - Eine Textdatei erstellt mit verschiedenen Befehlen ein Image</li>
+					<li>Image - Ein Speicherabbild eines Containers, portabel, aus einem Image können immer mehrere Container gestartet werden</li>
+					<li>Container - Aktive Instanz eines Images, wird ausgeführt bis die Aufgabe erledigt ist</li>
+					<li>Repository - Satz gleichnamiger Images mit verschiedenen Tags und Versionen</li>
+					<li>Registry - Docker Hub oder Artifactory in dem mehrere Repositories verwaltet werden</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Apache und Open Source</h1>
+				https://geekflare.com/de/opensource-cloud-platforms/
+				https://de.wikipedia.org/wiki/Apache_Software_Foundation
+				https://www.apache.org/index.html#projects-list
 			</section>
 			<section>
 				<h1>On-premise vs. cloud</h1>
+			</section>
+			<section>
+				<h1>Ist Cloud günstiger als On-premise?</h1>
+			</section>
+			<section>
+				Risiken und Herausforderungen Cloud
+			</section>
+			<section>
+				<h1>Cloud umsatz und Erfolgsgeschichte Statistiken</h1>
 			</section>
 			<section>
 				<h1>Anbieter von cloud computing</h1>
@@ -45,27 +216,6 @@
 					<li>Amazon AWS</li>
 					<li>Google Cloud Platform (GCP)</li>
 				</ul>
-			</section>
-			<section>
-				<h1>SASS</h1>
-			</section>
-			<section>
-				<h1>IASS</h1>
-			</section>
-			<section>
-				<h1>PASS</h1>
-			</section>
-			<section>
-				<h1>FASS</h1>
-			</section>
-			<section>
-				<h1>microservices</h1>
-			</section>
-			<section>
-				<h1>Apache und Open Source</h1>
-			</section>
-			<section>
-				<h1>Docker</h1>
 			</section>
 		</div>
 	</div>
