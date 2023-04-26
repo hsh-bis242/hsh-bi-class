@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 07 - Business Analytics</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<div class="r-fit-text">
+					<h1>Business Intelligence</h1>
+					<h2>Business Analytics</h2>
+				</div>
+			</section>
+
+			<section>
+				<h1>Gliederung</h1>
+				<h2>Business Analytics</h2>
+				<ul>
+					<li>Einführung</li>
+					<li>Dashboards</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Einordnung</h1>
+				<figure>
+					<div class="r-stack">
+						<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+						<svg height="480" width="850">
+							<ellipse cx="705" cy="135" rx="45" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+							<ellipse cx="720" cy="225" rx="80" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+							<ellipse cx="720" cy="285" rx="80" ry="20" fill-opacity="0.0"
+								style="stroke:var(--hsh_orange);stroke-width:2" />
+						</svg>
+					</div>
+					<figcaption>
+						b.telligent Deutschland GmbH (2022)
+					</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h1>Einf&uuml;hrung</h1>
+				<figure>
+					<img src="static/V07/2016-Ereth-AnalysespektrumBIundBA.png" height="480">
+
+					<figcaption>
+						Ereth, J., Kemper, H.-G., Business Analytics und Business Intelligence, München 2016
+					</figcaption>
+				</figure>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Dashboards - Einordnung</h1>
+					<figure>
+						<img src="static/V07/2009-Totok-WeltKompakt.png" height="480">
+						<figcaption>
+							Totok, A.: Die richtigen Informationen: Unternehmens-Cockpits und Dashboards. cundus Webinar. 2009.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>Wie schafft man es, auf engem Raum eine hohe Informationsdichte zu schaffen, die den Betrachter nicht überfordert?</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards - Einordnung</h1>
+					<img src="static/V07/Koenig-ExcelDashboard.png" height="480">
+					<aside class="notes">
+						<ul>
+							<li>Visualisierung von Daten.</li>
+							<li>Es geht nur am Rande um Geschmacksfragen, die man Designern & Grafikern überlassen kann.</li>
+							<li>Es geht um richtig oder falsch.</li>
+							<li>Falsch kann tragische Konsequenzen haben.</li>
+							<li>Ein Teil der Finanzkrise ist auch eine Krise der Darstellung von Risiken.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards</h1>
+					<h2>Definition</h2>
+					<figure>
+						<blockquote>
+							Dashboards are a <b>reporting mechanism</b> that aggregates and displays <b>metrics and key indicators</b> so they can be examined at a glance by all possible audiences. Dashboards help improve decision making by revealing and communicating contextual insights into metrics to display indicators with <b>intuitive visualization</b>, including charts, scales, gauges, and traffic lights that show indicator progress toward defined goals.
+						</blockquote>
+						<figcaption>
+							<a href="www.gartner.com/it-glossary/dashboard">Gartner Glossary for Information Technology (Abruf am 26.04.2023)</a>
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>Komprimierte Darstellung</li>
+							<li>Konzentration auf wesentliche Informationen</li>
+							<li>Spezifische Lösung</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards - Klassifikation</h1>
+					<ul>
+						<li><b>Strategische Dashboards (Executive Dashboards)</b></li>
+						<ul>
+							<li>größte Verbreitung</li>
+							<li>hochgradig verdichtete Kennzahlen</li>
+							<li>leicht zugängliche Darstellungsform ohne aufwendige Interaktionsmöglichkeiten</li>
+							<li>langfristigen Unternehmungsziele</li>
+							<li>breite Perspektive auf die gesamte Unternehmung</li>
+						</ul>
+						<li><b>Taktische Performance Dashboards</b></li>
+						<ul>
+							<li>Bereichs- oder Abteilungsebene</li>
+							<li>Erfolg kurzfristigerer Geschäftsaktivitäten</li>
+							<li>Aufdecken von Trends sowie von Problemursachen</li>
+							<li>Leistungsfähige Analysemöglichkeiten</li>
+						</ul>
+						<li><b>Operative Dashboards</b></li>
+						<ul>
+							<li>Überwachung und Steuerung des betrieblichen Tagesgeschäftes</li>
+						</ul>
+					</ul>
+					<aside class="notes">
+						<ul>
+							<li>Auch: Kollaborative Dashboards</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards - Klassifikation</h1>
+					<h2>Drei Anwendungsbereiche</h2>
+					<figure>
+						<table style="font-size:smaller;">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Monitoring</th>
+									<th>Analysis</th>
+									<th>Management</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Purpose</th>
+									<td>Convey information at a glance</td>
+									<td>Analyze exception conditions</td>
+									<td>Improve coordination and collaboration</td>
+								</tr>
+								<tr>
+									<th>Components</th>
+									<td>
+										<ul>
+											<li>Multi-paned screens with visual elements</li>
+											<li>Graphs (i.e., dials, gauges, thermometers)</li>
+											<li>Symbols, alerts</li>
+											<li>Charts, tables with conditional formatting</li>
+											<li>Alerts</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>Analytics (i.e., dimensional, time-series, segmentation)</li>
+											<li>Forecasting, modeling and predictive statistics</li>
+											<li>Visual analysis</li>
+											<li>Reporting</li>
+										</ul>
+									</td>
+									<td>
+										<ul>
+											<li>Annotations</li>
+											<li>Threaded discussions</li>
+											<li>Meetings</li>
+											<li>Strategy maps</li>
+											<li>Workflows</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<figcaption>
+							Eckerson, W.: Deploying Dashboards and Scorecards. TDWI Best Practices Report. 2006.
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
