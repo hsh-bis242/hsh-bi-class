@@ -87,22 +87,38 @@
 			</section>
 
 			<section>
-				<h1>Problemdarstellung</h1>
-				<h2>Am Beispiel eines Kundenprojektes</h2>
-				<img src="static/V06/2018-Cirkel-VehicleDataStream.png">
-				<aside class="notes">
-					<ul>
-						<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle 5Sek
-							ein Standort</li>
-						<li>Gesucht: Höhenunterschiede auf der Strecke (Bremsbelastung)</li>
-						<li>Werkzeug der Wahl: R mit "raster"-Package</li>
-						<li>Herausforderungen:</li>
+
+				<section>
+					<h1>Problemdarstellung</h1>
+					<h2>Am Beispiel eines Kundenprojektes</h2>
+					<img src="static/V06/2023-Cirkel-VehicleDataTable.png">
+					<aside class="notes">
 						<ul>
-							<li>Daten lagen in SQL Server Tabellen vor.</li>
-							<li>SQL Server hatten keine Internetverbindung</li>
+							<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle 5Sek
+								ein Standort</li>
+							<li>Gesucht: Höhenunterschiede auf der Strecke (Bremsbelastung)</li>
+							<li>Werkzeug der Wahl: R mit "raster"-Package</li>
+							<li>Welche Herausforderungen können die Studenten sich vorstellen?</li>
+							<li>Herausforderungen:</li>
+							<ul>
+								<li>Daten lagen in sehr großen SQL Server Tabellen vor.</li>
+								<li>SQL Server hatten keine Internetverbindung</li>
+							</ul>
 						</ul>
-					</ul>
-				</aside>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Geodaten Lösungsarchitektur</h1>
+					<h2>Am Beispiel von Traccar</h2>
+					<figure>
+						<img src="static/V06/Traccar-Architecture.svg" height="480">
+						<figcaption>
+							<a href="https://www.traccar.org/architecture/">traccar.org (abgerufen am 26.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 
 			<section>
