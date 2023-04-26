@@ -1,3 +1,7 @@
+<p align="center">
+<img src="static/logo.svg" height=200>
+</p>
+
 # BIS 242: Business Intelligence
 ## Lecture for Hannover University of Applied Sciences and Arts
 This repository contains the lecture notes for BIS-242 at Hannover University of Applied Sciences and Arts. It makes use of the HTML presentation framework [revealjs](revealjs.com).

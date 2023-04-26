@@ -66,21 +66,43 @@
 
 			<section>
 				<h1>Einf&uuml;hrung</h1>
-				<ul>
-					<li>R&auml;umliche (Spatial) Daten bieten h&auml;ufig Mehrwert für Datenauswertungen</li>
+				<figure>
+					<img src="static/V06/2019-HSH-Studidashboard-Geodaten.png" height="480">
+					<figcaption>
+						Studentenprojekt der Hochschule Hannover im Sommersemester 2019
+					</figcaption>
+				</figure>
+				<aside class="notes">
 					<ul>
-						<li>Wetterdaten</li>
-						<li>Kartenmaterial</li>
-						<li>Demografie</li>
-						<li>Bewegungsdaten</li>
+						<li>R&auml;umliche (Spatial) Daten bieten h&auml;ufig Mehrwert für Datenauswertungen</li>
+						<ul>
+							<li>Wetterdaten</li>
+							<li>Kartenmaterial</li>
+							<li>Demografie</li>
+							<li>Bewegungsdaten</li>
+						</ul>
+						<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden stoßen an Grenzen</li>
 					</ul>
-					<li>Herk&ouml;mmliche (relationale) Datenverarbeitungsmethoden stoßen an Grenzen</li>
-				</ul>
+				</aside>
 			</section>
 
 			<section>
 				<h1>Problemdarstellung</h1>
-
+				<h2>Am Beispiel eines Kundenprojektes</h2>
+				<img src="static/V06/2018-Cirkel-VehicleDataStream.png">
+				<aside class="notes">
+					<ul>
+						<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle 5Sek
+							ein Standort</li>
+						<li>Gesucht: Höhenunterschiede auf der Strecke (Bremsbelastung)</li>
+						<li>Werkzeug der Wahl: R mit "raster"-Package</li>
+						<li>Herausforderungen:</li>
+						<ul>
+							<li>Daten lagen in SQL Server Tabellen vor.</li>
+							<li>SQL Server hatten keine Internetverbindung</li>
+						</ul>
+					</ul>
+				</aside>
 			</section>
 
 			<section>
@@ -90,6 +112,7 @@
 						<ul>
 							<li>Darstellung von Informationen mit Raumbezug</li>
 							<li>Ergänzung bestehender Datensätze um Daten mit Raumbezug</li>
+							<li>Berechnung von Distanzen</li>
 							<li>Abbildung räumlicher Zusammenhänge als Datensatz</li>
 							<li>Navigation</li>
 							<li>Tracking</li>
@@ -363,18 +386,100 @@
 
 					<h1>Standardisierung - Datenformate</h1>
 					<h2>Geography Markup Language</h2>
-					<p>
-						XML-basierte Auszeichnungssprache
-					</p>
+					<p>XML-basierte Auszeichnungssprache</p>
+					<figure>
+						<pre>
+							<code data-trim data-noescape>
+								<script type="text/template">
+									<gml:Polygon>
+										<gml:outerBoundaryIs>
+											<gml:LinearRing>
+												<gml:coordinates>0,0 100,0 100,100 0,100 0,0</gml:coordinates>
+											</gml:LinearRing>
+										</gml:outerBoundaryIs>
+									</gml:Polygon>
+									<gml:Point>
+										<gml:coordinates>100,200</gml:coordinates>
+									</gml:Point>
+									<gml:LineString>
+										<gml:coordinates>100,200 150,300</gml:coordinates>
+									</gml:LineString>
+								</script>
+							</code>
+						</pre>
+						<figcaption>
+							<a href="https://en.wikipedia.org/wiki/Geography_Markup_Language">en.wikipedia.org</a>
+						</figcaption>
+					</figure>
 				</section>
 
 				<section>
 
 					<h1>Standardisierung - Datenformate</h1>
 					<h2>GeoJSON</h2>
-
-					<p><a href="https://datatracker.ietf.org/doc/html/rfc7946">Standard der IETF</a></p>
-
+					<p>Entwickelt von einer Gruppe freier Entwickler. Inzwischen aber <a
+							href="https://datatracker.ietf.org/doc/html/rfc7946">Standard der IETF</a>.</p>
+					<figure>
+						<pre>
+							<code data-trim data-noescape>
+								<script type="text/template">
+									{
+										"type": "FeatureCollection",
+										"features": [
+										  {
+											"type": "Feature",
+											"geometry": {
+											  "type": "Point",
+											  "coordinates": [102.0, 0.5]
+											},
+											"properties": {
+											  "prop0": "value0"
+											}
+										  },
+										  {
+											"type": "Feature",
+											"geometry": {
+											  "type": "LineString",
+											  "coordinates": [
+												[102.0, 0.0],
+												[103.0, 1.0],
+												[104.0, 0.0],
+												[105.0, 1.0]
+											  ]
+											},
+											"properties": {
+											  "prop0": "value0",
+											  "prop1": 0.0
+											}
+										  },
+										  {
+											"type": "Feature",
+											"geometry": {
+											  "type": "Polygon",
+											  "coordinates": [
+												[
+												  [100.0, 0.0],
+												  [101.0, 0.0],
+												  [101.0, 1.0],
+												  [100.0, 1.0],
+												  [100.0, 0.0]
+												]
+											  ]
+											},
+											"properties": {
+											  "prop0": "value0",
+											  "prop1": { "this": "that" }
+											}
+										  }
+										]
+									  }
+								</script>
+							</code>
+						</pre>
+						<figcaption>
+							<a href="https://en.wikipedia.org/wiki/GeoJSON">en.wikipedia.org</a>
+						</figcaption>
+					</figure>
 				</section>
 
 				<section>
@@ -384,7 +489,17 @@
 					<ul>
 						<li>Entworfen und gepflegt vom <a
 								href="https://www.esri.com/content/dam/esrisites/sitecore-archive/Files/Pdfs/library/whitepapers/pdfs/shapefile.pdf">Environmental
-								Systems Research Insitute, Inc. (ESRI)</a></li>
+								Systems Research Insitute, Inc. (ESRI)</a>
+						</li>
+						<li>Binärformat bestehend aus mindestens drei Dateien:</li>
+						<ul>
+							<li><b>.shp</b> — shape format; the feature geometry itself</li>
+							<li><b>.shx</b> — shape index format; a positional index of the feature geometry to allow
+								seeking forwards and backwards quickly</li>
+							<li><b>.dbf</b> — attribute format; columnar attributes for each shape, in dBase IV format
+							</li>
+						</ul>
+						<li>Nicht mehr sinnvoll ohne Software interpretierbar</li>
 					</ul>
 
 				</section>
@@ -396,6 +511,7 @@
 				<section>
 					<h1>Technologien</h1>
 					<h2>GDAL/OGR Library</h2>
+					<img src="static/V06/Logo-GDAL.png">
 					<ul>
 						<li>Bibliothek zur Umwandlung verschiedener räumlicher Datenformate</li>
 						<li>Bildet die Grundlage vieler Tools zur Geodatenverarbeitung</li>
@@ -403,34 +519,264 @@
 				</section>
 
 				<section>
-					<h1>Technologien - Datenbanken</h1>
+					<h1>Technologien</h1>
+					<h2>Desktop GIS</h2>
 
+					<figure>
+						<div class="grid">
+							<div class="griditem">
+								<ul>
+									<li>Beispiel QGIS</li>
+									<li>Open Source</li>
+									<li>Seit 2007 Teil der OSGeo foundation</li>
+									<li>Funktionen</li>
+									<ul>
+										<li>Anzeigen</li>
+										<li>Editieren</li>
+										<li>Drucken</li>
+										<li>Analysieren</li>
+										<li>Plugins (C++ oder Python)</li>
+										<li>Server (WMS, WFS, WCS)</li>
+									</ul>
+								</ul>
+							</div>
+							<div class="griditem">
+								<img src="static/V06/2022-Loewe-QGIS.webp">
+							</div>
+						</div>
+						<br>
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+
+					</aside>
 				</section>
 
 				<section>
-					<h1>Technologien - Geodatenverarbeitung</h1>
+					<h1>Technologien - Datenbanken</h1>
+
+					<figure>
+						<div class="grid">
+							<div class="griditem" style="font-size:smaller">
+								<ul>
+									<li>Beispiel PostGIS</li>
+									<li>Geometriedatentypen:</li>
+									<ul>
+										<li>Points</li>
+										<li>LineStrings</li>
+										<li>Polygons</li>
+										<li>MultiPoints</li>
+										<li>MultiLineStrings</li>
+										<li>MultiPolygons</li>
+										<li>GeometryCollections</li>
+									</ul>
+									<li>Räumliche Funktionen:</li>
+									<ul>
+										<li>Distance (a)</li>
+										<li>Buffer (b)</li>
+										<li>Convex Hull (c)</li>
+										<li>Union (e)</li>
+										<li>Intersection (f)</li>
+										<li>Difference (g,h)</li>
+										<li>Symmetric Difference (i)</li>
+									</ul>
+								</ul>
+							</div>
+							<div class="griditem">
+								<img src="static/V06/2022-Loewe-PostGISFunctions.webp" height="480">
+							</div>
+						</div>
+						<br>
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<ul>
+							<li>d shows the polygons used for the spatial operations of (e)-(i); g shows the difference
+								of polygon A to polygon B; h shows the difference of polygon B to polygon A</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>Webservices</h2>
+					<figure>
+						<img src="static/V06/2022-Loewe-MapServerArchitecture.webp" height="480">
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>
+						Geodatenverarbeitung
+					</h2>
 					<ul>
 						<li>Programmiersprachen (Python, Java, C#, R, etc.)</li>
-						<li>GIS-Software</li>
 						<li>BI-Tools (Power BI, Tableau, Qlik, etc.)</li>
-						<li>Webservices</li>
 					</ul>
+					<figure>
+						<img src="static/V06/2022-Loewe-Geopython.webp" height="380">
+						<figcaption>
+							Löwe, P. et al. (2022). Open Source - GIS. In: Kresse, W., Danko, D. (eds) Springer Handbook
+							of Geographic Information. Springer Handbooks. Springer, Cham
+						</figcaption>
+					</figure>
 				</section>
 
 			</section>
 
 			<section>
-				<h1>Datenmodellierung</h1>
-				<h2>Am Beispiel Open Street Map</h2>
+				<section>
+					<h1>Datenmodellierung</h1>
+					<h2>Am Beispiel Open Street Map</h2>
+					<figure>
+						<img src="static/V06/simplified_osm_conceptual_data_model.webp" height="480">
+						<figcaption>
+							Minghini, M., Frassinelli, F. OpenStreetMap history for intrinsic quality assessment: Is OSM
+							up-to-date?. Open geospatial data, softw. stand. 4, 9 (2019)
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Datenmodellierung - OSM</h1>
+					<h2>Node</h2>
+					<figure>
+						<pre>
+							<code data-trim data-noescape>
+								<script type="text/template">
+									<osm version="0.6" generator="CGImap 0.8.8 (2456456 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+										<node id="213271947" visible="true" version="10" changeset="63197055" timestamp="2018-10-04T13:58:06Z" user="MrKrisKrisu" uid="1214889" lat="52.3533081" lon="9.7243458"/>
+									</osm>
+								</script>
+							</code>
+						</pre>
+						<figcaption>
+							<a href="https://www.openstreetmap.org/api/0.6/node/213271947">openstreetmap.org (Abruf am
+								24.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Datenmodellierung - OSM</h1>
+					<h2>Relation</h2>
+					<figure>
+						<pre>
+						<code data-trim data-noescape>
+							<script type="text/template">
+								<osm version="0.6" generator="CGImap 0.8.8 (3313918 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+								<relation id="9831" visible="true" version="42" changeset="119167272" timestamp="2022-03-31T15:51:07Z" user="herralter" uid="1743904">
+								<member type="way" ref="20168008" role="inner"/>
+								<member type="way" ref="20167897" role="outer"/>
+								<tag k="addr:city" v="Hannover"/>
+								<tag k="addr:postcode" v="30459"/>
+								<tag k="addr:street" v="Ricklinger Stadtweg"/>
+								<tag k="building" v="college"/>
+								<tag k="building:levels" v="4"/>
+								<tag k="designation" v="Hochschule Hannover"/>
+								<tag k="height" v="11.5"/>
+								<tag k="level" v="-1;-0.5;0;0.5;1;1.5;2"/>
+								<tag k="name" v="Fakultät IV"/>
+								<tag k="name1" v="Fakultät IV - Wirtschaft und Informatik"/>
+								<tag k="ref" v="1H"/>
+								<tag k="roof:shape" v="flat"/>
+								<tag k="type" v="multipolygon"/>
+								<tag k="website" v="www.f4.hs-hannover.de"/>
+								</relation>
+								</osm>
+							</script>
+						</code>
+					</pre>
+						<figcaption>
+							<a href="https://www.openstreetmap.org/api/0.6/relation/9831">openstreetmap.org (Abruf am
+								24.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Datenmodellierung - OSM</h1>
+					<h2>Way</h2>
+					<figure>
+						<pre>
+						<code data-trim data-noescape>
+							<script type="text/template">
+								<osm version="0.6" generator="CGImap 0.8.8 (3313934 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+									<way id="20168008" visible="true" version="16" changeset="79501853" timestamp="2020-01-13T07:17:50Z" user="letihu" uid="1787357">
+										<nd ref="213271937"/>
+										<nd ref="213271947"/>
+										<nd ref="213271946"/>
+										<nd ref="5943444629"/>
+										<nd ref="5943444630"/>
+										<nd ref="5943444631"/>
+										<nd ref="213272563"/>
+										<nd ref="5943444632"/>
+										<nd ref="5943444633"/>
+										<nd ref="213271945"/>
+										<nd ref="5943444634"/>
+										<nd ref="5943444635"/>
+										<nd ref="213271943"/>
+										<nd ref="5943444636"/>
+										<nd ref="5943444450"/>
+										<nd ref="5943444451"/>
+										<nd ref="5943444452"/>
+										<nd ref="213271942"/>
+										<nd ref="213271941"/>
+										<nd ref="213271940"/>
+										<nd ref="5943444603"/>
+										<nd ref="586650146"/>
+										<nd ref="5943444353"/>
+										<nd ref="5943444509"/>
+										<nd ref="213271939"/>
+										<nd ref="5943444455"/>
+										<nd ref="213271938"/>
+										<nd ref="5943443983"/>
+										<nd ref="5943444342"/>
+										<nd ref="586650144"/>
+										<nd ref="5943444604"/>
+										<nd ref="213271937"/>
+										<tag k="landuse" v="village_green"/>
+									</way>
+								</osm>
+							</script>
+						</code>
+					</pre>
+						<figcaption>
+							<a href="https://www.openstreetmap.org/api/0.6/way/20168008">openstreetmap.org (Abruf am
+								24.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 
 			<section>
 				<h1>Datenquellen</h1>
 				<ul>
-					<li>Wetterdaten: <a href="https://opendata.dwd.de/">Deutscher Wetterdienst</a></li>
-					<li>Kartendaten: <a
-							href="https://gdz.bkg.bund.de/index.php/default/digitale-geodaten.html">Bundesamt für
-							Kartographie und Geodäsie</a></li>
+					<li>Wetterdaten</li>
+					<ul>
+						<li><a href="https://opendata.dwd.de/">Deutscher Wetterdienst</a></li>
+					</ul>
+					<li>Kartendaten</li>
+					<ul>
+						<li><a href="https://gdz.bkg.bund.de/index.php/default/digitale-geodaten.html">Bundesamt für
+								Kartographie und Geodäsie</a></li>
+						<li><a href="https://lpdaac.usgs.gov/data/">ASTER Global Digital Elevation Model</a></li>
+						<li><a href="https://www.geofabrik.de/data/index.html">Geofabrik</a></li>
+					</ul>
 					<li>Demografiedaten</li>
 					<ul>
 						<li><a href="https://www.destatis.de/DE/Home/_inhalt.html">Statistisches Bundesamt</a></li>
@@ -446,16 +792,23 @@
 
 			<section>
 				<h1>Literatur</h1>
+				<ul>
+					<img src="static/V06/bookcover-applied_spatial_analysis_with_r.webp" height="250"
+						style="float:right">
+					<li>Bivand, R. S., Applied Spatial Data Analysis with R, Berlin 2008</li>
+					<img src="static/V06/bookcover-pro_spatial_with_sqlserver.webp" height="250" style="float:right">
+					<li>Alastair, A., Pro Spatial with SQL Server 2012, London 2012</li>
+					<img src="static/V06/bookcover-springer_handbook_of_geographic_information.webp" height="250"
+						style="float:right">
+					<li>Kresse, W., Danko, D., Springer Handbook of Geographic Information, Cham 2022</li>
+				</ul>
 				<div class="grid">
 					<div class="griditem">
-						<ul>
-							<li>Bivand, R. S., Applied Spatial Data Analysis with R, Berlin 2008</li>
-							<li>Alastair, A., Pro Spatial with SQL Server 2012, London 2012</li>
-						</ul>
 					</div>
 					<div class="griditem">
-						<img src="static/V06/bookcover-applied_spatial_analysis_with_r.webp" height="250">
-						<img src="static/V06/bookcover-pro_spatial_with_sqlserver.webp" height="250">
+
+
+
 					</div>
 				</div>
 			</section>
