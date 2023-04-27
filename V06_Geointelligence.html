@@ -87,22 +87,43 @@
 			</section>
 
 			<section>
-				<h1>Problemdarstellung</h1>
-				<h2>Am Beispiel eines Kundenprojektes</h2>
-				<img src="static/V06/2018-Cirkel-VehicleDataStream.png">
-				<aside class="notes">
-					<ul>
-						<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle 5Sek
-							ein Standort</li>
-						<li>Gesucht: Höhenunterschiede auf der Strecke (Bremsbelastung)</li>
-						<li>Werkzeug der Wahl: R mit "raster"-Package</li>
-						<li>Herausforderungen:</li>
+
+				<section>
+					<h1>Problemdarstellung</h1>
+					<h2>Am Beispiel eines Kundenprojektes</h2>
+					<img src="static/V06/2023-Cirkel-VehicleDataTable.png">
+					<aside class="notes">
 						<ul>
-							<li>Daten lagen in SQL Server Tabellen vor.</li>
-							<li>SQL Server hatten keine Internetverbindung</li>
+							<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle 5Sek
+								ein Standort</li>
+							<li>Gesucht: Höhenunterschiede auf der Strecke (Bremsbelastung)</li>
+							<li>Werkzeug der Wahl: R mit "raster"-Package</li>
+							<li>Welche Herausforderungen können die Studenten sich vorstellen?</li>
+							<li>Herausforderungen:</li>
+							<ul>
+								<li>Daten lagen in sehr großen SQL Server Tabellen vor.</li>
+								<li>SQL Server hatten keine Internetverbindung</li>
+							</ul>
 						</ul>
-					</ul>
-				</aside>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Einfacher Lösungsansatz</h1>
+					<img src="static/V06/2018-Cirkel-VehicleDataStream.svg" height="480">
+				</section>
+
+				<section>
+					<h1>Geodaten Lösungsarchitektur</h1>
+					<h2>Am Beispiel von Traccar</h2>
+					<figure>
+						<img src="static/V06/Traccar-Architecture.svg" height="480">
+						<figcaption>
+							<a href="https://www.traccar.org/architecture/">traccar.org (abgerufen am 26.04.2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 
 			<section>
@@ -134,8 +155,8 @@
 				<section>
 					<h1>Koordinatensysteme - Projektion der Erdkugel</h1>
 					<figure>
-						<img src="static/V06/2012-Alastair-Project3DModel.png" height="240">
-						<img src="static/V06/2012-Alastair-ProjectedCoordinateSystem.png" height="240">
+						<img src="static/V06/2012-Alastair-Project3DModel.svg" height="240">
+						<img src="static/V06/2012-Alastair-ProjectedCoordinateSystem.svg" height="240">
 						<figcaption>
 							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
 						</figcaption>
@@ -148,7 +169,7 @@
 					<ul style="font-size:smaller">
 
 						<figure style="float:right">
-							<img src="static/V06/2012-Alastair-GeographicCoordinateSystem.png">
+							<img src="static/V06/2012-Alastair-GeographicCoordinateSystem.svg">
 							<figcaption>
 								Alastair, A., Pro Spatial with SQL Server 2012, London 2012
 							</figcaption>
@@ -202,7 +223,7 @@
 					<figure>
 						<div class="grid">
 							<div class="griditem">
-								<img src="static/V06/2012-Alastair-Geoid.png">
+								<img src="static/V06/2012-Alastair-Geoid.svg" height="480">
 							</div>
 							<div class="griditem">
 								<table style="font-size:smaller">
@@ -243,6 +264,7 @@
 								</table>
 							</div>
 						</div>
+						<br>
 						<figcaption>
 							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
 						</figcaption>
@@ -283,7 +305,7 @@
 					<h2>Simple-Feature-Model</h2>
 					<figure>
 						<a href="https://www.ogc.org/standard/sfs/"><img
-								src="static/V06/2020-Qgis-Simple_Feature_Model.png"></a>
+								src="static/V06/2020-Qgis-Simple_Feature_Model.svg"></a>
 						<figcaption>
 							<a
 								href="https://docs.qgis.org/3.28/de/docs/training_manual/spatial_databases/simple_feature_model.html">QGIS
@@ -311,7 +333,7 @@
 								<img src="static/V06/2012-Alastair-GeometrieRelationships.png" height="480">
 							</div>
 							<div class="griditem">
-								<img src="static/V06/2012-Alastair-STIntersection.png" height="480">
+								<img src="static/V06/2012-Alastair-STIntersection.svg" height="480">
 							</div>
 						</div>
 						<figcaption>
@@ -346,7 +368,7 @@
 						<li>Unterscheidung zwischen raster- und vektorbasierten Datenformaten.</li>
 					</ul>
 					<figure>
-						<img src="static/V06/2019-Silva-Coira-RasterVsVector.png" height="450">
+						<img src="static/V06/2019-Silva-Coira-RasterVsVector.svg" height="450">
 						<figcaption>
 							<a href="https://doi.org/10.1371/journal.pone.0226943">Silva-Coira F, Paramá JR, Ladra S,
 								López JR, Gutiérrez G (2020) Efficient processing of raster and vector data. PLoS ONE
