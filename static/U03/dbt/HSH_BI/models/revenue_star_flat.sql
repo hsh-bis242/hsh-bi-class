@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 WITH cte_date AS
 (
 	SELECT	a.[address_id],
@@ -30,6 +32,7 @@ SELECT	p.payment_date,
 		ddrent.date_id AS rental_date_id,
 		r.return_date,
 		ddretu.date_id AS return_date_id,
+    DATEDIFF(DAY, r.rental_date, r.return_date) AS rental_duration_days,
 		f.film_id,
 		f.title AS film_title,
 		f.release_year AS film_release_year,
@@ -68,5 +71,5 @@ SELECT	p.payment_date,
     ON ddp.date_iso_id = CAST(CONVERT(CHAR(8), p.payment_date, 112) AS INT)
   JOIN vrs_dm.dim_date ddrent
     ON ddrent.date_iso_id = CAST(CONVERT(CHAR(8), r.rental_date, 112) AS INT)
-  JOIN vrs_dm.dim_date ddretu
+  LEFT JOIN vrs_dm.dim_date ddretu
     ON ddretu.date_iso_id = CAST(CONVERT(CHAR(8), r.return_date, 112) AS INT)
