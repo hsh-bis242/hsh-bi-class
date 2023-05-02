@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 07 - Business Analytics</title>
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 07 - Business Analytics
+	</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
@@ -34,6 +35,14 @@
 				<ul>
 					<li>Einführung</li>
 					<li>Dashboards</li>
+					<ul>
+						<li>Einordnung</li>
+						<li>Definition</li>
+						<li>Klassifikation</li>
+						<li>Einsatzbereiche</li>
+					</ul>
+					<li>Visualisierung von Daten</li>
+					<li>Marktübersicht</li>
 				</ul>
 			</section>
 
@@ -75,12 +84,14 @@
 					<figure>
 						<img src="static/V07/2009-Totok-WeltKompakt.png" height="480">
 						<figcaption>
-							Totok, A.: Die richtigen Informationen: Unternehmens-Cockpits und Dashboards. cundus Webinar. 2009.
+							Totok, A.: Die richtigen Informationen: Unternehmens-Cockpits und Dashboards. cundus
+							Webinar. 2009.
 						</figcaption>
 					</figure>
 					<aside class="notes">
 						<ul>
-							<li>Wie schafft man es, auf engem Raum eine hohe Informationsdichte zu schaffen, die den Betrachter nicht überfordert?</li>
+							<li>Wie schafft man es, auf engem Raum eine hohe Informationsdichte zu schaffen, die den
+								Betrachter nicht überfordert?</li>
 						</ul>
 					</aside>
 				</section>
@@ -91,7 +102,8 @@
 					<aside class="notes">
 						<ul>
 							<li>Visualisierung von Daten.</li>
-							<li>Es geht nur am Rande um Geschmacksfragen, die man Designern & Grafikern überlassen kann.</li>
+							<li>Es geht nur am Rande um Geschmacksfragen, die man Designern & Grafikern überlassen kann.
+							</li>
 							<li>Es geht um richtig oder falsch.</li>
 							<li>Falsch kann tragische Konsequenzen haben.</li>
 							<li>Ein Teil der Finanzkrise ist auch eine Krise der Darstellung von Risiken.</li>
@@ -104,10 +116,15 @@
 					<h2>Definition</h2>
 					<figure>
 						<blockquote>
-							Dashboards are a <b>reporting mechanism</b> that aggregates and displays <b>metrics and key indicators</b> so they can be examined at a glance by all possible audiences. Dashboards help improve decision making by revealing and communicating contextual insights into metrics to display indicators with <b>intuitive visualization</b>, including charts, scales, gauges, and traffic lights that show indicator progress toward defined goals.
+							Dashboards are a <b>reporting mechanism</b> that aggregates and displays <b>metrics and key
+								indicators</b> so they can be examined at a glance by all possible audiences. Dashboards
+							help improve decision making by revealing and communicating contextual insights into metrics
+							to display indicators with <b>intuitive visualization</b>, including charts, scales, gauges,
+							and traffic lights that show indicator progress toward defined goals.
 						</blockquote>
 						<figcaption>
-							<a href="www.gartner.com/it-glossary/dashboard">Gartner Glossary for Information Technology (Abruf am 26.04.2023)</a>
+							<a href="www.gartner.com/it-glossary/dashboard">Gartner Glossary for Information Technology
+								(Abruf am 26.04.2023)</a>
 						</figcaption>
 					</figure>
 					<aside class="notes">
@@ -209,6 +226,575 @@
 					</aside>
 				</section>
 
+				<section>
+					<h1>Dashboards - Klassifikation</h1>
+					<h2>Datenebenen</h2>
+
+					<figure>
+						<img src="static/V07/2006-Eckerson-LayersOfData.png">
+						<figcaption>
+							Eckerson, W.: Deploying Dashboards and Scorecards. TDWI Best Practices Report. 2006.
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<ul>
+							<li>Und unterstützen die Managementaufgaben im klassischen PDCA Zyklus:</li>
+							<li><b>P</b>lan <b>D</b>o <b>C</b>heck <b>A</b>ct</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards - Klassifikation</h1>
+					<h2>Architektur von PMS</h2>
+					<figure>
+						<img src="static/V07/2006-Eckerson-ArchitectureOfPMS.png" height="480">
+						<figcaption>
+							Eckerson, W.: Deploying Dashboards and Scorecards. TDWI Best Practices Report. 2006.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						PMS = Performance Management System
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards - Klassifikation</h1>
+					<h2>Umfrage: Einsatzbereiche</h2>
+					<h3>Dashboards versus Scorecards</h3>
+					<figure>
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Dashboard</th>
+									<th>Scorecard</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Purpose</th>
+									<td>Measure performance</td>
+									<td>Charts progress</td>
+								</tr>
+								<tr>
+									<th>Users</th>
+									<td>Managers, staff</td>
+									<td>Executives, managers, staff</td>
+								</tr>
+								<tr>
+									<th>Updates</th>
+									<td>Real-time to right-time</td>
+									<td>Periodic snapshots</td>
+								</tr>
+								<tr>
+									<th>Data</th>
+									<td>Events</td>
+									<td>Summaries</td>
+								</tr>
+								<tr>
+									<th>Top-level Display</th>
+									<td>Charts and tables</td>
+									<td>Symbols and icons</td>
+								</tr>
+							</tbody>
+						</table>
+						<figcaption>
+							Eckerson, W.: Deploying Dashboards and Scorecards. TDWI Best Practices Report. 2006.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Dashboards and scorecards are visual display mechanisms - the monitoring layer in a performance
+						dashboard. A good performance dashboard should support both types of displays.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Dashboards - Einsatzbereiche</h1>
+					<figure>
+						<div class="r-stack">
+							<img class="fragment fade-out" data-fragment-index="0"
+								src="static/V07/2006-Eckerson-BusinessAreas.png">
+							<img class="fragment current-visible" data-fragment-index="1"
+								src="static/V07/2006-Eckerson-TypesOfUsers.png">
+							<img class="fragment current-visible" data-fragment-index="2"
+								src="static/V07/2006-Eckerson-UserActionsInResponseToAnAlert.png">
+							<img class="fragment current-visible" data-fragment-index="3"
+								src="static/V07/2006-Eckerson-VisualElements.png">
+							<img class="fragment fade-in" data-fragment-index="4"
+								src="static/V07/2006-Eckerson-DataFreshness.png">
+						</div>
+					</figure>
+					<figcaption>
+						Eckerson, W.: Deploying Dashboards and Scorecards. TDWI Best Practices Report. 2006.
+					</figcaption>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<div class="grid">
+						<div class="griditem">
+							<figure>
+								<img src="static/V07/shutterstock-informationOverflow.jpeg">
+								<figcaption>
+									Bildquelle <a
+										href="https://www.shutterstock.com/image-photo/back-view-image-businessman-arms-crossed-139983571">Shutterstock</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="griditem">
+							<figure>
+								<p>Information overload</p>
+								<img src="static/V07/2013-Bontcheva-InformationOverload.png">
+								<figcaption>
+									Bontcheva, K. et al: Social Media and Information Overload: Survey Results. 2013
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Rettung von Menschenleben</h2>
+					<figure>
+						<ul>
+							<figure style="float:right">
+								<img src="static/V07/2012-SnowMap_Points.png" width="400">
+								<figcaption>
+									<a
+										href="https://blog.rtwilson.com/john-snows-famous-cholera-analysis-data-in-modern-gis-formats/">Robin's
+										Blog: John Snow's famous cholera analysis data in modern GIS formats</a>
+								</figcaption>
+							</figure>
+							<li>Dr. John Snow</li>
+							<li>London 1854</li>
+							<li>Todesfälle in Straßenkarte eingetragen</li>
+							<li>Wasserpumpe als Ursache für Choleraepidemie identifiziert</li>
+							<li>Transfer der Daten aus dem ursprünglichen zeitlichen Zusammenhang in einen neuen,
+								geographischen Kontext.</li>
+						</ul>
+						<figcaption>
+							<p>Bissantz, N., Mertens, P., Butterwegge, G., Christ, V.: Visualisierung
+								betriebswirtschaftlicher Daten in Chamoni, P., Gluchowski, P., (2010). Analytische
+								Informationssysteme: Business Intelligence-Technologien und -Anwendungen. Berlin.
+								Springer</p>
+							<p><a href="https://www.theguardian.com/news/datablog/2013/mar/15/john-snow-cholera-map">The
+									Guardian: John Snow's data journalism: the cholera map that changed the world</a>
+							</p>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Charles Joseph Minard (1781-1870)</h2>
+					<figure>
+						<img src="static/V07/1869-Minard-NapoleonsFeldzug.png">
+						<figcaption>
+							<a href="https://de.wikipedia.org/wiki/Charles_Joseph_Minard">Wikipedia: Charles Joseph
+								Minard</a>
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<ul>
+							<li>Minard war ein Pionier der grafischen Informationsvermittlung in Ingenieurwesen und
+								Statistik.</li>
+							<li>Als seine bekannteste Arbeit gilt die Carte figurative des pertes successives en hommes
+								de l'Armée Française dans la campagne de Russie 1812-1813, eine im Jahr 1869
+								veröffentlichte Grafik, ein Sankey-Diagramm, über den verheerenden Russlandfeldzug von
+								1812/1813. Die einzigartige Grafik - Edward Tufte hat sie als „vermutlich beste
+								Infografik aller Zeiten“ bezeichnet - vermittelt in einer einzigen zweidimensionalen
+								Darstellung eine große Anzahl von Variablen:</li>
+							<ul>
+								<li>Position und Marschrichtung der Armee, Abspaltung und Wiedervereinigung von
+									Truppenteilen</li>
+								<li>Die (abnehmende) Truppenstärke - besonders markant ist z. B. die Überquerung des
+									Flusses Beresina im Rückzug</li>
+								<li>Die ungewöhnlich niedrigen Temperaturen, die den Rückzug zusätzlich erschwerten.
+									(Die Temperaturangaben sind in Réaumur (-30 °Réaumur = -37,5 °Celsius))</li>
+							</ul>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Mashup</h2>
+					<figure>
+						<img src="static/V07/2023-NYC-CrimeMap.png">
+						<figcaption>
+							<a href="https://maps.nyc.gov/crime/">NYC Crime Map</a>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<figure>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/hVimVzgtD6w" frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							allowfullscreen></iframe>
+						<figcaption>
+							<a href="https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen">TED: The
+								best stats you've ever seen | Hans Rosling</a>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Absturz der Challenger (28.01.1986)</h2>
+					<figure>
+						<ul>
+							<img src="static/V07/1986-CrashOfChallenger.png" style="float:right">
+							<li>The [Rogers] Commission concluded that there was a <b>serious flaw in the decision
+									making process</b> [...].</li>
+							<li><b>Had these matters been clearly stated</b> and emphasized in the flight readiness
+								process [...], it seems likely that the launch of 51-L might not have occurred when it
+								did.</li>
+							<br>
+							<li>Die Dichtungsprobleme waren bekannt.</li>
+							<li><b>Die Ingenieure hatten in 13 (verwirrenden) Folien die richtigen Schlüsse gezogen.</b>
+							</li>
+							<li>Das Management gab den Start frei.</li>
+						</ul>
+						<figcaption>
+							Bissantz, N., Mertens, P., Butterwegge, G., Christ, V.: Visualisierung
+							betriebswirtschaftlicher Daten in Chamoni, P., Gluchowski, P., (2010). Analytische
+							Informationssysteme: Business Intelligence-Technologien und -Anwendungen. Berlin. Springer
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Scheitern der LB Sachsen (Sommer 2007)</h2>
+					<figure>
+						<div class="r-fit-text">
+							<div class="grid">
+								<div class="griditem">
+									<blockquote>
+										Man kriegt ja regelmäßig den Risikobericht, da kann man nachgucken. <b>Und da
+											hat man so eine kleine Ampel drin</b>, mit den drei Farben, rot, gelb, grün.
+										Und wenn es grün ist, und der überwiegende Teil war eben im grünen Bereich, hoch
+										geratet von internationalen Agenturen, „Triple A“ heißt das, sagt man, na, dann
+										scheint es so zu gehen.
+									</blockquote>
+								</div>
+								<div class="griditem">
+									<img src="static/V07/2007-RonaldWeckesser.png">
+									<div style="font-size:x-small">
+										Ronald Weckesser, Verwaltungsrat Sachsen LB<br>
+										in den Tagesthemen vom 27. August 2007
+									</div>
+								</div>
+							</div>
+							<p><b>Fazit: Es gibt richtige und falsche Wege, Daten zu präsentieren.</b></p>
+							<figcaption>
+								Bissantz, N., Mertens, P., Butterwegge, G., Christ, V.: Visualisierung
+								betriebswirtschaftlicher Daten in Chamoni, P., Gluchowski, P., (2010). Analytische
+								Informationssysteme: Business Intelligence-Technologien und -Anwendungen. Berlin.
+								Springer
+							</figcaption>
+						</div>
+
+					</figure>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Zeitreihen</h2>
+					<figure>
+						<div class="grid">
+							<div class="griditem">
+								<p>Explodierende Heizölpreise?</p>
+								<ul>
+									<li>Der Heizölpreis ist explodiert,</li>
+									<li>der Strompreis leicht gestiegen,</li>
+									<li>und der von Erdgas fast konstant?</li>
+								</ul>
+								<p>Oder doch nicht?</p>
+								<table>
+									<thead>
+										<tr>
+											<th></th>
+											<th>1991</th>
+											<th>2007</th>
+											<th>Δ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>Heizöl</th>
+											<td>26,38</td>
+											<td>58,63</td>
+											<td>+122 %</td>
+										</tr>
+										<tr>
+											<th>Strom</th>
+											<td>14,80</td>
+											<td>20,15</td>
+											<td>+36 %</td>
+										</tr>
+										<tr>
+											<th>Erdgas</th>
+											<td>3,55</td>
+											<td>6,51</td>
+											<td>+83 %</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="griditem">
+								<img src="static/V07/2008-Bissantz-EntwicklungDerPreise.png">
+							</div>
+						</div>
+						<figcaption>
+							<a href="https://www.bissantz.de/bissantz-denkt-nach/blaues-wunder/">Bissantz, Dr. N.,
+								Vergleichen Zeitreihenvergleiche Zeitreihen?</a>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Zeitreihen</h2>
+					<div class="grid">
+						<div class="griditem">
+							<ul>
+								<li>Entscheidend sind nicht die absoluten sondern die relativen Zuwächse.</li>
+								<li>Bei einer logarithmischen y-Achse führen gleiche relative Zuwächse auch zu einer
+									gleichen Steigung.</li>
+								<li>Bauen Sie das mal in Excel!</li>
+								<li>Lösung: <a
+										href="https://peltiertech.com/WordPress/logarithmic-axis-scales/">Logarithmic
+										Axis Scales</a></li>
+							</ul>
+						</div>
+						<div class="griditem">
+							<img src="static/V07/2008-Peltier-LogarithmicScale.png">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Kann man Unternehmen wie Autos steuern?</h2>
+					<div class="grid">
+						<div class="griditem">
+							<figure>
+								<p>
+								<ul>
+									<li><b>Die Informationsdichte von Dashboards ist meist geringer als die im Sportteil
+											der Zeitung.</b></li>
+									<li>Brauchen Manager weniger Daten, um den Zustand ihres Unternehmens zu beurteilen,
+										als ein Fußballfan, um den Spielstand der Bundesliga zu erfassen?</li>
+									<br>
+									<li>Historisierung fehlt</li>
+									<li>Fiktion von Eindeutigkeit</li>
+								</ul>
+								</p>
+								<figcaption>
+									Bissantz, N., Mertens, P., Butterwegge, G., Christ, V.: Visualisierung
+									betriebswirtschaftlicher Daten in Chamoni, P., Gluchowski, P., (2010). Analytische
+									Informationssysteme: Business Intelligence-Technologien und -Anwendungen. Berlin.
+									Springer
+								</figcaption>
+							</figure>
+						</div>
+						<div class="griditem">
+							<figure>
+								<img src="static/V07/AmadeusEntertainmentBIDashboard.png">
+								<figcaption>
+									V. Rainardi, Building a Data Warehouse: With Examples in SQL Server.
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Methodische Fortschritte zwischen Ampel und Tabelle</h2>
+					<div class="r-fit-text">
+						<figure>
+							<p>Deckungsbeitragsdaten für zwölf Monate im Ist und Plan</p>
+							<img src="static/V07/2007-Bissantz-Deckungsbeitragsdaten_Full.png">
+							<img src="static/V07/2007-Bissantz-Deckungsbeitragsdaten_CutOut.png">
+							<p>
+								Mit einer normalen Tabelle nicht zu schaffen: Deckungsbeitragsdaten für 12 Monate mit
+								Ist, Plan, absoluter und relativer Abweichung als Tabelle.
+							</p>
+							<figcaption>
+								<a href="https://www.bissantz.de/bissantz-denkt-nach/grafische-tabellen/">Bissantz, Dr.
+									N.,
+									Grafische Tabellen: Couchcontrolling</a>
+							</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						Deckungsbeitrag: Differenz zw. Umsatz und variablen Kosten. Dient zur Deckung der Fixkosten.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Methodische Fortschritte zwischen Ampel und Tabelle</h2>
+					<div class="r-fit-text">
+						<figure>
+							<p>Deckungsbeitragsdaten für zwölf Monate im Ist und Plan</p>
+							<img src="static/V07/2007-Bissantz-Deckungsbeitragsdaten_BusinessGrafik.png" height="300">
+							<p>
+								Auch eine Businessgrafik stößt schnell an ihre Grenzen: Beschriftung und Skalierung
+								werden
+								nur unbefriedigend gelöst.
+							</p>
+							<figcaption>
+								<a href="https://www.bissantz.de/bissantz-denkt-nach/grafische-tabellen/">Bissantz, Dr.
+									N.,
+									Grafische Tabellen: Couchcontrolling</a>
+							</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						Eine herkömmliche Zeitreihendarstellung wäre keine gute Lösung (unterschiedliche Größenordnungen
+						der Werte. Kleine Positionen nicht erkennbar.)
+					</aside>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Methodische Fortschritte zwischen Ampel und Tabelle</h2>
+					<div class="r-fit-text">
+						<figure>
+							<p>Deckungsbeitragsdaten für zwölf Monate im Ist und Plan</p>
+							<img src="static/V07/2007-Bissantz-Deckungsbeitragsdaten_GrafischeTabelle.png" height="300">
+							<p>
+								Kaum zu glauben: der Informationsgehalt einer vierseitigen Tabelle auf 450 Pixel Breite
+							</p>
+							<figcaption>
+								<a href="https://www.bissantz.de/bissantz-denkt-nach/grafische-tabellen/">Bissantz, Dr.
+									N.,
+									Grafische Tabellen: Couchcontrolling</a>
+							</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Auch kleine graphische Elemente erfüllen ihren Zweck.</li>
+							<li>Geben dem Auge Orientierung</li>
+							<li>Beschleunigen das Erkennen von Verhältnissen</li>
+							<li>Beschriftungs- und Anordnungsprobleme entfallen</li>
+							<li>Kompakte Darstellung</li>
+							<li>Informationsdichte steigt</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Visualisierung von Daten</h1>
+					<h2>Methodische Fortschritte zwischen Ampel und Tabelle</h2>
+
+					<figure>
+						<div class="grid">
+							<div class="griditem">
+								<h3>Sparklines</h3>
+								<p>
+									Grafiken in Wortgröße, die aus der eigentlichen Grafik und einem oder mehreren
+									Referenzwerten bestehen. Letztere stellen die Vergleichbarkeit der grafisch
+									repräsentierten Werte untereinander her.
+								</p>
+							</div>
+							<div class="griditem">
+								<img src="static/V07/Sparklines-Stocks.png">
+							</div>
+						</div>
+						<br>
+						<figcaption>
+							Bissantz, N., Mertens, P., Butterwegge, G., Christ, V.: Visualisierung
+							betriebswirtschaftlicher Daten in Chamoni, P., Gluchowski, P., (2010). Analytische
+							Informationssysteme: Business Intelligence-Technologien und -Anwendungen. Berlin. Springer
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>2004 Tufte: Börsenkurse, medizinische Daten</li>
+							<li>Besonders wichtiges grafisches Element: Sparklines</li>
+							<li>Säulen Sparklines für betriebswirtschaftliche Daten. Lassen Perioden hervortreten.</li>
+							<li>Tausende Werte in einer Linie.</li>
+							<li>Wir müssen nicht alle Daten exakt kennen.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section
+					data-background-image="./static/V07/Blueforte-10EmpfehlungenFuerEffektivesInformationDesign.png"
+					data-background-size="contain" data-background-repeat="no-repeat">
+
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Marktübersicht</h1>
+				<figure>
+					<img src="static/V04/2022-Gartner_TheMagicQuadrantForAnalyticsAndBusinessIntelligencePlatforms.svg"
+						height="480">
+					<figcaption>
+						Gartner, Magic Quadrant for Analytics and Business Intelligence Platforms, 2022
+					</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<section>
+					<h1>Literatur</h1>
+					<ul>
+						<img src="static/V07/mitp-cover-praxisbuchInfografik.jpg" height="250" style="float:right">
+						<li>Fichtel, S., Praxisbuch Infografik, Frechen 2022</li>
+						<img src="static/V07/Cover-PerformanceDashboards.png" height="250" style="float:right">
+						<li>Eckerson, W. W., Performance Dashboards: Measuring, Monitoring, and Managing Your Business,
+							2.Auflage, 2010</li>
+						<img src="static/V07/Cover-VisualBusinessAnalytics.jpg" height="250" style="float:right">
+						<li>Kohlhammer J., et al., Visual Business Analytics: Effektiver Zugang zu Daten und
+							Informationen, 2. überarb. u. akt. Edition, 2018</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Literatur - Webseiten</h1>
+					<div class="grid">
+						<div class="griditem">
+							<ul>
+								<li><a href="https://www.tableau.com/data-insights/dashboard-showcase">Tableau Dashboard
+										Showcase</a></li>
+								<li><a href="https://www.bissantz.de/kategorie/bissantz-denkt-nach/">Bissantz denkt
+										nach</a></li>
+								<li><a href="https://www.bissantz.de/kategorie/bella-beraet/">Bella berät</a></li>
+								<li><a href="www.ibcs.com">International Business Communication Standards</a></li>
+								<li><a
+										href="https://www.clearlyandsimply.com/clearly_and_simply/2010/05/combine-tables-and-charts-on-excel-dashboards.html">Combine
+										Tables and Charts on Excel Dashboards</a></li>
+							</ul>
+						</div>
+						<div class="griditem">
+
+							<iframe src="https://www.youtube.com/embed/Hov_Bm3u-RE" frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen></iframe>
+							<p>
+								<a href="https://www.bissantz.de/en/bissantz-ponders/data-science-vs-fake-news/">Data
+									Science vs. Fake News</a>
+							</p>
+						</div>
+					</div>
+				</section>
 			</section>
 
 		</div>
