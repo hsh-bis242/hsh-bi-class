@@ -10,3 +10,4 @@ tmp/**
 node_modules/
 .sass-cache
 /.vs
+static/U03/dbt/logs/dbt.log

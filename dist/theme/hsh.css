@@ -253,6 +253,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 .reveal table th,
 .reveal table td {
+  vertical-align:top;
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
   border-bottom: 1px solid;
