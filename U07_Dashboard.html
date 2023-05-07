@@ -69,17 +69,17 @@
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Tabellen auswählen</h2>
-					<p>Wählen Sie alle <b>Tabellen</b> aus, die sich im Schema "vrs_dm" befinden. Klicken Sie anschließend auf "Laden".</p>
+					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "vrs_dm" befinden. Mit Ausnahme der dim_date, und revenue_star_flat. Klicken Sie anschließend auf "Laden".</p>
 					<img src="static/U07/PowerBISelectStarSchema.png" height="400">
 				</section>
 
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Beziehungen zur Datumsdimension aufbauen</h2>
+					<h2>Beziehungen aufbauen</h2>
 					<div class="grid">
 						<div class="griditem">
-							<p>Die Fremdschlüsselbeziehungen vom Fakt zu den drei Dimensionen kann Power BI aufgrund der gleichlautenden Spaltennamen automatisch herstellen. Das klappt bei den Beziehungen zur Datumsdimension nicht. Hier müssen Sie selbst nachhelfen.</p>
-							<p>Wechseln Sie dazu in die Modellansicht.</p>
+							<p>Die Fremdschlüsselbeziehungen vom Fakt zu den Dimensionen kann Power BI aufgrund der gleichlautenden Spaltennamen automatisch herstellen.</p>
+							<p>Wechseln Sie in die Modellansicht und werfen Sie einen Blick auf das entstandene Datenmodell.</p>
 						</div>
 						<div class="griditem">
 							<img src="static/U07/PowerBIModelView.png">
@@ -89,8 +89,11 @@
 
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Beziehungen zur Datumsdimension aufbauen</h2>
-					
+					<h2>Beziehungen zur Datumsdimension reparieren</h2>
+					<p>Power BI macht einige Fehler bei der Verbindung der Datumsdimensionen.
+						So wird unter Umständen eine Beziehung zwischen den Dimensionen untereinander über das Feld date_iso_id hergestellt.
+						Löschen Sie diese und aktivieren Sie die ggf. deaktivierten ordentlichen Fremdschlüsselbeziehungen.</p>
+					<img src="static/U07/PowerBIVRSDataModel.png" height="360">
 				</section>
 
 			</section>
