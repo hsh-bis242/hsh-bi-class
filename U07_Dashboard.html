@@ -90,12 +90,40 @@
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Beziehungen zur Datumsdimension reparieren</h2>
-					<p>Power BI macht einige Fehler bei der Verbindung der Datumsdimensionen.
-						So wird unter Umständen eine Beziehung zwischen den Dimensionen untereinander über das Feld date_iso_id hergestellt.
-						Löschen Sie diese und aktivieren Sie die ggf. deaktivierten ordentlichen Fremdschlüsselbeziehungen.</p>
+					<p>Durch den ordentlichen Aufbau des Sternschemas sieht das automatisch von Power BI angelegte Datenmodell gut aus.</p>
+					<p>Verbergen Sie der Übersichtlichkeit wegen die ID-Spalten (wie zB. film_id) in allen Tabellen.</p>
 					<img src="static/U07/PowerBIVRSDataModel.png" height="360">
 				</section>
 
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Anlegen von Addresshierarchien</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>Legen Sie in beiden Adressdimensionen jeweils eine Hierarchie an. Und zwar in folgender Reihenfolge:</p>
+							<p><b>country - district - store</b></p>
+							<p>Die drei Datenfelder k&ouml;nnen Sie anschließend auch ausblenden.</p>
+						</div>
+						<div class="griditem">
+							<img src="static/U07/PowerBIStoreAddressHierarchy.png">
+						</div>
+					</div>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Aufgabe: Aufbau des Dashboards</h1>
+				<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs der Videothek übersichtlich darstellt:</p>
+				<ul>
+					<li>Wie verteilen sich die Umsätze auf die Filmkategorien?</li>
+					<li>Wie verteilen sich die Umsätze auf die einzelnen Geschäfte?</li>
+					<li>Welches sind die Umsatzstärksten Länder (nach Kundenwohnort)?</li>
+					<li>Wie häufig werden Filme verspätet zurückgegeben?</li>
+					<li>Was ist die durchschnittliche Überziehungsdauer?</li>
+					<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Filme?</li>
+					<li>Wie ist die durchschnittliche Ausleihdauer der 5 umsatzstärksten Filme?</li>
+				</ul>
 			</section>
 
 		</div>
