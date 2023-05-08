@@ -289,9 +289,16 @@ SELECT [date_id] AS return_date_id
 
 			<section>
 				<h1>Aufbau des Modells in dbt</h1>
-				<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter "models" angelegt werden:</p>
-				<img src="static/U03/dbtProject.png">
-				<p>Leider muss das Skript zur Erstellung der Datumsdimension aktuell noch manuell auf dem SQL-Server ausgeführt werden.</p>
+				<div class="grid">
+					<div class="griditem">
+						<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter "models" angelegt werden.</p>
+						<p>Leider muss das Skript zur Erstellung der Datumsdimension aktuell noch <b>manuell auf dem SQL-Server</b> ausgeführt werden.</p>
+						<p>Anschließend kann mit <b>dbt run</b> das Sternschema auf dem Server angelegt werden.</p>
+					</div>
+					<div class="griditem">
+						<img src="static/U03/dbtProject.png">
+					</div>
+				</div>
 			</section>
 
 		</div>
