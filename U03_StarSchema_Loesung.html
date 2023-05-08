@@ -53,11 +53,11 @@
 				<section>
 					<h1>Datenzusammenstellung für das Sternschema</h1>
 					<p>
-						Wir stellen die Daten f&uuml;r das Sternschema mit dbt zusammen. Zunächst erstellen wir eine
-						flache Zusammenstellung aller für die Fakten und Dimensionen genutzten Daten.
+						Wir nutzen dbt um das Sternschema aufzubereiten. Alle Daten werden zunächst in einer flachen
+						Ansicht zusammengestellt.
 					</p>
 					<pre>
-						<code data-trim>
+						<code class="language-sql" data-trim>
 	{{ config(materialized='view') }}
 
 	WITH cte_addresses AS
@@ -140,9 +140,158 @@
 				</section>
 
 				<section>
-					
+					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<p>
+						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach "herausgeschnitten"
+						werden:
+					</p>
+					<div class="grid">
+						<div class="griditem">
+							<h3>fact_revenue.sql</h3>
+							<pre>
+								<code class="language-sql" data-trim>
+SELECT
+	[payment_date_id]
+	,[rental_date_id]
+	,[return_date_id]
+	,[film_id]
+	,[store_id]
+	,[store_address_id]
+	,[customer_address_id]
+	,[payment_date]
+	,[rental_date]
+	,[return_date]
+	,[amount]
+	,[film_rental_rate]
+	,[rental_duration_days_actual]
+	,[rental_duration_days_permitted]
+FROM {{ ref('revenue_star_flat') }}
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<h3>dim_film.sql</h3>
+							<pre>
+								<code class="language-sql" data-trim>
+SELECT DISTINCT
+	[film_id]
+	,[film_title]
+	,[film_release_year]
+	,[film_language_name]
+	,[film_length]
+	,[film_category_names]
+FROM {{ ref('revenue_star_flat') }}
+								</code>
+							</pre>
+							<h3>dim_customer_address.sql</h3>
+							<pre>
+								<code class="language-sql" data-trim>
+SELECT DISTINCT
+	[customer_address_id]
+	,[customer_city_name]
+	,[customer_country_name]
+	,[customer_district_name]
+FROM {{ ref('revenue_star_flat') }}
+								</code>
+							</pre>
+						</div>
+					</div>
 				</section>
 
+				<section>
+					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<p>Im Fakt sind drei Dat&uuml;mer angelegt: <b>Payment, Return und Rental Date</b>. G&auml;ngige
+						OLAP- und BI-Tools erwarten pro Datum eine Dimension. Aus der Datumsdimensions-<b>Tabelle</b>
+						werden deshalb drei <b>Views</b> abgeleitet:</p>
+					<div class="grid">
+						<div class="griditem">
+							<p>dim_payment_date.sql</p>
+							<pre>
+								<code class="language-sql" data-trim>
+{{ config(materialized='view') }}
+
+SELECT [date_id] AS payment_date_id
+      ,[sql_date] AS payment_date
+      ,[day]
+      ,[day_of_week]
+      ,[week]
+      ,[month]
+      ,[quarter]
+      ,[year]
+      ,[day_of_year]
+      ,[day_text]
+      ,[month_text]
+      ,[quarter_text]
+      ,[day_text_abbrev]
+      ,[month_text_abbrev]
+      ,[ldm]
+      ,[ldq]
+      ,[ldy]
+      ,[is_bus_day]
+      ,[is_weekday]
+      ,[is_holiday]
+      ,[rpt_hdr_long]
+      ,[rpt_hdr_short]
+  FROM vrs_dm.dim_date
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<p>dim_return_date.sql</p>
+							<pre>
+								<code class="language-sql" data-trim>
+{{ config(materialized='view') }}
+
+SELECT [date_id] AS return_date_id
+		,[sql_date] AS return_date
+		,[day]
+		,[day_of_week]
+		,[week]
+		,[month]
+		,[quarter]
+		,[year]
+		,[day_of_year]
+		,[day_text]
+		,[month_text]
+		,[quarter_text]
+		,[day_text_abbrev]
+		,[month_text_abbrev]
+		,[ldm]
+		,[ldq]
+		,[ldy]
+		,[is_bus_day]
+		,[is_weekday]
+		,[is_holiday]
+		,[rpt_hdr_long]
+		,[rpt_hdr_short]
+	FROM vrs_dm.dim_date
+								</code>
+							</pre>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<h2>Erläuterungen zur Lösung</h2>
+					<ul>
+						<li>&Uuml;ber die <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/rank-transact-sql">RANK()-Funktion</a> wird ein technischer Schl&uuml;ssel für die
+							Marts gebildet.</li>
+						<li>Die Filmkategorien könnten (praktisch tritt dieser Fall im Datensatz nicht auf) die
+							Granularität der Faktentabelle verändern (da Film zu Category als n:m-Beziehung modelliert
+							ist). Aus diesem Grund wird über die Kombination der <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/substring-transact-sql">SUBSTRING</a> und <a
+								href="https://learn.microsoft.com/en-us/sql/relational-databases/sqlxml-annotated-xsd-schemas-xpath-queries/introduction-to-using-xpath-queries-sqlxml-4-0?view=sql-server-ver16">XML-Path</a> Funktionen alle Kategorien eines Films in eine kommagetrennte Liste
+							in ein Feld zusammengefasst.</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Aufbau des Modells in dbt</h1>
+				<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter "models" angelegt werden:</p>
+				<img src="static/U03/dbtProject.png">
+				<p>Leider muss das Skript zur Erstellung der Datumsdimension aktuell noch manuell auf dem SQL-Server ausgeführt werden.</p>
 			</section>
 
 		</div>

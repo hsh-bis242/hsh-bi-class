@@ -1,8 +1,7 @@
 {{ config(materialized='view') }}
 
 SELECT [date_id] AS return_date_id
-      ,[sql_date]
-      ,[date_iso_id]
+      ,[sql_date] AS return_date
       ,[day]
       ,[day_of_week]
       ,[week]
