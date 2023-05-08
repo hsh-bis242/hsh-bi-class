@@ -6,9 +6,8 @@ SELECT
     store_id,
     store_address_id,
     customer_address_id,
-    payment_date,
-    rental_date,
-    return_date,
     amount,
-    rental_duration_days
+    film_rental_rate,
+    rental_duration_days_actual,
+    rental_duration_days_permitted
   FROM {{ ref('revenue_star_flat') }}

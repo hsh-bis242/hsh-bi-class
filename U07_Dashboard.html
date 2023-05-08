@@ -30,8 +30,100 @@
 			</section>
 
 			<section>
-				<h1>Aufgabe: Sternschema in PowerBI laden</h1>
-				<h2>Verbindung zum Datenbankserver herstellen</h2>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Installation von Power BI</h2>
+					<p>Wir arbeiten mit Power BI Desktop. Dieses können Sie hier herunterladen: <a href="https://www.microsoft.com/store/productId/9NTXR16HNW1T">Microsoft Store</a></p>
+					<p>Beim ersten Start verlangt Power BI nach einer Anmeldung. Nutzen Sie hier die Benutzerdaten Ihrer Gruppe (biXXXXX@hshannoverde.onmicrosoft.com und Passwort)</p>
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Verbindung zum Datenbankserver herstellen</h2>
+					<div class="grid">
+						<div class="griditem">
+							<ol>
+								<li>Stellen Sie nun eine Verbindung zu Ihrem Sternschema her.</li>
+								<li>Dazu klicken Sie direkt im Startscreen auf "Daten abrufen".</li>
+								<li>Wählen Sie dann "Datenbank", "SQL Server-Datenbank" und klicken Sie auf "verbinden".</li>
+								<li>Tragen Sie dann Ihre Zugangsdaten zu Ihrer Datenbank ein.</li>
+								<ul>
+									<li>Als Datenkonnektivitätsmodus wählen Sie "Importieren".</li>
+								</ul>
+							</ol>
+						</div>
+						<div class="griditem">
+							<img src="static/U07/PowerBIRetrieveData.png">
+							<img src="static/U07/PowerBISQLServerDatabase.png" height="250">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Verbindung zum Datenbankserver herstellen</h2>
+					<img src="static/U07/PowerBIDatabaseCredentials.png">
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Tabellen auswählen</h2>
+					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "vrs_dm" befinden. Mit Ausnahme der dim_date, und revenue_star_flat. Klicken Sie anschließend auf "Laden".</p>
+					<img src="static/U07/PowerBISelectStarSchema.png" height="400">
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Beziehungen aufbauen</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>Die Fremdschlüsselbeziehungen vom Fakt zu den Dimensionen kann Power BI aufgrund der gleichlautenden Spaltennamen automatisch herstellen.</p>
+							<p>Wechseln Sie in die Modellansicht und werfen Sie einen Blick auf das entstandene Datenmodell.</p>
+						</div>
+						<div class="griditem">
+							<img src="static/U07/PowerBIModelView.png">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Beziehungen zur Datumsdimension reparieren</h2>
+					<p>Durch den ordentlichen Aufbau des Sternschemas sieht das automatisch von Power BI angelegte Datenmodell gut aus.</p>
+					<p>Verbergen Sie der Übersichtlichkeit wegen die ID-Spalten (wie zB. film_id) in allen Tabellen.</p>
+					<img src="static/U07/PowerBIVRSDataModel.png" height="360">
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>Anlegen von Addresshierarchien</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>Legen Sie in beiden Adressdimensionen jeweils eine Hierarchie an. Und zwar in folgender Reihenfolge:</p>
+							<p><b>country - district - store</b></p>
+							<p>Die drei Datenfelder k&ouml;nnen Sie anschließend auch ausblenden.</p>
+						</div>
+						<div class="griditem">
+							<img src="static/U07/PowerBIStoreAddressHierarchy.png">
+						</div>
+					</div>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Aufgabe: Aufbau des Dashboards</h1>
+				<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs der Videothek übersichtlich darstellt:</p>
+				<ul>
+					<li>Wie verteilen sich die Umsätze auf die Filmkategorien?</li>
+					<li>Wie verteilen sich die Umsätze auf die einzelnen Geschäfte?</li>
+					<li>Welches sind die Umsatzstärksten Länder (nach Kundenwohnort)?</li>
+					<li>Wie häufig werden Filme verspätet zurückgegeben?</li>
+					<li>Was ist die durchschnittliche Überziehungsdauer?</li>
+					<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Filme?</li>
+					<li>Wie ist die durchschnittliche Ausleihdauer der 5 umsatzstärksten Filme?</li>
+				</ul>
 			</section>
 
 		</div>

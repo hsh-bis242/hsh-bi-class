@@ -1,0 +1,25 @@
+{{ config(materialized='view') }}
+
+SELECT [date_id] AS payment_date_id
+      ,[sql_date] AS payment_date
+      ,[day]
+      ,[day_of_week]
+      ,[week]
+      ,[month]
+      ,[quarter]
+      ,[year]
+      ,[day_of_year]
+      ,[day_text]
+      ,[month_text]
+      ,[quarter_text]
+      ,[day_text_abbrev]
+      ,[month_text_abbrev]
+      ,[ldm]
+      ,[ldq]
+      ,[ldy]
+      ,[is_bus_day]
+      ,[is_weekday]
+      ,[is_holiday]
+      ,[rpt_hdr_long]
+      ,[rpt_hdr_short]
+  FROM vrs_dm.dim_date

@@ -1,6 +1,6 @@
 {{ config(materialized='view') }}
 
-WITH cte_date AS
+WITH cte_addresses AS
 (
 	SELECT	a.[address_id],
 			a.district AS district_name,
@@ -32,7 +32,9 @@ SELECT	p.payment_date,
 		ddrent.date_id AS rental_date_id,
 		r.return_date,
 		ddretu.date_id AS return_date_id,
-    DATEDIFF(DAY, r.rental_date, r.return_date) AS rental_duration_days,
+    DATEDIFF(DAY, r.rental_date, r.return_date) AS rental_duration_days_actual,
+		f.rental_duration AS rental_duration_days_permitted,
+    f.rental_rate AS film_rental_rate,
 		f.film_id,
 		f.title AS film_title,
 		f.release_year AS film_release_year,
@@ -61,11 +63,11 @@ SELECT	p.payment_date,
     ON ca.film_id = f.film_id
   JOIN [vrs].[store] s
     ON s.store_id = i.store_id
-  JOIN cte_date sd
+  JOIN cte_addresses sd
     ON sd.address_id = s.address_id
   JOIN [vrs].[customer] cu
     ON cu.customer_id = p.customer_id
-  JOIN cte_date cd
+  JOIN cte_addresses cd
     ON cd.address_id = cu.address_id
   JOIN vrs_dm.dim_date ddp
     ON ddp.date_iso_id = CAST(CONVERT(CHAR(8), p.payment_date, 112) AS INT)
