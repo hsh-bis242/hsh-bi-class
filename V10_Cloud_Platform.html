@@ -38,7 +38,328 @@
 				<img src="static/V10/azure_start_page.png" alt="Image 1">
 			</section>
 			<section>
-				<h1>Microsoft Azure</h1>
+				<h1>Modern Data Warehousing</h1>
+				<img src="static/V10/azure_01.png" alt="Image 1">
+				<figcaption>https://www.youtube.com/watch?v=G8e55N-ityg</figcaption>
+			</section>
+			<section>
+				<h1>Modern Data Warehousing</h1>
+				<img src="static/V10/azure_02.png" alt="Image 1">
+				<figcaption>https://www.youtube.com/watch?v=G8e55N-ityg</figcaption>
+			</section>
+			<section>
+				<h1>Übersicht Azure Services</h1>
+			<a href="https://azurecharts.com/overview">Azure Services</a>	
+			</section>
+			<section>
+				<h1>Modern Data Warehousing</h1>
+				<img src="static/V10/azure_03.png" alt="Image 1">
+				<figcaption>https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/modern-data-warehouse</figcaption>
+			</section>
+			<section>
+				<h1>Modern Data Warehousing</h1>
+				<img src="static/V10/azure_04.png" alt="Image 1">
+				<img src="static/V10/azure_05.png" alt="Image 1">
+				<figcaption>https://azure.microsoft.com/en-us/pricing/calculator/</figcaption>
+			</section>
+			<section>
+				<h1>Modern Data Warehousing</h1>
+				<img src="static/V10/azure_06.png" alt="Image 1">
+				<figcaption>https://www.youtube.com/watch?v=ivt19IZO41Y
+				</figcaption>
+			</section>
+			<section>
+				<h1>Azure Datenbank</h1>
+				<p>Azure stellt zwei SQL Datenbanken bereit:</p>
+				<ul>
+					<li>Azure SQL Database (Computer mit SQL Server)</li>
+					<li>Azure Synapse Analytics (vormals SQL DW)</li>
+					<li>Alternative in AWS Redshift und Google Big Query</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Massively Parallel Processing (MPP) Architektur
+					Control Node verteilt Abfrage an Compute Nodes, parallele Berechnung, Zusammenführung der Ergebnisse im Control Node
+					</p>
+				<ul>
+					<li>Basiert auf der Microsoft SQL Server Engine</li>
+					<li>Skalierbarkeit, Elastizität, Concurrency</li>
+					<li>Für ein (großes) Cloud DWH optimiert</li>
+					<li>Die verteilten Tabellen erscheinen logisch als eine Tabelle</li>
+					<li>Trennung von Compute & Storage ermöglicht das (kostensparende) Stoppen der Datenbank (Compute)</li>
+					<li>Integration mit Data Factory</li>
+					<li>Hochverfügbar (99.9%)</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Problem: Skalierbarkeit des verteilten Speichers („Storage“)
+					</p>
+				<ul>
+					<li>Eine Gleichverteilung der Daten bei Erhöhung der Anzahl der Speicherknoten ist aufwendig</li>
+					<li>Round Robin Distribution, Hash Distribution, Replicated Distribution</li>
+					<li>Maximal 60 Speicherknoten</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Ressourcen Management
+					</p>
+				<ul>
+					<li>Compute Data Warehouse Units (cDWUs): Ein Mix aus CPU, Speicher und I/O</li>
+					<li>cDWU 100 (Minimum)</li>
+					<li>1 Compute Node und 100 GB Speicher verteilt auf 60 Speicherknoten</li>
+					<li>cDWU 30000 (Maximum): 60 Compute Nodes und 18 TB Speicher auf jedem der 60 Speicherknoten</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Ressourcen-Klassen: Wieviel Rechenkapazität wird jeder Query zugeteilt?
+					</p>
+				<ul>
+					<li>Eine größere Ressourcen-Klasse teilt jeder Abfrage mehr Ressourcen zu, begrenzt aber die Concurrency</li>
+					<li>Eine kleinere Ressourcen-Klasse bewirkt das Gegenteil</li>
+					<li>Es gibt statische und dynamische Ressourcen-Klassen. Sie definieren das Verhalten beim Hochskalieren des Clusters</li>
+					<li>Eine statischen Ressourcen-Klasse ordnet der Abfrage immer eine definierte Menge an Ressourcen zu. Das erhöht dann die mögliche Concurrency für mehrere Abfragen. Sie eignet sich daher für definierte und vorhersagbare Abfragen</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure SQL Database</h1>
+				<p>Symmetric Multi Processing (SMP) Architektur 
+					Viele CPUs, aber nur ein Speicher => Engpass					
+					</p>
+				<ul>
+					<li>PaaS Version der On-Premise Microsoft SQL Server Datenbank</li>
+					<li>Für Lese- und Schreibzugriffe optimiertes OLTP System</li>
+					<li>Grundsätzlich auch für ein DWH geeignet</li>
+					<li>Azure SQL Database Hyperscale (bis 100+ TB) für Szenarien > 4 TB</li>
+				</ul>
+				<p>Deployment Optionen: </p>
+				<ul>
+					<li>Managed Instance (ähnlich On-Premise Microsoft SQL Server) </li>
+					<li>Elastic Pool (für Compute Resources)</li>
+					<li>Integration mit Data Factory</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure SQL Database</h1>
+				<p>Ressourcen Management					
+					</p>
+				<ul>
+					<li>Database Transaction Units (DTUs): Speicher, Hauptspeicher und CPU</li>
+					<li>V-Core erlauben getrennte Skalierung von Storage & Compute</li>
+					<li>Provisioned & Serverless Deployment</li>
+				</ul>
+				<p>V-Core Tiers: </p>
+				<ul>
+					<li>General Purpose</li>
+					<li>Hyperscale</li>
+					<li>Business Critical</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure SQL Database</h1>
+				<p>Eine Cloud-basierter OLTP Server (kein OLAP Server)
+					Aber: Es gibt keinen Grund, weshalb ein OLTP Server nicht auch analytische Abfragen bedienen kann (bis zu einer Lastgrenze)
+					Für bestimme (kleinere) DWH Szenarien mag es sogar besser sein, eine Azure SQL Database zu verwenden			
+					</p>
+				<ul>
+					<li>Bei einem hohen Maß an Parallelität durch viele Nutzer, Berichte und ETL Prozesse (Azure Synapse Analytics ist auf maximal 128 gleichzeitige Abfragen begrenzt)</li>
+					<li>Vereinfachte Verarbeitung (und Optimierung) in der SMP Architektur</li>
+					<li>Micro-Batches in Event-Driven oder Streaming Architekturen (IoT, Industrie 4.0, Sensoren)(im Gegensatz zu sehr großen Datenmengen in regelmäßigen Abständen)</li>
+					<li>Weniger als ca. 1 bis 5 TB Daten</li>
+					<li>Bis ca. 100 TB auch günstiger</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse Studio</h1>
+				<img src="static/V10/azure_07.png" alt="Image 1">
+				<figcaption>https://kohera.be/blog/azure-cloud/azure-synapse-analytics-where-azure-dwh-spark-adf-meet/
+				</figcaption>
+			</section>
+			<section>
+				<h1>Azure Synapse Studio</h1>
+				<img src="static/V10/azure_08.png" alt="Image 1">
+				<figcaption>https://azure.microsoft.com/de-de/services/synapse-analytics/
+				</figcaption>
+			</section>
+			<section>
+				<h1>Azure Data Factory</h1>
+				<h2>adf.azure.com</h2>
+				<p> Annahme:  
+					For data warehousing we need a platform for aggregating and processing data 
+					from a wide variety of sources.
+					
+					Mögliche Lösung/Technologie:
+
+					When operating on the Azure platform, the established convention is to use 
+					Azure Data Factory (ADF) V2. This is the primary integration and orchestration 
+					engine for any data movement in to or out of Azure
+					</p>
+					<p>Alternative: AWS Glue</p>
+			</section>
+			<section>
+				<h1>Azure Data Factory</h1>
+				<img src="static/V10/azure_09.png" alt="Image 1">
+			</section>
+			<section>
+				<h1>Azure Data Factory Komponenten</h1>
+				<p>Ein Data Flow setzt sich aus diesen Komponenten zusammen</p>
+				<ul>
+					<li>Activities</li>
+					<li>Pipelines</li>
+					<li>Linked Services</li>
+					<li>Datasets</li>
+					<li>Triggers</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Data Factory Activities</h1>
+				<p>An activity is a collection of actions which to perform on your data, grouped together in a unit of orchestration and execution. 
+				Each activity can have zero or more input datasets and produce one or more output datasets. </p>
+				<br>
+				<p>For example, an activity could be copying data from one dataset to another.</p>
+				<br>
+				<p>Activities are highly specialized JSON objects and provide the ability to do just one
+				Action. Some activities execute compute jobs, some perform data movement, some run nested activities, while others implement control logic and looping.</p>
+			</section>
+			<section>
+				<h1>Azure Data Factory Activities</h1>
+				<p>Internal copy activities</p>
+				<p>Probably one of the most used activities in Data Factory is the Copy Data activity. Configuration options: </p>
+				<ul>
+					<li>The number of integration units to use (the scale of the job)</li>
+					<li>The degree of parallelism to utilize</li>
+				</ul>
+				<br>
+				<p>Multiple inputs/outputs</p>
+				<p>Branching, joining, and lookups break up datasets into multiple processing flows and look up data from sources using a lookup key</p>
+				<br>
+				<p>Schema modifier </p>
+				<p>Derived columns, aggregations, windowing, and pivoting transform the schema of the file by computing new columns or performing aggregations and grouping</p>
+			</section>
+			<section>
+				<h1>Azure Data Factory Activities</h1>
+				<p>Row modifier </p>
+				<p>Select, filter, and sort data with the additional capability to apply updates, inserts, and deletes to individual rows in the dataset</p>
+				<br>
+				<p>Destination</p>
+				<p>Add an output destination to land the transformed dataset into one of the supported sinks</p>
+				<br>
+				<p>Iteration and conditional activities</p>
+				<p>Lookup, Wait, For Each Loop, If Conditions, Until Loop</p>
+				<br>
+				<p>Web activities</p>
+				<p>A way to call a REST API. These are not for heavy lifting of data. These are designed to be “chatty” rather than chunky and are great for facilitating lightweight messaging and alike.</p>
+			</section>
+			<section>
+				<h1>Azure Data Factory Pipelines</h1>
+				A pipeline is a group of activities. Together, the activities in a pipeline perform a task. They can be roughly likened to the control flow concept in SQL Server Integration Services.
+For example, a pipeline could contain a set of activities that ingest and clean log data, and then kick off a HIVE query on an HDInsight cluster to analyze the log data. The beauty of this is that the pipeline allows you to manage the activities as a set instead of each one individually. For example, you can deploy and schedule the pipeline, instead of the activities independently.
+In addition, the pipeline also holds the definition of any parameters and variables that may be utilized throughout the pipeline as part of an activity.
+			</section>
+			<section>
+				<h1>Azure Data Factory Linked Service</h1>
+				You can think of a linked service much like a connection string. A linked service simply defines the connection information in which to connect to external data sources. 
+Think of it this way: the dataset represents the structure of the data, and the linked service defines the connection to the data source. 
+From within the UI, you can create a linked service connection to over 80 different data stores.
+				<ul>
+					<li>Data Store Linked Services allow you to fetch data or deposit data</li>
+					<li>Compute Linked Services allow you to execute jobs on Azure-based compute resources such as Azure Databricks, Azure Functions, and Azure Synapse Analytics, to name a few.</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Data Factory Dataset</h1>
+				A dataset is a named view of data that simply points or references the data you want to use in your activities as inputs and outputs.
+With a linked service, you have a connection, but you now need to add a layer on top of that to implement logic that allows you to access specific tables, files, directories, and others.
+You can configure the elements such as the file format, column delimiter, and row terminator to be used when reading the file and then specify different metadata to write the file using.
+			</section>
+			<section>
+				<h1>Azure Data Factory Triggers</h1>
+				Triggers are the method by which pipelines are invoked and allow ADF to support a variety of types of automation. 
+<br>
+When developing a Data Factory pipeline, you can test the pipeline in debug mode which allows the pipeline to execute fully only on a debug cluster and does not require a publish action. You can monitor your pipeline from within the authoring UI and check the input and output of each activity as execution occurs.
+Additionally, any activities that are configured to run in parallel will be run sequentially so that you can easily step into any activity in the pipeline. 
+<br>
+<br>
+The automatic triggers cater for a wide variety of automation options and fall under three categories which are listed here:
+<br>
+				<ul>
+					<li>Schedule triggers</li>
+					<li>Tumbling window triggers</li>
+					<li>Event triggers</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Data Factory Integrated Runtimes</h1>
+Underpinning all activity in Azure Data Factory is the integration runtime (IR). 
+This is the scalable, cloud compute resource that actually does the heavy lifting when copying data from one place to another or routing jobs to the required external compute resources. 
+In most cases, you can default to using the Azure Integration Runtime which leaves the provision of the compute resource up to Azure itself and requires no further thought on the part of the developer
+			</section>
+			<section>
+				<h1>Azure Data Factory Beispiel Aggregation UI</h1>
+					<img src="static/V10/azure_10.png" alt="Image 1"> 
+			</section>
+			<section>
+				<h1>Azure Analysis Services</h1>
+				Warum Analysis Services , wenn das Stern Schema doch für analytische Abfragen erstellt wurde? Storage Layer vs. Semantic Layer
+				<br>
+				<br>
+				Semantic data modeling is a phase where you want to create a semantic data model so that analysts can have seamless access to data. 
+				A semantic data model is a tabular format that is structured and can easily be visualized and understood by most users (Granularity, column names, hierarchies, security, KPIs).
+				<br>
+				<br>
+				Azure Analysis Services (AAS) is a cloud hosted service and a fully managed platform as a service (PaaS) tool that enables data engineers to model database tables and serve these semantic data models to users
+				<br>
+				<br>
+				Azure Analysis Services is built on the proven analytical engine of SQL Server 2016
+				Analysis Services.
+				
+			</section>
+			<section>
+				<h1>AAS offers the following features</h1>
+				<ul>
+					<li>The user can combine data from different complex sources and create a tabular representation of data that is easily understood by most people.</li>
+					<li>The platform provides on-demand performance that can match the scale of your data size and operations.</li>
+					<li>Azure Analysis Services is easy to deploy, scale, and manage as it is a PAAS solution.</li>
+					<li>AAS also provides an added layer of security that ensures only the right people get access to the right set of data (role-based access control) using Azure Active Directory.</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Tabular vs. Multidimensional</h1>
+				The Tabular model (In-Memory Cube). Tabular models are in-memory databases in Analysis Services. Using state-of-the-art compression algorithms and multi-threaded query processing, the Xvelocity (former name: Vertipaq) engine delivers fast access to tabular model objects and data through reporting client applications such as Microsoft Excel and Microsoft PowerBI.
+				<br>
+				<br>
+				The Multidimensional model (traditional OLAP Cube). This model is the OLAP cube that already exists for more than ten years. OLAP technology organizes summary data into multidimensional structures. Aggregations are stored in the multidimensional structure in cells at coordinates specified by the dimensions.
+				
+				<figcaption>https://www.element61.be/en/resource/choice-between-tabular-or-multidimensional-models-sql-server-analysis-services-2012
+				</figcaption>
+			</section>
+			<section>
+				<h1>Tabular vs. Multidimensional</h1>
+				These two models have the same goal: to provide a semantic layer on top of your DWH with high performance capabilities that allows the end-users to dig into the data. 
+				<br>
+				<br>
+				The fact that these two models are part of Analysis Services could give the impression that both models are similar and that you can easily switch from one model to another. The reality is that they are two different products with two totally different design experiences and underlying data-architectures. They can co-exist on the same machine but they both have their own instances.
+				<br>
+				<br>
+				Tabular Model:
+				<br>
+				<br>
+More performant than OLAP in majority of the case.(Exception: Report on aggregated data with predefined aggregations)
+Easier to develop than Multidimensional model.
+Technology for the future.
+AAS only supports tabular projects.
+			</section>
+			<section> 
+				<h1>Literatur</h1>
+				<ul>
+					<li>Altaiar, H. et al. (2019). Cloud analytics with Microsoft Azure. Packt Publishing</li>
+					<li>How, M. (2020). The Modern Data Warehouse in Azure: Building with Speed and Agility on Microsoft's Cloud Platform. Apress</li>
+					<li>Coté, C., Gutzait, M. K., & Ciaburro, G. (2018). Hands-On Data Warehousing with Azure Data Factory: ETL techniques to load and transform data from various sources, both on-premises and on cloud. Packt Publishing Ltd.</li>
+					<li>Klein, S. (2017). IoT Solutions in Microsoft's Azure IoT Suite. Berkeley, CA: Apress</li>
+				</ul>
 			</section>
 		</div>
 	</div>

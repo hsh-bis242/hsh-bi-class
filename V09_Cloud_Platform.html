@@ -118,7 +118,7 @@
 					<li>Private cloud - Für eine Organization wird exklusiv Infrastruktur bereitgestellt</li>
 					<li>Community cloud - Mehrere Organisationen mit gleichen Interessen teilen sich die cloud-Infrastruktur</li>
 					<li>Public Cloud - Die cloud Infrastruktur kann von jeder Institution oder natürlichen Person im Rahmen der festgelegten AGB genutzt werden</li>
-					<li>Hybrid Cloud - Zwei oder mehr getrennte cloud Infrastrukturen sind durch angeglichene Standards und Technologien miteinander kompatible, Daten und Anwendungen können portiert werden</li>
+					<li>Hybrid Cloud - Zwei oder mehr getrennte cloud Infrastrukturen sind durch angeglichene Standards und Technologien miteinander kompatibel, Daten und Anwendungen können portiert werden</li>
 				</ul>
 			</section>
 			<section>
@@ -184,38 +184,107 @@
 				</ul>
 			</section>
 			<section>
-				<h1>Apache und Open Source</h1>
-				https://geekflare.com/de/opensource-cloud-platforms/
-				https://de.wikipedia.org/wiki/Apache_Software_Foundation
-				https://www.apache.org/index.html#projects-list
+				<h1>Cloud computing kann auch Open Source</h1>
+				<ul>
+					<li>Cloud Foundry - VMWare Entwickler - SaaS-App-Entwicklung</li>
+					<li>WSO2 - Fokus API Management</li>
+					<li>Cloudify - Gute Tools für Monitoring, Dokumentation mit yml-files</li>
+					<li>OpenShift - Kubernetes und für große verteilte Anwendungen</li>
+					<li>Tsuru - Docker PaaS</li>
+					<li>Stackato - Basiert auf cloud foundry PaaS in Docker container</li>
+					<li>Alibaba - Docker - Kubernetes</li>
+				</ul>
+				<figcaption>https://geekflare.com/de/opensource-cloud-platforms/</figcaption>
+			</section>
+			<section>
+				<h1>Apache Software Foundation</h1>
+				<p>"Our mission is to support communities that create and distribute Open Source software at no charge under the Apache License, per our Bylaws. To this end we provide mentoring, virtual collaboration space, and resources for project communities to develop, steward, and incubate Open Source software under our legal umbrella.
+We are strongly committed to our project's independence from any external influences, be they corporate, organizational or otherwise. This allows us to provide a neutral environment for our communities.
+As a Foundation we intentionally do not define a technical strategy: that is determined by our projects. The Foundation's goals center on communities, as opposed to technologies."
+				</p>
+				<figcaption>https://news.apache.org/foundation/entry/the-apache-software-foundation-2018</figcaption>
+				<br>
+				 <a
+				href="https://www.apache.org/index.html#projects-list">Apache-Projektliste</a>		
 			</section>
 			<section>
 				<h1>On-premise vs. cloud</h1>
+				<table>
+					<thead>
+						<tr>
+							<th>Eigenschaft</th>
+							<th>On-Premise</th>
+							<th>Cloud</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Kosten</td>
+							<td>Man zahlt einen einmaligen hohen Preis</td>
+							<td>Abo-Modell erzeugt regelmäßige niedrige Kosten</td>
+						</tr>
+						<tr>
+							<td>Bereitstellung</td>
+							<td>Nutzer installieren eigenständig auf der persönlichen Hardware</td>
+							<td>Zugriff über das Internet und Nutzung als SaaS</td>
+						</tr>
+						<tr>
+							<td>Wartung</td>
+							<td>Nutzer müssen Updates selbst installieren, wenn der Hersteller diese herausgibt</td>
+							<td>Updates werden im Hintergrund vom Hersteller selbst aufgespielt</td>
+						</tr>
+						<tr>
+							<td>Skalierbarkeit</td>
+							<td>Eigenverantowrtilichkeit bei Open Source oder Anfrage bei Hersteller zu Erweiterungen der Software</td>
+							<td>Zusätzliche Funktionen lassen sich hinzubuchen wenn diese verfügbar sind</td>
+						</tr>
+						<tr>
+							<td>Hardware</td>
+							<td>Der Nutzer muss die Hardware selbst stellen, ersetzen und sich um Ersatz bei Ausfällen kümmern</td>
+							<td>Jeder Nutzer braucht nur einen funktionierenden Internetzugang, kein Einblick welche exakte Hardware verwendet wird</td>
+						</tr>
+						<tr>
+							<td>Datenschutz</td>
+							<td>Alle Daten bleiben auf dem eigenen PC und eigenem Rechenzentrum und verlassen diesen nur auf Wunsch</td>
+							<td>Der Cloud-Anbieter muss sicherstellen, dass unbefugte Dritte nicht auf die Daten der Nutzer zugreifen können</td>
+						</tr>
+					</tbody>
+				</table>
 			</section>
 			<section>
-				<h1>Ist Cloud günstiger als On-premise?</h1>
-			</section>
-			<section>
-				Risiken und Herausforderungen Cloud
-			</section>
-			<section>
-				<h1>Cloud umsatz und Erfolgsgeschichte Statistiken</h1>
-			</section>
-			<section>
-				<h1>Anbieter von cloud computing</h1>
+				<h1>Entscheidungshilfe Cloud vs. On-Premise</h1>
+				<h3>Cloud Szenario</h3>
 				<ul>
-					<li>Microsoft Azure</li>
-					<li>Amazon AWS</li>
-					<li>Google Cloud Platform (GCP)</li>
+					<li>Keine Admins und fehlendes IT Personal</li>
+					<li>Junges Unternehmen - das sein Wachstum schlecht einschätzen kann</li>
+					<li>Lösungen und Vorgehen muss erst getestet und evaluiert werden (trial period, Proof of Concept)</li>
 				</ul>
-				<p>
-					<b>Unpopuläre Anbieter</b>
-				</p>
+				<br>
+				<h3>On-Premise Szenario</h3>
 				<ul>
-					<li>Microsoft Azure</li>
-					<li>Amazon AWS</li>
-					<li>Google Cloud Platform (GCP)</li>
+					<li>Eigenes Rechenzentrum oder Serverräume</li>
+					<li>Admins und IT-Personal verfügbar</li>
+					<li>Komplexe oder schnelle Transaktionsverarbeitung erforderlich ohne Latency (Finanzsektor)</li>
+					<li>Keine externen Abhängigkeiten oder vendor-lock-in erlauben</li>
 				</ul>
+			</section>
+			<section>
+				<h1>Risiken von Cloud computing</h1>
+				<ul>
+					<li>Datensicherheit - erfordert Vertrauen</li>
+					<li>Datenschutz - US-Amerikanische Unternehmen, Serverregion spielt also eine Rolle</li>
+					<li>Vervielfältigung und Verteilung - Kann ohne Kenntnisse geschehen, da nicht transparenz ist wo wer wie welche Daten einsehen kann</li>
+					<li>Transparenz - meist nur Serverregionen konfigurierbar, Einbeziehung von Drittanbieter</li>
+					<li>Compliance und Kontrolle - interne Kontrollmechanismen werden abgegeben oder abgeschafft</li>
+					<li>Abhängigkeit - Erpresssbarkeit und Probleme beim Anbieter wirken sich auf eigene Business aus</li>
+					<li>Profilbildung - Nutzungsdaten werden protokolliert und können missbraucht oder weitergegeben werden</li>
+					<li>Vendor-Lock-in - Kein Wechsel der Anbieter ohne Probleme und hohen Aufwand möglich</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Cloud Umsatz und Verteilung</h1>
+				<img src="static/V09/cloudrevenueQ1_2023.png" alt="Image 1" height="480">
+				<figcaption>https://www.statista.com/chart/18819/worldwide-market-share-of-leading-cloud-infrastructure-service-providers/</figcaption>
 			</section>
 		</div>
 	</div>
