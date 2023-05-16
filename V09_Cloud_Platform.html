@@ -46,7 +46,7 @@
 			<section>
 				<h1>Charakteristik - broad network access</h1>
 				<ul>
-					<li>Sehr felxible Zugangsmöglichkeit um auf die computing-Ressourcen zuzugreifen</li>
+					<li>Sehr flexible Zugangsmöglichkeit um auf die computing-Ressourcen zuzugreifen</li>
 					<li>Alle Funktionalitäten über den Browser oder Apps erreichbar</li>
 					<li>Die Art und Konfiguration des clients Rechners spielt eine untergeordnete Rolle (Smartphone, tablet, iOS, Linux, ...)</li>
 				</ul>
@@ -55,7 +55,7 @@
 				<h1>Charakteristik - resource pooling</h1>
 				<ul>
 					<li>Die potentiellen Ressourcen eines Nutzers werden mehreren Nutzern zur Verfügugn gestellt und sind nicht statisch reserviert</li>
-					<li>Multi-tenant - mehrere Kunden nutzen die gleiche computing Hardware ohne voneiannder zu wissen oder sich gegenseitig zu beeinträchtigen</li>
+					<li>Multi-tenant - mehrere Kunden nutzen die gleiche computing Hardware ohne voneinander zu wissen oder sich gegenseitig zu beeinträchtigen</li>
 					<li>Die Ressourcen werden verbrauchasabhängig verteilt</li>
 					<li>Nur begränzten Einfluss auf geo-location der Ressourcen meist nur über Region (North-europe) seltener über Land(Staat) oder Rechenzentrum</li>
 				</ul>
@@ -65,7 +65,7 @@
 				<ul>
 					<li>Beim hoch- oder runterskalieren der Ressourcen gibt es keine negativen Konsequenzen für den Nutzer</li>
 					<li>Theoretisch unbegrenzte Ressourcen - aber auch unbegrenzte Kosten</li>
-					<li>Die Ressourcen werden verbrauchasabhängig verteilt</li>
+					<li>Die Ressourcen werden verbrauchsabhängig verteilt</li>
 				</ul>
 			</section>
 			<section>
@@ -86,16 +86,16 @@
 				</ul>
 			</section>
 			<section>
-				<h1>Service Models - IASS Infrastructure as a Service</h1>
+				<h1>Service Models - IASS - Infrastructure as a Service</h1>
 				<ul>
 					<li>Dem Nutzer wird eine Basis-infrastruktur zur Verfügung gestellt Speicher, Rechenkapazität und Netzwerke</li>
-					<li>Es kann eigenständig ein Betriebssystem und Software installiert werden</li>
+					<li>Es kann eigenständig ein Betriebssystem und weitere Software installiert werden</li>
 					<li>Erweiterte Konfigurationsmöglichkeiten über z.B. Netzwerkkomponenten können bereitgestellt werden (Firewall, Ports etc.)</li>
 					<li>VM und Container</li>
 				</ul>
 			</section>
 			<section>
-				<h1>Service Models - PASS Platform as a Service</h1>
+				<h1>Service Models - PASS - Platform as a Service</h1>
 				<ul>
 					<li>Ordnet sich zwischen SASS und IASS an</li>
 					<li>Nutzer bekommen eine Application vom Anbieter deployed in der cloud Infrastruktur</li>
@@ -130,7 +130,7 @@
 				<h1>Microservices</h1>
 				<ul>
 					<li>Viele komplexe Anwendungen sind intern monolithisch strukturiert, viele Komponenten die fest verbunden sind</li>
-					<li>Microservices sind alleinstehende Dienste und können uanbhängig gewartet und weiterentwickelt werden</li>
+					<li>Microservices sind alleinstehende Dienste und können unabhängig gewartet und weiterentwickelt werden</li>
 					<li>Interaktion der Microservices mit APIs (REST)</li>
 					<li>Ein Microservices (und der Entwickler) kennt nur die Schnittstelle eines verbunden microservices und muss nichts über die interne Funktionsweise wissen</li>
 					<li>Organisatorischer Vorteil für Entwicklerteams - beschleunigte Entwicklungszyklen durch weniger Abhängigkeiten</li>
@@ -151,7 +151,7 @@
 			<section>
 				<h1>Microservices - Herausforderungen</h1>
 				<ul>
-					<li>Bei der Migration zu microservices die anpassung des Entwicklungsprozess</li>
+					<li>Migration zu microservices - Anpassung des Entwicklungsprozess</li>
 					<li>Tests schreiben</li>
 					<li>Versionierung - abwärtskompatibel</li>
 					<li>Deployment - musss automatisiert werden</li>
@@ -184,6 +184,13 @@
 				</ul>
 			</section>
 			<section>
+				<h1>Docker taxonomy</h1>
+				<img src="static/V09/docker_tax.png" alt="Image 1" height="480">
+				<figcaption>
+					https://learn.microsoft.com/de-de/dotnet/architecture/microservices/container-docker-introduction/docker-containers-images-registries
+				</figcaption>
+			</section>
+			<section>
 				<h1>Cloud computing kann auch Open Source</h1>
 				<ul>
 					<li>Cloud Foundry - VMWare Entwickler - SaaS-App-Entwicklung</li>
@@ -207,7 +214,7 @@ As a Foundation we intentionally do not define a technical strategy: that is det
 				 <a
 				href="https://www.apache.org/index.html#projects-list">Apache-Projektliste</a>		
 			</section>
-			<section>
+			<section style="font-size: 20px">
 				<h1>On-premise vs. cloud</h1>
 				<table>
 					<thead>
@@ -276,7 +283,7 @@ As a Foundation we intentionally do not define a technical strategy: that is det
 					<li>Vervielfältigung und Verteilung - Kann ohne Kenntnisse geschehen, da nicht transparenz ist wo wer wie welche Daten einsehen kann</li>
 					<li>Transparenz - meist nur Serverregionen konfigurierbar, Einbeziehung von Drittanbieter</li>
 					<li>Compliance und Kontrolle - interne Kontrollmechanismen werden abgegeben oder abgeschafft</li>
-					<li>Abhängigkeit - Erpresssbarkeit und Probleme beim Anbieter wirken sich auf eigene Business aus</li>
+					<li>Abhängigkeit - Erpresssbarkeit und Probleme beim Anbieter wirken sich auf das eigene Business aus</li>
 					<li>Profilbildung - Nutzungsdaten werden protokolliert und können missbraucht oder weitergegeben werden</li>
 					<li>Vendor-Lock-in - Kein Wechsel der Anbieter ohne Probleme und hohen Aufwand möglich</li>
 				</ul>
