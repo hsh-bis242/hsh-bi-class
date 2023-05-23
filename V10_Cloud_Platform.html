@@ -239,12 +239,12 @@
 				<p>Schema modifier </p>
 				<p>Derived columns, aggregations, windowing, and pivoting transform the schema of the file by computing new columns or performing aggregations and grouping</p>
 			</section>
-			<section>
+			<section style="font-size: 24px">
 				<h1>Azure Data Factory Activities</h1>
-				<p>Row modifier </p>
+				<p>Row modifier activities</p>
 				<p>Select, filter, and sort data with the additional capability to apply updates, inserts, and deletes to individual rows in the dataset</p>
 				<br>
-				<p>Destination</p>
+				<p>Destination activities</p>
 				<p>Add an output destination to land the transformed dataset into one of the supported sinks</p>
 				<br>
 				<p>Iteration and conditional activities</p>
@@ -255,15 +255,24 @@
 			</section>
 			<section>
 				<h1>Azure Data Factory Pipelines</h1>
-				A pipeline is a group of activities. Together, the activities in a pipeline perform a task. They can be roughly likened to the control flow concept in SQL Server Integration Services.
-For example, a pipeline could contain a set of activities that ingest and clean log data, and then kick off a HIVE query on an HDInsight cluster to analyze the log data. The beauty of this is that the pipeline allows you to manage the activities as a set instead of each one individually. For example, you can deploy and schedule the pipeline, instead of the activities independently.
-In addition, the pipeline also holds the definition of any parameters and variables that may be utilized throughout the pipeline as part of an activity.
+				<ul>
+					<li>A pipeline is a group of activities, the activities in a pipeline perform a task</li>
+					<li>Example tasks: ingest and clean log data, analyze the log data</li>
+					<li>Activities as a set instead of each one individually</li>
+					<li>Deploy and schedule the pipeline, instead of the activities independently</li>
+					<li>Definition of any parameters and variables that may be utilized throughout the pipeline as part of an activity</li>
+				</ul>
 			</section>
 			<section>
 				<h1>Azure Data Factory Linked Service</h1>
-				You can think of a linked service much like a connection string. A linked service simply defines the connection information in which to connect to external data sources. 
-Think of it this way: the dataset represents the structure of the data, and the linked service defines the connection to the data source. 
-From within the UI, you can create a linked service connection to over 80 different data stores.
+				<ul>
+					<li>Much like a connection string</li>
+					<li>Defines the connection information in which to connect to external data sources</li>
+					<li>Activities as a set instead of each one individually</li>
+					<li>The dataset represents the structure of the data, and the linked service defines the connection to the data source</li>
+					<li>From within the UI, you can create a linked service connection to over 80 different data stores</li>
+				</ul>
+				<br>
 				<ul>
 					<li>Data Store Linked Services allow you to fetch data or deposit data</li>
 					<li>Compute Linked Services allow you to execute jobs on Azure-based compute resources such as Azure Databricks, Azure Functions, and Azure Synapse Analytics, to name a few.</li>
@@ -271,16 +280,19 @@ From within the UI, you can create a linked service connection to over 80 differ
 			</section>
 			<section>
 				<h1>Azure Data Factory Dataset</h1>
-				A dataset is a named view of data that simply points or references the data you want to use in your activities as inputs and outputs.
-With a linked service, you have a connection, but you now need to add a layer on top of that to implement logic that allows you to access specific tables, files, directories, and others.
-You can configure the elements such as the file format, column delimiter, and row terminator to be used when reading the file and then specify different metadata to write the file using.
+				<ul>
+					<li>A dataset is a named view of data that simply points or references the data you want to use</li>
+					<li>With a linked service, you have a connection, but you now need to add a layer on top of that to implement logic that allows you to access specific tables</li>
+					<li>configure the elements such as the file format, column delimiter, and row terminator to be used when reading the file and then specify different metadata to write the file using</li>
+				</ul>
 			</section>
 			<section>
 				<h1>Azure Data Factory Triggers</h1>
-				Triggers are the method by which pipelines are invoked and allow ADF to support a variety of types of automation. 
-<br>
-When developing a Data Factory pipeline, you can test the pipeline in debug mode which allows the pipeline to execute fully only on a debug cluster and does not require a publish action. You can monitor your pipeline from within the authoring UI and check the input and output of each activity as execution occurs.
-Additionally, any activities that are configured to run in parallel will be run sequentially so that you can easily step into any activity in the pipeline. 
+				<ul>
+					<li>Triggers are the method by which pipelines are invoked and allow ADF to support a variety of types of automation</li>
+					<li>When developing a Data Factory pipeline, you can test the pipeline in debug mode which allows the pipeline to execute fully only on a debug cluster</li>
+					<li>Any activities that are configured to run in parallel will be run sequentially so that you can easily step into any activity in the pipeline</li>
+				</ul>
 <br>
 <br>
 The automatic triggers cater for a wide variety of automation options and fall under three categories which are listed here:
@@ -293,9 +305,11 @@ The automatic triggers cater for a wide variety of automation options and fall u
 			</section>
 			<section>
 				<h1>Azure Data Factory Integrated Runtimes</h1>
-Underpinning all activity in Azure Data Factory is the integration runtime (IR). 
-This is the scalable, cloud compute resource that actually does the heavy lifting when copying data from one place to another or routing jobs to the required external compute resources. 
-In most cases, you can default to using the Azure Integration Runtime which leaves the provision of the compute resource up to Azure itself and requires no further thought on the part of the developer
+				<ul>
+					<li>Underpinning all activity in Azure Data Factory is the integration runtime (IR).</li>
+					<li>Cloud compute resource that actually does the heavy lifting when copying data from one place to another or routing jobs to the required external compute resources</li>
+					<li>Leaves provision of the compute resource up to Azure itself, no further thought on the part of the developer</li>
+				</ul>
 			</section>
 			<section>
 				<h1>Azure Data Factory Beispiel Aggregation UI</h1>
