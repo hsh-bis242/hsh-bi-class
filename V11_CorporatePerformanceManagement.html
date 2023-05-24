@@ -1,0 +1,976 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Vorlesung 11 - Corporate Performance
+		Management</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<div class="r-fit-text">
+					<h1>Business Intelligence</h1>
+					<h2>Corporate Performance Management (CPM)</h2>
+				</div>
+				<aside class="notes">
+					<ul>
+						<li>W. Martin: Wenn Umsätze langsamer wachsen oder gar stagnieren und zurückgehen, wenn Budgets
+							immer knapper werden und der Wettbewerbsdruck weiter zunimmt, steigen die Anforderungen an
+							das Management signifikant. Das Aufspüren von Profit, rigorose Kosteneinsparungen, die
+							Intensivierung von Kundenkontakten und effektvoller Einsatz der wenigen noch verfügbaren
+							Mittel und Ressourcen sind absolute Chefsache. Geopolitische Unsicherheiten machen das
+							Planen noch schwieriger, gleichzeitig noch wichtiger denn je. Dazu kommen immer neue
+							Regulierungen wie im Finanzberichtswesen und der Bilanzkonsolidierung. Nur Unternehmen, die
+							in der Lage sind, ihren Kurs jederzeit, flexibel und vor allem schnell zu ändern, sind in
+							der Lage im heutigen „New Normal“ zu überleben.</li>
+						<li>Agilität, Industrialisierung und Compliance sind heute im „new normal“-Zeitalter für ein
+							Unternehmen entscheidend, ob man zu den Gewinnern oder Verlierern auf dem globalen Markt
+							zählt.</li>
+						<li>Der Weg heute zu Industrialisierung, Agilität und Compliance besteht aus einem umfassenden
+							Ansatz zum Geschäftsprozess-Management. Im Zuge einer solchen Prozess-Orientierung wird aber
+							eins meist übersehen, das Prinzip „Kein Prozess ohne Daten“. Parallel zu einem Prozess-
+							Management muss im Rahmen von Prozess-Orientierung daher ein Information Management
+							aufgebaut werden.</li>
+						<li>Performance Management ist ein wichtiger Schritt aufbauend auf BI in Richtung des optimalen
+							Planen, Überwachen und Steuern von Geschäftsprozessen auf der Ebene von Operationen,
+							Taktiken und Strategien. Performance Management basiert auf dem Prinzip der Zuordnung von
+							Metriken („Kennzahlen“) zu Prozessen. Performance Management beginnt schon mit der
+							Modellierung und dem Design operativer Prozesse. Metriken müssen gleichzeitig und parallel
+							mit den operativen Prozessen abgeleitet und entwickelt werden. Ziele müssen messbar gemacht
+							werden. Zielerreichung muss kontinuierlich kontrolliert werden, und es müssen Maßnahmen
+							getroffen werden, um die Leistung der Prozesse ständig und auch in Echtzeit zu
+							kontrollieren. Das schafft Performance Management, weil es ein Kreislaufmodell
+							(„closed-loop“) und Teil von BPM ist.</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section>
+				<h1>Gliederung</h1>
+				<h2>Corporate Performance Management</h2>
+				<ul>
+					<li>Motivation: Wozu brauchen wir CPM?</li>
+					<li>Definition: Was genau ist CPM?</li>
+					<li>Corporate Performance Management Prozess</li>
+					<li>Regelkreismodell </li>
+					<li>Einordnung: Bezug CPM &lt;-&gt; BI</li>
+					<li>Kennzahlen: Was will ich eigentlich messen?</li>
+					<li>CPM Werkzeuge - Board</li>
+					<li>Balanced Scorecard</li>
+					<li>Planung & Steuerung erfolgskritischer Komponenten eines Geschäftsmodells</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h1>Motivation - Wozu brauchen wir CPM?</h1>
+					<figure>
+						<table>
+							<tr>
+								<td>
+									<img src="static/V11/zach-wiley-FFAq3r9u0-Y-unsplash.jpg" height="250">
+								</td>
+								<td style="vertical-align: middle;"><img
+										src="static/V11/reshot-icon-right-long-arrow-2MGLKCZ874-17dc7.svg"></td>
+								<td>
+									<img src="static/V11/angus-gray-3qAq6Bqb1XM-unsplash.jpg" height="250">
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<img src="static/V11/Bundesarchiv_B_145_Bild-F015320-0011,_Ludwig_Erhard.jpg"
+										height="250">
+								</td>
+								<td style="vertical-align: middle;"><img
+										src="static/V11/reshot-icon-right-long-arrow-2MGLKCZ874-17dc7.svg"></td>
+								<td align="center">
+									<img src="static/V07/shutterstock-informationOverflow.jpeg" height="250">
+								</td>
+							</tr>
+						</table>
+						<figcaption>
+							Fotos von <a
+								href="https://unsplash.com/@zachwileydesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Zach
+								Wiley</a> und <a
+								href="https://unsplash.com/@angus_buchanan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Angus
+								Gray</a> auf <a
+								href="https://unsplash.com/de/fotos/FFAq3r9u0-Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>,
+							aus dem Bundesarchiv von <a
+								href="https://commons.wikimedia.org/wiki/File:Bundesarchiv_B_145_Bild-F015320-0011,_Ludwig_Erhard.jpg">Wikimedia</a>
+							sowie <a
+								href="https://www.shutterstock.com/image-photo/back-view-image-businessman-arms-crossed-139983571">Shutterstock</a>
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<p>
+							Früher war alles viel unkomplizierter... Die Welt ist komplexer geworden.
+						</p>
+						<ul>
+							<li>W. Martin: Wenn Umsätze langsamer wachsen oder gar stagnieren und zurückgehen, wenn
+								Budgets immer knapper werden und der Wettbewerbsdruck weiter zunimmt, steigen die
+								Anforderungen an das Management signifikant. Das Aufspüren von Profit, rigorose
+								Kosteneinsparungen, die Intensivierung von Kundenkontakten und effektvoller Einsatz der
+								wenigen noch verfügbaren Mittel und Ressourcen sind absolute Chefsache. Geopolitische
+								Unsicherheiten machen das Planen noch schwieriger, gleichzeitig noch wichtiger denn je.
+								Dazu kommen immer neue Regulierungen wie im Finanzberichtswesen und der
+								Bilanzkonsolidierung. Nur Unternehmen, die in der Lage sind, ihren Kurs jederzeit,
+								flexibel und vor allem schnell zu ändern, sind in der Lage im heutigen „New Normal“ zu
+								überleben.</li>
+							<li>Agilität, Industrialisierung und Compliance sind heute im „new normal“-Zeitalter für ein
+								Unternehmen entscheidend, ob man zu den Gewinnern oder Verlierern auf dem globalen Markt
+								zählt.</li>
+							<li>Der Weg heute zu Industrialisierung, Agilität und Compliance besteht aus einem
+								umfassenden Ansatz zum Geschäftsprozess-Management. Im Zuge einer solchen
+								Prozess-Orientierung wird aber eins meist übersehen: Das Prinzip „Kein Prozess ohne
+								Daten“. Parallel zu einem Prozess- Management muss im Rahmen von Prozess-Orientierung
+								daher ein Information Management aufgebaut werden.</li>
+							<li>Performance Management ist ein wichtiger Schritt aufbauend auf BI in Richtung des
+								optimalen Planen, Überwachens und Steuerns von Geschäftsprozessen auf der Ebene von
+								Operationen, Taktiken und Strategien. Performance Management basiert auf dem Prinzip der
+								Zuordnung von Metriken („Kennzahlen“) zu Prozessen. Performance Management beginnt schon
+								mit der Modellierung und dem Design operativer Prozesse. Metriken müssen gleichzeitig
+								und parallel mit den operativen Prozessen abgeleitet und entwickelt werden. Ziele müssen
+								messbar gemacht werden. Zielerreichung muss kontinuierlich kontrolliert werden, und es
+								müssen Maßnahmen getroffen werden, um die Leistung der Prozesse ständig und auch in
+								Echtzeit zu kontrollieren. Das schafft Performance Management, weil es ein
+								Kreislaufmodell („closed-loop“) und Teil von BPM ist.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+
+					<h1>Motivation</h1>
+					<h2>In welchem Umfeld agiert das Top Management heute?</h2>
+					<figure>
+						<img src="static/V11/2011-Turban-ManagementEnvironment.png">
+						<figcaption>
+							Turban, E., et al. (2011). Business Intelligence: A Managerial Approach. Boston: Pearson.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<p>
+							Porter - 5 Forces<br>
+							… deshalb sind CPM und ein CPM System erforderlich.
+						</p>
+						<p>Weitere Treiber:</p>
+						<ul>
+							<li>Compliance Management</li>
+							<li>Corporate Governance</li>
+							<li>Risikomanagement</li>
+						</ul>
+						<p>
+							Das Thema Performance Management hat in den letzten Jahren sowohl in der Literatur als auch
+							in der Praxis erheblich an Bedeutung gewonnen. In Ergänzung zur vorherrschenden
+							vergangenheitsorientierten Betrachtung von Parametern lässt sich ein Trend zu einer
+							zukunftsorientierten Ausrichtung i. S. einer Kosten- und Leistungsanalyse beobachten. Dies
+							ist im Rahmen volatiler Märkte bzw. eines dynamischen Marktumfeldes, wie es mittlerweile in
+							den meisten Branchen vorzufinden ist, von besonderer Wichtigkeit. PM kann den Unternehmen
+							helfen, Anzeichen von Veränderungen bezüglich interner und externer Faktoren frühzeitig zu
+							erkennen und die Prozesse zeitnah an der Unternehmensstrategie auszurichten. Darüber hinaus
+							können sich auch wertvolle Hinweise in Bezug auf potenzielle Anpassungen der
+							Unternehmensstrategie ergeben.
+						</p>
+					</aside>
+
+				</section>
+
+				<section>
+					<h1>Motivation</h1>
+					<h2>Bisheriger Fokus (BI):</h2>
+					<h3>Transparenz schaffen</h3>
+					<figure>
+						<p>
+						<ul>
+							<li><b>Integration</b> der Daten nach Abteilung, Bereich, Prozess etc.</li>
+							<li>Bereinigung der Daten zur <b>Verbesserung der Qualität</b> der Berichte und Analysen
+							</li>
+							<li><b>Anwendung von Regeln</b> um konsistente Informationen zu produzieren</li>
+							<li><b>Darstellung von Schlüsselinformationen</b> mit entsprechender Visualisierung und
+								Alarm-Mechanismen (taktisches Dashboarding)</li>
+						</ul>
+						</p>
+						<figcaption>
+							BI - Unterstützung moderner Managementkonzepte: W. Schwab, BI Competence Center, SAS
+							Deutschland. Vorlesung: BI, FH Ludwigshafen
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Motivation</h1>
+					<h2>Ziele CPM:</h2>
+					<h3>Planen & Steuern zum Erreichen einer gemeinsamen Ausrichtung</h3>
+					<figure>
+						<p>
+						<ul>
+							<li><b>Abbildung von Geschäftsprozessen und -logik</b> (z.B. Bestellprozesse,
+								Konsolidierungsregeln, etc.)</li>
+							<li>Abbildung und Analyse von <b>Ursache-/Wirkungsbeziehungen</b></li>
+							<li><b>Ausrichtung aller Unternehmensbereiche</b> durch Synchronisation und Kommunikation
+								von finanzieller und operativer Strategie</li>
+							<li>Abbildung des <b>gemeinsamen Verständnisses der Leistung</b></li>
+							<li><b>Steuerung des Unternehmens</b> (strategisches Dashboarding)</li>
+						</ul>
+						</p>
+						<figcaption>
+							BI - Unterstützung moderner Managementkonzepte: W. Schwab, BI Competence Center, SAS
+							Deutschland. Vorlesung: BI, FH Ludwigshafen
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Motivation</h1>
+					<h2>Ziele CPM:</h2>
+					<h3>Verbesserungspotenziale ausschöpfen, Wachstum ermöglichen</h3>
+					<figure>
+						<p>
+						<ul>
+							<li><b>Feststellen, warum</b> Probleme auftauchen und welcher Lösungsweg strategiekonform
+								ist</li>
+							<li><b>Verstehen</b>, welche Faktoren das Geschäft treiben und entsprechende
+								<b>Optimierung</b> der Geschäftsabläufe
+							</li>
+							<li><b>Vorhersagen</b> von zukünftigen Entwicklungen basierend auf Prognosen, Simulationen
+								und Korrelationsanalysen</li>
+							<li>Reduzieren der <b>Time to Intelligence</b></li>
+							<li><b>Implementierung von Prozessen</b> für wiederholbare und kontinuierliche
+								Verbesserungen</li>
+						</ul>
+						</p>
+						<figcaption>
+							BI - Unterstützung moderner Managementkonzepte: W. Schwab, BI Competence Center, SAS
+							Deutschland. Vorlesung: BI, FH Ludwigshafen
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Definition</h1>
+					<h2>CPM nach Jacob et al.</h2>
+					<figure>
+						<blockquote>
+							CPM ist ein ganzheitliches Managementkonzept zur durchgängigen
+							<b>Steuerung und Leistungsmessung in Unternehmen</b>.<br>
+							Es ist definiert als ein Schmelztiegel vieler technologischer und betriebswirtschaftlicher
+							Ansätze, um Führungsaufgaben im Sinne eines <b>Regelkreises</b> zu unterstützen. Dabei geht
+							es
+							v.a. um die <b>Ausarbeitung von Strategien</b> sowie die betriebswirtschaftlichen
+							Aktivitäten
+							für die <b>Planung und Budgetierung</b>.
+						</blockquote>
+						<figcaption>
+							Ganzheitliches Referenzmodell für das CPM, Jacob, O. et al., Wirtschaftsinformatik &
+							Management (3) 2013
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<p>Leistung: Der bewertete Beitrag zur Zielerreichung</p>
+						<p>Performance: Die Konsequenz effizienter und / oder effektiver Handlungen auf allen Leistungs-
+							und Entscheidungsebenen einer Organisation.</p>
+						<p>
+							Performance Management:<br>
+							System zur Steuerung und Beeinflussung der Leistung des Unternehmens sowie der individuellen
+							Mitarbeiterleistungen<br>
+							Methodologies, metrics, processes and systems used to monitor and manage the business
+							performance
+						</p>
+						<ul>
+							<li>Die Prozessorientierung ist ein wesentliches Merkmal des PMs</li>
+							<li>Zentrale Aufgabe des Top Managements</li>
+							<li>Zielgerichtete Beeinflussung des Leistungserbringungsprozesses</li>
+							<li>Verbesserung der Wettbewerbsposition</li>
+						</ul>
+						<p>Auch: Enterprise oder Business Performance Management</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Definition</h1>
+					<h2>CPM nach Gartner</h2>
+					<figure>
+						<blockquote>
+							The combination of <b>management methodologies, metrics and technologies</b> that enables
+							users to define, monitor and optimize results and outcomes to achieve personal or
+							departmental <b>objectives</b>, while enabling <b>alignment</b> with strategic objectives
+							across multiple organizational levels: personal, process, group, departmental, corporate or
+							business ecosystem.
+						</blockquote>
+						<figcaption>
+							Magic Quadrant for Corporate Performance Management Suites. Gartner. March 2014
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>Office of finance (CFO) CPM: Improvement of financial processes</li>
+							<li>Strategic CPM: Supports organization wide transformation and growth</li>
+						</ul>
+						<ul>
+							<li>Traditionally: Accuracy, compliance, efficiency</li>
+							<li>Now: Financial planning tools, forecasts</li>
+							<ul>
+								<li>End-to-end tools</li>
+							</ul>
+						</ul>
+						<ul>
+							<li>Core CPM processes include financial planning, operational planning, business modelling,
+								consolidation and reporting, analysis and monitoring of KPIs linked to strategy.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Definition</h1>
+					<h2>CPM nach Peter Drucker</h2>
+					<div class="grid">
+						<div class="griditem">
+							<ul>
+								<li>Ermittlung des Status Quo</li>
+								<li>Beeinflussung des Verhaltens der agierenden Personen im Sinne der
+									Unternehmensstrategie</li>
+							</ul>
+						</div>
+						<div class="griditem">
+							<figure width="500">
+								<img src="static/V11/PeterDrucker.png">
+								<figcaption>
+									<a
+										href="https://www.slideshare.net/InnovationAcademy/10-july-arina-slides-50381004">Teemu
+										Arina - Biohacker Center, BHC on Slideshare, 2015 (abgerufen am 24.05.2023)</a>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Elementarer Bestandteil von CPM: Zahlen, Daten, Fakten</li>
+							<li>Kennzahlen</li>
+							<li>Er gilt als Pionier der modernen Managementlehre und als origineller und unabhängiger
+								Denker. Drucker bemühte sich in seinen Werken um Klarheit und Übersicht. Auf einen
+								wissenschaftlichen Apparat und Mitarbeiterstab verzichtete er weitgehend.</li>
+						</ul>
+					</aside>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Prozess</h1>
+					<h2>Closed Loop</h2>
+					<figure>
+						<img src="static/V11/2011-Rausch-CPM_Regelkreisprinzip.jpg" height="480">
+						<figcaption>
+							<a href="https://gi.de/informatiklexikon/performance-management">Rausch, P., Performance
+								Management im Informatiklexikon der Gesellschaft für Informatik, 2011</a>
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>So soll es sein.</li>
+							<li>Der Closed-Loop-Ansatz zielt dabei auf eine kontinuierliche Verbesserung der
+								Geschäftsprozesse i. S. der Unternehmensstrategie ab. Als Erweiterung des BI geht PM
+								über das automatisierte Erheben von Kennzahlen und das Bereitstellen von
+								Analysewerkzeugen, wie z. B. Data Mining oder OLAP, hinaus. Es bietet Werkzeuge, die ein
+								systematisches Monitoring und Controlling der strategischen Unternehmensziele
+								unterstützen. Die entsprechenden Ergebnisse sind wiederum der Input für Forecasting- und
+								Planungsfunktionen im Hinblick auf die strategischen Zielgrößen.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Prozess</h1>
+					<h2>Phasen der Entwicklung</h2>
+					<figure>
+						<img src="static/V11/2008-Hanning-CPMmitMSOfficePerformancePoint.png" height="480">
+						<figcaption>
+							Hannig: Corporate Performance Management mit Microsoft Office PerformancePoint Server 2007.
+							Microsoft Press. 2008.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Wie es entwickelt wird.
+					</aside>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Einordnung</h1>
+					<p>CPM System:
+					<ul>
+						<li>Qualitativ hochwertige, integrierte Datenbasis (DWH)</li>
+						<li>Inklusive Analyse-/Prognosefunktionalitäten</li>
+					</ul>
+					</p>
+					<figure>
+						<img src="static/V11/2008-Hanning-NutzungsgradVonWissen.png" height="400">
+						<figcaption>
+							Hannig: Corporate Performance Management mit Microsoft Office PerformancePoint Server 2007.
+							Microsoft Press. 2008.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<li>Integrierte Technologie Plattformen die das CPM unterstützen</li>
+						<li>… involves the collection and reporting of large volumes of data</li>
+						<li>Manuell schwierig.</li>
+						<li>Builds on the foundation of BI, but marries it to the planning-and-control cycle of the
+							enterprise - with enterprise planning, consolidation and modeling capabilities</li>
+						<li>Die diversen PM-Funktionen setzen eine qualitativ hochwertige Datenbasis voraus. Daher ist
+							es in Bezug auf die Implementierung eines PM-Systems äußerst hilfreich, wenn diese bereits
+							in Form eines Data Warehouse vorhanden ist.</li>
+						<li>Eine Herausforderung ist bei vielen Unternehmen immer noch die Qualität der Datenbasis bzw.
+							die Integration der Datenbestände. Wenn man jedoch auf einer bereits vorhandenen
+							BI-Infrastruktur aufsetzen kann, sind die Kostenbarrieren i. d. R. deutlich niedriger.</li>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Einordnung</h1>
+					<table>
+						<tr>
+							<th style="border-bottom:none">DWH & Business Intelligence</th>
+							<th style="border-bottom:none">&nbsp;</th>
+							<th style="border-bottom:none">&nbsp;</th>
+							<th style="border-bottom:none">&nbsp;</th>
+							<th style="border-bottom:none">&nbsp;</th>
+							<th style="border-bottom:none">CPM</th>
+						</tr>
+						<tr>
+							<td>Vergangenheitsorientiert</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>Trends / Planung</td>
+						</tr>
+					</table>
+					<figure>
+						<div class="r-stack">
+							<img src="static/V11/2011-Turban-Classification.png" height="258" width="903">
+							<svg height="258" width="903">
+								<line x1="600" y1="258" x2="600" y2="1"
+									style="stroke:var(--hsh_orange);stroke-width:2" />
+							</svg>
+						</div>
+						<figcaption>
+							Turban, E., et al. (2011). Business Intelligence: A Managerial Approach. Boston: Pearson.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>Bisher wenig beachtet (der rechte Bereich): Fachliche BI Anwendungen - Strategische
+								Entscheidungsunterstützung - Oberes Management.</li>
+							<li>Wir haben uns mehr mit BI-Anwendungen beschäftigt (ohne BWL Kontext). Die Sichtweise des
+								Technikers.</li>
+						</ul>
+						<ul>
+							<li>Oehler p2: Zwischen den Begriffen BI und CPM besteht immer noch eine Kluft.</li>
+							<li>Auf der einen Seite dominieren relativ technische Abhandlungen: DWH, DM, Reporting,
+								OLAP.</li>
+							<li>Auf der anderen Seite stehen betriebswirtschaftliche Konzepte zur Planung, Steuerung und
+								Kontrolle, allerdings weniger mit konkretem Bezug auf DV-Systeme.</li>
+						</ul>
+						<ul>
+							<li>Projekte scheitern, weil IT und Fachabteilungen nicht zusammenfinden.</li>
+						</ul>
+						<ul>
+							<li>Aber: Zur Unterstützung der Fachabteilungen (Controlling, Vertrieb, Logistik, Risiko
+								Management) wird immer häufiger BI eingesetzt.</li>
+							<li>Der Mitarbeiter der Fachabteilung muss in der Lage sein, Anforderungen zu spezifizieren
+								und auch die Umsetzung zu skizzieren.</li>
+							<li>IT-orientierte Mitarbeiter müssen erkennen, welche betriebswirtschaftlichen
+								Problemstellungen mit der Technologie gelöst werden können. </li>
+						</ul>
+						<ul>
+							<li>Oehler p.40</li>
+							<li>Analytische Anwendungen spielen in der DWH & BI Diskussion traditionell eher die Rolle
+								eines nachgelagerten Anhängsels</li>
+							<li>Die eigentliche Anwendung stellt aber auch eine Herausforderung dar. Nicht nur der Bau
+								eines DWH.</li>
+						</ul>
+						<li>Während BI primär analytische Konzepte zur Transformation von Daten in
+							entscheidungsrelevante Informationen umfasst, erweitert PM diesen Ansatz um die Verzahnung
+							der operativen mit der strategischen Perspektive. Im Gegensatz zum „klassischen“ BI wird das
+							PM als ein in die Zukunft gerichteter, umfassender Ansatz zur Planung, Messung und Steuerung
+							der Wertschöpfung von Unternehmen verstanden.</li>
+						</ul>
+					</aside>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<h2>CPM Instrumente zur Performancesteigerung</h2>
+					<figure>
+						<img src="static/V11/2008-Findeisen-CPM.png">
+						<figcaption>
+							Aus: Findeisen et al. CPM (2008)
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<p>TQM
+						<ul>
+							<li>1980er Jahre: Zusammenhang zwischen gelieferter Qualität und Unternehmenserfolg</li>
+							<li>Qualität in allen Unternehmensbereichen überwachen und steuern</li>
+							<li>Heute: Ganzheitlicher Ansatz zur wirtschaftlichen Ausrichtung sämtlicher
+								Unternehmensaktivitäten auf die Kundenanforderungen</li>
+							<li>Produktionssteigerungen durch Qualitätsverbesserungen (auch z.B. Qualität der
+								Arbeitsbedingungen)</li>
+							<li>Führungsaufgabe. Aber Dezentralisierung der Verantwortung</li>
+							<li>Kontinuierlicher Verbesserungsprozess</li>
+							<li>Total-Quality-Management (TQM), bisweilen auch umfassendes Qualitätsmanagement,
+								bezeichnet die durchgängige, fortwährende und alle Bereiche einer Organisation
+								(Unternehmen, Institution, etc.) erfassende, aufzeichnende, sichtende, organisierende
+								und kontrollierende Tätigkeit, die dazu dient, Qualität als Systemziel einzuführen und
+								dauerhaft zu garantieren. </li>
+						</ul>
+						</p>
+						<p>
+							Beyond Budgeting:<br>
+							Managementmodell für Organisationen jeder Art „jenseits von Weisung und Kontrolle“. Es wird
+							als eine Alternative zum tayloristischen, bürokratisch-hierarchischen Organisationsmodell
+							verstanden und definiert sich durch 12 Leit-Prinzipien. Entwickelt wurde das Modell aus
+							fallstudien- und theoriebasierter Forschung zwischen 1998 und ca. 2002
+						</p>
+						<p>
+							Performance Pyramid:<br>
+							Ein hierarchisch orientiertes Performance-Measurement-System zur Leistungsmessung und
+							Unternehmenssteuerung. Das Konzept wurde von Richard L. Lynch und Kelvin F. Cross 1991 der
+							breiten Öffentlichkeit vorgestellt.
+						</p>
+						<p>
+							Performance Prism:<br>
+							An approach to performance management which aims to effectively meet the needs and
+							requirements of all stakeholders. This is in contrast with the performance pyramid which
+							tends to concentrate on customers and shareholders and is also in contrast with value based
+							management, which prioritises the needs of shareholders.
+						</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<h2>Definition nach Preißner</h2>
+					<figure>
+						<blockquote>
+							Kennzahlen sind verdichtete Informationen über quantifizierbare Tatbestände. Sie sollen
+							sowohl eine einfache Kontrolle von Abläufen und Ergebnissen ermöglichen als auch deren
+							Planung.
+						</blockquote>
+						<figcaption>
+							Praxiswissen Controlling, A.Preißner, Hanser (2010)
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<p>Entscheidungsorientiert, Frühwarnindikatoren, aktuell</p>
+						<p>
+							Stark verdichtete Messgrößen, die Zusammenhänge in kompakter Form wiedergeben.<br>
+							Bilden komplizierte, betriebliche Sachverhalte, Strukturen und Prozesse auf relative
+							einfache Weise ab, um einen möglichst umfassenden und schnellen Überblick zu gewährleisten,
+							sowie Führungsinstanzen bei Analysen und Steuerungsaufgaben zu dienen.
+						</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<div class="grid">
+						<div class="griditem" style="padding:50px">
+							<ul>
+								<li>Monetäre oder nicht-monetäre Kennzahlen</li>
+								<li>Nachlaufende oder vorauseilende Kennzahlen</li>
+								<li>Qualitative oder quantitative Kennzahlen</li>
+							</ul>
+						</div>
+						<div class="griditem" style="padding:50px">
+							<ul>
+								<li>Konsistent und korrekt</li>
+								<li>Zeitnah</li>
+								<li>Aussage über Effizienz und Effektivität des Unternehmens</li>
+								<li>Entscheidungs-/optimierungsorientiert</li>
+								<li>Lassen Muster und Trends erkennen</li>
+								<li>Vollständigkeit</li>
+								<li>Kaskadierung</li>
+								<li>Kausale Transparenz</li>
+								<li>Ausgewogenheit</li>
+								<li>Richtiger Detailgrad</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						<p>Vollständigkeit: Performance-Measurement-Systeme müssen die wesentlichen Aspekte aller
+							Unternehmensprozesse ganzheitlich abbilden. Nur so kann eine zielführende Optimierung
+							erreicht werden - Suboptimierungen einzelner Ziele zum Schaden der Organisation als Ganzer
+							sind zu vermeiden.</p>
+
+						<p>Kaskadierung: Performance-Measurement-Systeme sollten ein Instrument zur Verfügung stellen,
+							um Unternehmensziele und -strategien auf alle Hierarchiestufen der Organisation
+							herunterzubrechen
+							und somit die Integration zu maximieren.</p>
+
+						<p>Optimierungsorientiert: Performance-Measurement-Systeme müssen in Übereinstimmung mit den
+							strategischen Zielen des Unternehmens den kontinuierlichen Verbesserungsprozess
+							unterstützen.</p>
+
+						<p>Kausale Transparenz: Performance-Measurement-Systeme sollten es ebenfalls ermöglichen, die
+							Strukturen und Abhängigkeiten von unterschiedlichen Messgrößen zu verstehen und somit das
+							bewusste Managen von unvermeidlichen Konflikten zu fördern.</p>
+
+						<p>Ausgewogenheit: Die finanziellen Messgrößen und die nichtfinanziellen Messgrößen sollten in
+							einem Performance-Measurement-System integriert werden.</p>
+
+						<p>Richtiger Detailgrad: Performance-Measurement-Systeme sollten Daten verlässlich und in einem
+							notwendigen Detailgrad zur Verfügung stellen.</p>
+
+						<p>Kontextgerecht: Die Gestaltung des Performance-Measurement-Systems sollte organisatorische,
+							kulturelle und verhaltenspsychologische Aspekte berücksichtigen.</p>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<h2>Attribute einer Kennzahl</h2>
+					<figure>
+						<p>
+						<ul>
+							<li>Messgröße</li>
+							<li>Messzweck</li>
+							<li>Bezug</li>
+							<li>Messverfahren</li>
+							<li>Zielwert(e)</li>
+							<li>Messfrequenz</li>
+							<li>Datenquelle</li>
+							<li>Messender</li>
+							<li>Handelnder (Eigner)</li>
+							<li>Aktionen</li>
+							<li>Anmerkungen</li>
+						</ul>
+						</p>
+						<figcaption>
+							Hannig: Corporate Performance Management mit Microsoft Office PerformancePoint Server 2007.
+							Microsoft Press. 2008.
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<figure>
+						<h2>KPI (Key Performance Indikator)</h2>
+						<p>Kennzahlen, anhand derer der Fortschritt oder der Erfüllungsgrad hinsichtlich wichtiger
+							Zielsetzungen oder kritischer Erfolgsfaktoren innerhalb einer Organisation gemessen und/oder
+							ermittelt werden kann.</p>
+						<p>Stellen die Verbindung zwischen Strategie und Umsetzung her.</p>
+						<h2>Kennzahlensystem</h2>
+						<p>Gesamtheit von geordneten Kennzahlen, die die Zusammenhänge zwischen verschiedenen Größen
+							aufzeigen und so betriebswirtschaftlich sinnvolle Aussagen über das Unternehmen vermitteln.
+						</p>
+						<figcaption>Hannig: Corporate Performance Management mit Microsoft Office PerformancePoint
+							Server 2007. Microsoft Press. 2008.</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<h2>DuPont Kennzahlenpyramide</h2>
+					<figure>
+						<img src="static/V11/2010-Preissner-Kennzahlenpyramide.png">
+						<figcaption>
+							Praxiswissen Controlling, A.Preißner, Hanser (2010)
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>1919</li>
+							<li>Planung von Anlageinvestitionen</li>
+							<li>Oberstes Unternehmensziel: ROI</li>
+							<li>Rein monetäre Größen aus dem internen Rechnungswesen</li>
+							<li>Wettbewerb und Nachfrage können erst einbezogen werden, nachdem sich ihre Auswirkungen
+								in den Finanzkennzahlen niedergeschlagen haben</li>
+							<li>Gesamtzusammenhänge aufdecken, die anhand der Betrachtung isolierter Kennzahlen nicht
+								möglich wären.</li>
+							<li>Aufschluss über die operativen Treiber einer übergeordneten Spitzenkennzahl</li>
+							<li>Rein monetär ausgerichtetes Steuerungskonzept</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<h2>KPIs zur Bewertung einer Supply Chain</h2>
+					<figure>
+						<img src="static/V11/2008-Hanning-KPIsZurBewertungEinerSupplyChain.png">
+						<figcaption>
+							Hannig: Corporate Performance Management mit Microsoft Office PerformancePoint Server 2007.
+							Microsoft Press. 2008.
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<figure>
+						<p>
+						<table style="font-size:small">
+							<thead>
+								<tr>
+									<th>
+										Traditionelles Kennzahlensystem
+									</th>
+									<th>
+										Performance Measurement-System
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Monetäre Ausrichtung (vergangenheitsorientiert)</td>
+									<td>Kundenausrichtung (zukunftsorientiert)</td>
+								</tr>
+								<tr>
+									<td>Begrenzt flexibel; ein System deckt interne und externe Informationsinteressen
+										ab</td>
+									<td>Aus den operativen Steuerungserfordernissen abgeleitete hohe Flexibilität</td>
+								</tr>
+								<tr>
+									<td>Einsatz primär zur Überprüfung des Erreichungsgrads finanzieller Ziele</td>
+									<td>Überprüfung des Strategieumsetzungsgrads; Impulsgeber zur weiteren
+										Prozessverbesserung</td>
+								</tr>
+								<tr>
+									<td>Kostenreduzierung</td>
+									<td>Leistungsverbesserung</td>
+								</tr>
+								<tr>
+									<td>Vertikale Berichtstruktur</td>
+									<td>Horizontale Berichtstruktur</td>
+								</tr>
+								<tr>
+									<td>Fragmentiert</td>
+									<td>Integriert</td>
+								</tr>
+								<tr>
+									<td>Kosten, Ergebnisse und Qualität werden isoliert bewertet</td>
+									<td>Qualität, Auslieferung, Zeit und Kosten werden simultan bewertet</td>
+								</tr>
+								<tr>
+									<td>Unzureichende Abweichungsanalyse</td>
+									<td>Abweichungen werden direkt zugeordnet (Bereich, Person)</td>
+								</tr>
+								<tr>
+									<td>Individuelle Leistungsanreize</td>
+									<td>Team-/Gruppenbezogene Leistungsanreize</td>
+								</tr>
+								<tr>
+									<td>Individuelles Lernen</td>
+									<td>Lernen der gesamten Organisation</td>
+								</tr>
+							</tbody>
+						</table>
+						</p>
+						<figcaption>
+							Hannig: Corporate Performance Management mit Microsoft Office PerformancePoint Server 2007.
+							Microsoft Press. 2008.
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Auch subjektive Kennzahlen: Kundenzufriedenheit
+					</aside>
+				</section>
+
+				<section>
+					<h1>Kennzahlen</h1>
+					<figure>
+					<table style="font-size:small">
+						<thead>
+							<tr>
+								<th>
+									<p>Bereich</p>
+								</th>
+								<th>
+									<p>Typische Herausforderungen</p>
+								</th>
+								<th>
+									<p>Ziele</p>
+								</th>
+								<th>
+									<p>Messgrößen</p>
+								</th>
+								<th>
+									<p>Wichtige Dimensionen</p>
+								</th>
+								<th>
+									<p>Schnittstelle (Wert-)Controlling</p>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<p>Kundenservice</p>
+								</td>
+								<td>
+									<p>Lieferpünktlichkeit, Beschwerden, Garantieansprüche,Service-Nutzen</p>
+								</td>
+								<td>
+									<p>Reduzierung der Lieferzeit, Reduzierung der Beschwerden, Verkürzung der
+										Antwortzeiten von Ansprüchen, Reduzierung der Service-Kosten</p>
+								</td>
+								<td>
+									<p>Durchschnittliche Lieferzeit, Anzahl Beschwerden, Anzahl Gewährleistung,
+										durchschnittliche Zeit bis zur Klärung von Produktproblemen, Service-Kosten</p>
+								</td>
+								<td>
+									<p>Kunden(-gruppen), Produkt-/Servicebereiche, Regionen</p>
+								</td>
+								<td>
+									<p>Verspätungskosten, Kundenwerte, Gewährleistungskosten</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Produktentwicklung</p>
+								</td>
+								<td>
+									<p>Kontinuierliche Produkt-innovation, Qualitätssicherung, Markt- und Kundenfeedback
+									</p>
+								</td>
+								<td>
+									<p>Hohe Innovationsrate, Kundenzufriedenheit, Steigerung des Marktanteils</p>
+								</td>
+								<td>
+									<p>Anteil neuer Produkte am Umsatz, Kundenzufriedenheitsindex, Marktanteil</p>
+								</td>
+								<td>
+									<p>Produkte, Kunden, Regionen</p>
+								</td>
+								<td>
+									<p>Qualitätskosten, Zielkosten (Target Costing)</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Personalwesen</p>
+								</td>
+								<td>
+									<p>Personalbedarf, Systematische Personalentwicklung, Vergütung, Zusatzleistungen
+									</p>
+								</td>
+								<td>
+									<p>Besetzung der notwendigen Profile, Mitarbeiterzufriedenheit</p>
+								</td>
+								<td>
+									<p>Skill-Abdeckung, Fluktuation, Fehlzeiten</p>
+								</td>
+								<td>
+									<p>Mitarbeiter, Profile, Organisation</p>
+								</td>
+								<td>
+									<p>Personalkosten, vom Personal abhängige Kosten (z. B. Reisekosten)</p>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Logistik</p>
+								</td>
+								<td>
+									<p>Lagerbestände, Fehlmengen</p>
+								</td>
+								<td>
+									<p>Optimierung der Lagerbestände, Reduzierung der Fehlmengen</p>
+								</td>
+								<td>
+									<p>Lagerwerte, Lagerreichweiten, Fehlbedarfe</p>
+								</td>
+								<td>
+									<p>Produkte, Lager, Lieferanten</p>
+								</td>
+								<td>
+									<p>Lagerkosten, Fehlmengenkosten</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<figcaption>
+						<a href="https://www.computerwoche.de/a/verstehen-sie-etwas-von-performance-management,1864261,4">Oehler, K.  (2008). Verstehen Sie etwas von Performance-Management? Computerwoche. 20.05.2008.</a>
+					</figcaption>
+				</figure>
+
+				<aside class="notes">
+					<p>
+						Anwendungsbereiche:<br>
+						Budgeting, Planung, Forecasting, Erfolgsrechnung, KPI-Systeme, Scorecards, Konsolidierung, Reporting, Risiko-Management, analytische Compliance  Unterstützung
+					</p>
+				</aside>
+
+				</section>
+
+			</section>
+
+			<section>
+				<section>
+					<h1>Literatur</h1>
+					<ul>
+						<img src="static/V07/mitp-cover-praxisbuchInfografik.jpg" height="250" style="float:right">
+						<li>Fichtel, S., Praxisbuch Infografik, Frechen 2022</li>
+						<img src="static/V07/Cover-PerformanceDashboards.png" height="250" style="float:right">
+						<li>Eckerson, W. W., Performance Dashboards: Measuring, Monitoring, and Managing Your Business,
+							2.Auflage, 2010</li>
+						<img src="static/V07/Cover-VisualBusinessAnalytics.jpg" height="250" style="float:right">
+						<li>Kohlhammer J., et al., Visual Business Analytics: Effektiver Zugang zu Daten und
+							Informationen, 2. überarb. u. akt. Edition, 2018</li>
+					</ul>
+				</section>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			center: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
