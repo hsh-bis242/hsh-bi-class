@@ -199,14 +199,106 @@
 			</section>
 
 			<section>
-				<h1>Aufgabe: Auswertung von Bewegungsdaten</h1>
-				<h2>Zusammenfassen der Daten zu Trips</h2>
-				<p>Ein großer Teil des Datensatzes besteht aus Stillstandsdaten:</p>
-				<pre>
-					<code>
-						
-					</code>
-				</pre>
+
+				<section>
+					<h1>Aufgabe: Auswertung von Bewegungsdaten</h1>
+					<p>Ein großer Teil des Datensatzes besteht aus Stillstandsdaten. Allein 71500 Datensätze liegen am Wohnort:</p>
+					<div class="grid">
+						<div class="griditem">
+							<pre>
+								<code class="language-sql" data-trim>
+									SELECT *
+									FROM [dbo].[movements] m
+									WHERE
+									m.location_point.STIntersects(
+										geography::Point(52.3561617, 9.7539098 , 4326)
+										.STBuffer(15)) = 1;
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<img src="static/U06/MovementAtHome.png" width="400">
+						</div>
+					</div>
+					<p>Deshalb sollte man zunächst "echte" Ausflüge / Trips identifizieren.</p>
+				</section>
+
+				<section>
+					<h1>Aufgabe: Auswertung von Bewegungsdaten</h1>
+					<h2>Zusammenfassen der Daten zu Trips</h2>
+					<pre>
+						<code class="language-sql" data-trim>
+							WITH cte_diffs AS
+							(
+								SELECT	m.timestampMs,
+										m.recording_time,
+										m.location_point,
+										DATEDIFF(
+											SECOND,
+											LAG(m.recording_time) OVER (ORDER BY m.timestampMs),
+											m.recording_time
+										) AS recording_time_diff_second,
+										m.location_point.STDistance(LAG(m.location_point,1) OVER (ORDER BY m.timestampMs ASC)) AS distance_to_predecessor
+								FROM movements m
+								WHERE m.latitudeE7 &lt;&gt; 0
+								AND m.longitudeE7 &lt;&gt; 0
+								AND m.accuracy &lt; 500
+							),
+							cte_trips AS
+							(
+								SELECT	cte.timestampMs,
+										cte.recording_time,
+										cte.location_point,
+										cte.recording_time_diff_second,
+										cte.distance_to_predecessor,
+										SUM
+										(
+											CASE
+											-- Ein neuer Trip wird definiert, wenn zwischen den Datenpaketen entweder 30min liegen...
+												WHEN cte.recording_time_diff_second > 1800
+												OR 
+												(
+													-- Oder in 15min weniger als 3000m zurückgelegt werden.
+													cte.recording_time_diff_second &gt; 900
+													AND cte.distance_to_predecessor &lt; 3000
+												) THEN 1
+												ELSE 0
+											END
+										) OVER (ORDER BY cte.timestampMs ROWS UNBOUNDED PRECEDING) AS trip
+								FROM cte_diffs cte
+								WHERE cte.distance_to_predecessor &gt; 0
+								AND cte.recording_time_diff_second &gt; 0
+								AND cte.distance_to_predecessor / cte.recording_time_diff_second &gt; 0.8
+							),
+							cte_velocity AS 
+							(
+								SELECT	cte.timestampMs,
+										cte.recording_time,
+										cte.location_point,
+										cte.recording_time_diff_second,
+										cte.distance_to_predecessor,
+										cte.trip
+								FROM	cte_trips cte
+								WHERE cte.recording_time_diff_second &gt; 0
+							)
+							SELECT *
+							FROM 
+							(
+								SELECT	DATEADD(SECOND, SUM(cte.recording_time_diff_second)*-1, MAX(cte.recording_time)) as recording_time_start,
+										MAX(cte.recording_time) as recording_time_end,
+										geography::CollectionAggregate(cte.location_point) as geo,
+										SUM(cte.recording_time_diff_second) as diff_Seconds,
+										SUM(cte.distance_to_predecessor) as distance,
+										cte.trip,
+										(((SUM(cte.distance_to_predecessor))/(SUM(cte.recording_time_diff_second)))*3.6) AS kmh,
+										count(*) as items_count
+								FROM cte_velocity cte
+								GROUP BY trip) s
+							WHERE kmh &lt; 300;
+						</code>
+					</pre>
+				</section>
+
 			</section>
 
 			<section>
