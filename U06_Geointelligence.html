@@ -30,20 +30,281 @@
 			</section>
 
 			<section>
-				<h1>Aufgabe: Geodaten in Datenbank laden</h1>
-				<ul>
-					<li>Lageplan der Regale in den Stores</li>
-					<li>Zuordnung der Filme zu Regalen</li>
-					<li>Wetterdaten</li>
-				</ul>
+
+				<section>
+					<h1>Aufgabe: Geodaten in Datenbank laden</h1>
+					<ul>
+						<li>Lageplan der Regale in den Stores</li>
+						<li>Zuordnung der Filme zu Regalen</li>
+						<li>Bewegungsdaten</li>
+					</ul>
+				</section>
+			
+				<section>
+					<h1>Lageplan in SQL Server laden</h1>
+					<p>F&uuml;hren Sie folgendes Statement auf Ihrer Instanz des SQL Server aus:</p>
+					<pre>
+						<code class="language-sql" data-trim>
+							CREATE TABLE vrs.shelve (
+								shelve_id INT PRIMARY KEY,
+								shelve_geo GEOMETRY,
+								store_id INT,
+								[description] NVARCHAR(255)
+								);
+							
+							ALTER TABLE vrs.shelve
+								ADD CONSTRAINT FK_Shelve_Store FOREIGN KEY (store_id)
+									REFERENCES vrs.store (store_id);
+							
+							INSERT INTO vrs.shelve (shelve_id, shelve_geo, store_id)
+							VALUES
+							(1, geometry::STPolyFromText('POLYGON((1 1, 10 1, 10 2, 1 2, 1 1))', 4326), 1),
+							(2, geometry::STPolyFromText('POLYGON((12 1, 22 1, 22 2, 12 2, 12 1))', 4326), 1),
+							(3, geometry::STPolyFromText('POLYGON((1 3, 10 3, 10 4, 1 4, 1 3))', 4326), 1),
+							(4, geometry::STPolyFromText('POLYGON((12 3, 22 3, 22 4, 12 4, 12 3))', 4326), 1),
+							(5, geometry::STPolyFromText('POLYGON((1 5, 10 5, 10 6, 1 6, 1 5))', 4326), 1),
+							(6, geometry::STPolyFromText('POLYGON((12 5, 22 5, 22 6, 12 6, 12 5))', 4326), 1),
+							(7, geometry::STPolyFromText('POLYGON((1 7, 10 7, 10 8, 1 8, 1 7))', 4326), 1),
+							(8, geometry::STPolyFromText('POLYGON((12 7, 22 7, 22 8, 12 8, 12 7))', 4326), 1),
+							(9, geometry::STPolyFromText('POLYGON((1 10, 2 10, 2 20, 1 20, 1 10))', 4326), 1),
+							(10, geometry::STPolyFromText('POLYGON((3 10, 4 10, 4 20, 3 20, 3 10))', 4326), 1),
+							(11, geometry::STPolyFromText('POLYGON((5 10, 6 10, 6 20, 5 20, 5 10))', 4326), 1),
+							(12, geometry::STPolyFromText('POLYGON((7 10, 8 10, 8 20, 7 20, 7 10))', 4326), 1);
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Zuordnung der Filme zu Regalen</h1>
+					<p>F&uuml;hren Sie folgendes Statement auf Ihrer Instanz des SQL Server aus:</p>
+					<pre>
+						<code class="language-sql" data-trim>
+							ALTER TABLE vrs.inventory ADD shelve_id INT NULL;
+
+							ALTER TABLE vrs.inventory
+								ADD CONSTRAINT FK_Inventory_Shelve FOREIGN KEY (shelve_id)
+									REFERENCES vrs.shelve (shelve_id);
+
+							UPDATE i
+							SET i.shelve_id = t.shelve_id 
+							FROM vrs.inventory i
+							JOIN (
+								SELECT	t2.inventory_id,
+										NTILE(12) OVER(ORDER BY t2.film_id DESC) AS shelve_id
+								FROM vrs.inventory t2
+								WHERE t2.store_id = 1
+							) t
+								ON t.inventory_id = i.inventory_id;
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Laden von Bewegungsdaten</h1>
+					<p>F&uuml;hren Sie folgendes Statement auf Ihrer Instanz des SQL Server aus:</p>
+					<div class="grid">
+						<div class="griditem">
+							<pre>
+								<code class="language-sql" data-trim>
+									SELECT movement.*
+									INTO dbo.movements
+									FROM OPENROWSET (
+											BULK 'csvcontainer/google_takeout.json',
+											DATA_SOURCE = 'azureblobstorageDS',
+											SINGLE_CLOB
+										) AS j
+									CROSS APPLY OPENJSON(BulkColumn, '$.locations')
+									WITH (
+											timestampMs BIGINT,
+											latitudeE7 BIGINT,
+											longitudeE7 BIGINT,
+											accuracy int
+										) AS movement;
+		
+									ALTER TABLE dbo.movements
+										ALTER COLUMN timestampMs BIGINT NOT NULL;
+		
+									ALTER TABLE dbo.movements
+										ADD recording_time DATETIME2 NULL,
+											latitude DECIMAL(10,7) NULL,
+											longitude DECIMAL(10,7) NULL,
+											location_point GEOGRAPHY NULL,
+											CONSTRAINT PK_movements PRIMARY KEY CLUSTERED (timestampMs);
+		
+									UPDATE dbo.movements
+										SET recording_time = DATEADD(SECOND, timestampMs / 1000, '1970-1-1'),
+											latitude = CAST(CAST(latitudeE7 AS DECIMAL(10,0)) / POWER(10,7) AS decimal(10,7)),
+											longitude = CAST(CAST(longitudeE7 AS DECIMAL(10,0)) / POWER(10,7) AS decimal(10,7));
+		
+									UPDATE dbo.movements
+										SET location_point = geography::Point(latitude, longitude , 4326);
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<pre>
+								<code class="language-json" data-trim>
+									{
+										"timestampMs" : "1404112909700",
+										"latitudeE7" : 523557879,
+										"longitudeE7" : 97539580,
+										"accuracy" : 3,
+										"activity" : [ {
+										  "timestampMs" : "1404112939420",
+										  "activity" : [ {
+											"type" : "STILL",
+											"confidence" : 100
+										  } ]
+										} ]
+									  }
+								</code>
+							</pre>
+						</div>	
+					</div>
+				</section>
+
 			</section>
 
 			<section>
-				<h1>Aufgabe: Auswertung der Verleihrate pro Regal</h1>
+				<h1>Aufgabe: Auswertung der Umsätze pro Regal</h1>
+				<p>F&uuml;hren Sie folgendes Statement auf Ihrer Instanz des SQL Server per SSMS aus:</p>
+				<div class="grid">
+					<div class="griditem">
+						<pre>
+							<code class="language-sql" data-trim>
+								WITH cte_payment_amount AS
+								(
+									SELECT i.shelve_id,
+										SUM(p.amount) AS sum_amount
+									FROM [vrs].[payment] p
+									JOIN [vrs].[rental] r
+										ON r.rental_id = p.rental_id
+									JOIN [vrs].[inventory] i
+										ON i.inventory_id = r.inventory_id
+									GROUP BY i.shelve_id
+								)
+								SELECT cte.shelve_id,
+										cte.sum_amount,
+										s.shelve_geo
+								FROM cte_payment_amount cte
+								JOIN vrs.shelve s
+									ON s.shelve_id = cte.shelve_id
+							</code>
+						</pre>
+					</div>
+					<div class="griditem">
+						<img src="static/U06/vrs-shelves-spatial-results.png" height="480">
+					</div>
+				</div>
 			</section>
 
 			<section>
-				<h1>Aufgabe: Auswertung der DVD-Verleihe nach Wetterlage</h1>
+
+				<section>
+					<h1>Aufgabe: Auswertung von Bewegungsdaten</h1>
+					<p>Ein großer Teil des Datensatzes besteht aus Stillstandsdaten. Allein 71500 Datensätze liegen am Wohnort:</p>
+					<div class="grid">
+						<div class="griditem">
+							<pre>
+								<code class="language-sql" data-trim>
+									SELECT *
+									FROM [dbo].[movements] m
+									WHERE
+									m.location_point.STIntersects(
+										geography::Point(52.3561617, 9.7539098 , 4326)
+										.STBuffer(15)) = 1;
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<img src="static/U06/MovementAtHome.png" width="400">
+						</div>
+					</div>
+					<p>Deshalb sollte man zunächst "echte" Ausflüge / Trips identifizieren.</p>
+				</section>
+
+				<section>
+					<h1>Aufgabe: Auswertung von Bewegungsdaten</h1>
+					<h2>Zusammenfassen der Daten zu Trips</h2>
+					<pre>
+						<code class="language-sql" data-trim>
+							WITH cte_diffs AS
+							(
+								SELECT	m.timestampMs,
+										m.recording_time,
+										m.location_point,
+										DATEDIFF(
+											SECOND,
+											LAG(m.recording_time) OVER (ORDER BY m.timestampMs),
+											m.recording_time
+										) AS recording_time_diff_second,
+										m.location_point.STDistance(LAG(m.location_point,1) OVER (ORDER BY m.timestampMs ASC)) AS distance_to_predecessor
+								FROM movements m
+								WHERE m.latitudeE7 &lt;&gt; 0
+								AND m.longitudeE7 &lt;&gt; 0
+								AND m.accuracy &lt; 500
+							),
+							cte_trips AS
+							(
+								SELECT	cte.timestampMs,
+										cte.recording_time,
+										cte.location_point,
+										cte.recording_time_diff_second,
+										cte.distance_to_predecessor,
+										SUM
+										(
+											CASE
+											-- Ein neuer Trip wird definiert, wenn zwischen den Datenpaketen entweder 30min liegen...
+												WHEN cte.recording_time_diff_second > 1800
+												OR 
+												(
+													-- Oder in 15min weniger als 3000m zurückgelegt werden.
+													cte.recording_time_diff_second &gt; 900
+													AND cte.distance_to_predecessor &lt; 3000
+												) THEN 1
+												ELSE 0
+											END
+										) OVER (ORDER BY cte.timestampMs ROWS UNBOUNDED PRECEDING) AS trip
+								FROM cte_diffs cte
+								WHERE cte.distance_to_predecessor &gt; 0
+								AND cte.recording_time_diff_second &gt; 0
+								AND cte.distance_to_predecessor / cte.recording_time_diff_second &gt; 0.8
+							),
+							cte_velocity AS 
+							(
+								SELECT	cte.timestampMs,
+										cte.recording_time,
+										cte.location_point,
+										cte.recording_time_diff_second,
+										cte.distance_to_predecessor,
+										cte.trip
+								FROM	cte_trips cte
+								WHERE cte.recording_time_diff_second &gt; 0
+							)
+							SELECT *
+							FROM 
+							(
+								SELECT	DATEADD(SECOND, SUM(cte.recording_time_diff_second)*-1, MAX(cte.recording_time)) as recording_time_start,
+										MAX(cte.recording_time) as recording_time_end,
+										geography::CollectionAggregate(cte.location_point) as geo,
+										SUM(cte.recording_time_diff_second) as diff_Seconds,
+										SUM(cte.distance_to_predecessor) as distance,
+										cte.trip,
+										(((SUM(cte.distance_to_predecessor))/(SUM(cte.recording_time_diff_second)))*3.6) AS kmh,
+										count(*) as items_count
+								FROM cte_velocity cte
+								GROUP BY trip) s
+							WHERE kmh &lt; 300;
+						</code>
+					</pre>
+				</section>
+
+			</section>
+
+			<section>
+				<h1>Literatur</h1>
+				<h2>Geodatenverarbeitung mit Tableau</h2>
+				<iframe data-src="static\U06\GeoDatenDashboard-Projektdokumentation.pdf" height="480" width="800"></iframe>
 			</section>
 
 		</div>
