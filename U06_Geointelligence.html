@@ -36,7 +36,7 @@
 					<ul>
 						<li>Lageplan der Regale in den Stores</li>
 						<li>Zuordnung der Filme zu Regalen</li>
-						<li>Wetterdaten</li>
+						<li>Bewegungsdaten</li>
 					</ul>
 				</section>
 			
@@ -100,17 +100,52 @@
 				</section>
 
 				<section>
-					<h1>Laden von Wetterdaten</h1>
+					<h1>Laden von Bewegungsdaten</h1>
 				</section>
 
 			</section>
 
 			<section>
-				<h1>Aufgabe: Auswertung der Verleihrate pro Regal</h1>
+				<h1>Aufgabe: Auswertung der Umsätze pro Regal</h1>
+				<p>F&uuml;hren Sie folgendes Statement auf Ihrer Instanz des SQL Server per SSMS aus:</p>
+				<div class="grid">
+					<div class="griditem">
+						<pre>
+							<code class="language-sql" data-trim>
+								WITH cte_payment_amount AS
+								(
+									SELECT i.shelve_id,
+										SUM(p.amount) AS sum_amount
+									FROM [vrs].[payment] p
+									JOIN [vrs].[rental] r
+										ON r.rental_id = p.rental_id
+									JOIN [vrs].[inventory] i
+										ON i.inventory_id = r.inventory_id
+									GROUP BY i.shelve_id
+								)
+								SELECT cte.shelve_id,
+										cte.sum_amount,
+										s.shelve_geo
+								FROM cte_payment_amount cte
+								JOIN vrs.shelve s
+									ON s.shelve_id = cte.shelve_id
+							</code>
+						</pre>
+					</div>
+					<div class="griditem">
+						<img src="static/U06/vrs-shelves-spatial-results.png" height="480">
+					</div>
+				</div>
 			</section>
 
 			<section>
-				<h1>Aufgabe: Auswertung der DVD-Verleihe nach Wetterlage</h1>
+				<h1>Aufgabe: Auswertung von Bewegungsdaten</h1>
+			</section>
+
+			<section>
+				<h1>Literatur</h1>
+				<h2>Geodatenverarbeitung mit Tableau</h2>
+				<iframe data-src="static\U06\GeoDatenDashboard-Projektdokumentation.pdf" height="480" width="800"></iframe>
 			</section>
 
 		</div>
