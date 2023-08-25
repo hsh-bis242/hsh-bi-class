@@ -34,11 +34,7 @@
 					<h1>Quellen und Heterogenität der Daten</h1>
 					<ul>
 						<li>Operative Systeme</li>
-						<li>Web
-							<ul>
-								<li>Öffentliche und interne Quellen</li>
-							</ul>
-						</li>
+						<li>Web - Öffentliche und interne Quellen</li>
 						<li>Dateien</li>
 						<li>Lieferanten der Daten für das Data Warehouse
 							<ul>
@@ -54,15 +50,20 @@
 
 				<section>
 					<h1>Klassifikationen Daten</h1>
-					<ul>
-						<li>Herkunft: intern, extern</li>
-						<li>Zeit: aktuell, historisch</li>
-						<li>Nutzungsebene: Primärdaten, Metadaten</li>
-						<li>Inhalt: Zahl, Zeichenkette, Grafik, Dokument</li>
-						<li>Darstellung: numerisch, alphanumerisch, BLOB</li>
-						<li>Sprache und Zeichensatz (Unicode, ASCII, UTF)</li>
-						<li>Vertraulichkeitsgrad</li>
-					</ul>
+					<div>
+						<div style="float: left">
+							<img src="static/V02/sources.jpg" height="480">
+						</div>
+						<div>
+							<p>Herkunft: intern, extern</p>
+							<p>Zeit: aktuell, historisch</p>
+							<p>Nutzungsebene: Primärdaten, Metadaten</p>
+							<p>Inhalt: Zahl, Zeichenkette, Grafik, Dokument</p>
+							<p>Darstellung: numerisch, alphanumerisch, BLOB</p>
+							<p>Sprache und Zeichensatz (Unicode, ASCII, UTF)</p>
+							<p>Vertraulichkeitsgrad</p>
+						</div>
+					</div>
 					<p>Einige dieser Klassifikationen wirken sich auf die Data Mart Struktur und das Report Design aus</p>
 				</section>
 
@@ -76,10 +77,19 @@
 					</ul>
 					<p>Datenauswahl einer Anbindung wird oftmals auf Reporting Anforderungen aufgebaut (Top-Down)
 					</p>
+					<img src="static/V02/pick_data.jpg" height="200">
 				</section>
 
 				<section>
 					<h1>Art der Daten</h1>
+					<div>
+					<div style="float: left">
+						<img src="static/V02/camera.png">
+						<br>
+						<br>
+						<img src="static/V02/log.png">
+					</div>
+					<div>
 					<ul>
 						<li>Snapshots: Quelle liefert immer kompletten Datenbestand
 							<ul>
@@ -102,6 +112,8 @@
 							</ul>
 						</li>
 					</ul>
+				</div>
+				</div>
 				</section>
 
 				<section>
@@ -259,11 +271,16 @@
 				</section>
 
 				<section>
+					<h1>Referenzarchitektur</h1>
+					<img src="static/V01/btelligent-Referenzarchitektur_BI.png" height="600" widht="1050">
+				</section>
+
+				<section>
 					<h1>Fragestellungen bei Anbindungen</h1>
 					<ul>
 						<li>In welcher Schicht im DWH werden Daten bereinigt und gefiltert?</li>
 						<li>Wann wird die Datenqualität geprüft?</li>
-						<li>Muss Datenqualität über den gesamten Lade Prozess des DWHs geprüft werden?</li>
+						<li>Muss Datenqualität über den gesamten Lade-Prozess des DWHs geprüft werden?</li>
 						<li>Müssen Business Rules und Transformationen schon vor dem Laden angewendet werden?</li>
 					</ul>
 					<p>Einfluss auf diese Fragen haben die Datenschutzrechtliche Einordung der Daten, die Integrität, erlaubte Fehlertoleranz, die Genauigkeit der Daten, Kosten und die Performance.</p>
@@ -271,20 +288,29 @@
 
 				<section>
 					<h1>Push vs. Pull</h1>
-					<ul>
-						<li>PULL
+					<div class="grid">
+						<div class="griditem">
+							<img src="static/V02/pull.jpg" height="160">
+							<br>
+							<img src="static/V02/push.jpg" height="160">
+						</div>
+						<div class="griditem">
 							<ul>
-								<li>Zum festgelegten Zeitpunkt als batch werden Daten aus der Quelle abgerufen</li>
-								<li>Re-run jederzeit möglich</li>
-								<li>Kein Realtime</li>
+								<li>PULL
+									<ul>
+										<li>Zum festgelegten Zeitpunkt als batch werden Daten aus der Quelle abgerufen</li>
+										<li>Re-run jederzeit möglich</li>
+										<li>Kein Realtime</li>
+									</ul>
+								</li>
+								<li>PUSH</li>
+								<ul>
+									<li>Nahe oder im Quellsystem integrierte Komponente, die Daten aufgrund eines Events überträgt</li>
+									<li>Zielsystem muss durchgängig verfügbar sein</li>
+								</ul>
 							</ul>
-						</li>
-						<li>PUSH</li>
-						<ul>
-							<li>Nahe oder im Quellsystem integrierte Komponente, die Daten aufgrund eines Events überträgt</li>
-							<li>Zielsystem muss durchgängig verfügbar sein</li>
-						</ul>
-					</ul>
+						</div>
+					</div>
 				</section>
 
 				<section>
@@ -319,6 +345,12 @@
 						<li>Komponenten oder Funktionalitäten zur Datenbereinigung und Auditing</li>
 						<li>Wiederverwendbarkeit von Logiken in templates</li>
 					</ul>
+					<figure>
+						<img src="./static/V02/informatica.png" height="320">
+						<figcaption>
+							https://www.informatica.com/products/cloud-data-integration.html
+						</figcaption>
+					</figure>
 				</section>
 
 				<section>
@@ -329,6 +361,7 @@
 						<li>Heterogene Daten zu einem konsistenten Data Mart zusammensetzen</li>
 						<li>Lade- und Aktualisierungszeitpunkte synchronisieren (Welche Daten müssen zu welchem Zeitpunkt im Report vorliegen)</li>
 					</ul>
+					<img src="./static/V02/puzzle.jpg" height="320">
 				</section>
 			<section>
 				<h1>Modernes Data Warehouse auch als Quelle</h1>
@@ -340,6 +373,9 @@
 				<ul>
 					<li>Esteban Zimányi; Alejandro Vaisman, Data Warehouse Systems : Design and Implementation, Springer Berlin Heidelberg, 2022</li>
 					<li>Peter Gluchowski, Frank Leisten, Gero Presser (Hrsg.), Architekturen für BI & Analytics, dpunkt.verlag, 2021</li>
+					<li>Matt Housley, Joe Reis, Fundamentals of Data Engineering: Plan and Build Robust Data Systems, O'Reilly Media, 2022</li>
+					<li>Dani Schnider, Claus Jordan, Peter Welker, Joachim Wehner, Data Warehouse Blueprints: Business Intelligence in der Praxis, Carl Hanser Verlag GmbH & Co. KG; 1. Edition, 2016)</li>
+					<li>Veith Köppen, Kai-Uwe Sattler, Gunter Saake, Data Warehouse Technologien, mitp Verlags GmbH & Co. KG; 2., überarbeitete Auflage 2014</li>
 				</ul>
 			</section>
 
