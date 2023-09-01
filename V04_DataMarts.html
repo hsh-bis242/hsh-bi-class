@@ -48,14 +48,22 @@
 
 			<section>
 				<h1>Gründe für Data Marts</h1>
-				<ul>
-					<li>Eigenständigkeit</li>
-					<li>Datenschutz</li>
-					<li>Lastverteilung</li>
-					<li>Datenvolumen</li>
-					<li>Vereinfachung</li>
-					<li>Verarbeitung durch OLAP Software</li>
-				</ul>
+				<div class="grid">
+					<div calss="griditem">
+						<ul>
+							<li>Eigenständigkeit</li>
+							<li>Datenschutz</li>
+							<li>Lastverteilung</li>
+							<li>Datenvolumen</li>
+							<li>Vereinfachung</li>
+							<li>Verarbeitung durch OLAP Software</li>
+						</ul>
+					</div>
+					<div class="griditem">
+						<img src="./static/V04/Data_Marts.png" width="940">
+					</div>
+				</div>
+				
 			</section>
 
 			<section>
@@ -175,6 +183,13 @@
 						<li>Unterteilung nach Jahr, Quartal, Monat</li>
 						<li>Beschreiben Sicht auf die KPIs</li>
 					</ul>
+					<figure>
+						<img src="./static/V04/diemensions-example.png" >
+						<figcaption>
+							Sternschema 
+							https://www.tutorialandexample.com/types-of-dimension-in-informatica
+						</figcaption>
+					</figure>	
 				</section>
 
 				<section>
@@ -194,17 +209,29 @@
 
 				<section>
 					<h1>Typen von Dimensionen</h1>
-					<ul>
-						<li>Conformed Dimension</li>
-						<li>Outrigger Dimension</li>
-						<li>Shrunken Dimension</li>
-						<li>Role-Playing Dimension</li>
-						<li>Dimension to Dimension Table</li>
-						<li>Junk Dimension</li>
-						<li>Degenerate Dimension</li>
-						<li>Swappable Dimension</li>
-						<li>Step Dimension</li>
-					</ul>
+					<div class="grid">
+						<div class="griditem">
+							<ul>
+								<li>Conformed Dimension</li>
+								<li>Outrigger Dimension</li>
+								<li>Shrunken Dimension</li>
+								<li>Role-Playing Dimension</li>
+								<li>Dimension to Dimension Table</li>
+								<li>Junk Dimension</li>
+								<li>Degenerate Dimension</li>
+								<li>Swappable Dimension</li>
+								<li>Step Dimension</li>
+							</ul>
+						</div>
+						<div class="griditem">
+							<figure>
+								<img src="./static/V04/degen-dimension.png">
+								<figcaption>
+									https://www.tutorialandexample.com/types-of-dimension-in-informatica
+								</figcaption>
+							</figure>	
+						</div>
+					</div>
 				</section>
 			</section>
 
@@ -1167,7 +1194,7 @@
 					<li>Bei schnelleren Ladezyklen muss Reihenfolge eingehalten werden für Historisierung </li>
 					<li>Viele kleine verschachtelte files in kurzen Intervallen können zu Deadlocks führen</li>
 				</ul>
-				<p>Design-Entscheidung: Der Pfad über ein Data Warehouse muss nicht immer die gewählt werden um Daten in Reports zu präsentieren</p>
+				<p>Design-Entscheidung: Der Pfad über ein Data Warehouse muss nicht immer gewählt werden um Daten in Reports zu präsentieren (Big Data solution)</p>
 			</section>
 
 			<section>
@@ -1180,6 +1207,12 @@
 					<li>Vertikales Partitioning</li>
 					<li>Archive “old” data</li>
 				</ul>
+				<figure>
+					<img src="./static/V04/partition.avif">
+					<figcaption>
+						https://select.dev/posts/introduction-to-snowflake-clustering
+					</figcaption>
+				</figure>
 			</section>
 
 			<section>
@@ -1220,18 +1253,6 @@
 					</li>
 				</ul>
 			</section>
-
-			<section>
-				<h1>Zusammenfassung</h1>
-				<ul>
-					<li>Data Mart - Architektur</li>
-					<li>Datenqualität</li>
-					<li>Historisierung</li>
-					<li>Materialisierung</li>
-					<li>Scrubbing, cleaning, testing und ownership</li>
-				</ul>
-			</section>
-
 			<section>
 				<h1>Literatur</h1>
 				<ul>
