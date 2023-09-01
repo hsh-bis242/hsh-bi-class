@@ -142,6 +142,7 @@
 								</ul>
 							</li>
 						</ul>
+						<img src="./static/V03/git.jpg" height="280">
 					</section>
 
 					<section>
@@ -186,22 +187,35 @@
 
 					<section>
 						<h1>Beispiel Workflow in git</h1>
-						<ol>
-							<li>git clone ssh://user@host/path/to/repo.git</li>
-							<li>git checkout main</li>
-							<li>git fetch origin</li>
-							<li>git reset --hard origin/main</li>
-							<li>git checkout -b new-feature</li>
-							<li>Entwickler ändert files</li>
-							<li>git push origin new-feature</li>
-							<li>git status</li>
-							<li>git add {some-file}</li>
-							<li>git commit</li>
-						</ol>
+						<div class="grid">
+							
+						
+						<div class="griditem">
+							<ol>
+								<li>git clone ssh://user@host/path/to/repo.git</li>
+								<li>git checkout main</li>
+								<li>git fetch origin</li>
+								<li>git reset --hard origin/main</li>
+								<li>git checkout -b new-feature</li>
+								<li>Entwickler ändert files</li>
+								<li>git push origin new-feature</li>
+								<li>git status</li>
+								<li>git add {some-file}</li>
+								<li>git commit</li>
+							</ol>
+						</div>
+						<div class="griditem">
+							<img src="./static/V03/git_graph.png" width="85">
+						</div>
+					</div>
 					</section>
 
 					<section>
 						<h1>Beispiel Workflow in git</h1>
+						<div class="grid">
+							
+						
+							<div class="griditem">
 						<ol start="11">
 							<li>Entwickler ändert weitere files</li>
 							<li>git status</li>
@@ -213,6 +227,11 @@
 							<li>Entwickler erstellt Pull Request im Management Tool z.B. Azure DevOps</li>
 							<li>Test und Review des feature branches von einem weiteren Entwickler und anschließend merge in main</li>
 						</ol>
+					</div>
+					<div class="griditem">
+						<img src="./static/V03/git_graph.png" width="85">
+					</div>
+				</div>
 					</section>
 
 			</section>
@@ -292,8 +311,9 @@
 
 				<section>
 					<h1>Welche Datenbank passt für mein Data Warehouse?</h1>
-					<p>Folgende Aspekte müssen berücksichtigt werden:</p>
+					
 					<ul>
+						<p>Folgende Aspekte müssen berücksichtigt werden:</p>
 						<li>Datenmenge</li>
 						<li>Flüchtigkeit der Daten</li>
 						<li>Verschachtelung und Hierarchien der Datenbasis</li>
@@ -301,6 +321,7 @@
 						<li>Cloud oder on-Premise</li>
 						<li>Skillset der Developer</li>
 					</ul>
+					<img src="./static/V03/database.jpg" height="200">
 				</section>
 
 			</section>
@@ -320,7 +341,11 @@
 						</ul>
 					</li>
 				</ul>
-			</section>
+				<figure>
+					<img src="./static/V03/datapipeline.jpg" height="200">
+					<figcaption>https://tdwi.org/articles/2017/08/07/data-all-enabling-real-time-enterprise-with-data-streaming.aspx</figcaption>
+				</figure>
+				</section>
 			<section>
 				<section>
 					<img src="./static/V02/mdmDataKatalog.png" alt="">
@@ -334,8 +359,12 @@
 						<li>Eine einheitliche Defintion von Ländercodes und Länder-Bezeichungen soll übergreifend im Unternehmen verwendet werden</li>
 						<li>MDM hat ein eigenen Tool-Stack und ergänzt ein Data Warehouse oftmals</li>
 					</ul>
+					<figure>
+						<img src="./static/V03/MDM.png" height="200">
+						<figcaption>https://iqinstitute.de/master-data-management/</figcaption>
+					</figure>
 				</section>
-
+				
 				<section>
 					<h1>Data Katalog</h1>
 					<p>Ein Data Katalog ist ein zentraler Dokumentation und Metadaten Service. Es werden folgende Informationen in diesem hinterlegt:</p>
@@ -346,6 +375,11 @@
 						<li>Business Logiken von Objekten oder KPIs</li>
 						<li>Lineage der Daten</li>
 					</ul>
+					<figure>
+						<img src="./static/V03/catalog.jpg" height="200">
+						<figcaption>https://www.datanami.com/2022/03/14/what-to-look-for-in-a-data-catalog/</figcaption>
+					</figure>
+					
 				</section>
 
 
@@ -403,11 +437,8 @@
 							<img src="./static/V02/dbt.png" alt="">
 						</div>
 					</div>
-					
+					<img src="./static/V03/catalog.jpg" height="200">
 				</section>
-
-			
-
 				<section>
 					<h1>Alerting und Monitoring</h1>
 					<ul>
@@ -417,7 +448,9 @@
 						<li>Datenbanken-Anbieter haben ein technisches Monitoring bereits eingebaut</li>
 						<li>Fachliches Monitoring ➡️ Reports</li>
 					</ul>
+					<img src="./static/V03/monitoring.jpg" height="200">
 				</section>
+
 			</section>
 
 			<section>
@@ -426,39 +459,11 @@
 			</section>
 
 			<section>
-				<h1>Zusammenfassung</h1>
-				<ul>
-					<li>Anbindungen
-						<ul>
-							<li>Quellsysteme, Datenformate</li>
-							<li>Push vs. Pull</li>
-							<li>ETL/ELT</li>
-						</ul>
-					</li>
-					<li>Development und Deployment
-						<ul>
-							<li>Git und Repositories</li>
-							<li>Deployment und test automation</li>
-							<li>Datenbanken</li>
-							<li>Data Streaming</li>
-						</ul>
-					</li>
-					<li>Steuerungs- und Informationsmanagement
-						<ul>
-							<li>Data Katalog und MDM</li>
-							<li>Metadatensteuerung</li>
-							<li>Monitoring</li>
-						</ul>
-					</li>
-					
-				</ul>
-			</section>
-
-			<section>
 				<h1>Literatur</h1>
 				<ul>
 					<li>Esteban Zimányi; Alejandro Vaisman, Data Warehouse Systems : Design and Implementation, Springer Berlin Heidelberg, 2022</li>
 					<li>Peter Gluchowski, Frank Leisten, Gero Presser (Hrsg.), Architekturen für BI & Analytics, dpunkt.verlag, 2021</li>
+					<li>Tyler Akidau, Slava Chernyak, Reuven Lax, Streaming Systems: The What, Where, When, and How of Large-Scale Data Processing, O'Reilly Media 2018</li>
 				</ul>
 			</section>
 
