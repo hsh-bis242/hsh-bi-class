@@ -27,7 +27,7 @@ import {
 } from './utils/constants.js'
 
 // The reveal.js version
-export const VERSION = '4.4.0';
+export const VERSION = '4.6.0';
 
 /**
  * reveal.js
@@ -1006,11 +1006,18 @@ export default function( revealElement, options ) {
 	 * @param {number} [presentationHeight=dom.wrapper.offsetHeight]
 	 */
 	function getComputedSlideSize( presentationWidth, presentationHeight ) {
+		let width = config.width;
+		let height = config.height;
+
+		if( config.disableLayout ) {
+			width = dom.slides.offsetWidth;
+			height = dom.slides.offsetHeight;
+		}
 
 		const size = {
 			// Slide size
-			width: config.width,
-			height: config.height,
+			width: width,
+			height: height,
 
 			// Presentation size
 			presentationWidth: presentationWidth || dom.wrapper.offsetWidth,
@@ -1471,7 +1478,9 @@ export default function( revealElement, options ) {
 		// Write the current hash to the URL
 		location.writeURL();
 
-		fragments.sortAll();
+		if( config.sortFragmentsOnSync === true ) {
+			fragments.sortAll();
+		}
 
 		controls.update();
 		progress.update();
@@ -2194,11 +2203,7 @@ export default function( revealElement, options ) {
 
 		if( currentSlide && config.autoSlide !== false ) {
 
-			let fragment = currentSlide.querySelector( '.current-fragment' );
-
-			// When the slide first appears there is no "current" fragment so
-			// we look for a data-autoslide timing on the first fragment
-			if( !fragment ) fragment = currentSlide.querySelector( '.fragment' );
+			let fragment = currentSlide.querySelector( '.current-fragment[data-autoslide]' );
 
 			let fragmentAutoSlide = fragment ? fragment.getAttribute( 'data-autoslide' ) : null;
 			let parentAutoSlide = currentSlide.parentNode ? currentSlide.parentNode.getAttribute( 'data-autoslide' ) : null;
@@ -2699,6 +2704,10 @@ export default function( revealElement, options ) {
 		// Slide preloading
 		loadSlide: slideContent.load.bind( slideContent ),
 		unloadSlide: slideContent.unload.bind( slideContent ),
+
+		// Media playback
+		startEmbeddedContent: () => slideContent.startEmbeddedContent( currentSlide ),
+		stopEmbeddedContent: () => slideContent.stopEmbeddedContent( currentSlide, { unloadIframes: false } ),
 
 		// Preview management
 		showPreview,
