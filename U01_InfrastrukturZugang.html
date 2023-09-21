@@ -33,6 +33,7 @@
 					<li>Beitreten einer Übungsgruppe in Moodle</li>
 					<li>Anlegen eines Github-Kontos und Beitritt zur Organisation dieses Kurses</li>
 					<li>Remotedesktopverbindung zum HSH-Terminalserver herstellen</li>
+					<li>Klonen des Github-Repositorys</li>
 				</ol>
 			</section>
 			<section>
@@ -75,13 +76,8 @@
 				<section>
 					<h1>Github-Organisation HSH-BIS242</h1>
 					<p>
-						Sobald Sie einen Github-Account angelegt haben und dort eingeloggt sind, schreiben Sie bitte eine Mail mit folgendem Inhalt an<br>
+						Sobald Sie einen Github-Account angelegt haben und dort eingeloggt sind, schreiben Sie bitte eine Mail mit dem Betreff <b>Einladung zu HSH-BIS242</b>, ihrem <b>Git-Benutzernamen oder der registrierten Mailadresse</b>, sowie Ihrer <b>Moodle-Übungsgruppe</b> an<br>
 						<a href="mailto:timo.cirkel@hs-hannover.de">timo.cirkel@hs-hannover.de</a>:<br>
-						<br>
-						Betreff: Einladung zu HSH-BIS242<br>
-						Github-Benutzername oder die registrierte Mailadresse.<br>
-						Den Namen Ihrer Moodle-Übungsgruppe.<br>
-						&nbsp;
 					</p>
 					<p>
 						Sie werden dann der Github-Organisation hinzugefügt und bekommen Zugriff auf ein Übungsrepository.
@@ -102,10 +98,70 @@
 						<img src="static/U01/rdpConnect2.png" height="200">
 					</p>
 				</section>
+			</section>
+			<section>
 				<section>
-					<h1>Klonen des Github-Repositorys</h1>
+					<h1>Klonen des Github-Repositorys (1/4)</h1>
 					<p>
-
+						Zum Abschluss der Übung testen Sie bitte den Zugriff auf das Github-Übungsrepository. Dazu öffnen Sie Ihr Repository auf Github:<br>
+						<a href="https://github.com/orgs/hsh-bis242/repositories">Übersicht der Organisations-Repositories auf Github</a>
+					</p>
+					<p>Wählen Sie ihr Übungsrepository aus. Sie bekommen dort eine Clone-URL angezeigt. Kopieren Sie diese:</p>
+					<img src="static/U01/git-cloneURL.png" height="100">
+				</section>
+				<section>
+					<h1>Klonen des Github-Repositorys (2/4)</h1>
+					<div class="grid_50">
+						<div class="griditem">
+							<p>
+								Nun klonen wir das Github-Repository auf den Übungsserver.
+							</p>
+							<p>
+								Wir empfehlen Ihnen die Übungen mithilfe der Entwicklungsumgebung <b>Visual Studio Code</b> umzusetzen. Diese ist auf dem Server vorinstalliert.
+							</p>
+							<p>
+								Öffnen Sie eine Remotedesktopverbindung zum Server und starten Sie die Software.
+							</p>
+							<p>
+								Direkt auf der Willkommensseite finden Sie den Link zum Klonen eines Git-Repositorys.
+							</p>
+						</div>
+						<div class="griditem">
+							<img src="static/U01/vscode-cloneGitRepo_1.png" height="350">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Klonen des Github-Repositorys (3/4)</h1>
+					<p>
+						Nachdem Sie den Link auf der Willkommensseite angeklickt haben, öffnet sich eine Eingabeaufforderung, in welche Sie die vorher kopierte Clone-URL von Github einfügen. Und mit der Eingabetaste bestätigen.
+						<img src="static/U01/vscode-cloneGitRepo_2.png" height="100">
+					</p>
+					<div class="grid_50">
+						<div class="griditem">
+							<img src="static/U01/vscode-cloneGitRepo_3.png">
+						</div>
+						<div class="griditem">
+							<p>
+								Sie werden nun gebeten einen Speicherort auszuwählen, in den das Repository geklont wird. Wir empfehlen hierfür einen neuen Unterordner "dev" direkt in Ihrem Benutzerverzeichnis zu erstellen.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Klonen des Github-Repositorys (4/4)</h1>
+					<p>
+						Git fordert Sie auf sich gegenüber Github zu authentifizieren.
+					</p>
+					<p>
+						Klicken Sie auf <b>"Sign in with your browser"</b>. Geben Sie Ihre Github-Zugangsdaten ein und erlauben Sie ggf. den Zugriff auf Ihr Github-Konto.
+					</p>
+					<img src="static/U01/vscode-cloneGitRepo_4.png" style="float:right;">
+					<p>
+						Sobald Sie dazu aufgefordert werden, schließen Sie das Browserfenster. Betätigen Sie die Schaltfläche "Open" in Visual Studio Code.
+					</p>
+					<p>
+						Der Editor öffnet nun ihr (noch leeres) lokales Repository und fragt ob Sie den Inhalten in diesem Verzeichnis vertrauen. Bestätigen Sie das.
 					</p>
 				</section>
 			</section>
