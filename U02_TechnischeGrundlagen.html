@@ -27,7 +27,88 @@
 				</div>
 			</section>
 			<section>
-				<h1>dbt Projekt initialisieren</h1>
+				<section>
+					<h1>Aufgabenstellung</h1>
+					<ol>
+						<li>Übersicht über die Übung verschaffen</li>
+						<li>dbt-Projekt initialisieren</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Übungsübersicht</h1>
+					<ul>
+						<li>Aufbau / Technologie der Übungsumgebung</li>
+						<li>Beschreibung des Übungsdatenmodells (Quelle und Core-Warehouse)</li>
+						<li>Ablauf der Übung</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Übersicht über die Übungsumgebung</h1>
+				</section>
+				<section>
+					<h1>Übungsdatenmodell - Quellsystem</h1>
+					<figure>
+						<div class="grid_50">
+							<div class="griditem">
+								<a href="static/U02/webshop-willibald.png"><img data-src="static/U02/webshop-willibald.png" height="400"></a>
+							</div>
+							<div class="griditem">
+								<a href="static/U02/Roadshow.png"><img data-src="static/U02/Roadshow.png" height="400"></a>
+							</div>
+						</div>
+						<figcaption>
+							<a href="https://ddvug.net/willibalds-daen/">https://dwa-compare.info/</a>
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Übungsdatenmodell - Data Vault</h1>
+					<figure>
+						<a href="static/U02/willibald-datavault.png"><img data-src="static/U02/willibald-datavault.png" height="480"></a>
+						<figcaption>
+							Eigene Darstellung
+						</figcaption>
+					</figure>
+				</section>
+				<section>
+					<h1>Ablauf der Übung</h1>
+					<table>
+						<tr>
+							<th>Übungsinhalt</th>
+							<th>Technologie</th>
+						</tr>
+						<tr>
+							<td>Aufbau einer Datumsdimension</td>
+							<td><a href="https://www.knime.com/">knime</a></td>
+						</tr>
+						<tr>
+							<td>Untersuchen der Datenqualität unseres Datenmodells</td>
+							<td><a href="https://www.getdbt.com/">dbt</a></td>
+						</tr>
+						<tr>
+							<td>Modellieren und Beladen eines Sternschemas</td>
+							<td><a href="https://www.getdbt.com/">dbt</a></td>
+						</tr>
+						<tr>
+							
+							<td>Aufbau eines Dashboards zur Datenanalyse</td>
+							<td><a href="https://app.powerbi.com/">PowerBI</a></td>
+						</tr>
+						<tr>
+							<td>Übertragung unserer Übungsumgebung in die Cloud</td>
+							<td><a href="https://azure.microsoft.com/">Azure</a></td>
+						</tr>
+						<tr>
+							<td>Darstellung unserer Datenanalyse mit räumlichen Daten</td>
+							<td><a href="https://www.tableau.com/">Tableau</a></td>
+						</tr>
+					</table>
+				</section>
+			</section>
+			<section>
+				<h1>dbt-Projekt initialisieren</h1>
 				<p>
 					Einen Terminal/Command-line Fenster öffnen im Ordner in dem das Repository in den ersten Schritten der Übung geklont wurde
 				</p>
@@ -39,7 +120,7 @@
 				</p>
 			</section>	
 			<section>
-				<h1>dbt Projekt initialisieren</h1>
+				<h1>dbt-Projekt initialisieren</h1>
 				<p>
 					Ein dbt-Projekt hat auch immer ein profiles.yml file, welches die Connection Infos zur Datenbank enthält, mittels dieses Befehls kann der Speicherort der Datei ermittelt werden
 				</p>
@@ -127,15 +208,6 @@
 				<pre>
 					<code>git push</code>
 				</pre>
-			</section>
-			<section>
-				<h1>Übung Erfolgskriterien</h1>
-				<p>
-					Die dbt Test-view und der Test-Table sind in der Datenbank angelegt
-				</p>
-				<p>
-					Das dbt project wurde ins DevOps-Repository übertragen 
-				</p>
 			</section>
 		</div>
 	</div>
