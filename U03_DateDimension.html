@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 02 - Technische Grundlagen</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<div class="r-fit-text">
+					<h1>Übung Business Intelligence</h1>
+					<h2>Aufbau einer Datumsdimension</h2>
+				</div>
+			</section>
+			<section>
+				<section>
+					<h1>Aufgabenstellung</h1>
+					<ol>
+						<li>Modellieren einer Datumsdimension</li>
+						<li>Laden von Feiertagsinformationen aus JSON</li>
+						<li>Laden von Ferientagen aus XML</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Modellieren einer Datumsdimension</h1>
+				</section>
+				<section>
+					<h1>Erstellen der Tabelle in Postgres</h1>
+					<pre>
+						<code data-trim class="language-sql">
+							SELECT i::DATE
+							  FROM GENERATE_SERIES('2022-01-01', '2022-12-31', '1 day'::INTERVAL) i
+						</code>
+					</pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Laden von Feiertagsinformationen</h1>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Laden von Ferientagen</h1>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>

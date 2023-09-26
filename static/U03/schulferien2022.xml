@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<0>
+    <id>2cd46113-46e5-4aff-accf-2798cd8bcc2d</id>
+    <startDate>2021-12-22</startDate>
+    <endDate>2022-01-03</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</0>
+<1>
+    <id>a6f2bd63-52c4-4264-a54f-5015ad75defa</id>
+    <startDate>2021-12-22</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</1>
+<2>
+    <id>0d9ea202-4e86-4245-a214-8384359e2ae3</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HE</code>
+        <shortName>HE</shortName>
+    </subdivisions>
+</2>
+<3>
+    <id>0e37a329-78ba-49d0-bd7f-4185fa942b36</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-01</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</3>
+<4>
+    <id>1e261639-4f7a-4fde-8cc8-6d6a1fb9a2a2</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</4>
+<5>
+    <id>4c34fd9e-2691-4973-b90d-a64c557395b1</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</5>
+<6>
+    <id>56261a5d-436a-4b59-8830-653141e1ebf9</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</6>
+<7>
+    <id>bee6192f-ece0-4356-bbe8-7e565b7ac946</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BW</code>
+        <shortName>BW</shortName>
+    </subdivisions>
+</7>
+<8>
+    <id>dd168b25-6b0d-4875-859a-26e4fe37c51b</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-03</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</8>
+<9>
+    <id>f32a0a35-2b9a-45a7-a417-e501239a7131</id>
+    <startDate>2021-12-23</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SH</code>
+        <shortName>SH</shortName>
+    </subdivisions>
+</9>
+<10>
+    <id>1c971414-8efc-49eb-ab29-685de4c68b47</id>
+    <startDate>2021-12-24</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NW</code>
+        <shortName>NW</shortName>
+    </subdivisions>
+</10>
+<11>
+    <id>cba055e2-e225-44fa-a20f-37ec20355fa9</id>
+    <startDate>2021-12-24</startDate>
+    <endDate>2022-01-08</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</11>
+<12>
+    <id>fdc1efbd-4bdc-40f8-8ddb-98fb3bc56ac3</id>
+    <startDate>2022-01-28</startDate>
+    <endDate>2022-01-28</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Halbjahrespause</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</12>
+<13>
+    <id>344b2197-5a52-4df3-894c-317f836fe1a4</id>
+    <startDate>2022-01-30</startDate>
+    <endDate>2022-02-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</13>
+<14>
+    <id>7a3921e6-7cf4-468f-828b-97c4658db76e</id>
+    <startDate>2022-01-31</startDate>
+    <endDate>2022-02-05</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BB</code>
+        <shortName>BB</shortName>
+    </subdivisions>
+</14>
+<15>
+    <id>d6cba264-97bc-49ca-b194-8f360347e7ec</id>
+    <startDate>2022-01-31</startDate>
+    <endDate>2022-02-01</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Halbjahresferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</15>
+<16>
+    <id>de4553b8-4723-438b-a73c-995bafd74def</id>
+    <startDate>2022-01-31</startDate>
+    <endDate>2022-02-01</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Halbjahresferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</16>
+<17>
+    <id>77566ca3-6776-4bd8-9f4e-65a78692a922</id>
+    <startDate>2022-02-05</startDate>
+    <endDate>2022-02-12</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</17>
+<18>
+    <id>8c9d1790-cc43-4c25-8721-1b72bfb8d759</id>
+    <startDate>2022-02-05</startDate>
+    <endDate>2022-02-17</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</18>
+<19>
+    <id>3d2dc7cc-d4c7-49ec-85e9-d1de01b4a5a2</id>
+    <startDate>2022-02-12</startDate>
+    <endDate>2022-02-26</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</19>
+<20>
+    <id>65b500f5-a8b5-4817-8d68-75bd33044a3c</id>
+    <startDate>2022-02-12</startDate>
+    <endDate>2022-02-19</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-TH</code>
+        <shortName>TH</shortName>
+    </subdivisions>
+</20>
+<21>
+    <id>f8c32c5b-48df-439b-a02f-5172ab4fbe2a</id>
+    <startDate>2022-02-12</startDate>
+    <endDate>2022-02-19</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</21>
+<22>
+    <id>218a3487-abbc-4988-b9e4-fc50b46bf645</id>
+    <startDate>2022-02-18</startDate>
+    <endDate>2022-02-18</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Schulfrei</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</22>
+<23>
+    <id>a56bf938-b93c-4598-8541-6068fa3fb6a2</id>
+    <startDate>2022-02-21</startDate>
+    <endDate>2022-02-25</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Winterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-RP</code>
+        <shortName>RP</shortName>
+    </subdivisions>
+</23>
+<24>
+    <id>c9ebf65b-edeb-4e4d-b268-afa7917219fa</id>
+    <startDate>2022-02-21</startDate>
+    <endDate>2022-03-01</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Fastnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</24>
+<25>
+    <id>80a241e8-a0d0-4b89-8905-bb08cd6d28a6</id>
+    <startDate>2022-02-28</startDate>
+    <endDate>2022-03-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Frühjahrsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</25>
+<26>
+    <id>8f46427d-bc1b-42d4-8f6e-cc82366af75d</id>
+    <startDate>2022-03-07</startDate>
+    <endDate>2022-03-18</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Frühjahrsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</26>
+<27>
+    <id>03770012-8bc5-4363-9f80-508efea29b41</id>
+    <startDate>2022-04-04</startDate>
+    <endDate>2022-04-16</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SH</code>
+        <shortName>SH</shortName>
+    </subdivisions>
+</27>
+<28>
+    <id>2cb26515-86c6-4330-95a3-ea7102ed7f49</id>
+    <startDate>2022-04-04</startDate>
+    <endDate>2022-04-19</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</28>
+<29>
+    <id>84fc6372-8e77-44f1-b6be-4c0f40685a11</id>
+    <startDate>2022-04-04</startDate>
+    <endDate>2022-04-19</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</29>
+<30>
+    <id>08b5a3f2-6d29-4856-ad25-4fe8b4022970</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-TH</code>
+        <shortName>TH</shortName>
+    </subdivisions>
+</30>
+<31>
+    <id>29400d1f-125b-4fb1-85c2-e2e2a96b8815</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NW</code>
+        <shortName>NW</shortName>
+    </subdivisions>
+</31>
+<32>
+    <id>2e853b60-1242-4d68-b6f2-6f51e571ea8a</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-22</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</32>
+<33>
+    <id>56698b29-22b5-4d34-85d0-fafac820dd06</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HE</code>
+        <shortName>HE</shortName>
+    </subdivisions>
+</33>
+<34>
+    <id>5b6529c2-b83c-4d24-be1b-9cb7d535535a</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-24</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BB</code>
+        <shortName>BB</shortName>
+    </subdivisions>
+</34>
+<35>
+    <id>64ebbda3-6c9b-4109-9326-185ca96b50e6</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</35>
+<36>
+    <id>934b0ea4-bce6-4960-acec-b3c12f32af1e</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-16</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</36>
+<37>
+    <id>aa66bd2f-ff77-4311-962a-84b54092144c</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-20</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</37>
+<38>
+    <id>b329a066-6523-4203-b153-2593fca6f506</id>
+    <startDate>2022-04-11</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</38>
+<39>
+    <id>949a02e1-4a44-4e61-bb50-68a6315497fa</id>
+    <startDate>2022-04-13</startDate>
+    <endDate>2022-04-22</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-RP</code>
+        <shortName>RP</shortName>
+    </subdivisions>
+</39>
+<40>
+    <id>698a67de-48ae-47bd-a78a-a34b06887e72</id>
+    <startDate>2022-04-14</startDate>
+    <endDate>2022-04-22</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</40>
+<41>
+    <id>4fb65c4d-2c4f-498f-8d5b-f4ea4fa03304</id>
+    <startDate>2022-04-15</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</41>
+<42>
+    <id>b439fb76-b27b-4d58-beac-a100a3045317</id>
+    <startDate>2022-04-19</startDate>
+    <endDate>2022-04-23</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Osterferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BW</code>
+        <shortName>BW</shortName>
+    </subdivisions>
+</42>
+<43>
+    <id>e1138ae7-035c-4e21-8a52-0b7501705b08</id>
+    <startDate>2022-05-23</startDate>
+    <endDate>2022-05-28</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</43>
+<44>
+    <id>f961a294-5bf7-4fe1-9d03-0223952657ea</id>
+    <startDate>2022-05-23</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</44>
+<45>
+    <id>12873d17-f4f3-4752-bac1-a7072f61e344</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-28</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Himmelfahrt</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SH</code>
+        <shortName>SH</shortName>
+    </subdivisions>
+</45>
+<46>
+    <id>64a64010-b2f2-4f9b-bdf7-fe6e873d86e2</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Zusätzlicher Ferientag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</46>
+<47>
+    <id>73b7c1e9-7ca9-40fc-9df5-48fc9fecac9a</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Schulfreier Tag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-TH</code>
+        <shortName>TH</shortName>
+    </subdivisions>
+</47>
+<48>
+    <id>771e7c58-0b04-466e-a2d1-118bd8b7df83</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Unterrichtsfreier Tag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</48>
+<49>
+    <id>7e7c4f12-a957-4cba-98b8-6612511d1d11</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Unterrichtsfreier Tag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</49>
+<50>
+    <id>a708e7ba-6720-41d1-8ede-eb0741c40e98</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Zusätzlicher Ferientag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</50>
+<51>
+    <id>b991b726-1f3a-4687-8aef-97d444a8ef57</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Tag nach Himmelfahrt</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</51>
+<52>
+    <id>ec2ef463-6b95-436d-b82d-6eeeca2ffd25</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Tag nach Himmelfahrt</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</52>
+<53>
+    <id>f6743872-8f45-4818-ab1e-d55a4ff75929</id>
+    <startDate>2022-05-27</startDate>
+    <endDate>2022-05-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Variabler Ferientag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BB</code>
+        <shortName>BB</shortName>
+    </subdivisions>
+</53>
+<54>
+    <id>2972a33f-0ef1-4418-a4ce-e2670c9088bf</id>
+    <startDate>2022-06-03</startDate>
+    <endDate>2022-06-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</54>
+<55>
+    <id>3f5415b0-81a8-41ee-ba1e-34c7c33988d4</id>
+    <startDate>2022-06-07</startDate>
+    <endDate>2022-06-10</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</55>
+<56>
+    <id>53cf0d0e-a60f-4e4f-bbe7-6d153a97910b</id>
+    <startDate>2022-06-07</startDate>
+    <endDate>2022-06-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</56>
+<57>
+    <id>73a3d457-4536-475e-aa67-d696333fe18d</id>
+    <startDate>2022-06-07</startDate>
+    <endDate>2022-06-18</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BW</code>
+        <shortName>BW</shortName>
+    </subdivisions>
+</57>
+<58>
+    <id>73e0cd5a-260d-4fad-8aa1-d45d9d9b0eae</id>
+    <startDate>2022-06-07</startDate>
+    <endDate>2022-06-18</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</58>
+<59>
+    <id>a1218fed-a1d0-4d6a-945f-21e402f49ac0</id>
+    <startDate>2022-06-07</startDate>
+    <endDate>2022-06-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</59>
+<60>
+    <id>adf32c1d-ee79-4592-83d9-471a46f62578</id>
+    <startDate>2022-06-07</startDate>
+    <endDate>2022-06-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Pfingstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</60>
+<61>
+    <id>1a2b0c15-9898-46c9-97d5-0beadac8cbc8</id>
+    <startDate>2022-06-27</startDate>
+    <endDate>2022-08-09</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NW</code>
+        <shortName>NW</shortName>
+    </subdivisions>
+</61>
+<62>
+    <id>491d12d3-fc6a-498e-b50e-69732ac05b83</id>
+    <startDate>2022-07-04</startDate>
+    <endDate>2022-08-13</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SH</code>
+        <shortName>SH</shortName>
+    </subdivisions>
+</62>
+<63>
+    <id>ceeb5a8d-6832-4644-851e-faa228bf529c</id>
+    <startDate>2022-07-04</startDate>
+    <endDate>2022-08-13</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</63>
+<64>
+    <id>6b3491f3-455d-4ba1-bbbd-3e5aa1c20416</id>
+    <startDate>2022-07-07</startDate>
+    <endDate>2022-08-18</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</64>
+<65>
+    <id>940148ef-a89e-4f48-ba41-37ec1e5fc593</id>
+    <startDate>2022-07-07</startDate>
+    <endDate>2022-08-17</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</65>
+<66>
+    <id>fa165d69-4428-4d4a-b5ea-9a37430bcf9f</id>
+    <startDate>2022-07-07</startDate>
+    <endDate>2022-08-20</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BB</code>
+        <shortName>BB</shortName>
+    </subdivisions>
+</66>
+<67>
+    <id>ce19c1ea-51bc-4b8e-864e-347da3236b2e</id>
+    <startDate>2022-07-11</startDate>
+    <endDate>2022-08-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</67>
+<68>
+    <id>212cbb0a-e27b-4dba-8df7-a20f1eb047a7</id>
+    <startDate>2022-07-14</startDate>
+    <endDate>2022-08-24</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</68>
+<69>
+    <id>26db9f3c-0fad-429e-bbe8-5c8bd4625af3</id>
+    <startDate>2022-07-14</startDate>
+    <endDate>2022-08-24</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</69>
+<70>
+    <id>9457125a-73db-40d4-83b8-1a1c921d411f</id>
+    <startDate>2022-07-14</startDate>
+    <endDate>2022-08-24</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</70>
+<71>
+    <id>06a62641-0426-48a1-bdaf-954c0a98cf64</id>
+    <startDate>2022-07-18</startDate>
+    <endDate>2022-08-26</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</71>
+<72>
+    <id>8ae86e02-5cf2-489d-bfef-9c627464f296</id>
+    <startDate>2022-07-18</startDate>
+    <endDate>2022-08-27</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-TH</code>
+        <shortName>TH</shortName>
+    </subdivisions>
+</72>
+<73>
+    <id>2683b68c-cf98-4578-b42f-8b7495d2e84c</id>
+    <startDate>2022-07-25</startDate>
+    <endDate>2022-09-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-RP</code>
+        <shortName>RP</shortName>
+    </subdivisions>
+</73>
+<74>
+    <id>aa9a1e91-bd5f-4bac-8079-a00cc4ae7694</id>
+    <startDate>2022-07-25</startDate>
+    <endDate>2022-09-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</74>
+<75>
+    <id>c373d275-55c5-49c5-a49a-ce11bdfea7ed</id>
+    <startDate>2022-07-25</startDate>
+    <endDate>2022-09-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HE</code>
+        <shortName>HE</shortName>
+    </subdivisions>
+</75>
+<76>
+    <id>b1313d31-f673-43db-b0fc-77b9145e42be</id>
+    <startDate>2022-07-28</startDate>
+    <endDate>2022-09-10</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BW</code>
+        <shortName>BW</shortName>
+    </subdivisions>
+</76>
+<77>
+    <id>51acc4e1-02ce-479f-bfe5-f5b8d2b5a747</id>
+    <startDate>2022-08-01</startDate>
+    <endDate>2022-09-12</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Sommerferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</77>
+<78>
+    <id>7f60353b-3dac-446c-859c-efe0792a8733</id>
+    <startDate>2022-10-04</startDate>
+    <endDate>2022-10-15</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NW</code>
+        <shortName>NW</shortName>
+    </subdivisions>
+</78>
+<79>
+    <id>6a9493b9-898f-4bc7-9676-6b7d8e5ba2b4</id>
+    <startDate>2022-10-10</startDate>
+    <endDate>2022-10-14</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</79>
+<80>
+    <id>9d341fcc-b07d-4386-b25b-fe94d167381c</id>
+    <startDate>2022-10-10</startDate>
+    <endDate>2022-10-15</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</80>
+<81>
+    <id>a37db8e3-2da1-4ae4-9041-873e06d66887</id>
+    <startDate>2022-10-10</startDate>
+    <endDate>2022-10-21</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SH</code>
+        <shortName>SH</shortName>
+    </subdivisions>
+</81>
+<82>
+    <id>d55fd631-c532-43fa-b97c-c24ab34e3196</id>
+    <startDate>2022-10-10</startDate>
+    <endDate>2022-10-21</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</82>
+<83>
+    <id>0877ede0-7545-4c17-bb74-30eb9e457452</id>
+    <startDate>2022-10-17</startDate>
+    <endDate>2022-10-29</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</83>
+<84>
+    <id>37898ddd-63df-48d9-995e-85c55c324b66</id>
+    <startDate>2022-10-17</startDate>
+    <endDate>2022-10-29</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-TH</code>
+        <shortName>TH</shortName>
+    </subdivisions>
+</84>
+<85>
+    <id>a6e96942-4fe6-442d-a817-9f75f268667d</id>
+    <startDate>2022-10-17</startDate>
+    <endDate>2022-10-28</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</85>
+<86>
+    <id>b0cbdf41-b608-4a06-b869-e18bcc144207</id>
+    <startDate>2022-10-17</startDate>
+    <endDate>2022-10-29</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</86>
+<87>
+    <id>c75eaae9-5a0f-4074-a33e-a03bcf92af89</id>
+    <startDate>2022-10-17</startDate>
+    <endDate>2022-10-31</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-RP</code>
+        <shortName>RP</shortName>
+    </subdivisions>
+</87>
+<88>
+    <id>056d3c40-8a26-4bee-affa-75e22430a086</id>
+    <startDate>2022-10-24</startDate>
+    <endDate>2022-11-05</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</88>
+<89>
+    <id>752a897d-4757-4133-b47e-bf82418954a8</id>
+    <startDate>2022-10-24</startDate>
+    <endDate>2022-10-29</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HE</code>
+        <shortName>HE</shortName>
+    </subdivisions>
+</89>
+<90>
+    <id>993889b7-f857-4e0e-94df-6d551f169406</id>
+    <startDate>2022-10-24</startDate>
+    <endDate>2022-11-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</90>
+<91>
+    <id>d22236d7-f467-4275-9f45-892498449a6d</id>
+    <startDate>2022-10-24</startDate>
+    <endDate>2022-11-05</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BB</code>
+        <shortName>BB</shortName>
+    </subdivisions>
+</91>
+<92>
+    <id>e527f8ae-a18b-4957-8235-1b013c7be40b</id>
+    <startDate>2022-10-24</startDate>
+    <endDate>2022-11-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</92>
+<93>
+    <id>bf74c4e9-b9e6-40c0-822f-3b7949533cbc</id>
+    <startDate>2022-10-28</startDate>
+    <endDate>2022-10-28</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Zusätzlicher Ferientag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</93>
+<94>
+    <id>b08785c5-cd40-4c92-834a-c6c18db0756b</id>
+    <startDate>2022-10-31</startDate>
+    <endDate>2022-11-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</94>
+<95>
+    <id>07b0bafb-651a-4c52-a6bd-f2d0ba3c72ed</id>
+    <startDate>2022-11-01</startDate>
+    <endDate>2022-11-01</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Zusätzlicher Ferientag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</95>
+<96>
+    <id>1645677a-0459-43eb-af93-d5f20f455ffc</id>
+    <startDate>2022-11-02</startDate>
+    <endDate>2022-11-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Zusätzlicher Ferientag</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+</96>
+<97>
+    <id>eae66fa0-73d6-442b-b0b1-3faff19ba096</id>
+    <startDate>2022-11-02</startDate>
+    <endDate>2022-11-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Herbstferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BW</code>
+        <shortName>BW</shortName>
+    </subdivisions>
+</97>
+<98>
+    <id>72c4246d-9c6a-4d82-a245-a99277925d5f</id>
+    <startDate>2022-12-21</startDate>
+    <endDate>2023-01-05</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-ST</code>
+        <shortName>ST</shortName>
+    </subdivisions>
+</98>
+<99>
+    <id>91aeea83-5c0b-423f-a374-1630217377e3</id>
+    <startDate>2022-12-21</startDate>
+    <endDate>2023-01-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BW</code>
+        <shortName>BW</shortName>
+    </subdivisions>
+</99>
+<100>
+    <id>01007b2a-7800-4e62-965c-f7de21401c19</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-03</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-TH</code>
+        <shortName>TH</shortName>
+    </subdivisions>
+</100>
+<101>
+    <id>30948f6b-8d4d-4198-a979-7a20a517451c</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SN</code>
+        <shortName>SN</shortName>
+    </subdivisions>
+</101>
+<102>
+    <id>63d246f7-d0c6-434a-a86b-8a34451893e8</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-04</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SL</code>
+        <shortName>SL</shortName>
+    </subdivisions>
+</102>
+<103>
+    <id>70c78ccd-f712-45ad-b8d5-15277ac35d04</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-MV-ABS</code>
+        <shortName>MV-ABS</shortName>
+    </subdivisions>
+    <subdivisions>
+        <code>DE-MV-BBS</code>
+        <shortName>MV-BBS</shortName>
+    </subdivisions>
+</103>
+<104>
+    <id>87d121f9-f277-4cae-9e0d-f5eac823a165</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-03</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BB</code>
+        <shortName>BB</shortName>
+    </subdivisions>
+</104>
+<105>
+    <id>966c89ec-1a3b-40ae-aede-e38bbac9b8c8</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HE</code>
+        <shortName>HE</shortName>
+    </subdivisions>
+</105>
+<106>
+    <id>d02fd7c1-cce8-424e-94f9-909156975411</id>
+    <startDate>2022-12-22</startDate>
+    <endDate>2023-01-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BE</code>
+        <shortName>BE</shortName>
+    </subdivisions>
+</106>
+<107>
+    <id>27b373c1-a971-4a95-9a5e-5c0e6816de2d</id>
+    <startDate>2022-12-23</startDate>
+    <endDate>2023-01-06</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NW</code>
+        <shortName>NW</shortName>
+    </subdivisions>
+</107>
+<108>
+    <id>7c7a202a-5725-4676-a6dd-22d6e99aafd3</id>
+    <startDate>2022-12-23</startDate>
+    <endDate>2023-01-06</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HH</code>
+        <shortName>HH</shortName>
+    </subdivisions>
+</108>
+<109>
+    <id>8ab8cdf6-4a14-42bf-ade1-719de08ae05f</id>
+    <startDate>2022-12-23</startDate>
+    <endDate>2023-01-06</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-NI</code>
+        <shortName>NI</shortName>
+    </subdivisions>
+</109>
+<110>
+    <id>8df6bee7-efaf-479e-9d70-69625e858f6b</id>
+    <startDate>2022-12-23</startDate>
+    <endDate>2023-01-06</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-HB</code>
+        <shortName>HB</shortName>
+    </subdivisions>
+</110>
+<111>
+    <id>a435990f-82ee-4b10-959e-4523765e291f</id>
+    <startDate>2022-12-23</startDate>
+    <endDate>2023-01-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-SH</code>
+        <shortName>SH</shortName>
+    </subdivisions>
+</111>
+<112>
+    <id>b4473a9b-f126-46b5-8c51-0a95610dab1d</id>
+    <startDate>2022-12-23</startDate>
+    <endDate>2023-01-02</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-RP</code>
+        <shortName>RP</shortName>
+    </subdivisions>
+</112>
+<113>
+    <id>5a7eae70-428a-4bf5-8f40-8571e41cd058</id>
+    <startDate>2022-12-24</startDate>
+    <endDate>2023-01-07</endDate>
+    <type>School</type>
+    <name>
+        <language>DE</language>
+        <text>Weihnachtsferien</text>
+    </name>
+    <nationwide>false</nationwide>
+    <subdivisions>
+        <code>DE-BY</code>
+        <shortName>BY</shortName>
+    </subdivisions>
+</113>
