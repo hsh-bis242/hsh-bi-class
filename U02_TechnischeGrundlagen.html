@@ -32,6 +32,7 @@
 					<ol>
 						<li>Übersicht über die Übung verschaffen</li>
 						<li>dbt-Projekt initialisieren</li>
+						<li>Übertragen Ihres Fortschritts zu Github</li>
 					</ol>
 				</section>
 			</section>
@@ -66,7 +67,7 @@
 				<section>
 					<h1>Übungsdatenmodell - Data Vault</h1>
 					<figure>
-						<a href="static/U02/willibald-datavault.png"><img data-src="static/U02/willibald-datavault.png" height="480"></a>
+						<a href="static/U02/willibald-datavault.png"><img data-src="static/U02/willibald-datavault.png"></a>
 						<figcaption>
 							Eigene Darstellung
 						</figcaption>
@@ -124,104 +125,131 @@
 				<section>
 					<h1>dbt-Projekt initialisieren</h1>
 					<p>
-						Einen Terminal/Command-line Fenster öffnen im Ordner in dem das Repository in den ersten Schritten der Übung geklont wurde
+						Öffnen Sie Ihr, in der letzten Übung geklontes, lokales Repository mit Visual Studio Code. Öffnen Sie innerhalb der IDE ein Terminal.
+						<img data-src="static/U02/vscodeNewTerminal.png">
+					</p>
+					<p>
+						Geben Sie dort folgenden Befehl ein:
 					</p>
 					<pre>
 						<code>dbt init</code>
 					</pre>
 					<p>
-						Bei der Installation als Projektnamen HSH_BI eingeben und die 1 für SQL-Server auswählen und bestätigen
-					</p>
-				</section>	
-				<section>
-					<h1>dbt-Projekt initialisieren</h1>
-					<p>
-						Ein dbt-Projekt hat auch immer ein profiles.yml file, welches die Connection Infos zur Datenbank enthält, mittels dieses Befehls kann der Speicherort der Datei ermittelt werden
-					</p>
-					<pre>
-						<code>dbt debug --config-dir</code>
-					</pre>
-					<p>
-						Den "start" Befehl der aus diesem command erzeugt wird auf der command-line ausführen, dann sollte sich der Speicherpfad der profiles.yml öffnen, im Normalfall existiert diese noch nicht
+						Bei der Initialisierung geben Sie als Projektnamen <b>willibald_dm</b> ein und wählen <b>Postgres</b> als Zieldatenbank aus.
 					</p>
 				</section>	
 				<section>
 					<h1>profiles.yml erstellen</h1>
 					<p>
-						Im Ordner aus dem vorherigen Schritt ein "profiles.yml" file erstellen mit folgenden Inhalt 
-					</p>
-					<p>
-						In server, database und user xx mit der Gruppennummer ersetzen, ebenfalls das Passwort aus der ersten Übung für den Azure SQL Server einsetzen
+						Die Verbindungseinstellungen eines dbt-Projekt werden in einer <b>profiles.yml</b>-Datei definiert. Geben Sie folgenden Befehl ins Terminal ein:
 					</p>
 					<pre>
-					  <code>HSH_BI:
-		target: dev
-		outputs:
-			dev:
-				type: sqlserver
-				driver: 'ODBC Driver 18 for SQL Server' # (The ODBC Driver installed on your system)
-				server: bi230xx-exercise-sql.database.windows.net
-				port: 1433
-				database: bi230xx-db
-				schema: SalesLT
-				user: bi230xx
-				password: xxxxxx</code>
+						<code>code $env:USERPROFILE\.dbt\profiles.yml</code>
 					</pre>
-				</section>
-				<section>
-					<h1>Konfiguration Testen</h1>
 					<p>
-						Im Ordner HSH_BI dieses command-line statement ausführen
+						Schreiben Sie nun folgenden Inhalt in die Datei:
 					</p>
 					<pre>
-						<code>dbt debug</code>
+						<code data-trim data-line-numbers="7,8,10">
+							willibald_dm:
+								target: dev
+								outputs:
+									dev:
+										type: postgres
+										host: localhost
+										user: bis24200
+										password: 5hpAYvVAv7tAzm
+										port: 5432
+										dbname: willibald_dm_bis24200
+										schema: dm_ol
+										keepalives_idle: 0
+										connect_timeout: 10
+										retries: 1
+						</code>
 					</pre>
 					<p>
-						Wenn die Ausführung erfolgreich war, werden diese Ergebnisse angezeigt:
-					</p>
-					<img src="./static/U02/dbtDebug01.jpg" alt="" height="80">
-					<img src="./static/U02/dbtDebug02.jpg" alt="" height="80" width="400">
-	
-					<p>
-						Sollte der "Connection test" fehlschlagen könnte der ODBC Treiber auf dem Rechner noch fehlen. Diesen bitte herunterladen auf 
-						<a href="https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver15">microsoft.com</a> und installieren 
+						In <b>dbname</b>, <b>user</b> und <b>password</b> bitte Ihre Zugangsdaten eintragen.
 					</p>
 				</section>
 				<section>
-					<h1>dbt run test</h1>
+					<h1>Testen der Konfiguration</h1>
 					<p>
-						Im Ordner HSH_BI dieses command-line statement ausführen
+						Geben Sie folgende Statements ins Terminal ein:
+					</p>
+					<pre>
+						<code data-trim>
+							cd willibald_dm
+							dbt debug
+						</code>
+					</pre>
+					<p>
+						War die Ausführung erfolgreich, sehen Sie folgende Ergebnisse:
+						<img src="./static/U02/dbtDebug01.jpg" height="80">
+						<img src="./static/U02/dbtDebug02.jpg" height="80">
+					</p>
+				</section>
+				<section>
+					<h1>Testen von dbt run</h1>
+					<p>
+						Führen Sie bitte folgendes Statement im Terminal aus:
 					</p>
 					<pre>
 						<code>dbt run</code>
 					</pre>
 					<p>
-						Dieser Befehl erstellt die test models aus dem Folder models/example/ des dbt-Projekts in der Datenbank, 
-						bitte dies einmal mit dem gewählten DBMS-Tool prüfen, ob die Tabelle 
-						my_first_dbt_model
-						und die view
-						my_second_dbt_model
-						in der Datenbank erstellt wurden
+						Dieser Befehl erstellt die im Verzeichnis <b>models/example/</b> definierten Modelle des dbt-Projekts in der Datenbank. Dort sollten anschließend zwei Objekte existieren:	
+					</p>
+					<ul>
+						<li>my_first_dbt_model (Tabelle)</li>
+						<li>my_second_dbt_model (View)</li>
+					</ul>
+					<p>
+						Prüfen Sie diese bitte mithilfe des Tools PGAdmin.
 					</p>
 				</section>
+			</section>
+			<section>
 				<section>
-					<h1>Repo aktualisieren</h1>
-					DBT ist nun vollständig eingerichtet und es kann vom Rechner Datenbank-Objekte erzeugt und getestet werden in der Azure Cloud.
-					<br>
-					<br>
-					Abschließend sollte das dbt-Projekt noch in das DevOps Repo synchronisiert werden. Im Repository-Ordner (eine Ebene höher als der HSH_BI Ordner), 
-					den gesamten HSH_BI Ordner auf den git stash packen mit
-					<pre>
-						<code>git add HSH_BI</code>
-					</pre>
-					Die Änderungen in ein commit packen
-					<pre>
-						<code>git commit -m "initial dbt project"</code>
-					</pre>
-					Der Aktuelle Stand wird in das remote Repository gepusht
-					<pre>
-						<code>git push</code>
-					</pre>
+					<h1>Commit Ihrer Änderung erzeugen</h1>
+					<div class="grid_50">
+						<div class="griditem">
+							<p>
+								dbt ist nun vollständig eingerichtet.
+							</p>
+							<p>
+								Um Ihren Fortschritt zu sichern, sollten Sie Ihr lokales Repository noch zu Github übertragen. Klicken Sie in Visual Studio Code links im Menü auf "Source Control". Sie sehen dann eine Liste der Änderungen innerhalb Ihres lokalen Repositorys.
+							</p>
+							<p>
+								Geben Sie im Message-Fenster eine kurze Änderungsbeschreibung ein. Zum Beispiel "Initializes dbt project". Klicken Sie dann auf "Commit".
+							</p>
+							<p>
+	
+							</p>
+						</div>
+						<div class="griditem">
+							<img data-src="static/U02/vscodeCommitFiles.png">
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="r-fit-text">
+						<h1>Pushen Ihrer Änderungen zu Github</h1>
+						<p>
+							Der eben erzeugte Commit, muss noch an Github übertragen (gepusht) werden. Auch dies kann mithilfe von Visual Studio Code erledigt werden:
+						</p>
+						<img data-src="static/U02/vscodePushChanges.png">
+						<p>
+							Da im Github-Repository noch kein Branch existiert, wird Visual Studio Code nachfragen, ob der lokale Branch zunächst veröffentlicht und dann gepusht werden soll. Bestätigen Sie dies.
+						</p>
+						<img data-src="static/U02/vscodePublishBranch.png">
+					</div>
+				</section>
+				<section>
+					<h1>Einstieg in Git</h1>
+					<p>
+						Um die Arbeit mit Git besser verstehen zu können, empfehlen wir <a href="https://learngitbranching.js.org/?locale=de_DE">eine Demo</a>:
+					</p>
+					<iframe data-src="https://learngitbranching.js.org/?locale=de_DE" width="1000" height="450"></iframe>
 				</section>
 			</section>
 		</div>
