@@ -7,10 +7,16 @@ DO $$
 		sql_createuser	TEXT;
 		sql_grantall	TEXT;
 	BEGIN
-		sql_drop		= 'DROP DATABASE IF EXISTS willibald_dm_bis2420%s'; 
-    	sql_createdb	= 'CREATE DATABASE willibald_dm_bis2420%s';
-		sql_createuser	= 'CREATE USER bis2420%s WITH ENCRYPTED PASSWORD ''%s''';
-		sql_grantall	= 'GRANT ALL PRIVILEGES ON DATABASE willibald_dm_bis2420%s TO bis2420%s';
+		sql_drop			= 'DROP DATABASE IF EXISTS willibald_dm_bis2420%s'; 
+    	sql_createdb		= 'CREATE DATABASE willibald_dm_bis2420%s';
+		sql_createuser		= 'CREATE USER bis2420%s WITH ENCRYPTED PASSWORD ''%s''';
+		sql_grantall		= 'GRANT ALL PRIVILEGES ON DATABASE willibald_dm_bis2420%s TO bis2420%s';
+		sql_grantuserrole	= 'GRANT dwh_read_public_data TO bis2420%s;';
+
+		CREATE ROLE dwh_read_public_data WITH NOLOGIN;
+		GRANT SELECT ON ALL TABLES IN SCHEMA public TO dwh_read_public_data;
+		GRANT USAGE ON SCHEMA public TO dwh_read_public_data;
+		ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO dwh_read_public_data;
 	
 		FOR arow IN
 			SELECT userNumber, userPassword FROM (
@@ -30,6 +36,7 @@ DO $$
         	--EXECUTE FORMAT(sql_createdb, arow.userNumber);
 			
 			EXECUTE FORMAT(sql_createuser, arow.userNumber, arow.userPassword);
+			EXECUTE FORMAT(sql_grantuserrole, arow.userNumber);
 			
 			--EXECUTE FORMAT(sql_grantall, arow.userNumber);
     
