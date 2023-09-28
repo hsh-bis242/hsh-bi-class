@@ -49,6 +49,65 @@
 						</code>
 					</pre>
 				</section>
+				<section>
+					<h1>Aufbau der Datumdimension</h1>
+					<pre>
+						<code data-trim class="language-sql">
+CREATE TABLE dim_date
+(
+	 date_id			BIGINT 			NOT NULL
+	,date_value 		DATE			NOT NULL
+	,date_iso			CHAR(10)		NOT NULL
+	,day 				SMALLINT		NOT NULL
+	,day_of_week		SMALLINT		NOT NULL
+	,week				SMALLINT		NOT NULL
+	,month				SMALLINT		NOT NULL
+	,quarter			SMALLINT		NOT NULL
+	,year				SMALLINT		NOT NULL
+	,day_of_year		SMALLINT		NOT NULL
+	,day_text			VARCHAR(50)		NOT NULL
+	,month_text			VARCHAR(50)		NOT NULL
+	,quarter_text		VARCHAR(50)		NOT NULL
+	,day_text_abbrev	CHAR(3)			NOT NULL
+	,month_text_abbrev	CHAR(3)			NOT NULL
+	,is_holiday_bw		BOOLEAN			NOT NULL
+	,is_vacation_bw		BOOLEAN			NOT NULL
+	,is_holiday_by		BOOLEAN			NOT NULL
+	,is_vacation_by		BOOLEAN			NOT NULL
+	,is_holiday_be		BOOLEAN			NOT NULL
+	,is_vacation_be		BOOLEAN			NOT NULL
+	,is_holiday_bb		BOOLEAN			NOT NULL
+	,is_vacation_bb		BOOLEAN			NOT NULL
+	,is_holiday_hb		BOOLEAN			NOT NULL
+	,is_vacation_hb		BOOLEAN			NOT NULL
+	,is_holiday_hh		BOOLEAN			NOT NULL
+	,is_vacation_hh		BOOLEAN			NOT NULL
+	,is_holiday_he		BOOLEAN			NOT NULL
+	,is_vacation_he		BOOLEAN			NOT NULL
+	,is_holiday_mv		BOOLEAN			NOT NULL
+	,is_vacation_mv		BOOLEAN			NOT NULL
+	,is_holiday_ni		BOOLEAN			NOT NULL
+	,is_vacation_ni		BOOLEAN			NOT NULL
+	,is_holiday_nw		BOOLEAN			NOT NULL
+	,is_vacation_nw		BOOLEAN			NOT NULL
+	,is_holiday_rp		BOOLEAN			NOT NULL
+	,is_vacation_rp		BOOLEAN			NOT NULL
+	,is_holiday_sl		BOOLEAN			NOT NULL
+	,is_vacation_sl		BOOLEAN			NOT NULL
+	,is_holiday_sn		BOOLEAN			NOT NULL
+	,is_vacation_sn		BOOLEAN			NOT NULL
+	,is_holiday_st		BOOLEAN			NOT NULL
+	,is_vacation_st		BOOLEAN			NOT NULL
+	,is_holiday_sh		BOOLEAN			NOT NULL
+	,is_vacation_sh		BOOLEAN			NOT NULL
+	,is_holiday_th		BOOLEAN			NOT NULL
+	,is_vacation_th		BOOLEAN			NOT NULL
+	,CONSTRAINT pk_dim_date PRIMARY KEY CLUSTERED (date_id ASC)
+);
+CREATE NONCLUSTERED INDEX ix_dim_date ON dim_date (date_value ASC)
+						</code>
+					</pre>
+				</section>
 			</section>
 			<section>
 				<section>
