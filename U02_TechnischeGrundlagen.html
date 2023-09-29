@@ -210,30 +210,53 @@
 						<li>my_second_dbt_model (View)</li>
 					</ul>
 					<p>
-						Prüfen Sie diese bitte mithilfe des Tools PGAdmin.
+						Prüfen Sie diese bitte mithilfe des Tools pgAdmin.
 					</p>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h1>Commit Ihrer Änderung erzeugen</h1>
-					<div class="grid_50">
-						<div class="griditem">
-							<p>
-								dbt ist nun vollständig eingerichtet.
-							</p>
-							<p>
-								Um Ihren Fortschritt zu sichern, sollten Sie Ihr lokales Repository noch zu Github übertragen. Klicken Sie in Visual Studio Code links im Menü auf "Source Control". Sie sehen dann eine Liste der Änderungen innerhalb Ihres lokalen Repositorys.
-							</p>
-							<p>
-								Geben Sie im Message-Fenster eine kurze Änderungsbeschreibung ein. Zum Beispiel "Initializes dbt project". Klicken Sie dann auf "Commit".
-							</p>
-							<p>
-	
-							</p>
-						</div>
-						<div class="griditem">
-							<img data-src="static/U02/vscodeCommitFiles.png">
+					<div class="r-fit-text">
+						<h1>Zugriff auf die Datenbank mit pgAdmin</h1>
+						<p>
+							Um mit dem Datenbanktool pgAdmin auf Ihre Datenbank zuzugreifen, ändern Sie den Benutzernamen der Standarddatenbankverbindung.
+						</p>
+						<p>
+							Machen Sie im Hauptfenster einen <b>Rechtsklick auf "PostgreSQL 16"</b>, wählen <b>"Properties"</b> und tragen im Feld <b>"Username"</b> Ihren Gruppenbenutzernamen ein.
+						</p>
+						<img data-src="static/U02/pgAdminChangeUser.png" height="400">
+					</div>
+				</section>
+			</section>
+			<section>
+				<section>
+					<div class="r-fit-text">
+						<h1>Commit Ihrer Änderung erzeugen</h1>
+						
+						<div class="grid_50">
+							<div class="griditem">
+								<p>
+									Um Ihren Fortschritt zu sichern, übertragen Sie Ihr lokales Repository zu Github. Klicken Sie links im Menü auf "Source Control". Sie sehen eine Liste der Änderungen Ihres lokalen Repositorys.
+								</p>
+								<p>
+									git erfordert die Angabe einer E-Mailadresse und eines Benutzernamens, die dem Commit zugeordnet wird:
+								</p>
+								<pre>
+									<code data-trim>
+										git config user.email "max.mustermann@stud.hs-hannover.de"
+										git config user.name "Max Mustermann"
+									</code>
+								</pre>
+								<p>
+									Geben Sie im Message-Fenster eine kurze Änderungsbeschreibung ein. Zum Beispiel "Initializes dbt project". Klicken Sie dann auf "Commit".
+								</p>
+								<p>
+		
+								</p>
+							</div>
+							<div class="griditem">
+								<img data-src="static/U02/vscodeCommitFiles.png">
+							</div>
 						</div>
 					</div>
 				</section>
