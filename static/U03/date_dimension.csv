@@ -1,4 +1,4 @@
-﻿date_id;date_value;date_iso;day;day_of_week;week;month;quarter;year;day_of_year;day_text;month_text;quarter_text;day_text_abbrev;month_text_abbrev;
+﻿date_id;date_value;date_iso;day;day_of_week;week;month;quarter;year;day_of_year;day_text;month_text;quarter_text;day_text_abbrev;month_text_abbrev
 8037;2022-01-01;2022-01-01;1;7;1;1;1;2022;1;Saturday;January;Q1;Sat;Jan
 8038;2022-01-02;2022-01-02;2;1;2;1;1;2022;2;Sunday;January;Q1;Sun;Jan
 8039;2022-01-03;2022-01-03;3;2;2;1;1;2022;3;Monday;January;Q1;Mon;Jan
