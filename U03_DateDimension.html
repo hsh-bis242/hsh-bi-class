@@ -30,16 +30,21 @@
 				<section>
 					<h1>Aufgabenstellung</h1>
 					<ol>
-						<li>Laden von Feiertagsinformationen aus JSON</li>
-						<li>Laden von Ferientagen aus XML</li>
-						<li>Datumsdiemsnion erstellen</li>
+						<li>Modellieren einer Datumsdimension</li>
+						<li>Herunterladen und installieren von KNIME</li>
+						<li>Herunterladen der Quelldaten</li>
+						<ul>
+							<li>Kalenderdaten aus CSV</li>
+							<li>Feiertagsinformationen aus JSON</li>
+							<li>Ferientagen aus XML</li>
+						</ul>
+						<li>Beladen der Datumsdimension mit KNIME</li>
 					</ol>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h1>Ziel: Aufbau der Datumdimension</h1>
-					<p>Download des Quellfiles</p>
+					<h1>Ziel: Aufbau einer Datumdimension</h1>
 					<pre>
 						<code data-trim class="language-sql">
 CREATE TABLE dim_date
@@ -69,72 +74,94 @@ CREATE TABLE dim_date
 			<section>
 				<section>	
 						<h1>Download KNIME</h1>
-						<p>Download link:</p>
-						<a href="https://www.knime.com/downloads">KNIME</a>
+						<p>KNIME ist auf dem Übungsserver vorinstalliert. Wenn Sie dort arbeiten wollen, überspringen Sie den Rest dieser Sektion.</p>
+						<p>Auf den Laborcomputern müssen Sie die Software erst herunterladen und entpacken.</p>
+						<p>
+							Download-Link:
+							<a href="https://www.knime.com/downloads" target="_blank">KNIME</a>
+						</p>
 				</section>
 				<section>
+					<h1>Download KNIME</h1>
 					<img data-src="static/U03/knime-download.png" height="600">
 				</section>
 				<section>
-					<h1>Download and Install KNIME</h1>
-					<p> DOWNLOAD "KNIME Analytics Platform for Windows (zip archive)" keine Installation notwendig</p>
-					<p>Nach dem Downlaod zip-Archive entpacken und knime.exe ausführen und einen Workspace Ordner auf dem Rechner auswählen</p>
+					<h1>Herunterladen und entpacken von KNIME</h1>
+					<p>Laden Sie "KNIME Analytics Platform for Windows (zip archive)" herunter.</p>
+					<p>Entpacken Sie nach dem Download das Zip-Archiv und führen Sie knime.exe aus.</p>
+					<p>Sie werden beim ersten Start darum gebeten ein Verzeichnis auszuwählen, in dem Ihre KNIME-Projektdateien abgelegt werden.</p>
 				</section>
 				<section>
 					<h1>KNIME UI</h1>
 					<img data-src="static/U03/knime_UI.png">
 				</section>
 				<section>
-					<h1>Nutzung von KNIME nodes</h1>
-					<p>Rechts-click auf eine node öffnet dax context menu, im context menu einer node gibt es nur drei relvante Optionen für diese Aufgabe</p>
+					<h1>Nutzung von KNIME-Nodes</h1>
+					<p>Rechtsklick auf einen Node öffnet das Kontextmenü. Dort gibt es nur drei relevante Optionen für diese Übungsaufgabe</p>
 					<ul>
-						<li>Configure... => Hier konfiguriert ihr die Node und wählt die Einstellungen</li>
-						<li>Execute... => Die Node wird ausgeführt</li>
-						<li>Output... => Hier könnt Ihr Euch das Ergebnis der Ausführung ansehen</li>
+						<li><b>Configure</b> =&gt; Hier stellen Sie die Node ein</li>
+						<li><b>Execute</b> =&gt; Die Node wird ausgeführt</li>
+						<li><b>Output</b> =&gt; Hier können Sie das Ergebnis der Ausführung anzeigen lassen</li>
 					</ul>
 				</section>
 			</section>
 			<section>
 				<section>
-					<h1>Laden von Feiertagsinformationen</h1>
-					<p>Das Feld "is_vacation" soll mit einem Boolean Wert darstellen, ob das Datum der Row ein Feiertag in Niedersachsen ist.</p>
+					<h1>Download der Kalenderdaten</h1>
+					<p>Eine Auflistung aller Tage im Jahr 2022 liegt, CSV-formatiert, hier zum Download bereit:</p>
+					<a href="static/U03/date_dimension.csv" download>date_dimension.csv</a>
+				</section>
+				<section>
+					<h1>Download der Feiertagsinformationen</h1>
+					<p>Die Feiertagsinformationen im JSON-Format, können hier heruntergeladen werden:</p>
+					<a href="static/U03/feiertage2022.json" download>feiertage2022.json</a>
+				</section>
+				<section>
+					<h1>Download der Ferientage</h1>
+					<p>Eine Liste der deutschen Ferientage im Jahr 2022, im XML-Format, kann hier heruntergeladen werden:</p>
+					<a href="static/U03/schulferien2022.xml" download>schulferien2022.xml</a>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Laden von Feier- und Ferientagen</h1>
+					<p>Das Feld "is_vacation" soll mit einem booleschen Wert darstellen, ob das Datum der Zeile ein Feiertag in Niedersachsen ist.</p>
 					<pre>
 						<code >is_vacation		BOOLEAN			NOT NULL</code>
 					</pre>
-					<p>Die Quelldatei kann hier heruntergeladen werden: </p>
-				</section>
-				<section>
-					<h1>Laden von Ferientagen</h1>
-					<p>Das Feld "is_holiday" soll mit einem Boolean Wert darstellen, ob das Datum der Row ein Feiertag in Niedersachsen ist.</p>
+					<p>&nbsp;</p>
+					<p>Das Feld "is_holiday" soll mit einem booleschen Wert darstellen, ob das Datum der Zeile ein Feiertag in Niedersachsen ist.</p>
 					<pre>
 						<code >is_holiday		BOOLEAN			NOT NULL</code>
 					</pre>
-					<p>Die Quelldatei kann hier heruntergeladen werden: </p>
 				</section>
 				<section>
 					<h1>Vorgehen Musterbeispiel</h1>
 					<ul>
-						<li>Alle drei files in KNIME einlesen</li>
-						<li>Die Feiertagsinformationen und Ferientagen Daten aufbereiten, filtern und parsen und auf die Datum-Spalten einschränken</li>
+						<li>Alle drei Dateien in KNIME einlesen</li>
+						<li>Die Feiertagsinformationen und Ferientage aufbereiten, filtern, parsen und auf die Datum-Spalten einschränken</li>
 						<li>Die date-dimension Datumswerte mit den Feiertagsinformationen und Ferientagen joinen um so zu ermitteln welches Datum ein freier Tag ist</li>
-						<li>Zwei Boolean-Spalten aus dem join Ergebnis erzeugen: is_holiday und is_vacation</li>
-						<li>Das Endergebnis aus KNIME als Tabelle auf dem Postgres erzeugen</li>
+						<li>Zwei boolesche Spalten aus dem Join-Ergebnis erzeugen: is_holiday und is_vacation</li>
+						<li>Das Endergebnis mithilfe von KNIME als Tabelle in Ihre Postgres-Datenbank (willibald_dm) schreiben</li>
 					</ul>
-					<br></br>
-					<b>
-						Hierbei wichtig Ihr dürft auch gerne andere Tools oder ein anderen Vorgehens-Pfad wählen, es wird nur das Endergebnis von uns geprüft. 
-						Ziel für Notenverbesserung: Die Datumsdimension soll in eurer Postgres DB vollständig angelegt sein.
-					</b>
+					<p>
+							Gerne dürfen Sie andere Tools oder ein anderes Vorgehen wählen. Wir prüfen nur das Endergebnis.
+					</p>
+					<p>
+						<b> 
+							Ziel für Notenverbesserung: Die Datumsdimension soll in Ihrer Postgres-DB angelegt und vollständig befüllt sein.
+						</b>
+					</p>
 				</section>
 				<section>
 					<h1>Beispiel Workflow KNIME</h1>
-					<img data-src="static/U03/example_workflow.png">
+					<img data-src="static/U03/example_workflow.png" height="600">
 				</section>
 				<section>
-					<h1>Tipps für den Beispiel Workflow</h1>
+					<h1>Tipps für den Beispiel-Workflow</h1>
 					<ul>
-						<li>Bei der csv sollte beim Einlesen eine Spalte umbennant werden, dort hat der Export einen kleinen Bug eingebaut</li>
-						<li>Bei der Roten Punkt Verbindung handelt es sich um Flow Variables die ihr im zweiten Configure Tab der Knime Node einsetzen musst (Create Date&Time Range)</li>
+						<li>Beim Einlesen der CSV-Datei sollte eine Spalte umbennant werden. KNIME interpretiert das <a href="https://www.w3.org/International/questions/qa-utf8-bom.de.html">UTF8-BOM</a> nicht.</li>
+						<li>Bei der Roten-Punkt-Verbindung handelt es sich um Flowvariablen die Sie im zweiten Configure-Tab der Knime-Node einsetzen müssen (Create Date&Time Range)</li>
 					</ul>
 				</section>
 			</section>
