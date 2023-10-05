@@ -130,7 +130,7 @@ CREATE TABLE dim_date
 						<code >is_vacation		BOOLEAN			NOT NULL</code>
 					</pre>
 					<p>&nbsp;</p>
-					<p>Das Feld "is_holiday" soll mit einem booleschen Wert darstellen, ob das Datum der Zeile ein Feiertag in Niedersachsen ist.</p>
+					<p>Das Feld "is_holiday" soll mit einem booleschen Wert darstellen, ob das Datum der Zeile ein Urlaubstag in Niedersachsen ist.</p>
 					<pre>
 						<code >is_holiday		BOOLEAN			NOT NULL</code>
 					</pre>
@@ -140,7 +140,7 @@ CREATE TABLE dim_date
 					<ul>
 						<li>Alle drei Dateien in KNIME einlesen</li>
 						<li>Die Feiertagsinformationen und Ferientage aufbereiten, filtern, parsen und auf die Datum-Spalten einschränken</li>
-						<li>Die date-dimension Datumswerte mit den Feiertagsinformationen und Ferientagen joinen um so zu ermitteln welches Datum ein freier Tag ist</li>
+						<li>Die date-dimension Datumswerte mit den Feiertagsinformationen und Ferientagen joinen, um so zu ermitteln, welches Datum ein freier Tag ist</li>
 						<li>Zwei boolesche Spalten aus dem Join-Ergebnis erzeugen: is_holiday und is_vacation</li>
 						<li>Das Endergebnis mithilfe von KNIME als Tabelle in Ihre Postgres-Datenbank (willibald_dm) schreiben</li>
 					</ul>
