@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 04 - dbt Sources und Tests</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<div class="r-fit-text">
+					<h1>Übung Business Intelligence</h1>
+					<h2>dbt sources und tests</h2>
+				</div>
+			</section>
+			<section>
+				<h1>Aufgabenstellung</h1>
+				<ol>
+					<li>Überblick über das DWH-Datenmodell verschaffen</li>
+					<li>Verständnis für die Data Vault Modellierung und deren Objekttypen (Links, Hubs und Satelliten) aneignen</li>
+					<li>Anlegen von dbt-source-Dateien pro Data Vault Objekttyp</li>
+					<li>Anlegen und ausführen der Standardtests in den source-Dateien</li>
+					<li>Optionale Aufgabe: Einen dbt-Test selbst schreiben und ein Testmakro erstellen</li>
+				</ol>
+			</section>
+			<section>
+				<section>
+					<div class="r-fit-text">
+					<h1>DWH-Datenmodell</h1>
+					<p>Verschaffen Sie sich einen Überblick über die Tabellen im Schema <b>dwh_sl</b>. Diese Tabellen bilden das DWH-Datenmodell der Übung.</p>
+					<figure>
+						<a href="static/U02/willibald-datavault.png"><img data-src="static/U02/willibald-datavault.png"></a>
+						<figcaption>
+							Eigene Darstellung
+						</figcaption>
+					</figure>
+					</div>
+				</section>
+				<section>
+					<h1>DWH-Datenmodell mit pgAdmin anzeigen</h1>
+					<div class="grid_50">
+						<div class="griditem">
+							<p>Auf dem Server ist pgAdmin installiert. Damit können Sie alle Tabellen, Views und Daten in Ihrer Datenbank anzeigen.</p>
+							<p>Per Rechtsklick auf eine Tabelle können Sie ein Select-Skript erzeugen, um die Daten anzeigen zu lassen.</p>
+						</div>
+						<div class="griditem">
+							<img data-src="static/U04/pgAdmin.png" height="400">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Data Vault Auffrischung</h1>
+					<p>Recherchieren Sie im Internet, Ihren Data Warehousing Vorlesungsunterlagen oder folgenden Links, um sich mit der Data Vault Modellierung vertraut zu machen.</p>
+					<ul>
+						<li><a href="https://hanshultgren.wordpress.com/2011/03/25/data-vault-core-components/">Hans Hultgren</a></li>
+						<li><a href="https://de.wikipedia.org/wiki/Data_Vault">Wikipedia</a></li>
+						<li><a href="https://roelantvos.com/blog/enterprise_bi_architecture_overview/the-data-vault-layer/">Roelant Vos</a></li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Anlegen von dbt-source-Dateien</h1>
+					<ul>
+						<li>Ihre Hauptaufgabe ist es die dbt-source-Dateien zu den Satelliten, Hubs und Links zu vervollständigen.</li>
+						<li>
+							Source-Dateien und die Einträge in diesen, werden von dbt genutzt, um die Datenquellen sichtbar zu machen und diese testen zu können:<br>
+							<a href="https://docs.getdbt.com/docs/build/sources">sources in der dbt-Doku</a>
+						</li>
+						<li>Hier können Sie die bereits vorausgefüllten Dateien herunterladen. Als Beispiel sind bereits erste Objekte eingefügt:</li>
+						<ul>
+							<li><a href="static/U04/sat.yml" download>sat.yml</a></li>
+							<li><a href="static/U04/hub.yml" download>hub.yml</a></li>
+							<li><a href="static/U04/link.yml" download>link.yml</a></li>
+						</ul>
+					</ul>
+				</section>
+				<section>
+					<h1>Anlegen von dbt-source-Dateien</h1>
+					<p>Die Dateien können Sie in Ihrem dbt-Projekt in den folgenden Pfad kopieren:</p>
+					<img data-src="static/U04/path_dbt_folder.png">
+				</section>
+				<section>
+					<h1>Anlegen von dbt-source-Dateien</h1>
+					<p>Jedes Objekt wird in der yml nach dem gleichen Muster angelegt</p>
+					<ul>
+						<li><b>name:</b> Der Objektname oder Spaltenname in der Datenbank</li>
+						<li><b>columns:</b> mit "-" markierte Liste der Spalten die getestet werden sollen</li>
+						<li><b>tests:</b> mit "-" markierte Liste der tests die auf der Spalte ausgeführt werden sollen</li>
+						<li><b>Achtung:</b> Bei yml-Dateien sind Einrückungen der Textblöcke relevant. Installieren Sie eventuell eine Erweiterung für yml-Dateien in Visual Studio Code.</li>
+					</ul>
+					<img data-src="static/U04/source_yml_entry.png">
+				</section>
+				<section>
+					<h1>Anlegen von dbt-source-Dateien</h1>
+					<p>Es existieren 4 Standardtests in dbt:</p>
+					<ul>
+						<li><b>unique</b>: Testet ob die Werte in einer Spalte eindeutig sind </li>
+						<li><b>not_null</b>: Testet ob leere oder missing-Werte in der Spalte vorhanden sind</li>
+						<li><b>relationships</b>: Testet die Werte der Spalte gegen die Werte einer anderen Spalte. Im Beispiel wird geprüft, ob alle Kunden-surrogate-Keys im Hub kunde auch im Link lnk_bestellung_kunde enthalten sind</li>
+						<li><b>accepted_values</b>: Testet ob Werte außerhalb einer fest definierten Werteliste in der Spalte auftreten</li>
+					</ul>
+					<img data-src="static/U04/source_yml_entry.png">
+				</section>
+				<section>
+					<h1>Anlegen von dbt-source-Dateien</h1>
+					<p>In den yml-Dateien werden 5 Fragen gestellt. Bitte versuchen Sie diese zu beantworten. Per Hashtag können Sie Zeilen in yml-Dateien auskommentieren.</p>
+					<img data-src="static/U04/questions_tests.png">
+				</section>
+				<section>
+					<h1>Ausführen der dbt-Tests</h1>
+					<ul>
+						<li>
+							In Visual Studio Code können Sie ein Terminal öffnen:
+							<img data-src="static/U04/terminal.png">
+						</li>
+						<li>Um dbt-Befehle ausführen zu können müssen Sie sich im Verzeichnis <b>dev\bis242ws230x\willibald_dm\</b> befinden. Wechseln Sie also ggf. per <b>cd .\willibald_dm\</b> nach dem Start des Terminals ins Unterverzeichnis.</li>
+						<li>Die Tests können Sie mit dem Befehl <b>dbt test --select source:*</b> ausführen. Es werden dann alle Source-Dateien getestet.</li>
+						<li>Alternativ können Sie spezifisch den internen Namen der yml-Dateien angeben. Dieser wird ganz oben in der Datei definiert. <b>dbt test --select source:willibald_dwh_sats</b></li>
+						<li>Es ist auch möglich ein ganz spezifisches Objekt zu testen: <b>dbt test --select source:willibald_dwh_sats.hub_kreditkarte</b></li>
+					</ul>
+				</section>
+				<section>
+					<h1>Tests ausführen</h1>
+					<p>Wenn ein Test fehlschlägt heißt dies nicht, dass Sie einen Fehler gemacht haben. Der Test hat Probleme oder Fehler in den Daten gefunden. Hier ein Beispiel:</p>
+					<img data-src="static/U04/test_execution.png">
+					<p>Die Zahl hinter dem FAIL zeigt die Anzahl der Zeilen an, welche den Test nicht bestanden haben.</p>
+				</section>
+				<section>
+					<h1>Tests ausführen</h1>
+					<p>Wenn Sie einen Fehler im Code gemacht haben, zeigt dbt dies mit einem Error an. Hier ein Beispiel:</p>
+					<img data-src="static/U04/execution_error.png">
+					<p>In diesem Fall enthält eine yml-Datei einen Syntaxfehler.</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Ergebnis der Übung</h1>
+					<ul>
+						<li>Alle Satelliten, Hubs und Links aus dem Schema <b>dwh_sl</b> sind mit Tests in den yml-Dateien angelegt.</li>
+						<li>Die Tests müssen ausführbar sein.</li>
+						<li>Die Fragen in den vorgegeben yml-Dateien wurden beantwortet.</li>
+						<li>Die Tests müssen nicht fachlich sinnvoll sein. Dies können Sie in der kurzen Übungszeit nicht bewerten.</li>
+						<li>Für eine Notenverbesserung und erfolgreiche Absolvierung werden die yml-Dateien auf Vollständigkeit geprüft und ausgeführt. Sind 3 von 5 Fragen zufriedenstellend beantwortet gilt dies als erfolgreich.</li>
+						<li>Vergessen Sie nicht die Änderungen in Ihr git-Repository zu pushen. Probieren Sie gerne auch das Branching-Feature von git aus.</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<h1>Optionale Aufgabe</h1>
+				<ul>Schreiben Sie einen eigenen dbt-Test oder Testmakro für die aufgelisteten Szenarien (<a href="https://docs.getdbt.com/guides/best-practices/writing-custom-generic-tests">Selbstgeschriebene Tests in der dbt-Doku</a>)
+					<li>Annahme alle inscription_timestamps liegen im September 2023. Sollte dies nicht zutreffen ist der Test nicht erfolgreich.</li>
+					<li>Ein Testmakro, welches den Surrogate Key des Satelliten in Kombination mit dem state_timestamp auf Einzigartigkeit testet.</li>
+				</ul>
+			</section>
+			
+			
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
