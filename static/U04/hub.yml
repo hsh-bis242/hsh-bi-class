@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: willibald_dwh_hubs
+    schema: dwh_sl
+    tables:
+
+      - name: hub_bestellung
+        columns:
+        # Warum macht es in der Theorie keinen Unterschied ob wir die id (businesss key) oder den sk (surrogate key) eines hubs auf uniqueness und not null testen?
+        # Antwort:
+          - name: bestellung_id
+            tests:
+              - unique
+              - not_null
+        # Warum ist es aus fachlicher Sicht redundant/unnötig im Bestellung-Hub einen relationship-test auszuführen auf den Bestellung_Kreditkarte_link?
+        # Antwort:
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]
+
+
+
+      - name: hub_kreditkarte
+        columns:
+          - name: kreditkarte_sk
+            tests:
+              - unique
+              - not_null
+              # Warum failed der relationship-test und welchen fachlichen Hintergrund könnte dies haben?
+              # Antwort:
+              - relationships:
+                  to: source('willibald_dwh_links', 'lnk_bestellung_kreditkarte')
+                  field: kreditkarte_sk
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]
+
+
+      - name: hub_kunde
+        columns:
+          - name: kunde_sk
+            tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_links', 'lnk_bestellung_kunde')
+                  field: kunde_sk
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]
