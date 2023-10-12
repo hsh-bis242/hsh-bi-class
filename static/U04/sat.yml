@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: willibald_dwh_sats
+    schema: dwh_sl
+    tables:
+
+      - name: sat_bestellung
+        columns:
+          - name: bestellung_sk
+            tests:
+        # Warum macht macht es keinen Sinn ein -unique-test in den Satelliten auf den sk=surrogate-key auszuführen?
+        # Antwort:
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_hubs', 'hub_bestellung')
+                  field: bestellung_sk
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]
+
+
+
+      - name: sat_kreditkarte
+        columns:
+          - name: kreditkarte_sk
+            tests:
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_hubs', 'hub_kreditkarte')
+                  field: kreditkarte_sk
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]

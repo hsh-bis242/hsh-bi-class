@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: willibald_dwh_links
+    schema: dwh_sl
+    tables:
+    
+      - name: lnk_bestellung_kreditkarte
+        columns:
+          - name: bestellung_sk
+            tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_hubs', 'hub_bestellung')
+                  field: bestellung_sk
+          - name: kreditkarte_sk
+            tests:
+            # Dieser unique test failed. Warum ist dieser aus fachlicher Sicht unnötig?
+            # Antwort:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_hubs', 'hub_kreditkarte')
+                  field: kreditkarte_sk
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]
+
+
+
+      - name: lnk_bestellung_kunde
+        columns:
+          - name: bestellung_sk
+            tests:
+              - unique
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_hubs', 'hub_bestellung')
+                  field: bestellung_sk
+          - name: kunde_sk
+            tests:
+              - not_null
+              - relationships:
+                  to: source('willibald_dwh_hubs', 'hub_kunde')
+                  field: kunde_sk
+          - name: audit_trail_id
+            tests:
+              - accepted_values: 
+                  values: [-1]
