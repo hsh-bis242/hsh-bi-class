@@ -32,20 +32,7 @@
 
 			<section>
 				<h1>L&ouml;sungsvorschlag Sternschema</h1>
-				<img src="static/U06/Starschema-dvdrental.svg" height="480">
-			</section>
-
-			<section>
-				<h1>Aufbau einer Datumsdimension</h1>
-				<p>
-					Folgendes SQL-Script zeigt eine M&ouml;glichkeit zur Erstellung von Datumsdimensionen auf:<br>
-					<a download href="static/U06/Scripts/Populate_Dim_Date.sql">Populate_Dim_Date.sql</a><br>
-				</p>
-				<p>
-					(Quelle: <a
-						href="https://www.sqlservercentral.com/scripts/create-and-populate-a-date-dimension-table">SQLServerCentral</a>)
-				</p>
-
+				<img data-src="static/U05/Starschema-dvdrental.svg" height="480">
 			</section>
 
 			<section>
@@ -292,11 +279,10 @@ SELECT [date_id] AS return_date_id
 				<div class="grid">
 					<div class="griditem">
 						<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter "models" angelegt werden.</p>
-						<p>Leider muss das Skript zur Erstellung der Datumsdimension aktuell noch <b>manuell auf dem SQL-Server</b> ausgeführt werden.</p>
 						<p>Anschließend kann mit <b>dbt run</b> das Sternschema auf dem Server angelegt werden.</p>
 					</div>
 					<div class="griditem">
-						<img src="static/U06/dbtProject.png">
+						<img data-src="static/U05/dbtProject.png">
 					</div>
 				</div>
 			</section>
