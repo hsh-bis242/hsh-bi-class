@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 05 - Aufbau von Dimensionen und
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 05 - Aufbau von Dimensionen und
 		Fakten
 	</title>
 
@@ -86,7 +86,7 @@
 					<p>Setzen Sie das von Ihnen modellierte Sternschema in dbt um.</p>
 					<ul>
 						<li>Legen Sie Ihr Datenmodell im Schema "dm_ol" an.</li>
-						<li>Erstellen Sie ein dbt-Projekt um Ihr Sternschema auf dem Datenbankserver zu erzeugen und
+						<li>Erstellen Sie dbt models (.sql files) um Ihr Sternschema auf dem Datenbankserver zu erzeugen und
 							ggf. zu
 							beladen.</li>
 						<li>Pushen Sie Ihr dbt-Projekt per git ins Github-Repository.</li>
@@ -132,7 +132,7 @@
 					<h1>Beispielvorgehen - Datenzusammenstellung (1/2)</h1>
 					<p>
 						Wir nutzen dbt um das Sternschema aufzubereiten. Alle Daten werden zunächst in einer flachen
-						Ansicht zusammengestellt.
+						Ansicht zusammengestellt (revenue_star_flat).
 					</p>
 					<pre>
 						<code class="language-sql" data-trim>
@@ -220,8 +220,8 @@
 				<section>
 					<h1>Beispielvorgehen - Datenzusammenstellung (2/2)</h1>
 					<p>
-						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach "herausgeschnitten"
-						werden:
+						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach "herausgeschnitten" werden aus dem dbt model <b>revenue_star_flat</b>
+						:
 					</p>
 					<div class="grid">
 						<div class="griditem">
@@ -381,7 +381,20 @@ SELECT [date_id] AS return_date_id
 						</div>
 					</div>
 				</section>
-
+				<section>
+					<h1>Beispielvorgehen - Implementierung in dbt</h1>
+							<p>Wenn Ihr die Quelltabellen im schema <b>dwh_sl</b> verwenden wollt, gibt es hierfür zwei Möglichkeiten:</p>
+							<ol>
+								<li>Ihr nutzt das source-macro von dbt, wenn die yml-files aus &Uuml;bung 04 korrekt angelegt wurden</li>
+								<li>Es wird hardcoded der Objektname eingefügt. Dies sollte in einer Produktivumgebung nicht gemacht werden 
+									und sollte nur angewendet werden wenn &Uuml;bung 04 übersprungen wurde</li>
+							</ol>
+							<img data-src="static/U05/source_ref.png">
+				</section>
+				<section>
+					<h1>Beispielvorgehen - Implementierung in dbt</h1>
+							<p>Für Verweise von dbt models untereinander, also alle models und Objekte die im dbt-Projekt angelegt sind, benutzt man das ref-dbt-macro siehe das example model <b>my_second_dbt_model.sql</b></p>
+				</section>
 			</section>
 
 		</div>
