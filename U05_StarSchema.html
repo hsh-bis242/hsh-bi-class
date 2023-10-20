@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Lösung zur Übung 04 - Aufbau von
-		Dimensionen und
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 05 - Aufbau von Dimensionen und
 		Fakten
 	</title>
 
@@ -25,36 +24,130 @@
 		<div class="slides">
 			<section>
 				<div class="r-fit-text">
-					<h1>Lösung zur Übung Business Intelligence</h1>
+					<h1>Übung Business Intelligence</h1>
 					<h2>Aufbau von Dimensionen und Fakten</h2>
 				</div>
 			</section>
 
 			<section>
-				<h1>L&ouml;sungsvorschlag Sternschema</h1>
-				<img src="static/U06/Starschema-dvdrental.svg" height="480">
-			</section>
 
-			<section>
-				<h1>Aufbau einer Datumsdimension</h1>
-				<p>
-					Folgendes SQL-Script zeigt eine M&ouml;glichkeit zur Erstellung von Datumsdimensionen auf:<br>
-					<a download href="static/U06/Scripts/Populate_Dim_Date.sql">Populate_Dim_Date.sql</a><br>
-				</p>
-				<p>
-					(Quelle: <a
-						href="https://www.sqlservercentral.com/scripts/create-and-populate-a-date-dimension-table">SQLServerCentral</a>)
-				</p>
+				<section>
+					<h1>Aufgabenstellung - Datenmodellierung</h1>
+					<p>Modellieren Sie ein Sternschema auf das Willibald-DWH-Datenmodell.</p>
+					<ul>
+						<li>Welche Fakten können Sie identifizieren?</li>
+						<li>Welche Dimensionen können Sie identifizieren?</li>
+					</ul>
+				</section>
+
+				<section data-background="static/U02/willibald-datavault.png" data-background-size="contain"></section>
+
+				<section>
+					<div class="r-fit-text">
+						<h1>Fachliche Hinweise zur Modellierung</h1>
+						<figure>
+							<div class="grid_50">
+								<div class="griditem">
+									<img data-src="static/U05/willibald-auswertung.png">
+								</div>
+								<div class="griditem">
+									<ul>
+										<li><strong>Menge:</strong>
+											Die Menge bestellter Produkte. Wird direkt aus der Bestellposition
+											übernommen.</li>
+										<li><strong>Erlös:</strong>
+											Der Betrag, welcher für die bestellte Produktmenge zu bezahlen ist. Hierzu
+											werden Menge und Preis aus der Bestellposition multipliziert und
+											anschließend der Rabatt abgezogen.</li>
+										<li><strong>Offener Auftrag:</strong>
+											Eine 1 kennzeichnet, ob dieser Auftrag noch offen ist.</li>
+										<li><strong>Vollständig gelieferter Auftrag:</strong>
+											Eine 1 kennzeichnet, ob dieser Auftrag vollständig geliefert wurde.</li>
+										<li><strong>Abweichung zwischen Wunsch- und Lieferdatum:</strong>
+											Errechnet sich aus dem Bestellung.Wunschdatum und dem letzten
+											Lieferung.LieferDatum. Die Abweichung ist negativ, wenn die Lieferung vor
+											dem Wunschtermin erfolgte.</li>
+									</ul>
+								</div>
+							</div>
+							<figcaption>
+								<a href="https://ddvug.net/willibalds-daen/">https://dwa-compare.info/</a>
+							</figcaption>
+						</figure>
+					</div>
+				</section>
 
 			</section>
 
 			<section>
 
 				<section>
-					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<h1>Aufgabenstellung - ELT Entwicklung</h1>
+					<p>Setzen Sie das von Ihnen modellierte Sternschema in dbt um.</p>
+					<ul>
+						<li>Legen Sie Ihr Datenmodell im Schema "dm_ol" an.</li>
+						<li>Erstellen Sie dbt Modelle (.sql files) um Ihr Sternschema auf dem Datenbankserver zu erzeugen und ggf. zu beladen.</li>
+						<li>Pushen Sie Ihr dbt-Projekt per git ins Github-Repository.</li>
+					</ul>
+				</section>
+
+				<section>
+					<div class="r-fit-text">
+						<h1>Hinweise zur technischen Modellierung</h1>
+						<ul>
+							<li>Mit den unterschiedlichen Ladezeitstempeln (Inscription_Timestamps) werden die
+								Produktkategoriedaten sehr stark verändert. Legen Sie die Produktdimension deshalb als SCD
+								Typ 2 an (siehe Vaisman & Zimányi (2022). Data Warehouse Systems. 124ff)</li>
+							<li>Wenn Sie die Quelltabellen im Schema <b>dwh_sl</b> verwenden wollen, gibt es zwei Möglichkeiten:</li>
+							<ol>
+								<li>Nutzung des source-Makro von dbt, wenn die yml-Dateien aus der vorherigen &Uuml;bung korrekt angelegt wurden.</li>
+								<li>Nutzung des physischen Objektnamens in der Datenbank. Davon sollte in einer Produktivumgebung abgesehen werden.</li>
+							</ol>
+						</ul>
+						<pre>
+							<code class="language-sql" data-trim>
+SELECT * FROM
+--wenn Uebung04 erfolgreich war und yml-files angelegt sind:
+{{ source( 'sat_bestellung') }}
+-- wenn Uebung04 nicht angefangen oder erfolgreich war nutzen Sie den physischen Namen des Quellobjekts
+"willibald_dm_bis24200"."dwh_sl"."sat_bestellung"
+							</code>
+						</pre>
+						<ul>
+							<li>Für Verweise von dbt-Modellen untereinander (also allen Modellen und Objekten, die im dbt-Projekt angelegt sind) kann das ref-dbt-Makro genutzt werden. Siehe das Beispielmodell <b>my_second_dbt_model.sql</b></li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>Ergebnis der Übung</h1>
+					<ul>
+						<li>Ihre Übungsdatenbank enthält Dimensionen- und Faktentabellen und diese enthalten Daten aus dem DWH.</li>
+						<li>Die Faktentabelle sollte auf Granularität der Bestellposition sein.</li>
+					</ul>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>ELT Entwicklung - Beispielvorgehen</h1>
+					<div class="grid_50">
+						<div class="griditem">
+							<img data-src="static/U05/dvd-rental-sample-database-diagram.png" height="480">
+						</div>
+						<div class="griditem">
+							<img data-src="static/U05/Starschema-dvdrental.svg" height="480">
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Beispielvorgehen - Datenzusammenstellung (1/2)</h1>
 					<p>
 						Wir nutzen dbt um das Sternschema aufzubereiten. Alle Daten werden zunächst in einer flachen
-						Ansicht zusammengestellt.
+						Ansicht zusammengestellt (revenue_star_flat).
 					</p>
 					<pre>
 						<code class="language-sql" data-trim>
@@ -140,10 +233,9 @@
 				</section>
 
 				<section>
-					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<h1>Beispielvorgehen - Datenzusammenstellung (2/2)</h1>
 					<p>
-						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach "herausgeschnitten"
-						werden:
+						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach aus dem dbt-Modell <b>revenue_star_flat</b> "herausgeschnitten" werden:
 					</p>
 					<div class="grid">
 						<div class="griditem">
@@ -199,7 +291,7 @@ FROM {{ ref('revenue_star_flat') }}
 				</section>
 
 				<section>
-					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<h1>Beispielvorgehen - Nutzung der Datumsdimension</h1>
 					<p>Im Fakt sind drei Dat&uuml;mer angelegt: <b>Payment, Return und Rental Date</b>. G&auml;ngige
 						OLAP- und BI-Tools erwarten pro Datum eine Dimension. Aus der Datumsdimensions-<b>Tabelle</b>
 						werden deshalb drei <b>Views</b> abgeleitet:</p>
@@ -272,33 +364,37 @@ SELECT [date_id] AS return_date_id
 				</section>
 
 				<section>
-					<h1>Datenzusammenstellung für das Sternschema</h1>
+					<h1>Beispielvorgehen</h1>
 					<h2>Erläuterungen zur Lösung</h2>
 					<ul>
-						<li>&Uuml;ber die <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/rank-transact-sql">RANK()-Funktion</a> wird ein technischer Schl&uuml;ssel für die
+						<li>&Uuml;ber die <a
+								href="https://learn.microsoft.com/en-us/sql/t-sql/functions/rank-transact-sql">RANK()-Funktion</a>
+							wird ein technischer Schl&uuml;ssel für die
 							Marts gebildet.</li>
 						<li>Die Filmkategorien könnten (praktisch tritt dieser Fall im Datensatz nicht auf) die
 							Granularität der Faktentabelle verändern (da Film zu Category als n:m-Beziehung modelliert
-							ist). Aus diesem Grund wird über die Kombination der <a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/substring-transact-sql">SUBSTRING</a> und <a
-								href="https://learn.microsoft.com/en-us/sql/relational-databases/sqlxml-annotated-xsd-schemas-xpath-queries/introduction-to-using-xpath-queries-sqlxml-4-0?view=sql-server-ver16">XML-Path</a> Funktionen alle Kategorien eines Films in eine kommagetrennte Liste
+							ist). Aus diesem Grund wird über die Kombination der <a
+								href="https://learn.microsoft.com/en-us/sql/t-sql/functions/substring-transact-sql">SUBSTRING</a>
+							und <a
+								href="https://learn.microsoft.com/en-us/sql/relational-databases/sqlxml-annotated-xsd-schemas-xpath-queries/introduction-to-using-xpath-queries-sqlxml-4-0?view=sql-server-ver16">XML-Path</a>
+							Funktionen alle Kategorien eines Films in eine kommagetrennte Liste
 							in ein Feld zusammengefasst.</li>
 					</ul>
 				</section>
-
-			</section>
-
-			<section>
-				<h1>Aufbau des Modells in dbt</h1>
-				<div class="grid">
-					<div class="griditem">
-						<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter "models" angelegt werden.</p>
-						<p>Leider muss das Skript zur Erstellung der Datumsdimension aktuell noch <b>manuell auf dem SQL-Server</b> ausgeführt werden.</p>
-						<p>Anschließend kann mit <b>dbt run</b> das Sternschema auf dem Server angelegt werden.</p>
+				
+				<section>
+					<h1>Beispielvorgehen - Implementierung in dbt</h1>
+					<div class="grid">
+						<div class="griditem">
+							<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter
+								"models" angelegt werden.</p>
+							<p>Anschließend kann mit <b>dbt run</b> das Sternschema auf dem Server angelegt werden.</p>
+						</div>
+						<div class="griditem">
+							<img data-src="static/U05/dbtProject.png">
+						</div>
 					</div>
-					<div class="griditem">
-						<img src="static/U06/dbtProject.png">
-					</div>
-				</div>
+				</section>
 			</section>
 
 		</div>
