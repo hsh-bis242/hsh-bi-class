@@ -86,20 +86,35 @@
 					<p>Setzen Sie das von Ihnen modellierte Sternschema in dbt um.</p>
 					<ul>
 						<li>Legen Sie Ihr Datenmodell im Schema "dm_ol" an.</li>
-						<li>Erstellen Sie dbt models (.sql files) um Ihr Sternschema auf dem Datenbankserver zu erzeugen und
-							ggf. zu
-							beladen.</li>
+						<li>Erstellen Sie dbt Modelle (.sql files) um Ihr Sternschema auf dem Datenbankserver zu erzeugen und ggf. zu beladen.</li>
 						<li>Pushen Sie Ihr dbt-Projekt per git ins Github-Repository.</li>
 					</ul>
 				</section>
 
 				<section>
-					<div>
+					<div class="r-fit-text">
 						<h1>Hinweise zur technischen Modellierung</h1>
 						<ul>
 							<li>Mit den unterschiedlichen Ladezeitstempeln (Inscription_Timestamps) werden die
 								Produktkategoriedaten sehr stark verändert. Legen Sie die Produktdimension deshalb als SCD
 								Typ 2 an (siehe Vaisman & Zimányi (2022). Data Warehouse Systems. 124ff)</li>
+							<li>Wenn Sie die Quelltabellen im Schema <b>dwh_sl</b> verwenden wollen, gibt es zwei Möglichkeiten:</li>
+							<ol>
+								<li>Nutzung des source-Makro von dbt, wenn die yml-Dateien aus der vorherigen &Uuml;bung korrekt angelegt wurden.</li>
+								<li>Nutzung des physischen Objektnamens in der Datenbank. Davon sollte in einer Produktivumgebung abgesehen werden.</li>
+							</ol>
+						</ul>
+						<pre>
+							<code class="language-sql" data-trim>
+SELECT * FROM
+--wenn Uebung04 erfolgreich war und yml-files angelegt sind:
+{{ source( 'sat_bestellung') }}
+-- wenn Uebung04 nicht angefangen oder erfolgreich war nutzen wir den physischen Namen des Quell-Objekts
+"willibald_dm_bis24200"."dwh_sl"."sat_bestellung"
+							</code>
+						</pre>
+						<ul>
+							<li>Für Verweise von dbt-Modellen untereinander (also allen Modellen und Objekten, die im dbt-Projekt angelegt sind) kann das ref-dbt-Makro genutzt werden. Siehe das Beispielmodell <b>my_second_dbt_model.sql</b></li>
 						</ul>
 					</div>
 				</section>
@@ -220,8 +235,7 @@
 				<section>
 					<h1>Beispielvorgehen - Datenzusammenstellung (2/2)</h1>
 					<p>
-						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach "herausgeschnitten" werden aus dem dbt model <b>revenue_star_flat</b>
-						:
+						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach aus dem dbt model <b>revenue_star_flat</b> "herausgeschnitten" werden:
 					</p>
 					<div class="grid">
 						<div class="griditem">
@@ -380,20 +394,6 @@ SELECT [date_id] AS return_date_id
 							<img data-src="static/U05/dbtProject.png">
 						</div>
 					</div>
-				</section>
-				<section>
-					<h1>Beispielvorgehen - Implementierung in dbt</h1>
-							<p>Wenn Ihr die Quelltabellen im schema <b>dwh_sl</b> verwenden wollt, gibt es hierfür zwei Möglichkeiten:</p>
-							<ol>
-								<li>Ihr nutzt das source-macro von dbt, wenn die yml-files aus &Uuml;bung 04 korrekt angelegt wurden</li>
-								<li>Es wird hardcoded der Objektname eingefügt. Dies sollte in einer Produktivumgebung nicht gemacht werden 
-									und sollte nur angewendet werden wenn &Uuml;bung 04 übersprungen wurde</li>
-							</ol>
-							<img data-src="static/U05/source_ref.png">
-				</section>
-				<section>
-					<h1>Beispielvorgehen - Implementierung in dbt</h1>
-							<p>Für Verweise von dbt models untereinander, also alle models und Objekte die im dbt-Projekt angelegt sind, benutzt man das ref-dbt-macro siehe das example model <b>my_second_dbt_model.sql</b></p>
 				</section>
 			</section>
 
