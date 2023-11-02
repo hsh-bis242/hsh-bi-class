@@ -177,25 +177,20 @@
 			</section>
 
 			<section>
-				<h1>Definition</h1>
-				<figure>
-					<blockquote>
-						<ul>
-							<li>Software-Technologie, die Managern wie auch qualifizierten Mitarbeitern aus den
-								Fachabteilungen </li>
-							<li>schnelle, interaktive und vielfältige Zugriffe auf relevante und konsistente
-								Informationen
-								ermöglichen soll. </li>
-							<li>Im Vordergrund stehen dabei dynamische und multidimensionale Analysen auf historischen,
-								konsolidierten Datenbeständen.</li>
-						</ul>
-					</blockquote>
-					<figcaption>
-						Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und
-						Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
-						Berlin: Springer
-					</figcaption>
-				</figure>
+				<div class="r-fit-text">
+					<h1>Definition</h1>
+					<figure>
+						<blockquote>
+							<p>Softwaretechnologie, die Managern wie auch qualifizierten Mitarbeitern aus den Fachabteilungen <b>schnelle, interaktive und vielfältige Zugriffe auf relevante und konsistente Informationen</b> ermöglichen soll.</p>
+							<p>Im Vordergrund stehen dabei dynamische und multidimensionale Analysen auf historischen, konsolidierten Datenbeständen.</p>
+						</blockquote>
+						<figcaption>
+							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und
+							Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+							Berlin: Springer
+						</figcaption>
+					</figure>
+				</div>
 				<aside class="notes">
 					Im Gegensatz zu OLTP Systemen
 				</aside>
@@ -243,41 +238,49 @@
 						</figcaption>
 					</figure>
 					<aside class="notes">
-						Zwölf Evaluationsregeln, die bei Erfüllung die OLAP-Fähigkeit von Informationssystemen
-						garantieren sollen.
+						<p>
+							Zwölf Evaluationsregeln, die bei Erfüllung die OLAP-Fähigkeit von Informationssystemen
+							garantieren sollen.
+						</p>
 
-						Auch wenn die Ehrenhaftigkeit der Motivation, welche die Autoren zur Publikation der Regeln
-						veranlasst hat, heftig umstritten ist, sollen die Regeln schon wegen ihrer historischen
-						Bedeutung im folgenden dargestellt und erläutert werden.
+						<p>
+							Auch wenn die Ehrenhaftigkeit der Motivation, welche die Autoren zur Publikation der Regeln
+							veranlasst hat, heftig umstritten ist, sollen die Regeln schon wegen ihrer historischen
+							Bedeutung im folgenden dargestellt und erläutert werden.
+						</p>
 
+						<p>
 						Kritische Bewertung
-
-						Unscharfe Trennung zwischen fachlich konzeptionellen Anforderungen und technischen
-						Realisierungsaspekten.
-						Regel 6: Bestimmte Dimensionen jedoch - wie z. B. die Zeitdimension - unterscheiden sich
-						erheblich von den übrigen Dimensionen.
-						Breiter Interpretationsspielraum.
-
-						So bleibt etwa unklar, ob die konzeptionellen mehrdimensionalen Datensichten auch eine zwingende
-						Nutzung spezieller Speicher- und Datenverwaltungstechniken impliziert oder ob die verbreiteten
-						relationalen Datenbanksysteme auch hier zum Einsatz gelangen können.
-
-						#############################
-
-						Andere Ansätze: FASMI: Fast Analysis of Shared Multidimensional Information (Pendse/Creeth)
-						- max. 20 Sekunden Antwortzeit
-						- Die Analysefunktionalität soll die Anforderungen erfüllen, die im spezifischen Anwendungsfall
-						benötigt werden.
-						- (finanz-) mathematische oder statistische Berechnungen
-						- „What-If-“ und „How to achieve“-Betrachtungen
-						- erweiterte Navigationshilfen (Drill-Down, Roll-Up)
-						- Trendanalysen
-
-						- intuitive Bedienung per Maus
-						- Als zentrales Kriterium ebenfalls die konzeptionelle Multidimensionalität mit der
-						Unterstützung komplexer Hierarchien.
-
-						=> Begriff konnte sich aber in der breiten Öffentlichkeit nicht durchsetzen.
+						<ul>
+							<li>
+								Unscharfe Trennung zwischen fachlich konzeptionellen Anforderungen und technischen Realisierungsaspekten.
+							</li>
+							<li>
+								Regel 6: Bestimmte Dimensionen jedoch - wie z. B. die Zeitdimension - unterscheiden sich
+								erheblich von den übrigen Dimensionen.
+							</li>
+							<li>
+								Breiter Interpretationsspielraum: So bleibt etwa unklar, ob die konzeptionellen mehrdimensionalen Datensichten auch eine zwingende
+								Nutzung spezieller Speicher- und Datenverwaltungstechniken impliziert oder ob die verbreiteten
+								relationalen Datenbanksysteme auch hier zum Einsatz gelangen können.
+							</li>						
+						</ul>
+						</p>
+						<hr>
+						<p>
+							Andere Ansätze: FASMI - Fast Analysis of Shared Multidimensional Information (Pendse/Creeth)
+							<ul>
+								<li>max. 20 Sekunden Antwortzeit</li>
+								<li>Die Analysefunktionalität soll die Anforderungen erfüllen, die im spezifischen Anwendungsfall benötigt werden.</li>
+								<li>(finanz-) mathematische oder statistische Berechnungen</li>
+								<li>„What-If-“ und „How to achieve“-Betrachtungen</li>
+								<li>erweiterte Navigationshilfen (Drill-Down, Roll-Up)</li>
+								<li>Trendanalysen</li>
+								<li>intuitive Bedienung per Maus</li>
+								<li>Als zentrales Kriterium ebenfalls die konzeptionelle Multidimensionalität mit der Unterstützung komplexer Hierarchien.</li>
+							</ul>
+							Begriff konnte sich aber in der breiten Öffentlichkeit nicht durchsetzen.
+						</p>
 					</aside>
 				</section>
 
@@ -318,53 +321,82 @@
 						</li>
 					</ol>
 					<aside class="notes">
-						(1) Mehrdimensionale konzeptionelle Perspektiven
-						Mehrdimensionale Datenstrukturen, in denen der Anwender frei und flexibel navigieren kann.
-						(2) Transparenz
-						Homogene Benutzeroberfläche, die sich in die bestehende Arbeitsplatzumgebung einfügt.
-						Keine technischen Details.
-						Kein formaler Unterschied zwischen Informationseinheiten aus unterschiedlichen Quellen.
-						(3) Zugriffsmöglichkeit
-						Datenzugriff auf möglichst viele heterogene unternehmungsinterne und -externe Datenquellen und
-						Datenformate.
-						Offene Architektur. Konvertierungsregeln
-						Für den Anwender eine einheitliche, konsistente Datensicht gewährleisten
-						(4) Stabile Antwortzeiten bei der Berichterstattung
-						Den logischen Gedankenfluss und die Aufmerksamkeit des Systemanwenders auch bei komplexen
-						Abfragen nicht unnötig unterbrechen.
-						Selbst bei überproportionaler Zunahme der Anzahl der Dimensionen und/oder des Datenvolumens
-						sollten die Anwendungen keine signifikanten Änderungen der Antwortzeiten aufweisen.
-						(5) Client/Server Architektur
-						Speicherung und Zugriffe zentral statt auf lokalen Rechnern ausführen.
-						Es muss sowohl eine verteilte Programmausführung als auch eine verteilte Datenhaltung
-						realisierbar sein.
-						Insbesondere für den mobilen Einsatz auf Laptops ist eine Replizierung der Datenbestände zu
-						ermöglichen.
-						Auch muss der Zugriff auf die Datenbasis mit unterschiedlichen Front-End-Werkzeugen
-						gewährleistet sein.
-						Proprietäre Lösungen, bei denen Server- und Desktop-Komponenten aus einer Hand angeboten werden,
-						die jedoch dokumentierte Schnittstellen vermissen lassen, sind im Zeitalter offener Systeme
-						nicht mehr gefragt.
-						(6) Grundprinzipien der gleichgestellten Dimensionen
-						Die strukturelle und funktionale Äquivalenz der Dimensionen muss gewährleistet sein.
-						Es existiert ein einheitlicher Befehlsumfang zum Aufbauen, Strukturieren, Bearbeiten, Pflegen
-						und Auswerten der Dimensionen.
-						(7) Dynamische Verwaltung „dünn besetzter“ Matrizen
-						Nicht jedes Dimensionselement geht mit allen Elementen anderer Dimensionen werttragende
-						Verbindungen ein.
-						Beispiel: Nicht jedes Produkt einer Unternehmung wird in jedem Land auch angeboten.
-						(8) Mehrbenutzerfähigkeit
-						Sicherheitskonzept, abgestufte Benutzerprofile
-						(9) Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg
-						Über die verschiedenen Dimensionen hinweg werden Operationen für eine ausgereifte Datenanalyse
-						benötigt, z. B. zur Kennzahlenberechnung.
-						(10) Intuitive Datenmanipulation
-						Ergonomie, geringer Lernaufwand
-						Drill-Down, Drill-Up, Slicing, Dicing
-						(11) Flexibles Berichtswesen
-						Standardauswertungen und Ad-hoc-Auswertungen
-						(12) Unbegrenzte Dimensions- und Aggregationsstufen
-						Typisch: 15 - 20 Dimensionen
+						<ol>
+						<li> Mehrdimensionale konzeptionelle Perspektiven
+							<ul>
+								<li>
+									Mehrdimensionale Datenstrukturen, in denen der Anwender frei und flexibel navigieren kann.
+								</li>
+							</ul>
+						</li>
+						<li> Transparenz
+							<ul>
+								<li>Homogene Benutzeroberfläche, die sich in die bestehende Arbeitsplatzumgebung einfügt.</li>
+								<li>Keine technischen Details.</li>
+								<li>Kein formaler Unterschied zwischen Informationseinheiten aus unterschiedlichen Quellen.</li>
+							</ul>
+						</li>
+						<li> Zugriffsmöglichkeit
+							<ul>
+								<li>Datenzugriff auf möglichst viele heterogene unternehmungsinterne und -externe Datenquellen und Datenformate.</li>
+								<li>Offene Architektur. Konvertierungsregeln</li>
+								<li>Für den Anwender eine einheitliche, konsistente Datensicht gewährleisten</li>
+							</ul>
+						</li>
+						<li> Stabile Antwortzeiten bei der Berichterstattung
+							<ul>
+							<li>Den logischen Gedankenfluss und die Aufmerksamkeit des Systemanwenders auch bei komplexen Abfragen nicht unnötig unterbrechen.</li>
+							<li>Selbst bei überproportionaler Zunahme der Anzahl der Dimensionen und/oder des Datenvolumens sollten die Anwendungen keine signifikanten Änderungen der Antwortzeiten aufweisen.</li>
+							</ul>	
+						</li>
+						<li> Client/Server Architektur
+							<ul>
+								<li>Speicherung und Zugriffe zentral statt auf lokalen Rechnern ausführen.</li>
+								<li>Es muss sowohl eine verteilte Programmausführung als auch eine verteilte Datenhaltung realisierbar sein.</li>
+								<li>Insbesondere für den mobilen Einsatz auf Laptops ist eine Replizierung der Datenbestände zu ermöglichen.</li>
+								<li>Auch muss der Zugriff auf die Datenbasis mit unterschiedlichen Front-End-Werkzeugen gewährleistet sein.</li>
+								<li>Proprietäre Lösungen, bei denen Server- und Desktop-Komponenten aus einer Hand angeboten werden,  die jedoch dokumentierte Schnittstellen vermissen lassen, sind im Zeitalter offener Systeme nicht mehr gefragt.</li>
+							</ul>
+						</li>
+						<li> Grundprinzipien der gleichgestellten Dimensionen
+							<ul>
+								<li>Die strukturelle und funktionale Äquivalenz der Dimensionen muss gewährleistet sein.</li>
+								<li>Es existiert ein einheitlicher Befehlsumfang zum Aufbauen, Strukturieren, Bearbeiten, Pflegen und Auswerten der Dimensionen.</li>
+							</ul>
+						</li>
+						<li> Dynamische Verwaltung „dünn besetzter“ Matrizen
+							<ul>
+								<li>Nicht jedes Dimensionselement geht mit allen Elementen anderer Dimensionen werttragende Verbindungen ein.</li>
+								<li>Beispiel: Nicht jedes Produkt einer Unternehmung wird in jedem Land auch angeboten.</li>
+							</ul>
+						</li>
+						<li> Mehrbenutzerfähigkeit
+							<ul>
+								<li>Sicherheitskonzept, abgestufte Benutzerprofile</li>
+							</ul>
+						</li>
+						<li> Unbeschränkte kreuzdimensionale Operationen über Dimensionen hinweg
+							<ul>
+								<li>Über die verschiedenen Dimensionen hinweg werden Operationen für eine ausgereifte Datenanalyse benötigt, z. B. zur Kennzahlenberechnung.</li>
+							</ul>
+						</li>
+						<li> Intuitive Datenmanipulation
+							<ul>
+								<li>Ergonomie, geringer Lernaufwand</li>
+								<li>Drill-Down, Drill-Up, Slicing, Dicing</li>
+							</ul>
+						</li>
+						<li> Flexibles Berichtswesen
+							<ul>
+								<li>Standardauswertungen und Ad-hoc-Auswertungen</li>
+							</ul>
+						</li>
+						<li> Unbegrenzte Dimensions- und Aggregationsstufen
+							<ul>
+								<li>Typisch: 15 - 20 Dimensionen</li>
+							</ul>
+						</li>
+						</ol>
 					</aside>
 				</section>
 
@@ -383,22 +415,22 @@
 					<h2>Präsentation und Navigation</h2>
 					<img src="./static/V07/olap_navigation2.svg" height="480">
 					<aside class="notes">
-						Das geht selbst auf einem Sternschema mit SQL schlecht: Kann zwar 2dim Antworttabellen erzeugen.
+						<p>Das geht selbst auf einem Sternschema mit SQL schlecht: Kann zwar 2dim Antworttabellen erzeugen.
 						Ich brauche aber zum flexiblen Navigieren Filtermöglichkeiten (Slicing) - Besser Excel Pivot
-						Tabelle oder anderem OLAP Werkzeug
+						Tabelle oder anderem OLAP Werkzeug</p>
 
-						Entsprechende Sichten auf den Datenbestand finden sich in fast allen multidimensionalen
+						<p>Entsprechende Sichten auf den Datenbestand finden sich in fast allen multidimensionalen
 						Systemen.
 						Sie dienen entweder als Ausgangspunkt für weitergehende betriebswirtschaftliche Analysen, als
-						Einstieg für eine freie Navigation im Datenbestand oder als Standardbericht.
+						Einstieg für eine freie Navigation im Datenbestand oder als Standardbericht.</p>
 
-						Nullzeilenunterdrückung
+						<p>Nullzeilenunterdrückung</p>
 
-						Benutzer kann navigieren (im Gegensatz zum klassischen Reporting).
-						Maus
+						<p>Benutzer kann navigieren (im Gegensatz zum klassischen Reporting).
+						Maus</p>
 
-						Ranging: Beliebige Elemente der Zeilen- und Spaltenkopfdimensionen ein oder ausblenden.
-						Slicing
+						<p>Ranging: Beliebige Elemente der Zeilen- und Spaltenkopfdimensionen ein oder ausblenden.
+						Slicing</p>
 					</aside>
 				</section>
 
@@ -407,10 +439,9 @@
 					<h2>Präsentation und Navigation - Rotation des Datenwürfels</h2>
 					<img src="./static/V07/olap_navigation3.svg" height="480">
 					<aside class="notes">
-						Drag and Drop.
-						Datenwürfel in alle Richtungen drehbar.
-
-						Abgebildet ist EINE Rotation!
+						<p>Drag and Drop.</p>
+						<p>Datenwürfel in alle Richtungen drehbar.</p>
+						<p>Abgebildet ist EINE Rotation!</p>
 					</aside>
 				</section>
 
@@ -425,15 +456,11 @@
 					<h2>Präsentation und Navigation - Drill Down</h2>
 					<img src="./static/V07/olap_navigation5.svg" height="480">
 					<aside class="notes">
-						Hierarchieebenen
-						bis auf atomare Werte der Datenbasis
-
-						Roll-Up
-
-						Gebräuchliche Optionen der dynamischen Navigation
-
-						Sortierungen
-						Farbliche Kennzeichnungen
+						<p>Hierarchieebenen bis auf atomare Werte der Datenbasis</p>
+						<p>Roll-Up</p>
+						<p>Gebräuchliche Optionen der dynamischen Navigation</p>
+						<p>Sortierungen</p>
+						<p>Farbliche Kennzeichnungen</p>
 					</aside>
 				</section>
 
@@ -508,33 +535,33 @@
 							Anwendungen. Vieweg. 2010</figcaption>
 					</figure>
 					<aside class="notes">
-						Kemper/Baars/Mehanna:
+						<p>Kemper/Baars/Mehanna:
 						Es hat sich heute die Meinung etabliert, dass OLAP einen aus Benutzersicht mehrdimensionalen
 						Datenraum aufspannt, der eine flexible, benutzerfreundliche Ad-hoc-Analyse erlaubt. Die
 						physikalische Datenhaltung kann demnach losgelöst von der Benutzersicht erfolgen. Für die
 						Repräsentation der Daten können somit alle denkbaren technischen Formen der Datenhaltung
 						herangezogen werden, wobei primär relationale und multidimensionale Datenhaltungssysteme zum
-						Einsatz kommen.
+						Einsatz kommen.</p>
 
-						Beim relationalen OLAP (R-OLAP) kommen Star- und Snowflake-Schemata auf Basis von klassischen,
+						<p>Beim relationalen OLAP (R-OLAP) kommen Star- und Snowflake-Schemata auf Basis von klassischen,
 						standardisierten relationalen Datenbanksystemen zum Einsatz (vgl. auch Kapitel 2.4.2 und Kapitel
 						2.4.3). Die Vorteile dieser Variante liegen in der hohen Stabilität und Sicherheit in
-						Anwendungsbereichen mit hohem Datenvolumen und großen Benutzerzahlen.
+						Anwendungsbereichen mit hohem Datenvolumen und großen Benutzerzahlen.</p>
 
-						Multidimensionale OLAP-Systeme (M-OLAP) verwenden herstellerabhängige, proprietäre
+						<p>Multidimensionale OLAP-Systeme (M-OLAP) verwenden herstellerabhängige, proprietäre
 						Datenbanksysteme, die speziell auf eine hohe Performance in multidimensionalen Datenstrukturen
 						ausgerichtet sind (vgl. Kapitel 2.3.2). Die Vorteile dieser Lösung liegen demnach vor allem in
-						der Flexibilität und in dem Antwortzeitverhalten.
+						der Flexibilität und in dem Antwortzeitverhalten.</p>
 
-						Das hybride OLAP (H-OLAP) ist eine Variante, welche die Vorteile beider Techniken vereint. So
+						<p>Das hybride OLAP (H-OLAP) ist eine Variante, welche die Vorteile beider Techniken vereint. So
 						erlauben diese OLAP-Systeme einen benutzertransparenten Übergang von relationaler und
 						physikalisch mehrdimensionaler Datenhaltung. Üblicherweise werden in diesen Architekturen
 						M-OLAP-Techniken bei den hochverdichteten Datenbereichen verwendet, die sich durch geringes
 						Datenvolumen und eine eher überschaubare Anzahl von Benutzern auszeichnet. Wenn der Benutzer
 						durch Drilldown- Navigation in detailliertere Datenbereiche vorstößt, wechselt er
-						benutzertransparent in die relationale Datenhaltung.
+						benutzertransparent in die relationale Datenhaltung.</p>
 
-						How about analyzing business transactions data stored in operational systems such as enterprise
+						<p>How about analyzing business transactions data stored in operational systems such as enterprise
 						resource planning (ERP) systems or an operational data store (ODS)? Is that classified as OLAP?
 						No, it is not OLAP. It is business analysis, but it is not OLAP. For the analysis to be OLAP, it
 						needs to be performed against a dimensional data warehouse, either stored in relational format
@@ -543,7 +570,7 @@
 						reports? Is that OLAP? No, that is reporting, not OLAP. OLAP is interactive; in other words, the
 						business analyst queries, and the system responds, repeatedly, as illustrated in Figure 12-3.
 						The response time is typically within seconds, not hours (although certain OLAP scenarios take
-						hours).
+						hours).</p>
 					</aside>
 				</section>
 
@@ -570,20 +597,20 @@
 						<li>XML/A für administrative Aufgaben</li>
 					</ul>
 					<aside class="notes">
-						Rainardi 377:
+						<p>Rainardi 377:
 						The structure stores the aggregate values as well as the base values, typically in compressed
 						multidimensional array format, rather than in RDBMS tables. Aggregate values are precomputed
 						summaries of the base values. Examples of multidimensional databases are Microsoft Analysis
 						Services, Hyperion Essbase, and Cognos PowerCube. The other terms that people use for a
 						multidimensional database are hypercube, cube, OLAP cube, multidimensional database (abbreviated
-						as MDB, MDD, or MDDB), and multidimensional data store (MDDS).
+						as MDB, MDD, or MDDB), and multidimensional data store (MDDS).</p>
 
-						Physically, an MDB is a file. To help you understand how an MDB file is internally structured,
-						you can visualize it as a matrix or a cube.
+						<p>Physically, an MDB is a file. To help you understand how an MDB file is internally structured,
+						you can visualize it as a matrix or a cube.</p>
 
-						Although logically an MDB looks like a cube (for three dimensions) or a hypercube (for four or
+						<p>Although logically an MDB looks like a cube (for three dimensions) or a hypercube (for four or
 						more dimensions), physically it is stored as compressed multidimensional arrays with offset
-						positioning.
+						positioning.</p>
 					</aside>
 				</section>
 
@@ -628,8 +655,8 @@
 						on OLAP operations because the aggregates are precalculated and because the way the data is
 						physically stored (compressed multidimensional array format with offset positioning) minimizes
 						the number of IO operations (disk reads), compared to storing tables in an RDBMS.</p>
-
-						<p>----------------------------------------------------------
+						<hr>
+						<p>
 						Nachteile:
 						Direkter Schreibzugriff für den Endanwender (Relationale DB: Schwer wg. Summationstabellen &
 						Datenmodellierung) - Gut für What-If Betrachtungen.
@@ -700,25 +727,34 @@
 					</ul>
 
 					<aside class="notes">
-						Relationale Datenbanksysteme
-						Leistungsfähige Transaktionsverwaltungskomponenten koordinieren tausende elementarer Operationen
-						pro Sekunde, gewährleisten die Konsistenz der Daten und vermeiden lange Wartezeiten für die
-						angeschlossenen Benutzer.
-						Klassischer Einsatzbereich OLTP: Abarbeitung kurzer, wenige Tabellen betreffender Transaktionen.
-						Codd: Primär darauf ausgelegt, eine möglichst rasche und konsistenzgeprüfte Erfassung der
-						operativen Datenobjekte zu ermöglichen.
-						Ursprünglich nicht gedacht für die weitreichenden Anforderungen von Analyse und
-						Entscheidungsunterstützung.
-						Auch als Speicherkomponente eines multidimensionalen Informationssystems geeignet?
+						<p>
+							Relationale Datenbanksysteme
+							<ul>
+								<li>Leistungsfähige Transaktionsverwaltungskomponenten koordinieren tausende elementarer Operationen
+								pro Sekunde, gewährleisten die Konsistenz der Daten und vermeiden lange Wartezeiten für die
+								angeschlossenen Benutzer.</li>
+								<li>Klassischer Einsatzbereich OLTP: Abarbeitung kurzer, wenige Tabellen betreffender Transaktionen.</li>
+								<li>Codd: Primär darauf ausgelegt, eine möglichst rasche und konsistenzgeprüfte Erfassung der
+								operativen Datenobjekte zu ermöglichen.</li>
+								<li>Ursprünglich nicht gedacht für die weitreichenden Anforderungen von Analyse und
+								Entscheidungsunterstützung.</li>
+								
+							</ul>
+						</p>
 
-						Seit vielen Jahren.
-						Terabyte beherrschbar.
-						SQL
-						Skalierbarkeit
-						Plattformunabhängigkeit (HW, OS)
-						Know How
-						Preiswerte Softwarewerkzeuge.
-						Höherer Verwaltungs-Overhead (Verbesserung durch Indextechniken)
+						<p>
+							Auch als Speicherkomponente eines multidimensionalen Informationssystems geeignet?
+							<ul>
+								<li>Seit vielen Jahren.</li>
+								<li>Terabyte beherrschbar.</li>
+								<li>SQL</li>
+								<li>Skalierbarkeit</li>
+								<li>Plattformunabhängigkeit (HW, OS)</li>
+								<li>Know How</li>
+								<li>Preiswerte Softwarewerkzeuge.</li>
+								<li>Höherer Verwaltungs-Overhead (Verbesserung durch Indextechniken)</li>
+							</ul>
+						</p>
 					</aside>
 				</section>
 
@@ -947,12 +983,12 @@
 						</figcaption>
 					</figure>
 					<aside class="notes">
-						Examples of an MDBMS are Microsoft SQL Server Analysis Services, Hyperion Essbase, and Cognos
+						<p>Examples of an MDBMS are Microsoft SQL Server Analysis Services, Hyperion Essbase, and Cognos
 						PowerCube. Business Objects and MicroStrategy don't have an MDBMS; they use ROLAP (I'll talk
-						about ROLAP in the next section).
+						about ROLAP in the next section).</p>
 
-						Examples of OLAP tools are SSAS, Cognos BI 8 Analysis, Business Objects XI Release 2 Voyager,
-						and ProClarity Analytics 6.
+						<p>Examples of OLAP tools are SSAS, Cognos BI 8 Analysis, Business Objects XI Release 2 Voyager,
+						and ProClarity Analytics 6.</p>
 					</aside>
 				</section>
 				<section>
