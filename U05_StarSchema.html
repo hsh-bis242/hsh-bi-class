@@ -121,7 +121,7 @@
 							<code class="language-sql" data-trim>
 SELECT * FROM
 --wenn Uebung04 erfolgreich war und yml-files angelegt sind:
-{{ source( 'sat_bestellung') }}
+{{ source('willibald_dwh_sats', 'sat_bestellung') }}
 -- wenn Uebung04 nicht angefangen oder erfolgreich war nutzen Sie den physischen Namen des Quellobjekts
 "willibald_dm_bis24200"."dwh_sl"."sat_bestellung"
 							</code>
