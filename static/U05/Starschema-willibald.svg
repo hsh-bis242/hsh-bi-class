@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 1080 1080"
+   version="1.1"
+   sodipodi:docname="Starschema-dvdrental.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview244"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.0935185"
+     inkscape:cx="539.54276"
+     inkscape:cy="540"
+     inkscape:window-width="2405"
+     inkscape:window-height="1377"
+     inkscape:window-x="1027"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs1">
+    <rect
+       x="414.2591"
+       y="461.81202"
+       width="248.73836"
+       height="220.3895"
+       id="rect268" />
+    <rect
+       x="413.34462"
+       y="393.22608"
+       width="254.22523"
+       height="53.954276"
+       id="rect267" />
+    <rect
+       x="449.92379"
+       y="837.663"
+       width="181.98137"
+       height="155.46147"
+       id="rect266" />
+    <rect
+       x="594.41152"
+       y="652.02371"
+       width="108.82303"
+       height="54.868755"
+       id="rect244" />
+    <style
+       id="style1">&#10;      .cls-1 {&#10;        fill: #a8e6f7;&#10;      }&#10;&#10;      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {&#10;        stroke-miterlimit: 10;&#10;        stroke-width: 3px;&#10;      }&#10;&#10;      .cls-1, .cls-5 {&#10;        stroke: #2091b1;&#10;      }&#10;&#10;      .cls-2 {&#10;        fill: #fdb39b;&#10;      }&#10;&#10;      .cls-2, .cls-3 {&#10;        stroke: #dc3c05;&#10;      }&#10;&#10;      .cls-3 {&#10;        fill: #fec9b8;&#10;      }&#10;&#10;      .cls-4 {&#10;        fill: none;&#10;        stroke: #000;&#10;      }&#10;&#10;      .cls-5 {&#10;        fill: #77d8f3;&#10;      }&#10;&#10;      .cls-6 {&#10;        font-size: 44.62px;&#10;      }&#10;&#10;      .cls-6, .cls-7 {&#10;        font-family: Arial-BoldMT, Arial;&#10;        font-weight: 700;&#10;      }&#10;&#10;      .cls-7 {&#10;        font-size: 25px;&#10;      }&#10;    </style>
+  </defs>
+  <g
+     id="dim_club">
+    <rect
+       class="cls-2"
+       x="72"
+       y="420.51"
+       width="208.17"
+       height="51.63"
+       id="rect1" />
+    <path
+       class="cls-3"
+       d="m72,472.14h208.17v165.91c0,11.84-9.61,21.45-21.45,21.45H93.7c-11.98,0-21.7-9.72-21.7-21.7v-165.65h0Z"
+       id="path1" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.0001px;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';fill:#000000;fill-opacity:1"
+       x="127.11261"
+       y="461.81201"
+       id="text244"><tspan
+         sodipodi:role="line"
+         id="tspan244"
+         x="127.11261"
+         y="461.81201"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">club</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:26.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1"
+       x="103.33616"
+       y="523.99658"
+       id="text245"><tspan
+         sodipodi:role="line"
+         id="tspan250"
+         x="103.33616"
+         y="523.99658">club_name</tspan><tspan
+         sodipodi:role="line"
+         id="tspan251"
+         x="103.33616"
+         y="557.32996">discount1</tspan><tspan
+         sodipodi:role="line"
+         id="tspan252"
+         x="103.33616"
+         y="590.66333">discount2</tspan><tspan
+         sodipodi:role="line"
+         id="tspan253"
+         x="103.33616"
+         y="623.9967">discount3</tspan></text>
+  </g>
+  <g
+     id="dim_customer">
+    <rect
+       class="cls-2"
+       x="435.92"
+       y="72"
+       width="208.17"
+       height="51.63"
+       id="rect2" />
+    <path
+       class="cls-3"
+       d="m435.92,123.63h208.17v165.91c0,11.84-9.61,21.45-21.45,21.45h-165.02c-11.98,0-21.7-9.72-21.7-21.7V123.63h0Z"
+       id="path2" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1"
+       x="438.95004"
+       y="111.56647"
+       id="text254"><tspan
+         sodipodi:role="line"
+         id="tspan254"
+         x="438.95004"
+         y="111.56647">customer</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1"
+       x="454.49619"
+       y="152.71803"
+       id="text255"><tspan
+         sodipodi:role="line"
+         id="tspan255"
+         x="454.49619"
+         y="152.71803">gender</tspan><tspan
+         sodipodi:role="line"
+         id="tspan256"
+         x="454.49619"
+         y="189.38466">birth_date</tspan><tspan
+         sodipodi:role="line"
+         id="tspan257"
+         x="454.49619"
+         y="226.05128">postal_code</tspan><tspan
+         sodipodi:role="line"
+         id="tspan258"
+         x="454.49619"
+         y="262.71793">city</tspan><tspan
+         sodipodi:role="line"
+         id="tspan259"
+         x="454.49619"
+         y="299.38455">country</tspan></text>
+  </g>
+  <g
+     id="dim_delivery">
+    <rect
+       class="cls-2"
+       x="799.83"
+       y="420.51"
+       width="208.17"
+       height="51.63"
+       id="rect3" />
+    <path
+       class="cls-3"
+       d="m799.83,472.14h208.17v165.91c0,11.84-9.61,21.45-21.45,21.45h-165.02c-11.98,0-21.7-9.72-21.7-21.7v-165.65h0Z"
+       id="path3" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1"
+       x="819.37341"
+       y="459.0686"
+       id="text260"><tspan
+         sodipodi:role="line"
+         id="tspan260"
+         x="819.37341"
+         y="459.0686">delivery</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1"
+       x="806.57074"
+       y="523.08215"
+       id="text261"><tspan
+         sodipodi:role="line"
+         id="tspan261"
+         x="806.57074"
+         y="523.08215">delivery_service</tspan><tspan
+         sodipodi:role="line"
+         id="tspan262"
+         x="806.57074"
+         y="553.08215">postal_code</tspan><tspan
+         sodipodi:role="line"
+         id="tspan263"
+         x="806.57074"
+         y="583.08215">city</tspan><tspan
+         sodipodi:role="line"
+         id="tspan264"
+         x="806.57074"
+         y="613.08215">country</tspan></text>
+  </g>
+  <g
+     id="dim_product">
+    <rect
+       class="cls-2"
+       x="435.92"
+       y="769.02"
+       width="208.17"
+       height="51.63"
+       id="rect4" />
+    <path
+       class="cls-3"
+       d="m435.92,820.65h208.17v165.91c0,11.84-9.61,21.45-21.45,21.45h-165.02c-11.98,0-21.7-9.72-21.7-21.7v-165.65h0Z"
+       id="path4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1"
+       x="457.23962"
+       y="807.48523"
+       id="text265"><tspan
+         sodipodi:role="line"
+         id="tspan265"
+         x="457.23962"
+         y="807.48523">product</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text266"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect266);display:inline;fill:#000000;fill-opacity:1"><tspan
+         x="449.92383"
+         y="857.12513"
+         id="tspan1">product_name&#10;</tspan><tspan
+         x="449.92383"
+         y="883.79175"
+         id="tspan2">product_type&#10;</tspan><tspan
+         x="449.92383"
+         y="910.45838"
+         id="tspan3">category&#10;</tspan><tspan
+         x="449.92383"
+         y="937.125"
+         id="tspan4">upper_category&#10;</tspan><tspan
+         x="449.92383"
+         y="963.79163"
+         id="tspan5">super_category</tspan></text>
+  </g>
+  <g
+     id="fact_order_item">
+    <rect
+       class="cls-5"
+       x="407.3"
+       y="387.66"
+       width="265.4"
+       height="65.82"
+       id="rect5" />
+    <path
+       class="cls-1"
+       d="m407.3,453.48h265.4v217.41c0,11.84-9.61,21.45-21.45,21.45h-222.25c-11.98,0-21.7-9.72-21.7-21.7v-217.16h0Z"
+       id="path5" />
+    <text
+       xml:space="preserve"
+       id="text267"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect267);display:inline;fill:#000000;fill-opacity:1"
+       transform="translate(7.315834,3.657917)"><tspan
+         x="413.34375"
+         y="432.15269"
+         id="tspan6">order_item</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text268"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect268);display:inline;fill:#000000;fill-opacity:1"
+       transform="translate(10.973751,26.519898)"><tspan
+         x="414.25977"
+         y="488.57416"
+         id="tspan7">quantity&#10;</tspan><tspan
+         x="414.25977"
+         y="525.24078"
+         id="tspan8">revenue&#10;</tspan><tspan
+         x="414.25977"
+         y="561.90741"
+         id="tspan9">is_delivered&#10;</tspan><tspan
+         x="414.25977"
+         y="598.57404"
+         id="tspan10">deviation_days</tspan></text>
+  </g>
+  <g
+     id="g241">
+    <line
+       class="cls-4"
+       x1="280.17"
+       y1="540"
+       x2="386.12"
+       y2="540"
+       id="line240" />
+    <polygon
+       points="407.3 540 377.45 552.2 384.53 540 377.45 527.81 407.3 540"
+       id="polygon240" />
+  </g>
+  <g
+     id="g242">
+    <line
+       class="cls-4"
+       x1="549.01"
+       y1="769.02"
+       x2="549.01"
+       y2="713.52"
+       id="line241" />
+    <polygon
+       points="549.01 692.34 561.2 722.19 549.01 715.11 536.81 722.19 549.01 692.34"
+       id="polygon241" />
+  </g>
+  <g
+     id="g243">
+    <line
+       class="cls-4"
+       x1="799.83"
+       y1="540"
+       x2="693.88"
+       y2="540"
+       id="line242" />
+    <polygon
+       points="672.7 540 702.55 527.8 695.47 540 702.55 552.19 672.7 540"
+       id="polygon242" />
+  </g>
+  <g
+     id="g244">
+    <line
+       class="cls-4"
+       x1="547.01"
+       y1="310.98"
+       x2="547.01"
+       y2="366.48"
+       id="line243" />
+    <polygon
+       points="547.01 387.66 534.81 357.81 547.01 364.89 559.2 357.81 547.01 387.66"
+       id="polygon243" />
+  </g>
+</svg>
