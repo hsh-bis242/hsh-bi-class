@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 05 - Aufbau von Dimensionen und
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 05 - Aufbau von Dimensionen
+		und
 		Fakten
 	</title>
 
@@ -20,8 +21,10 @@
 </head>
 
 <body>
+
 	<div class="reveal">
 		<div class="slides">
+
 			<section>
 				<div class="r-fit-text">
 					<h1>Übung Business Intelligence</h1>
@@ -64,7 +67,7 @@
 										<li><strong>Vollständig gelieferter Auftrag:</strong>
 											Eine 1 kennzeichnet, ob dieser Auftrag vollständig geliefert wurde.</li>
 										<li><strong>Abweichung zwischen Wunsch- und Lieferdatum:</strong>
-											Errechnet sich aus dem Bestellung.Wunschdatum und dem letzten
+											Errechnet sich aus der Bestellung.Wunschdatum und dem letzten
 											Lieferung.LieferDatum. Die Abweichung ist negativ, wenn die Lieferung vor
 											dem Wunschtermin erfolgte.</li>
 									</ul>
@@ -81,13 +84,31 @@
 					<div>
 						<h1>Fachliche Hinweise zur Modellierung (2/2)</h1>
 						<ul>
-							<li>Es gibt zwei Links zwischen den Hubs Kunde und Vereinspartner</li>
+							<li>Es existieren zwei Links zwischen den Hubs Kunde und Vereinspartner</li>
 							<ul>
-								<li><b>lnk_kunde_vereinspartner</b> enthält alle Kunden, die einem Vereinspartner zugeordnet sind.</li>
-								<li><b>lnk_vereinspartner_kunde</b> definiert welcher Kunde als Ansprechpartner des Vereinspartners agiert.</li>
+								<li><b>lnk_kunde_vereinspartner</b> enthält alle Kunden, die einem Vereinspartner
+									zugeordnet sind.</li>
+								<li><b>lnk_vereinspartner_kunde</b> definiert welcher Kunde als Ansprechpartner des
+									Vereinspartners agiert.</li>
 							</ul>
+							<li>
+								In jeder Tabelle existieren technische Felder, die Sie bei der Modellierung des
+								Sternschemas ignorieren können:
+								<ul>
+									<li><i>businessobject</i>_sk</li>
+									<li>source_row_id</li>
+									<li>audit_trail_id</li>
+									<li>change_data_indicator</li>
+									<li>checksum</li>
+								</ul>
+							</li>
 						</ul>
 					</div>
+				</section>
+
+				<section>
+					<h1>Beispielsternschema</h1>
+					<img data-src="static/U05/Starschema-willibald.svg" height="480">
 				</section>
 
 			</section>
@@ -96,10 +117,11 @@
 
 				<section>
 					<h1>Aufgabenstellung - ELT Entwicklung</h1>
-					<p>Setzen Sie das von Ihnen modellierte Sternschema in dbt um.</p>
+					<p>Implementieren Sie das von Ihnen modellierte Sternschema in dbt.</p>
 					<ul>
 						<li>Legen Sie Ihr Datenmodell im Schema "dm_ol" an.</li>
-						<li>Erstellen Sie dbt Modelle (.sql files) um Ihr Sternschema auf dem Datenbankserver zu erzeugen und ggf. zu beladen.</li>
+						<li>Erstellen Sie dbt-Modelle (.sql files) um Ihr Sternschema auf dem Datenbankserver zu
+							erzeugen und zu beladen.</li>
 						<li>Pushen Sie Ihr dbt-Projekt per git ins Github-Repository.</li>
 					</ul>
 				</section>
@@ -108,13 +130,19 @@
 					<div class="r-fit-text">
 						<h1>Hinweise zur technischen Modellierung</h1>
 						<ul>
-							<li>Mit den unterschiedlichen Ladezeitstempeln (Inscription_Timestamps) werden die
-								Produktkategoriedaten sehr stark verändert. Legen Sie die Produktdimension deshalb als SCD
-								Typ 2 an (siehe Vaisman & Zimányi (2022). Data Warehouse Systems. 124ff)</li>
-							<li>Wenn Sie die Quelltabellen im Schema <b>dwh_sl</b> verwenden wollen, gibt es zwei Möglichkeiten:</li>
+							<li>Zu jedem Ladezeitpunkt (Inscription_Timestamp) werden die
+								Produktkategoriedaten stark verändert. Alle Daten im Fakt sollen deshalb auf einen
+								Ladezeitpunkt gefiltert werden können.</li>
+							<li>Für Verweise von dbt-Modellen untereinander (also allen Modellen und Objekten, die im
+								dbt-Projekt angelegt sind) kann das ref-dbt-Makro genutzt werden. Siehe das
+								Beispielmodell <b>my_second_dbt_model.sql</b></li>
+							<li>Zum Zugriff auf die Quelltabellen im Schema <b>dwh_sl</b> gibt es zwei Möglichkeiten:
+							</li>
 							<ol>
-								<li>Nutzung des source-Makro von dbt, wenn die yml-Dateien aus der vorherigen &Uuml;bung korrekt angelegt wurden.</li>
-								<li>Nutzung des physischen Objektnamens in der Datenbank. Davon sollte in einer Produktivumgebung abgesehen werden.</li>
+								<li>Nutzung des source-Makro von dbt, wenn die yml-Dateien aus der vorherigen &Uuml;bung
+									korrekt angelegt wurden.</li>
+								<li>Nutzung des physischen Objektnamens in der Datenbank. Davon sollte in einer
+									Produktivumgebung abgesehen werden.</li>
 							</ol>
 						</ul>
 						<pre>
@@ -126,18 +154,7 @@ SELECT * FROM
 "willibald_dm_bis24200"."dwh_sl"."sat_bestellung"
 							</code>
 						</pre>
-						<ul>
-							<li>Für Verweise von dbt-Modellen untereinander (also allen Modellen und Objekten, die im dbt-Projekt angelegt sind) kann das ref-dbt-Makro genutzt werden. Siehe das Beispielmodell <b>my_second_dbt_model.sql</b></li>
-						</ul>
 					</div>
-				</section>
-
-				<section>
-					<h1>Ergebnis der Übung</h1>
-					<ul>
-						<li>Ihre Übungsdatenbank enthält Dimensionen- und Faktentabellen und diese enthalten Daten aus dem DWH.</li>
-						<li>Die Faktentabelle sollte auf Granularität der Bestellposition sein.</li>
-					</ul>
 				</section>
 
 			</section>
@@ -145,158 +162,396 @@ SELECT * FROM
 			<section>
 
 				<section>
-					<h1>ELT Entwicklung - Beispielvorgehen</h1>
-					<div class="grid_50">
-						<div class="griditem">
-							<img data-src="static/U05/dvd-rental-sample-database-diagram.png" height="480">
-						</div>
-						<div class="griditem">
-							<img data-src="static/U05/Starschema-dvdrental.svg" height="480">
-						</div>
+					<div class="r-fit-text">
+						<h1>Beispiellösung - Ladezeitstempel im Fakt</h1>
+						<p>Aufbau einer Tabelle, die einen Eintrag pro Ladezeitstempel (gerundet
+							auf Tage) im Bestellpositionssatelliten enthält.</p>
+						<pre>
+							sys_snapshot_date.sql
+							<code class="language-sql" data-trim>
+{{ config(materialized='table') }}
+SELECT	ROW_NUMBER() OVER (ORDER BY t.snapshot_date) AS snapshot_date_id,
+		t.snapshot_date
+  FROM	(
+			SELECT	DISTINCT CAST(inscription_timestamp AS DATE) + 1 AS snapshot_date
+			  FROM	{{ source('willibald_dwh_sats', 'sat_position') }}
+		) t	
+							</code>
+						</pre>
+
 					</div>
 				</section>
 
 				<section>
-					<h1>Beispielvorgehen - Datenzusammenstellung (1/2)</h1>
-					<p>
-						Wir nutzen dbt um das Sternschema aufzubereiten. Alle Daten werden zunächst in einer flachen
-						Ansicht zusammengestellt (revenue_star_flat).
-					</p>
-					<pre>
-						<code class="language-sql" data-trim>
-	{{ config(materialized='view') }}
+					<div class="r-fit-text">
+						<h1>Beispiellösung - Point in Time (PIT) Tabelle</h1>
+						<p>Alle für das Sternschema relevanten Daten, werden in eine sehr breite Tabelle geschrieben.
+							Diese hat die Granularität aller Bestellpositionen pro Ladedatum.</p>
+						<pre>
+							pit_bestellposition.sql
+							<code class="language-sql"><script type="text/template">
+{{ config(materialized='table') }}
+SELECT      sd.snapshot_date_id,
+			sd.snapshot_date,
+			-- Bestellposition
+			pos.position_sk,
+			pos.inscription_timestamp AS position_inscription_timestamp,
+			pos.menge,
+			pos.preis,
+			pos.rabatt AS rabatt_position,
+			-- Produkt
+			sprod.produkt_sk,
+			sprod.inscription_timestamp AS produkt_inscription_timestamp,
+			sprod.bezeichnung AS produkt_bezeichnung,
+			spt.produkttyp_sk,
+			spt.inscription_timestamp AS produkttyp_inscription_timestamp,
+			spt.bezeichnung as produkttyp_bezeichnung,
+			skat.kategorie_sk,
+			skat.inscription_timestamp AS kategorie_inscription_timestamp,
+			skat.name AS kategorie_name,
+			sokat.kategorie_sk AS oberkategorie_sk,
+			sokat.inscription_timestamp AS oberkategorie_inscription_timestamp,
+			sokat.name AS oberkategorie_name,
+			sukat.kategorie_sk AS superkategorie_sk,
+			sukat.inscription_timestamp AS superkategorie_inscription_timestamp,
+			sukat.name as superkategorie_name,
+			-- Lieferung
+			slief.lieferung_sk,
+			slief.inscription_timestamp AS lieferung_inscription_timestamp,
+			slief.lieferdatum,
+			slfd.lieferdienst_sk,
+			slfd.inscription_timestamp AS lieferdienst_inscription_timestamp,
+			slfd.name AS lieferdienst_name,
+			slal.lieferadresse_sk AS lieferadresse_lieferung_sk,
+			slal.inscription_timestamp AS lieferadresse_lieferung_inscription_timestamp,
+			slal.plz AS lieferadresse_lieferung_plz,
+			slal.ort AS lieferadresse_lieferung_ort,
+			slal.land AS lieferadresse_lieferung_land,
+			slap.lieferadresse_sk AS lieferadresse_position_sk,
+			slap.inscription_timestamp AS lieferadresse_position_inscription_timestamp,
+			slap.plz AS lieferadresse_position_plz,
+			slap.ort AS lieferadresse_position_ort,
+			slap.land AS lieferadresse_position_land,
+			slab.lieferadresse_sk AS lieferadresse_bestellung_sk,
+			slab.inscription_timestamp AS lieferadresse_bestellung_inscription_timestamp,
+			slab.plz AS lieferadresse_bestellung_plz,
+			slab.ort AS lieferadresse_bestellung_ort,
+			slab.land AS lieferadresse_bestellung_land,
+			-- Bestellung
+			bes.bestellung_sk,
+			bes.inscription_timestamp AS bestellung_inscription_timestamp,
+			bes.bestelldatum,
+			bes.wunschdatum,
+			bes.kaufdatum,
+			bes.rabatt AS rabatt_bestellung,
+			--Vereinspartner
+			svpb.vereinspartner_sk AS vereinspartner_bestellung_sk,
+			svpb.inscription_timestamp AS vereinspartner_bestellung_inscription_timestamp,
+			svpb.vereinspartner_id,
+			svpb.rabatt1,
+			svpb.rabatt2,
+			svpb.rabatt3,
+			/*svpk.vereinspartner_sk AS vereinspartner_kunde_sk,
+			svpk.inscription_timestamp AS vereinspartner_kunde_inscription_timestamp,*/
+			--Kunde
+			skd.kunde_sk,
+			skd.inscription_timestamp AS kunde_inscription_timestamp,
+			skd.geschlecht AS kunde_geschlecht,
+			skd.geburtsdatum AS kunde_geburtsdatum,
+			swkd.kunde_sk AS kunde_wohnort_sk,
+			swkd.inscription_timestamp AS kunde_wohnort_inscription_timestamp,
+			swkd.plz AS kunde_wohnort_plz,
+			swkd.ort AS kunde_wohnort_ort,
+			swkd.land AS kunde_wohnort_land,
+			skkk.kunde_sk AS kunde_kreditkarte_sk,
+			skkk.inscription_timestamp AS kunde_kreditkarte_inscription_timestamp,
+			skkk.geschlecht AS kunde_kreditkarte_geschlecht,
+			skkk.geburtsdatum AS kunde_kreditkarte_geburtsdatum,
+			swkk.kunde_sk AS kunde_kreditkarte_wohnort_sk,
+			swkk.inscription_timestamp AS kunde_kreditkarte_wohnort_inscription_timestamp,
+			swkk.plz AS kunde_kreditkarte_wohnort_plz,
+			swkk.ort AS kunde_kreditkarte_wohnort_ort,
+			swkk.land AS kunde_kreditkarte_wohnort_land
+	FROM      {{ref('sys_snapshot_date') }} sd
+	JOIN      (
+				SELECT  position_sk,
+						inscription_timestamp,
+						inscription_end_timestamp,
+						menge,
+						preis,
+						NULL AS rabatt
+				FROM {{source('willibald_dwh_sats', 'sat_position')}} sposws
+				WHERE sposws.change_data_indicator != 'D'
+				UNION ALL
+				SELECT position_sk,
+						inscription_timestamp,
+						inscription_end_timestamp,
+						menge,
+						preis,
+						rabatt
+				FROM {{source('willibald_dwh_sats', 'sat_rs_position')}} sposrs
+				WHERE sposrs.change_data_indicator != 'D'
+			) pos
+	ON      pos.inscription_timestamp &lt;= sd.snapshot_date
+	AND      pos.inscription_end_timestamp &gt;= sd.snapshot_date
+	JOIN      {{source('willibald_dwh_links', 'lnk_position_produkt')}} lpp
+	ON      lpp.position_sk = pos.position_sk
+	JOIN      {{source('willibald_dwh_sats', 'sat_produkt')}} sprod
+	ON      sprod.produkt_sk = lpp.produkt_sk
+	AND      sprod.change_data_indicator != 'D'
+	AND      sprod.inscription_timestamp &lt;= sd.snapshot_date
+	AND      sprod.inscription_end_timestamp &gt;= sd.snapshot_date
+	JOIN      {{source('willibald_dwh_hubs', 'hub_produkttyp')}} hpt
+	ON      hpt.produkttyp_id = sprod.typ::CHAR(1)
+	JOIN      {{source('willibald_dwh_sats', 'sat_produkttyp')}} spt
+	ON      spt.produkttyp_sk = hpt.produkttyp_sk
+	AND      spt.change_data_indicator != 'D'
+	AND      spt.inscription_timestamp &lt;= sd.snapshot_date
+	AND      spt.inscription_end_timestamp &gt;= sd.snapshot_date
+	JOIN      {{source('willibald_dwh_links', 'lnk_kategorie_produkt')}} lkp
+	ON      lkp.produkt_sk = sprod.produkt_sk
+	JOIN      {{source('willibald_dwh_sats', 'sat_kategorie')}} skat
+	ON      skat.kategorie_sk = lkp.kategorie_sk
+	AND      skat.change_data_indicator != 'D'
+	AND      skat.inscription_timestamp &lt;= sd.snapshot_date
+	AND      skat.inscription_end_timestamp &gt;= sd.snapshot_date
+	JOIN      {{source('willibald_dwh_links', 'lnk_kategorien')}} lok
+	ON      lok.kategorie_sk = skat.kategorie_sk
+	JOIN      {{source('willibald_dwh_sats', 'sat_kategorie')}} sokat
+	ON      sokat.kategorie_sk = lok.ober_kategorie_sk
+	AND      sokat.change_data_indicator != 'D'
+	AND      sokat.inscription_timestamp &lt;= sd.snapshot_date
+	AND      sokat.inscription_end_timestamp &gt;= sd.snapshot_date
+	JOIN      {{source('willibald_dwh_links', 'lnk_kategorien')}} lsk
+	ON      lsk.kategorie_sk = sokat.kategorie_sk
+	JOIN      {{source('willibald_dwh_sats', 'sat_kategorie')}} sukat
+	ON      sukat.kategorie_sk = lsk.ober_kategorie_sk
+	AND      sukat.change_data_indicator != 'D'
+	AND      sukat.inscription_timestamp &lt;= sd.snapshot_date
+	AND      sukat.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_lieferung')}} llief
+	ON      llief.position_sk = pos.position_sk
+	LEFT JOIN {{source('willibald_dwh_sats', 'lsat_lieferung')}} slief
+	ON      slief.lieferung_sk = llief.lieferung_sk
+	AND      slief.change_data_indicator != 'D'
+	AND      slief.inscription_timestamp &lt;= sd.snapshot_date
+	AND      slief.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferdienst')}} slfd
+	ON      slfd.lieferdienst_sk = llief.lieferdienst_sk
+	AND      slfd.change_data_indicator != 'D'
+	AND      slfd.inscription_timestamp &lt;= sd.snapshot_date
+	AND      slfd.inscription_end_timestamp &gt;= sd.snapshot_date
+	JOIN      {{source('willibald_dwh_links', 'lnk_position_bestellung')}} lpb
+	ON      lpb.position_sk = pos.position_sk
+	JOIN      (
+				SELECT bestellung_sk,
+						inscription_timestamp,
+						inscription_end_timestamp,
+						bestelldatum,
+						wunschdatum,
+						NULL AS kaufdatum,
+						rabatt
+				FROM {{source('willibald_dwh_sats', 'sat_bestellung')}} sbews
+				WHERE sbews.change_data_indicator != 'D'
+				UNION ALL
+				SELECT bestellung_sk,
+						inscription_timestamp,
+						inscription_end_timestamp,
+						NULL AS bestelldatum,
+						NULL AS wunschdatum,
+						kaufdatum,
+						NULL AS rabatt
+				FROM {{source('willibald_dwh_sats', 'sat_rs_bestellung')}} sbers
+				WHERE sbers.change_data_indicator != 'D'
+			) bes
+	ON      bes.bestellung_sk = lpb.bestellung_sk
+	AND      bes.inscription_timestamp &lt;= sd.snapshot_date
+	AND      bes.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferadresse')}} slal
+	ON      slal.lieferadresse_sk = llief.lieferadresse_sk
+	AND      slal.change_data_indicator != 'D'
+	AND      slal.inscription_timestamp &lt;= sd.snapshot_date
+	AND      slal.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_position_lieferadresse')}} lpfa
+	ON      lpfa.position_sk = pos.position_sk
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferadresse')}} slap
+	ON      slap.lieferadresse_sk = lpfa.lieferadresse_sk
+	AND      slap.change_data_indicator != 'D'
+	AND      slap.inscription_timestamp &lt;= sd.snapshot_date
+	AND      slap.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_lieferadresse')}} lbla
+	ON      lbla.bestellung_sk = bes.bestellung_sk
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferadresse')}} slab
+	ON      slab.lieferadresse_sk = lbla.lieferadresse_sk
+	AND      slab.change_data_indicator != 'D'
+	AND      slab.inscription_timestamp &lt;= sd.snapshot_date
+	AND      slab.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_vereinspartner')}} lbvp
+	ON      lbvp.bestellung_sk = bes.bestellung_sk
+	LEFT JOIN (SELECT s.vereinspartner_sk,
+					s.inscription_timestamp,
+					s.inscription_end_timestamp,
+					s.change_data_indicator,
+					h.vereinspartner_id,
+					s.rabatt1,
+					s.rabatt2,
+					s.rabatt3
+				FROM {{source('willibald_dwh_hubs', 'hub_vereinspartner')}} h
+				JOIN {{source('willibald_dwh_sats', 'sat_vereinspartner')}} s
+					ON s.vereinspartner_sk = h.vereinspartner_sk
+			) svpb
+	ON      svpb.vereinspartner_sk = lbvp.vereinspartner_sk
+	AND      svpb.change_data_indicator != 'D'
+	AND      svpb.inscription_timestamp &lt;= sd.snapshot_date
+	AND      svpb.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_kunde')}} lbk
+	ON      lbk.bestellung_sk = bes.bestellung_sk
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_kunde')}} skd
+	ON      skd.kunde_sk = lbk.kunde_sk
+	AND      skd.change_data_indicator != 'D'
+	AND      skd.inscription_timestamp &lt;= sd.snapshot_date
+	AND      skd.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_wohnort')}} swkd
+	ON      swkd.kunde_sk = skd.kunde_sk
+	AND      swkd.change_data_indicator != 'D'
+	AND      swkd.inscription_timestamp &lt;= sd.snapshot_date
+	AND      swkd.inscription_end_timestamp &gt;= sd.snapshot_date
+	/*LEFT JOIN {{source('willibald_dwh_links', 'lnk_kunde_vereinspartner')}} lkvp
+	ON      lkvp.kunde_sk = skd.kunde_sk
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_vereinspartner')}} svpk
+	ON      svpk.vereinspartner_sk = lkvp.vereinspartner_sk
+	AND      svpk.change_data_indicator != 'D'
+	AND      svpk.inscription_timestamp &lt;= sd.snapshot_date
+	AND      svpk.inscription_end_timestamp &gt;= sd.snapshot_date*/
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_kreditkarte')}} lbkk
+	ON      lbkk.bestellung_sk = bes.bestellung_sk
+	LEFT JOIN {{source('willibald_dwh_links', 'lnk_kunde_kreditkarte')}} lkkk
+	ON      lkkk.kreditkarte_sk = lbkk.kreditkarte_sk
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_kunde')}} skkk
+	ON      skkk.kunde_sk = lkkk.kunde_sk
+	AND      skkk.change_data_indicator != 'D'
+	AND      skkk.inscription_timestamp &lt;= sd.snapshot_date
+	AND      skkk.inscription_end_timestamp &gt;= sd.snapshot_date
+	LEFT JOIN {{source('willibald_dwh_sats', 'sat_wohnort')}} swkk
+	ON      swkk.kunde_sk = skkk.kunde_sk
+	AND      swkk.change_data_indicator != 'D'
+	AND      swkk.inscription_timestamp &lt;= sd.snapshot_date
+	AND      swkk.inscription_end_timestamp &gt;= sd.snapshot_date
+						</script></code>
+					</pre>
+				</section>
 
-	WITH cte_addresses AS
-	(
-		SELECT	a.[address_id],
-				a.district AS district_name,
-				ci.city AS city_name,
-				co.country AS country_name
-		FROM [vrs].[address] a
-		JOIN [vrs].[city] ci
-			ON ci.city_id = a.city_id
-		JOIN [vrs].[country] co
-			ON co.country_id = ci.country_id
-	),
-	cte_categories AS
-	(
-		SELECT DISTINCT fc.film_id, 
-		SUBSTRING(
-			(
-				SELECT ','+ c.[name]  AS [text()]
-				FROM [vrs].[category] c
-				WHERE fc.category_id = c.category_id
-				ORDER BY fc.film_id
-				FOR XML PATH (''), TYPE
-			).value('text()[1]','nvarchar(max)'), 2, 1000) [category_names]
-	FROM [vrs].[film_category] fc
-	)
-	SELECT	p.payment_date,
-			ddp.date_id AS payment_date_id,
-			p.amount,
-			r.rental_date,
-			ddrent.date_id AS rental_date_id,
-			r.return_date,
-			ddretu.date_id AS return_date_id,
-		DATEDIFF(DAY, r.rental_date, r.return_date) AS rental_duration_days_actual,
-			f.rental_duration AS rental_duration_days_permitted,
-		f.rental_rate AS film_rental_rate,
-			f.film_id,
-			f.title AS film_title,
-			f.release_year AS film_release_year,
-			l.[name] AS film_language_name,
-			f.[length] AS film_length,
-			ca.category_names AS film_category_names,
-			s.store_id,
-			RANK() OVER (ORDER BY sd.city_name, sd.country_name, sd.district_name) AS store_address_id,
-			sd.city_name AS store_city_name,
-			sd.country_name AS store_country_name,
-			sd.district_name AS store_district_name,
-			RANK() OVER (ORDER BY cd.city_name, cd.country_name, cd.district_name) AS customer_address_id,
-			cd.city_name AS customer_city_name,
-			cd.country_name AS customer_country_name,
-			cd.district_name AS customer_district_name
-	FROM [vrs].[payment] p
-	JOIN [vrs].[rental] r
-		ON r.rental_id = p.rental_id
-	JOIN [vrs].[inventory] i
-		ON i.inventory_id = r.inventory_id
-	JOIN [vrs].[film] f
-		ON f.film_id = i.film_id
-	JOIN [vrs].[language] l
-		ON l.language_id = f.language_id
-	JOIN cte_categories ca
-		ON ca.film_id = f.film_id
-	JOIN [vrs].[store] s
-		ON s.store_id = i.store_id
-	JOIN cte_addresses sd
-		ON sd.address_id = s.address_id
-	JOIN [vrs].[customer] cu
-		ON cu.customer_id = p.customer_id
-	JOIN cte_addresses cd
-		ON cd.address_id = cu.address_id
-	JOIN vrs_dm.dim_date ddp
-		ON ddp.date_iso_id = CAST(CONVERT(CHAR(8), p.payment_date, 112) AS INT)
-	JOIN vrs_dm.dim_date ddrent
-		ON ddrent.date_iso_id = CAST(CONVERT(CHAR(8), r.rental_date, 112) AS INT)
-	LEFT JOIN vrs_dm.dim_date ddretu
-		ON ddretu.date_iso_id = CAST(CONVERT(CHAR(8), r.return_date, 112) AS INT)
+				<section>
+					<div class="r-fit-text">
+						<h1>Beispiellösung - Integration der Daten</h1>
+						<p>Die Daten aus dem Webshop und der Roadshow, werden in einer View auf die PIT zusammengeführt.
+						</p>
+						<p>In einem realen Projekt sollte dieser Schritt mithilfe von Business Vault Entitäten erledigt werden.</p>
+					</div>
+					<pre>
+						int_bestellposition.sql
+						<code class="language-sql" data-trim>
+SELECT  snapshot_date_id,
+snapshot_date,
+menge,
+preis,
+COALESCE(rabatt_position, rabatt_bestellung) AS rabatt,
+bestelldatum,
+wunschdatum,
+kaufdatum,
+lieferdatum,
+
+RANK() OVER (ORDER BY produkt_sk, produkt_inscription_timestamp, produkttyp_sk, produkttyp_inscription_timestamp, kategorie_sk, kategorie_inscription_timestamp, oberkategorie_sk, oberkategorie_inscription_timestamp, superkategorie_sk, superkategorie_inscription_timestamp) AS dim_product_sk,
+produkt_bezeichnung,
+produkttyp_bezeichnung,
+kategorie_name,
+oberkategorie_name,
+superkategorie_name,
+
+RANK() OVER (ORDER BY lieferung_sk, lieferung_inscription_timestamp, lieferdienst_sk, lieferdienst_inscription_timestamp, lieferadresse_lieferung_sk, lieferadresse_lieferung_inscription_timestamp, lieferadresse_position_sk, lieferadresse_position_inscription_timestamp, lieferadresse_bestellung_sk, lieferadresse_bestellung_inscription_timestamp) AS dim_lieferung_sk,
+lieferdienst_name,
+COALESCE(lieferadresse_lieferung_plz, lieferadresse_position_plz, lieferadresse_bestellung_plz) AS lieferadresse_plz,
+COALESCE(lieferadresse_lieferung_ort, lieferadresse_position_ort, lieferadresse_bestellung_ort) AS lieferadresse_ort,
+COALESCE(lieferadresse_lieferung_land, lieferadresse_position_land, lieferadresse_bestellung_land) AS lieferadresse_land,
+
+RANK() OVER (ORDER BY vereinspartner_bestellung_sk, vereinspartner_bestellung_inscription_timestamp) AS dim_vereinspartner_sk,
+vereinspartner_id,
+rabatt1,
+rabatt2,
+rabatt3,
+
+RANK() OVER (ORDER BY kunde_sk, kunde_inscription_timestamp, kunde_wohnort_sk, kunde_wohnort_inscription_timestamp, kunde_kreditkarte_sk, kunde_kreditkarte_inscription_timestamp, kunde_kreditkarte_wohnort_sk, kunde_kreditkarte_wohnort_inscription_timestamp) AS dim_kunde_sk,
+COALESCE(kunde_geschlecht, kunde_kreditkarte_geschlecht) AS geschlecht,
+COALESCE(kunde_geburtsdatum, kunde_kreditkarte_geburtsdatum) AS geburtsdatum,
+COALESCE(kunde_wohnort_plz, kunde_kreditkarte_wohnort_plz) AS plz,
+COALESCE(kunde_wohnort_ort, kunde_kreditkarte_wohnort_ort) AS ort,
+COALESCE(kunde_wohnort_land, kunde_kreditkarte_wohnort_land) AS land
+FROM  {{ref('pit_bestellposition')}}
 						</code>
 					</pre>
 				</section>
 
 				<section>
-					<h1>Beispielvorgehen - Datenzusammenstellung (2/2)</h1>
+					<h1>Beispiellösung - Fakten und Dimensionen (1/2)</h1>
 					<p>
-						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach aus dem dbt-Modell <b>revenue_star_flat</b> "herausgeschnitten" werden:
+						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach aus dem dbt-Modell
+						<b>int_bestellposition</b> "herausgeschnitten" werden:
 					</p>
 					<div class="grid">
 						<div class="griditem">
-							<h3>fact_revenue.sql</h3>
 							<pre>
+								fact_order_item.sql
 								<code class="language-sql" data-trim>
-SELECT
-	[payment_date_id]
-	,[rental_date_id]
-	,[return_date_id]
-	,[film_id]
-	,[store_id]
-	,[store_address_id]
-	,[customer_address_id]
-	,[payment_date]
-	,[rental_date]
-	,[return_date]
-	,[amount]
-	,[film_rental_rate]
-	,[rental_duration_days_actual]
-	,[rental_duration_days_permitted]
-FROM {{ ref('revenue_star_flat') }}
+{{ config(materialized='table') }}
+SELECT  t.snapshot_date_id AS dim_snapshot_id,
+		ddb.date_id AS dim_order_date_id,
+		ddw.date_id AS dim_delivery_requested_date_id,
+		ddk.date_id AS dim_purchase_date_id,
+		ddl.date_id AS dim_delivery_date_id,
+		t.dim_product_sk AS dim_product_id,
+		t.dim_lieferung_sk AS dim_delivery_id,
+		t.dim_vereinspartner_sk AS dim_club_id,
+		t.dim_kunde_sk AS dim_customer_id,
+		t.menge AS quantity,
+		(t.menge * t.preis) - t.rabatt AS revenue,
+		(t.lieferdatum IS NOT NULL OR t.kaufdatum IS NOT NULL) AS is_delivered,
+		t.lieferdatum-t.wunschdatum AS deviation_delivered_requested_days
+	FROM {{ ref('int_bestellposition') }} t
+	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddb
+	ON ddb.date_value = t.bestelldatum
+	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddw
+	ON ddw.date_value = t.wunschdatum
+	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddk
+	ON ddk.date_value = t.kaufdatum
+	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddl
+	ON ddl.date_value = t.lieferdatum
 								</code>
 							</pre>
 						</div>
 						<div class="griditem">
-							<h3>dim_film.sql</h3>
 							<pre>
+								dim_club.sql
 								<code class="language-sql" data-trim>
-SELECT DISTINCT
-	[film_id]
-	,[film_title]
-	,[film_release_year]
-	,[film_language_name]
-	,[film_length]
-	,[film_category_names]
-FROM {{ ref('revenue_star_flat') }}
+{{ config(materialized='table') }}
+SELECT DISTINCT t.dim_vereinspartner_sk AS dim_club_id,
+				t.vereinspartner_id AS club_name,
+				t.rabatt1 AS discount1,
+				t.rabatt2 AS discount2,
+				t.rabatt3 AS discount3
+	FROM  {{ ref('int_bestellposition') }} t
 								</code>
 							</pre>
-							<h3>dim_customer_address.sql</h3>
 							<pre>
+								dim_customer.sql
 								<code class="language-sql" data-trim>
-SELECT DISTINCT
-	[customer_address_id]
-	,[customer_city_name]
-	,[customer_country_name]
-	,[customer_district_name]
-FROM {{ ref('revenue_star_flat') }}
+{{ config(materialized='table') }}
+SELECT DISTINCT t.dim_kunde_sk AS dim_customer_id,
+				t.geschlecht AS gender,
+				t.geburtsdatum AS birth_date,
+				t.plz AS postal_code,
+				t.ort AS city,
+				t.land AS country
+	FROM  {{ ref('int_bestellposition') }} t
 								</code>
 							</pre>
 						</div>
@@ -304,72 +559,103 @@ FROM {{ ref('revenue_star_flat') }}
 				</section>
 
 				<section>
-					<h1>Beispielvorgehen - Nutzung der Datumsdimension</h1>
-					<p>Im Fakt sind drei Dat&uuml;mer angelegt: <b>Payment, Return und Rental Date</b>. G&auml;ngige
-						OLAP- und BI-Tools erwarten pro Datum eine Dimension. Aus der Datumsdimensions-<b>Tabelle</b>
-						werden deshalb drei <b>Views</b> abgeleitet:</p>
+					<h1>Beispiellösung - Fakten und Dimensionen (2/2)</h1>
 					<div class="grid">
 						<div class="griditem">
-							<p>dim_payment_date.sql</p>
 							<pre>
+								dim_delivery.sql
 								<code class="language-sql" data-trim>
-{{ config(materialized='view') }}
-
-SELECT [date_id] AS payment_date_id
-      ,[sql_date] AS payment_date
-      ,[day]
-      ,[day_of_week]
-      ,[week]
-      ,[month]
-      ,[quarter]
-      ,[year]
-      ,[day_of_year]
-      ,[day_text]
-      ,[month_text]
-      ,[quarter_text]
-      ,[day_text_abbrev]
-      ,[month_text_abbrev]
-      ,[ldm]
-      ,[ldq]
-      ,[ldy]
-      ,[is_bus_day]
-      ,[is_weekday]
-      ,[is_holiday]
-      ,[rpt_hdr_long]
-      ,[rpt_hdr_short]
-  FROM vrs_dm.dim_date
+{{ config(materialized='table') }}
+SELECT DISTINCT t.dim_lieferung_sk AS dim_delivery_id,
+				t.lieferdienst_name AS delivery_service,
+				t.lieferadresse_plz AS postal_code,
+				t.lieferadresse_ort AS city,
+				t.lieferadresse_land AS country
+	FROM  {{ ref('int_bestellposition') }} t
 								</code>
 							</pre>
 						</div>
 						<div class="griditem">
-							<p>dim_return_date.sql</p>
 							<pre>
+								dim_product.sql
 								<code class="language-sql" data-trim>
-{{ config(materialized='view') }}
+{{ config(materialized='table') }}
+SELECT DISTINCT t.dim_product_sk AS dim_product_id,
+				t.produkt_bezeichnung AS product_name,
+				t.produkttyp_bezeichnung AS product_type,
+				t.kategorie_name AS category,
+				t.oberkategorie_name AS upper_category,
+				t.superkategorie_name AS super_category
+	FROM  {{ ref('int_bestellposition') }} t
+								</code>
+							</pre>
+						</div>
+					</div>
+					<pre>
+						dim_snapshot.sql
+						<code class="language-sql" data-trim>
+{{ config(materialized='table') }}
+SELECT  t.snapshot_date_id AS dim_snapshot_id,
+		t.snapshot_date
+	FROM  {{ref('sys_snapshot_date')}} t
+						</code>
+					</pre>
+				</section>
 
-SELECT [date_id] AS return_date_id
-		,[sql_date] AS return_date
-		,[day]
-		,[day_of_week]
-		,[week]
-		,[month]
-		,[quarter]
-		,[year]
-		,[day_of_year]
-		,[day_text]
-		,[month_text]
-		,[quarter_text]
-		,[day_text_abbrev]
-		,[month_text_abbrev]
-		,[ldm]
-		,[ldq]
-		,[ldy]
-		,[is_bus_day]
-		,[is_weekday]
-		,[is_holiday]
-		,[rpt_hdr_long]
-		,[rpt_hdr_short]
-	FROM vrs_dm.dim_date
+				<section>
+					<h1>Beispiellösung - Datumsdimensionen (1/2)</h1>
+					<p>Im Fakt sind vier Dat&uuml;mer angelegt: <b>Bestell-, Wunsch-, Kauf- und Lieferdatum</b>.
+						G&auml;ngige
+						OLAP- und BI-Tools erwarten pro Datum eine Dimension. Aus der Datumsdimensions-<b>Tabelle</b>
+						werden deshalb vier <b>Views</b> abgeleitet:</p>
+					<div class="grid">
+						<div class="griditem">
+							<pre>
+								dim_delivery_date.sql
+								<code class="language-sql" data-trim>
+SELECT  date_id AS dim_delivery_date_id,
+		date_value,
+		date_iso,
+		"day",
+		day_of_week,
+		week,
+		"month",
+		quarter,
+		"year",
+		day_of_year,
+		day_text,
+		month_text,
+		quarter_text,
+		day_text_abbrev,
+		month_text_abbrev,
+		is_holiday,
+		is_vacation
+FROM {{source('willibald_data_mart', 'dim_date')}}
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<pre>
+								dim_delivery_requested_date.sql
+								<code class="language-sql" data-trim>
+SELECT  date_id AS dim_delivery_requested_date_id,
+		date_value,
+		date_iso,
+		"day",
+		day_of_week,
+		week,
+		"month",
+		quarter,
+		"year",
+		day_of_year,
+		day_text,
+		month_text,
+		quarter_text,
+		day_text_abbrev,
+		month_text_abbrev,
+		is_holiday,
+		is_vacation
+FROM {{source('willibald_data_mart', 'dim_date')}}
 								</code>
 							</pre>
 						</div>
@@ -377,29 +663,77 @@ SELECT [date_id] AS return_date_id
 				</section>
 
 				<section>
-					<h1>Beispielvorgehen</h1>
-					<h2>Erläuterungen zur Lösung</h2>
+					<h1>Beispiellösung - Datumsdimensionen (2/2)</h1>
+					<div class="grid">
+						<div class="griditem">
+							<pre>
+								dim_order_date.sql
+								<code class="language-sql" data-trim>
+SELECT  date_id AS dim_order_date_id,
+		date_value,
+		date_iso,
+		"day",
+		day_of_week,
+		week,
+		"month",
+		quarter,
+		"year",
+		day_of_year,
+		day_text,
+		month_text,
+		quarter_text,
+		day_text_abbrev,
+		month_text_abbrev,
+		is_holiday,
+		is_vacation
+FROM {{source('willibald_data_mart', 'dim_date')}}
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<pre>
+								dim_delivery_purchase_date.sql
+								<code class="language-sql" data-trim>
+SELECT  date_id AS dim_delivery_purchase_date_id,
+		date_value,
+		date_iso,
+		"day",
+		day_of_week,
+		week,
+		"month",
+		quarter,
+		"year",
+		day_of_year,
+		day_text,
+		month_text,
+		quarter_text,
+		day_text_abbrev,
+		month_text_abbrev,
+		is_holiday,
+		is_vacation
+FROM {{source('willibald_data_mart', 'dim_date')}}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Erläuterungen</h1>
 					<ul>
 						<li>&Uuml;ber die <a
 								href="https://learn.microsoft.com/en-us/sql/t-sql/functions/rank-transact-sql">RANK()-Funktion</a>
 							wird ein technischer Schl&uuml;ssel für die
 							Marts gebildet.</li>
-						<li>Die Filmkategorien könnten (praktisch tritt dieser Fall im Datensatz nicht auf) die
-							Granularität der Faktentabelle verändern (da Film zu Category als n:m-Beziehung modelliert
-							ist). Aus diesem Grund wird über die Kombination der <a
-								href="https://learn.microsoft.com/en-us/sql/t-sql/functions/substring-transact-sql">SUBSTRING</a>
-							und <a
-								href="https://learn.microsoft.com/en-us/sql/relational-databases/sqlxml-annotated-xsd-schemas-xpath-queries/introduction-to-using-xpath-queries-sqlxml-4-0?view=sql-server-ver16">XML-Path</a>
-							Funktionen alle Kategorien eines Films in eine kommagetrennte Liste
-							in ein Feld zusammengefasst.</li>
 					</ul>
 				</section>
-				
+
 				<section>
-					<h1>Beispielvorgehen - Implementierung in dbt</h1>
+					<h1>Implementierung in dbt</h1>
 					<div class="grid">
 						<div class="griditem">
-							<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner unter
+							<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner
+								unter
 								"models" angelegt werden.</p>
 							<p>Anschließend kann mit <b>dbt run</b> das Sternschema auf dem Server angelegt werden.</p>
 						</div>
@@ -408,6 +742,17 @@ SELECT [date_id] AS return_date_id
 						</div>
 					</div>
 				</section>
+	
+			</section>
+			
+			<section>
+				<h1>Ergebnis der Übung</h1>
+				<ul>
+					<li>Ihre Übungsdatenbank enthält Dimensionen- und Faktentabellen und diese enthalten Daten aus
+						dem DWH.</li>
+					<li>Die Faktentabelle sollte auf Granularität der Bestellposition pro Ladezeitpunkt sein.</li>
+					<li>Im main-Branch Ihres Github-Repository ist das dbt-Modell entsprechend implementiert</li>
+				</ul>
 			</section>
 
 		</div>
