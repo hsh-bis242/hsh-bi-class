@@ -146,11 +146,14 @@
 							</ol>
 						</ul>
 						<pre>
+							Wenn Übung04 erfolgreich abgeschlossen wurde und yml-Dateien angelegt sind
 							<code class="language-sql" data-trim>
 SELECT * FROM
---wenn Uebung04 erfolgreich war und yml-files angelegt sind:
 {{ source('willibald_dwh_sats', 'sat_bestellung') }}
--- wenn Uebung04 nicht angefangen oder erfolgreich war nutzen Sie den physischen Namen des Quellobjekts
+							</code>
+							Wenn Übung04 nicht abgeschlossen wurde, nutzen Sie den physischen Namen des Quellobjekts
+							<code class="language-sql" data-trim>
+SELECT * FROM
 "willibald_dm_bis24200"."dwh_sl"."sat_bestellung"
 							</code>
 						</pre>
@@ -292,55 +295,55 @@ SELECT      sd.snapshot_date_id,
 				FROM {{source('willibald_dwh_sats', 'sat_rs_position')}} sposrs
 				WHERE sposrs.change_data_indicator != 'D'
 			) pos
-	ON      pos.inscription_timestamp &lt;= sd.snapshot_date
-	AND      pos.inscription_end_timestamp &gt;= sd.snapshot_date
+	ON      pos.inscription_timestamp <= sd.snapshot_date
+	AND      pos.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_links', 'lnk_position_produkt')}} lpp
 	ON      lpp.position_sk = pos.position_sk
 	JOIN      {{source('willibald_dwh_sats', 'sat_produkt')}} sprod
 	ON      sprod.produkt_sk = lpp.produkt_sk
 	AND      sprod.change_data_indicator != 'D'
-	AND      sprod.inscription_timestamp &lt;= sd.snapshot_date
-	AND      sprod.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      sprod.inscription_timestamp <= sd.snapshot_date
+	AND      sprod.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_hubs', 'hub_produkttyp')}} hpt
 	ON      hpt.produkttyp_id = sprod.typ::CHAR(1)
 	JOIN      {{source('willibald_dwh_sats', 'sat_produkttyp')}} spt
 	ON      spt.produkttyp_sk = hpt.produkttyp_sk
 	AND      spt.change_data_indicator != 'D'
-	AND      spt.inscription_timestamp &lt;= sd.snapshot_date
-	AND      spt.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      spt.inscription_timestamp <= sd.snapshot_date
+	AND      spt.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_links', 'lnk_kategorie_produkt')}} lkp
 	ON      lkp.produkt_sk = sprod.produkt_sk
 	JOIN      {{source('willibald_dwh_sats', 'sat_kategorie')}} skat
 	ON      skat.kategorie_sk = lkp.kategorie_sk
 	AND      skat.change_data_indicator != 'D'
-	AND      skat.inscription_timestamp &lt;= sd.snapshot_date
-	AND      skat.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      skat.inscription_timestamp <= sd.snapshot_date
+	AND      skat.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_links', 'lnk_kategorien')}} lok
 	ON      lok.kategorie_sk = skat.kategorie_sk
 	JOIN      {{source('willibald_dwh_sats', 'sat_kategorie')}} sokat
 	ON      sokat.kategorie_sk = lok.ober_kategorie_sk
 	AND      sokat.change_data_indicator != 'D'
-	AND      sokat.inscription_timestamp &lt;= sd.snapshot_date
-	AND      sokat.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      sokat.inscription_timestamp <= sd.snapshot_date
+	AND      sokat.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_links', 'lnk_kategorien')}} lsk
 	ON      lsk.kategorie_sk = sokat.kategorie_sk
 	JOIN      {{source('willibald_dwh_sats', 'sat_kategorie')}} sukat
 	ON      sukat.kategorie_sk = lsk.ober_kategorie_sk
 	AND      sukat.change_data_indicator != 'D'
-	AND      sukat.inscription_timestamp &lt;= sd.snapshot_date
-	AND      sukat.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      sukat.inscription_timestamp <= sd.snapshot_date
+	AND      sukat.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_lieferung')}} llief
 	ON      llief.position_sk = pos.position_sk
 	LEFT JOIN {{source('willibald_dwh_sats', 'lsat_lieferung')}} slief
 	ON      slief.lieferung_sk = llief.lieferung_sk
 	AND      slief.change_data_indicator != 'D'
-	AND      slief.inscription_timestamp &lt;= sd.snapshot_date
-	AND      slief.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      slief.inscription_timestamp <= sd.snapshot_date
+	AND      slief.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferdienst')}} slfd
 	ON      slfd.lieferdienst_sk = llief.lieferdienst_sk
 	AND      slfd.change_data_indicator != 'D'
-	AND      slfd.inscription_timestamp &lt;= sd.snapshot_date
-	AND      slfd.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      slfd.inscription_timestamp <= sd.snapshot_date
+	AND      slfd.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_links', 'lnk_position_bestellung')}} lpb
 	ON      lpb.position_sk = pos.position_sk
 	JOIN      (
@@ -365,27 +368,27 @@ SELECT      sd.snapshot_date_id,
 				WHERE sbers.change_data_indicator != 'D'
 			) bes
 	ON      bes.bestellung_sk = lpb.bestellung_sk
-	AND      bes.inscription_timestamp &lt;= sd.snapshot_date
-	AND      bes.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      bes.inscription_timestamp <= sd.snapshot_date
+	AND      bes.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferadresse')}} slal
 	ON      slal.lieferadresse_sk = llief.lieferadresse_sk
 	AND      slal.change_data_indicator != 'D'
-	AND      slal.inscription_timestamp &lt;= sd.snapshot_date
-	AND      slal.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      slal.inscription_timestamp <= sd.snapshot_date
+	AND      slal.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_position_lieferadresse')}} lpfa
 	ON      lpfa.position_sk = pos.position_sk
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferadresse')}} slap
 	ON      slap.lieferadresse_sk = lpfa.lieferadresse_sk
 	AND      slap.change_data_indicator != 'D'
-	AND      slap.inscription_timestamp &lt;= sd.snapshot_date
-	AND      slap.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      slap.inscription_timestamp <= sd.snapshot_date
+	AND      slap.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_lieferadresse')}} lbla
 	ON      lbla.bestellung_sk = bes.bestellung_sk
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_lieferadresse')}} slab
 	ON      slab.lieferadresse_sk = lbla.lieferadresse_sk
 	AND      slab.change_data_indicator != 'D'
-	AND      slab.inscription_timestamp &lt;= sd.snapshot_date
-	AND      slab.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      slab.inscription_timestamp <= sd.snapshot_date
+	AND      slab.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_vereinspartner')}} lbvp
 	ON      lbvp.bestellung_sk = bes.bestellung_sk
 	LEFT JOIN (SELECT s.vereinspartner_sk,
@@ -402,27 +405,27 @@ SELECT      sd.snapshot_date_id,
 			) svpb
 	ON      svpb.vereinspartner_sk = lbvp.vereinspartner_sk
 	AND      svpb.change_data_indicator != 'D'
-	AND      svpb.inscription_timestamp &lt;= sd.snapshot_date
-	AND      svpb.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      svpb.inscription_timestamp <= sd.snapshot_date
+	AND      svpb.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_kunde')}} lbk
 	ON      lbk.bestellung_sk = bes.bestellung_sk
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_kunde')}} skd
 	ON      skd.kunde_sk = lbk.kunde_sk
 	AND      skd.change_data_indicator != 'D'
-	AND      skd.inscription_timestamp &lt;= sd.snapshot_date
-	AND      skd.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      skd.inscription_timestamp <= sd.snapshot_date
+	AND      skd.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_wohnort')}} swkd
 	ON      swkd.kunde_sk = skd.kunde_sk
 	AND      swkd.change_data_indicator != 'D'
-	AND      swkd.inscription_timestamp &lt;= sd.snapshot_date
-	AND      swkd.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      swkd.inscription_timestamp <= sd.snapshot_date
+	AND      swkd.inscription_end_timestamp >= sd.snapshot_date
 	/*LEFT JOIN {{source('willibald_dwh_links', 'lnk_kunde_vereinspartner')}} lkvp
 	ON      lkvp.kunde_sk = skd.kunde_sk
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_vereinspartner')}} svpk
 	ON      svpk.vereinspartner_sk = lkvp.vereinspartner_sk
 	AND      svpk.change_data_indicator != 'D'
-	AND      svpk.inscription_timestamp &lt;= sd.snapshot_date
-	AND      svpk.inscription_end_timestamp &gt;= sd.snapshot_date*/
+	AND      svpk.inscription_timestamp <= sd.snapshot_date
+	AND      svpk.inscription_end_timestamp >= sd.snapshot_date*/
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_kreditkarte')}} lbkk
 	ON      lbkk.bestellung_sk = bes.bestellung_sk
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_kunde_kreditkarte')}} lkkk
@@ -430,13 +433,13 @@ SELECT      sd.snapshot_date_id,
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_kunde')}} skkk
 	ON      skkk.kunde_sk = lkkk.kunde_sk
 	AND      skkk.change_data_indicator != 'D'
-	AND      skkk.inscription_timestamp &lt;= sd.snapshot_date
-	AND      skkk.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      skkk.inscription_timestamp <= sd.snapshot_date
+	AND      skkk.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_wohnort')}} swkk
 	ON      swkk.kunde_sk = skkk.kunde_sk
 	AND      swkk.change_data_indicator != 'D'
-	AND      swkk.inscription_timestamp &lt;= sd.snapshot_date
-	AND      swkk.inscription_end_timestamp &gt;= sd.snapshot_date
+	AND      swkk.inscription_timestamp <= sd.snapshot_date
+	AND      swkk.inscription_end_timestamp >= sd.snapshot_date
 						</script></code>
 					</pre>
 				</section>

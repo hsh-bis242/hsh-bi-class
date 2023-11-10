@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: willibald_data_mart
+    schema: dm_ol
+    tables:
+
+      - name: dim_date
+        columns:
+          - name: date_id
+            tests:
+              - not_null
+              - unique
+          - name: date_value
+            tests:
+              - not_null
+              - unique
