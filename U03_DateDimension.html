@@ -143,6 +143,7 @@ CREATE TABLE dim_date
 						<li>Die Feiertagsinformationen und Ferientage aufbereiten, filtern, parsen und auf die Datum-Spalten einschränken</li>
 						<li>Die date-dimension Datumswerte mit den Feiertagsinformationen und Ferientagen joinen, um so zu ermitteln, welches Datum ein freier Tag ist</li>
 						<li>Zwei boolesche Spalten aus dem Join-Ergebnis erzeugen: is_holiday und is_vacation</li>
+						<li>Achten Sie darauf das Feld date_value in einen DATE-Datentyp zu casten, bevor Sie es in die Datenbank schreiben.</li>
 						<li>Das Endergebnis mithilfe von KNIME als Tabelle (<b>dm_ol.dim_date</b>) in Ihre Postgres-Datenbank (<b>willibald_dm</b>) schreiben</li>
 					</ul>
 					<p>
