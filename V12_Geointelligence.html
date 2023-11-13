@@ -43,6 +43,7 @@
 						<li>Datenformate</li>
 					</ul>
 					<li>Technologien</li>
+					<li>Praktische Anwendung</li>
 					<li>Datenmodellierung</li>
 					<li>Datenquellen</li>
 				</ul>
@@ -780,6 +781,80 @@
 					</figure>
 				</section>
 
+			</section>
+
+			<section>
+				<section>
+					<h1>Anwendung - Räumliche SQL-Abfragen</h1>
+					<div class="grid_50">
+						<div class="griditem">
+							<pre>
+								(a) Point Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t WHERE
+									CONTAINS(t.area, PointFromText('POINT(7 3)')) = 1;
+								</code>
+								(b) Region Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t, Highways h WHERE
+									h.Name = 'Interstate 7' AND
+									Intersects(t.area, Buffer(h.geometry, 10)) = 1;
+								</code>
+								(c) Window Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t WHERE
+									Intersects(t.area, PolygonFromText(
+									'POLYGON ((0 0, 0 5, 5 5, 5 0, 0 0))')) = 1;
+								</code>
+								(d) Containment Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t WHERE
+									Contains(PolygonFromText(
+									'POLYGON ((0 0, 0 5, 5 5, 5 0, 0 0))'),
+									t.area) = 1;;
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<figure>
+								<img data-src="static/V12/2023-Carniel-Basic_Spatial_Queries.png" width="380">
+								<figcaption>
+									<a href="https://doi.org/10.1080/10095020.2022.2163924">Anderson Chaves Carniel (2023) Defining and designing spatial queries, Geo-spatial Information Science</a>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Anwendung - Visualisierungsmethoden</h1>
+					<div class="grid_50">
+					<div class="griditem">
+						<figure>
+							<img data-src="static/V12/2018-standardco-choroplethVsHeatmap.png" height="268">
+							<figcaption>
+								<a href="https://www.standardco.de/notes/heatmaps-vs-choropleths">standardco.de (2018) Heatmaps vs Choropleths</a>
+							</figcaption>
+						</figure>
+					</div>	
+					<div class="griditem">
+						<figure>
+							<img data-src="static/V12/2020-bplewe-world_air_routes.png" height="400">
+							<figcaption>
+								<a href="https://commons.wikimedia.org/wiki/File:World_Air_Routes.png">Bplewe via Wikimedia Commons</a>
+							</figcaption>
+						</figure>
+					</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Choroplethenkarte</li>
+							<li>Heatmap</li>
+							<li>3D-Plot</li>
+							<li>Strömungskarte</li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 
 			<section>
