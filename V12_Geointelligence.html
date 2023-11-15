@@ -43,6 +43,7 @@
 						<li>Datenformate</li>
 					</ul>
 					<li>Technologien</li>
+					<li>Praktische Anwendung</li>
 					<li>Datenmodellierung</li>
 					<li>Datenquellen</li>
 				</ul>
@@ -91,7 +92,12 @@
 				<section>
 					<h1>Problemdarstellung</h1>
 					<h2>Am Beispiel eines Kundenprojektes</h2>
+					<figure>
 					<img src="static/V12/2023-Cirkel-VehicleDataTable.png">
+					<figcaption>
+						Eigene Darstellung
+					</figcaption>
+					</figure>
 					<aside class="notes">
 						<ul>
 							<li>Gegeben: Datensatz mit Bewegungsdaten von 2000 Fahrzeugen, über etwa 2 Jahre. Etwa alle
@@ -111,7 +117,12 @@
 
 				<section>
 					<h1>Einfacher Lösungsansatz</h1>
-					<img src="static/V12/2018-Cirkel-VehicleDataStream.svg" height="480">
+					<figure>
+						<img src="static/V12/2018-Cirkel-VehicleDataStream.svg" height="480">
+						<figcaption>
+							Eigene Darstellung
+						</figcaption>
+					</figure>
 				</section>
 
 				<section>
@@ -230,6 +241,11 @@
 							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
 						</figcaption>
 					</figure>
+				</section>
+
+				<section>
+					<h1>Koordinatensysteme - thetruesize.com</h1>
+					<iframe data-src="https://www.thetruesize.com/" height="630" width="900"></iframe>
 				</section>
 
 				<section>
@@ -394,38 +410,77 @@
 
 				<section>
 
-					<h1>Standardisierung</h1>
-					<h2>Methoden</h2>
+					<h1>Standardisierung - Methoden</h1>
 					<figure>
 						<div class="grid">
 							<div class="griditem">
-								<img src="static/V12/2012-Alastair-GeometrieRelationships.png" height="480">
+								<table style="font-size:medium">
+									<thead>
+										<tr>
+											<th>Methode</th>
+											<th>Beschreibung</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>STEquals()</th>
+											<td>Prüft ob beide Geometrien aus den selben Punkten bestehen.</td>
+										</tr>
+										<tr>
+											<th>STDistance()</th>
+											<td>Berechnet die kürzeste Distanz zwischen zwei Geometrien.</td>
+										</tr>
+										<tr>
+											<th>ShortestLineTo()</th>
+											<td>Definiert die kürzeste Linie zwischen zwei Geometrien.</td>
+										</tr>
+										<tr>
+											<th>STIntersects()</th>
+											<td>Prüft ob sich zwei Geometrien irgendwie überschneiden.</td>
+										</tr>
+										<tr>
+											<th>Filter()</th>
+											<td>Prüft zwei Geometrien, mithilfe eines räumlichen Index, auf Überschneidung.</td>
+										</tr>
+										<tr>
+											<th>STDisjoint()</th>
+											<td>Prüft ob zwei Geometrien disjunkt sind.</td>
+										</tr>
+										<tr>
+											<th>STTouches()</th>
+											<td>Prüft ob sich zwei Geometrien berühren.</td>
+										</tr>
+										<tr>
+											<th>STOverlaps()</th>
+											<td>Prüft ob sich zwei Geometrien überschneiden.</td>
+										</tr>
+										<tr>
+											<th>STCrosses()</th>
+											<td>Prüft ob eine Geometrie eine andere kreuzt.</td>
+										</tr>
+										<tr>
+											<th>STWithin()</th>
+											<td>Prüft ob eine Geometrie vollständig in einer anderen enthalten ist.</td>
+										</tr>
+										<tr>
+											<th>STContains()</th>
+											<td>Prüft ob eine Geometrie eine andere enthält.</td>
+										</tr>
+										<tr>
+											<th>STRelate()</th>
+											<td>Prüft ob zwei Instanzen die im DE-9IM-Modell spezifizierte Beziehung aufweisen.</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 							<div class="griditem">
-								<img src="static/V12/2012-Alastair-STIntersection.svg" height="480">
+								<img src="static/V12/2012-Alastair-STIntersection.svg" width="350">
 							</div>
 						</div>
 						<figcaption>
 							Alastair, A., Pro Spatial with SQL Server 2012, London 2012
 						</figcaption>
 					</figure>
-					<!--<table>
-						<thead>
-							<tr>
-								<th>Methode</th>
-								<th>Beschreibung</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th>STEquals()</th>
-								<td>Test ob beide Geometrien aus den selben Punkten bestehen.</td>
-							</tr>
-							<tr>
-
-							</tr>
-						</tbody>
-					</table>-->
 
 				</section>
 
@@ -726,6 +781,86 @@
 					</figure>
 				</section>
 
+			</section>
+
+			<section>
+				<section>
+					<h1>Anwendung - Räumliche SQL-Abfragen</h1>
+					<div class="grid_50">
+						<div class="griditem">
+							<pre>
+								(a) Point Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t WHERE
+									CONTAINS(t.area, PointFromText('POINT(7 3)')) = 1;
+								</code>
+								(b) Region Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t, Highways h WHERE
+									h.Name = 'Interstate 7' AND
+									Intersects(t.area, Buffer(h.geometry, 10)) = 1;
+								</code>
+								(c) Window Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t WHERE
+									Intersects(t.area, PolygonFromText(
+									'POLYGON ((0 0, 0 5, 5 5, 5 0, 0 0))')) = 1;
+								</code>
+								(d) Containment Query
+								<code class="language-sql" data-trim>
+									SELECT * FROM Towns t WHERE
+									Contains(PolygonFromText(
+									'POLYGON ((0 0, 0 5, 5 5, 5 0, 0 0))'),
+									t.area) = 1;;
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<figure>
+								<img data-src="static/V12/2023-Carniel-Basic_Spatial_Queries.png" width="380">
+								<figcaption>
+									<a href="https://doi.org/10.1080/10095020.2022.2163924">Anderson Chaves Carniel (2023) Defining and designing spatial queries, Geo-spatial Information Science</a>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Anwendung - Visualisierungsmethoden</h1>
+					<div class="grid_50">
+					<div class="griditem">
+						<figure>
+							<img data-src="static/V12/2018-standardco-choroplethVsHeatmap.png" height="268">
+							<figcaption>
+								<a href="https://www.standardco.de/notes/heatmaps-vs-choropleths">standardco.de (2018) Heatmaps vs Choropleths</a>
+							</figcaption>
+						</figure>
+						<figure>
+							<img data-src="static/V12/rayshader-3DMap.png">
+							<figcaption>
+								<a href="https://www.rayshader.com/">rayshader</a>
+							</figcaption>
+						</figure>
+					</div>	
+					<div class="griditem">
+						<figure>
+							<img data-src="static/V12/2020-bplewe-world_air_routes.png" height="400">
+							<figcaption>
+								<a href="https://commons.wikimedia.org/wiki/File:World_Air_Routes.png">Bplewe via Wikimedia Commons</a>
+							</figcaption>
+						</figure>
+					</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Choroplethenkarte</li>
+							<li>Heatmap</li>
+							<li>3D-Plot</li>
+							<li>Strömungskarte</li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 
 			<section>
