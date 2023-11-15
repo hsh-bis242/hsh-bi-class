@@ -34,8 +34,8 @@
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Installation von Power BI</h2>
-					<p>Wir arbeiten mit Power BI Desktop. Dieses können Sie hier herunterladen: <a href="https://www.microsoft.com/store/productId/9NTXR16HNW1T">Microsoft Store</a></p>
-					<p>Beim ersten Start verlangt Power BI nach einer Anmeldung. Nutzen Sie hier die Benutzerdaten Ihrer Gruppe (biXXXXX@hshannoverde.onmicrosoft.com und Passwort)</p>
+					<p>Wir arbeiten mit Power BI Desktop. Dies ist auf den Labor-PCs bereits vorinstalliert. Für Ihre privaten Computer können Sie es hier herunterladen: <a href="https://www.microsoft.com/store/productId/9NTXR16HNW1T">Microsoft Store</a></p>
+					<p>Beim ersten Start verlangt Power BI nach einer Anmeldung. Dazu können Sie die Benutzerdaten Ihrer Gruppe (biXXXXX@hshannoverde.onmicrosoft.com und Passwort) verwenden</p>
 				</section>
 
 				<section>
@@ -46,7 +46,7 @@
 							<ol>
 								<li>Stellen Sie nun eine Verbindung zu Ihrem Sternschema her.</li>
 								<li>Dazu klicken Sie direkt im Startscreen auf "Daten abrufen".</li>
-								<li>Wählen Sie dann "Datenbank", "SQL Server-Datenbank" und klicken Sie auf "verbinden".</li>
+								<li>Wählen Sie dann "Datenbank", "PostgreSQL-Datenbank" und klicken Sie auf "verbinden".</li>
 								<li>Tragen Sie dann Ihre Zugangsdaten zu Ihrer Datenbank ein.</li>
 								<ul>
 									<li>Als Datenkonnektivitätsmodus wählen Sie "Importieren".</li>
@@ -69,7 +69,7 @@
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Tabellen auswählen</h2>
-					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "vrs_dm" befinden. Mit Ausnahme der dim_date, und revenue_star_flat. Klicken Sie anschließend auf "Laden".</p>
+					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "dm_ol" befinden. Mit Ausnahme der int_bestellposition, dim_date, pit_bestellposition und sys_snapshot_date. Klicken Sie anschließend auf "Laden".</p>
 					<img src="static/U08/PowerBISelectStarSchema.png" height="400">
 				</section>
 
@@ -88,42 +88,50 @@
 				</section>
 
 				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Beziehungen zur Datumsdimension reparieren</h2>
-					<p>Durch den ordentlichen Aufbau des Sternschemas sieht das automatisch von Power BI angelegte Datenmodell gut aus.</p>
-					<p>Verbergen Sie der Übersichtlichkeit wegen die ID-Spalten (wie zB. film_id) in allen Tabellen.</p>
-					<img src="static/U08/PowerBIVRSDataModel.png" height="360">
+					<div class="r-fit-text">
+						<h1>Aufgabe: Sternschema in Power BI laden</h1>
+						<h2>Beziehungen zur Datumsdimension reparieren</h2>
+						<img src="static/U08/PowerBIVRSDataModel.png" height="360" style="float: right">
+						<p>Durch den Aufbau des Sternschemas sieht das automatisch angelegte Datenmodell gut aus.</p>
+						<p>Zwischen den Datumsdimensionen sind unnötige (aber funktionale) Verbindungen entstanden. Löschen Sie diese.</p>
+						<p>Verbergen Sie der Übersichtlichkeit wegen die ID-Spalten in allen Tabellen.</p>
+						<p>Sie können außerdem den Namen der Fakten und Dimensionen anpassen (Schemanamen und Prefix dim_ entfernen)</p>
+					</div>
 				</section>
 
 				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Anlegen von Addresshierarchien</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>Legen Sie in beiden Adressdimensionen jeweils eine Hierarchie an. Und zwar in folgender Reihenfolge:</p>
-							<p><b>country - district - store</b></p>
-							<p>Die drei Datenfelder k&ouml;nnen Sie anschließend auch ausblenden.</p>
-						</div>
-						<div class="griditem">
-							<img src="static/U08/PowerBIStoreAddressHierarchy.png">
-						</div>
+					<div class="r-fit-text">
+						<h1>Aufgabe: Sternschema in Power BI laden</h1>
+						<h2>Anlegen von Addresshierarchien</h2>
+						<img src="static/U08/PowerBIStoreAddressHierarchy.png" style="float:right">
+						<p>Legen Sie in beiden Dimensionen, welche Adressen enthalten, jeweils eine Hierarchie an. Und zwar in folgender Reihenfolge:</p>
+						<p><b>country - city - postal_code</b></p>
+						<p>Legen Sie außerdem eine Produktkategorienhierarchie an: <b>super_category - upper_category - category</b></p>
+						<p>Die in Hierarchien verwendenten Datenfelder k&ouml;nnen Sie anschließend ausblenden.</p>
 					</div>
 				</section>
 
 			</section>
 
 			<section>
-				<h1>Aufgabe: Aufbau des Dashboards</h1>
-				<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs der Videothek übersichtlich darstellt:</p>
-				<ul>
-					<li>Wie verteilen sich die Umsätze auf die Filmkategorien?</li>
-					<li>Wie verteilen sich die Umsätze auf die einzelnen Geschäfte?</li>
-					<li>Welches sind die Umsatzstärksten Länder (nach Kundenwohnort)?</li>
-					<li>Wie häufig werden Filme verspätet zurückgegeben?</li>
-					<li>Was ist die durchschnittliche Überziehungsdauer?</li>
-					<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Filme?</li>
-					<li>Wie ist die durchschnittliche Ausleihdauer der 5 umsatzstärksten Filme?</li>
-				</ul>
+				<section>
+					<h1>Aufgabe: Aufbau des Dashboards</h1>
+					<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs der Videothek übersichtlich darstellt:</p>
+					<ul>
+						<li>Wie verteilen sich die Umsätze auf die Produktkategorien?</li>
+						<li>Welches sind die Umsatzstärksten Städte (nach Kundenwohnort)?</li>
+						<li>Wie häufig werden Samen verspätet geliefert?</li>
+						<li>Was ist die durchschnittliche Lieferzeitabweichung pro Lieferdienst?</li>
+						<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Produkte?</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Aufgabe: Aufbau des Dashboards</h1>
+					<h2>Umsetzungshinweise</h2>
+					<img src="static/U08/PowerBIFilterPageData.png" style="float:right">
+					<p>Um korrekte Ergebnisse zu bekommen, muss die Auswertung immer auf genau ein Snapshotdatum gefiltert sein.</p>
+					<p>Erstellen Sie deshalb zuerst einen Filter für die aktuelle oder alle Seiten auf ein Snapshotdatum Ihrer Wahl.</p>
+				</section>
 			</section>
 
 		</div>
