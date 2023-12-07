@@ -188,16 +188,18 @@
 				<h1>Azure Data Factory</h1>
 				<h2>adf.azure.com</h2>
 				<p> Annahme:  
-					For data warehousing we need a platform for aggregating and processing data 
-					from a wide variety of sources.
-					
-					Mögliche Lösung/Technologie:
-
-					When operating on the Azure platform, the established convention is to use 
+					Um ein Data Warehouse zu beladen benötigen wir eine Lösung oder Plattform, welche heterogene Datenquellen verarbeiten und anbinden kann.
+					<br> 
+					<br> 
+					Mögliche Lösung laut Microsoft:
+					<br> 
+					<br> 
+					"When operating on the Azure platform, the established convention is to use 
 					Azure Data Factory (ADF) V2. This is the primary integration and orchestration 
-					engine for any data movement in to or out of Azure
+					engine for any data movement in to or out of Azure."
 					</p>
 					<p>Alternative: AWS Glue</p>
+					<figcaption>https://learn.microsoft.com/en-us/azure/data-factory/introduction</figcaption>
 			</section>
 			<section>
 				<h1>Azure Data Factory</h1>
@@ -216,86 +218,75 @@
 			</section>
 			<section>
 				<h1>Azure Data Factory Activities</h1>
-				<p>An activity is a collection of actions which to perform on your data, grouped together in a unit of orchestration and execution. 
-				Each activity can have zero or more input datasets and produce one or more output datasets. </p>
-				<br>
-				<p>For example, an activity could be copying data from one dataset to another.</p>
-				<br>
-				<p>Activities are highly specialized JSON objects and provide the ability to do just one
-				Action. Some activities execute compute jobs, some perform data movement, some run nested activities, while others implement control logic and looping.</p>
+				<p>Eine Data Factory activity ist eine Gruppe von Tätigkeiten um Daten zu verarbeiten, einzelne programmatische Schritte sind dabei in einer activity gruppiert um eine bestimmten Kernfunktionalität zu erfüllen</p>
+				<p>Die Anzahl der in -und output Datensätze unterscheidet sich auf Basis der Art und Konfiguration der activity</p>
+				<p>Eine activity könnte z.B. multiple neue Datensätze aus einer Datei erzeugen</p>
+				<p>Die activity-Konfiguration ist in der ADF als JSON-object hinterlegt und kann so zwischen ADF Instanzen geteilt werden</p>
+				<p> Die Aufgaben von activities sind z.B. das Ausführen und Scheduling von Lade-jobs, Dateien und Daten von einem System zum nächsten zu übertragen, Schleifen und Bedingungen in Komponenten außerhalb vom SQL-Datenbank Kontext umzusetzen</p>
 			</section>
 			<section>
 				<h1>Azure Data Factory Activities</h1>
-				<p>Internal copy activities</p>
-				<p>Probably one of the most used activities in Data Factory is the Copy Data activity. Configuration options: </p>
+				<p><b>Internal copy activities</b></p>
+				<p>Die wahrscheinlich verbreiteste Art von activities für das Kopieren von Datensätzen, hierbei kann konfiguriert werden:</p>
 				<ul>
-					<li>The number of integration units to use (the scale of the job)</li>
-					<li>The degree of parallelism to utilize</li>
+					<li>Die Anzahl der Recheneinheiten, welche für die Ausführung genutzt werden</li>
+					<li>Die Anzahl der parallelen Ausführungen</li>
 				</ul>
 				<br>
-				<p>Multiple inputs/outputs</p>
-				<p>Branching, joining, and lookups break up datasets into multiple processing flows and look up data from sources using a lookup key</p>
-				<br>
-				<p>Schema modifier </p>
-				<p>Derived columns, aggregations, windowing, and pivoting transform the schema of the file by computing new columns or performing aggregations and grouping</p>
+				<p><b>Multiple inputs/outputs</b></p>
+				<p>Branching, joining, und lookups von Datensätze, diese werden aufgeteilt und nach einer Logik verarbeitet</p>
+				<p><b>Schema modifier</b> </p>
+				<p>Transformations, aggregations, windowing, und pivoting von Datensätzen um neue Spalten zu erzeugen oder eine Aggregation der Datensätze herzustellen</p>
 			</section>
 			<section style="font-size: 24px">
 				<h1>Azure Data Factory Activities</h1>
-				<p>Row modifier activities</p>
-				<p>Select, filter, and sort data with the additional capability to apply updates, inserts, and deletes to individual rows in the dataset</p>
-				<br>
-				<p>Destination activities</p>
-				<p>Add an output destination to land the transformed dataset into one of the supported sinks</p>
-				<br>
-				<p>Iteration and conditional activities</p>
+				<p><b>Row modifier activities</b></p>
+				<p>Select, filter, und sort rows von Datensätzen mit der Möglichkeit für updates, inserts, and deletes</p>
+				<p><b>Destination activities</b></p>
+				<p>Ein output oder destination wird erstellt in welche die Datensätze geschrieben werden (DB, Data Lake, ...)</p>
+				<p><b>Iteration and conditional activities</b></p>
 				<p>Lookup, Wait, For Each Loop, If Conditions, Until Loop</p>
-				<br>
-				<p>Web activities</p>
-				<p>A way to call a REST API. These are not for heavy lifting of data. These are designed to be “chatty” rather than chunky and are great for facilitating lightweight messaging and alike.</p>
+				<p><b>Web activities</b></p>
+				<p>Call einer REST API und Zugriff auf Daten aus Web-Quellen über http oder https, geeignet für kleinere Datensätze die häufig abgefragt werden</p>
 			</section>
 			<section>
 				<h1>Azure Data Factory Pipelines</h1>
 				<ul>
-					<li>A pipeline is a group of activities, the activities in a pipeline perform a task</li>
-					<li>Example tasks: ingest and clean log data, analyze the log data</li>
-					<li>Activities as a set instead of each one individually</li>
-					<li>Deploy and schedule the pipeline, instead of the activities independently</li>
-					<li>Definition of any parameters and variables that may be utilized throughout the pipeline as part of an activity</li>
+					<li>Eine Pipeline ist eine Gruppe von Aktivitäten, die eine übergeordnete Aufgabe ausführen</li>
+					<li>Protokolldaten aufnehmen, bereinigen und analysieren</li>
+					<li>Aktivitäten werden als eine Funktion gebündelt</li>
+					<li>Pipelines können scheduled und deployed werden</li>
+					<li>Definition aller Parameter und Variablen, die im Rahmen von activities in der gesamten Pipeline verwendet werden können</li>
 				</ul>
 			</section>
 			<section>
 				<h1>Azure Data Factory Linked Service</h1>
 				<ul>
-					<li>Much like a connection string</li>
-					<li>Defines the connection information in which to connect to external data sources</li>
-					<li>Activities as a set instead of each one individually</li>
-					<li>The dataset represents the structure of the data, and the linked service defines the connection to the data source</li>
-					<li>From within the UI, you can create a linked service connection to over 80 different data stores</li>
-				</ul>
-				<br>
-				<ul>
-					<li>Data Store Linked Services allow you to fetch data or deposit data</li>
-					<li>Compute Linked Services allow you to execute jobs on Azure-based compute resources such as Azure Databricks, Azure Functions, and Azure Synapse Analytics, to name a few.</li>
+					<li>Ein abstraktes Konstrukt für einen connection-string</li>
+					<li>Definiert die Verbindungsinformationen, mit denen eine Verbindung zu externen Datenquellen hergestellt werden soll</li>
+					<li>Der Datensatz stellt die Struktur der Daten dar und der Linked Service definiert die Verbindung zur Datenquelle</li>
+					<li>Über die Benutzeroberfläche können vorgefertigte verknüpfte Dienstverbindung zu über 80 verschiedenen Datenspeichern hergestellt werden</li>
+					<li>Mit Data Store Linked Services können Daten abgerufen oder hinterlegt werden</li>
+					<li>Mit Compute Linked Services können Aufträge auf Azure-basierten Rechenressourcen wie Azure Databricks, Azure Functions und Azure Synapse Analytics ausgeführt werden</li>
 				</ul>
 			</section>
 			<section>
 				<h1>Azure Data Factory Dataset</h1>
 				<ul>
-					<li>A dataset is a named view of data that simply points or references the data you want to use</li>
-					<li>With a linked service, you have a connection, but you now need to add a layer on top of that to implement logic that allows you to access specific tables</li>
-					<li>configure the elements such as the file format, column delimiter, and row terminator to be used when reading the file and then specify different metadata to write the file using</li>
+					<li>Ein Dataset ist eine benannte Datenansicht, die auf Daten verweist oder diese referenziert, die Struktur und der Typ wird dabei festgelegt</li>
+					<li>Mit einem Linked Service wurde eine Verbindung zu einem Dataset hergestellt, das Dataset befindet sich eine abstrakte Ebene über den Linked Service, um Logik und Sichten zu implementieren, die den Zugriff auf bestimmte Tabellen und Daten ermöglichen</li>
+					<li>Es können file format, column delimiter und row terminator definiert werden um die passende Struktur eines datasets abzubilden, diese werden beim Lesen und Schreiben angewendet</li>
 				</ul>
 			</section>
 			<section>
 				<h1>Azure Data Factory Triggers</h1>
 				<ul>
-					<li>Triggers are the method by which pipelines are invoked and allow ADF to support a variety of types of automation</li>
-					<li>When developing a Data Factory pipeline, you can test the pipeline in debug mode which allows the pipeline to execute fully only on a debug cluster</li>
-					<li>Any activities that are configured to run in parallel will be run sequentially so that you can easily step into any activity in the pipeline</li>
+					<li>Trigger sind die Methode, mit der Pipelines aufgerufen werden, und ermöglichen es der ADF, eine Vielzahl von Automatisierungstypen zu unterstützen</li>
+					<li>Beim Entwickeln einer Data Factory-Pipeline werden die Pipeline im Debugmodus getestet, sodass die Pipeline nur auf einem Debugcluster vollständig ausgeführt werden kann</li>
 				</ul>
 <br>
 <br>
-The automatic triggers cater for a wide variety of automation options and fall under three categories which are listed here:
+Es können drei verschiedne Arten von Trigger erstellt werden:
 <br>
 				<ul>
 					<li>Schedule triggers</li>
@@ -306,9 +297,9 @@ The automatic triggers cater for a wide variety of automation options and fall u
 			<section>
 				<h1>Azure Data Factory Integrated Runtimes</h1>
 				<ul>
-					<li>Underpinning all activity in Azure Data Factory is the integration runtime (IR).</li>
-					<li>Cloud compute resource that actually does the heavy lifting when copying data from one place to another or routing jobs to the required external compute resources</li>
-					<li>Leaves provision of the compute resource up to Azure itself, no further thought on the part of the developer</li>
+					<li>Von allen activities in der Azure Data Factory wird eine integration runtime (IR) als technischer Unterbau verwendet</li>
+					<li>Cloud-Computing-Ressource werden hierfür genutzt, welche die Rechenlast übernehmen, wenn es darum geht, Daten von einem Ort an einen anderen zu kopieren oder Jobs an die erforderlichen externen Computing-Ressourcen weiterzuleiten</li>
+					<li>Überlässt die Bereitstellung der Rechenressource der automatisierten Azure computing Logik, ohne dass sich der Entwickler darüber Gedanken machen muss</li>
 				</ul>
 			</section>
 			<section>
@@ -317,54 +308,48 @@ The automatic triggers cater for a wide variety of automation options and fall u
 			</section>
 			<section>
 				<h1>Azure Analysis Services</h1>
-				Warum Analysis Services , wenn das Stern Schema doch für analytische Abfragen erstellt wurde? Storage Layer vs. Semantic Layer
-				<br>
-				<br>
-				Semantic data modeling is a phase where you want to create a semantic data model so that analysts can have seamless access to data. 
-				A semantic data model is a tabular format that is structured and can easily be visualized and understood by most users (Granularity, column names, hierarchies, security, KPIs).
-				<br>
-				<br>
-				Azure Analysis Services (AAS) is a cloud hosted service and a fully managed platform as a service (PaaS) tool that enables data engineers to model database tables and serve these semantic data models to users
-				<br>
-				<br>
-				Azure Analysis Services is built on the proven analytical engine of SQL Server 2016
-				Analysis Services.
-				
+				<p>Azure Analysis Services (AAS) ist ein in der Cloud gehosteter Dienst und ein vollständig verwaltetes Platform-as-a-Service-Tool (PaaS), mit dem Data Engineers Datenbanktabellen modellieren und Benutzern diese semantischen Datenmodelle bereitstellen können</p>
+				<p>Basierend auf dem on-premise Produkt SQL Server 2016 Analysis Services von Microsoft</p>
 			</section>
 			<section>
-				<h1>AAS offers the following features</h1>
+				<h1>Azure Analysis Services</h1>
+				<p>Warum Analysis Services, wenn das Stern Schema doch für analytische Abfragen erstellt wurde? </p>
+				<p>Storage Layer vs. Semantic Layer</p>
+				<p>Die semantische Datenmodellierung ist eine Phase, in der ein semantisches Datenmodell erstellt wird, damit Analysten nahtlosen Zugriff auf Daten haben</p>
+				<p>Ein semantisches Datenmodell ist ein tabellarisches Format, das strukturiert ist und von den meisten Benutzern leicht visualisiert und verstanden werden kann (Granularität, Spaltennamen, Hierarchien, Sicherheit, KPIs)</p>
+			</section>
+			<section>
+				<h1>AAS features</h1>
 				<ul>
-					<li>The user can combine data from different complex sources and create a tabular representation of data that is easily understood by most people.</li>
-					<li>The platform provides on-demand performance that can match the scale of your data size and operations.</li>
-					<li>Azure Analysis Services is easy to deploy, scale, and manage as it is a PAAS solution.</li>
-					<li>AAS also provides an added layer of security that ensures only the right people get access to the right set of data (role-based access control) using Azure Active Directory.</li>
+					<li>Der Benutzer kann Daten aus verschiedenen komplexen Quellen kombinieren und eine tabellarische Darstellung der Daten erstellen, die für die meisten Menschen leicht verständlich ist</li>
+					<li>Die Plattform bietet On-Demand performance Steigerung, die dem Umfang der Datengröße und der Prozesse entsprechen kann</li>
+					<li>Azure Analysis Services ist einfach bereitzustellen, zu skalieren und zu verwalten, da es sich um eine PAAS-Lösung handelt</li>
+					<li>AAS bietet außerdem eine zusätzliche Sicherheitsebene, die sicherstellt, dass nur die richtigen Personen Zugriff auf den richtigen Datensatz erhalten (rollenbasierte Zugriffskontrolle) mithilfe von Azure Active Directory</li>
 				</ul>
 			</section>
 			<section>
 				<h1>Tabular vs. Multidimensional</h1>
-				The Tabular model (In-Memory Cube). Tabular models are in-memory databases in Analysis Services. Using state-of-the-art compression algorithms and multi-threaded query processing, the Xvelocity (former name: Vertipaq) engine delivers fast access to tabular model objects and data through reporting client applications such as Microsoft Excel and Microsoft PowerBI.
+				Tabular models sind Tabellenmodelle In-Memory-Datenbanken des Analysis Services. Mithilfe modernster Komprimierungsalgorithmen und Multithread-Abfrageverarbeitung ermöglicht die Xvelocity-Engine (früherer Name: Vertipaq) schnellen Zugriff auf tabellarische Modellobjekte und Daten über Reporting-Client-Anwendungen wie Microsoft Excel und Microsoft PowerBI
 				<br>
 				<br>
-				The Multidimensional model (traditional OLAP Cube). This model is the OLAP cube that already exists for more than ten years. OLAP technology organizes summary data into multidimensional structures. Aggregations are stored in the multidimensional structure in cells at coordinates specified by the dimensions.
+				Beim mehrdimensionale Modell handelt es sich um den OLAP-Cube, den es bereits seit mehr als zehn Jahren gibt. Die OLAP-Technologie organisiert zusammenfassende Daten in mehrdimensionalen Strukturen. Aggregationen werden in der mehrdimensionalen Struktur in Zellen an durch die Dimensionen angegebenen Koordinaten gespeichert
 				
 				<figcaption>https://www.element61.be/en/resource/choice-between-tabular-or-multidimensional-models-sql-server-analysis-services-2012
 				</figcaption>
 			</section>
 			<section>
 				<h1>Tabular vs. Multidimensional</h1>
-				These two models have the same goal: to provide a semantic layer on top of your DWH with high performance capabilities that allows the end-users to dig into the data. 
+				Beiden Modelle sind Teil des Analysis Services und haben das gleiche Ziel: Eine semantische Ebene über dem DWH mit Hochleistungsfunktionen bereitzustellen, die es den Endbenutzern ermöglicht die Daten schneller zu analysieren und zu verstehen
 				<br>
 				<br>
-				The fact that these two models are part of Analysis Services could give the impression that both models are similar and that you can easily switch from one model to another. The reality is that they are two different products with two totally different design experiences and underlying data-architectures. They can co-exist on the same machine but they both have their own instances.
-				<br>
-				<br>
-				Tabular Model:
-				<br>
-				<br>
-More performant than OLAP in majority of the case.(Exception: Report on aggregated data with predefined aggregations)
-Easier to develop than Multidimensional model.
-Technology for the future.
-AAS only supports tabular projects.
+				Die technische Struktur der Modelle weicht ab, es kann nicht on-the-fly von einem Modell zum Anderen gewechselt werden, die Realität ist, dass es sich um zwei verschiedene Produkte mit zwei völlig unterschiedlichen Designerfahrungen und zugrunde liegenden Datenarchitekturen handelt, beide Modelle können auf derselben Infrastruktur koexistieren, haben aber beide ihre eigenen Instanzen
+			</section>
+			<section>
+				<h1>Tabular vs. Multidimensional</h1>
+				<p>Tabular Models sind in den meisten Fällen leistungsfähiger als OLAP (Ausnahme: Bericht über aggregierte Daten mit vordefinierten Aggregationen)</p>
+				<p>Tabular Models sind einfacher zu entwickeln als ein mehrdimensionales Modell</p>
+				<p>Datenbanken wie Snowflake ermöglichen durch neue Speichertechniken tabulare Strukturen mit größerer Performance und Datenmenge, Technologie wird stetig weiterentwickelt </p>
+				<p>AAS unterstützt nur tabellarische Projekte</p>
 			</section>
 			<section> 
 				<h1>Literatur</h1>
