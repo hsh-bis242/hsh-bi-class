@@ -86,17 +86,72 @@
 			</section>
 			<section>
 				<section>
-					<h1>Verbindung zum Übungsserver</h1>
+					<h1>Einrichten der Übungsumgebung</h1>
 					<p>
-						Die <a href="https://moodle.hs-hannover.de/course/view.php?id=23765#section-2">Zugangsdaten</a> enthalten den Benutzernamen und das Passwort für eine Remotedesktopverbindung zum Übungsserver. Auf diesem absolvieren wir den Großteil der Übungen.
+						Zur Einrichtung der Übungsumgebung in Azure gehen wir auf folgende Punkte in den nächsten Folien drauf ein:
 					</p>
 					<p>
-						Stellen Sie innerhalb des Hochschulnetzwerkes (ggf. VPN-Verbindung herstellen) eine Remotedesktopverbindung mit dem Server <b>w-postgres</b> (bei fehlerhafter Namensauflösung, nutzen Sie die IP-Adresse 141.71.32.46) her.
+						<ol>
+							<li>Terraform als Infrastructure-as-Code-Softwaretool (IaC) zum bereitstellen der verschiedenen Azure Services:</li>
+							<ul>
+								<li>Resourcengruppe</li>
+								<li>Storage Account</li>
+								<li>Storage Container</li>
+								<li>Microsoft SQL-Server</li>
+							</ul>
+							<li>
+								PowerShell-Skript zum ausführen des Terraform-Skript's
+							</li>
+							<li>
+								.BacPac Datei mit Informationen und Daten zur Datenbank
+							</li>
+						</ol>
+					</p>
+				</section>
+				<section>
+					<h1>Anpassen der Dateien</h1>
+					<p>Bevor wir in Azure die Infrastruktur aufsetzen, müssen beide Dateien (<b>main.ps1</b> und <b>main.tf</b>) in jeder Übungsgruppe angepasst werden.</p>
+					<p>Bitte ersetzen Sie dazu <b>alle</b> Vorkommen von <b>xx</b> bzw. <b>XX</b> in jeweils beiden Dateien. Alle Stellen sind jeweils auch mit einem Kommentar vermerkt.</p>
+					<p>Ändern Sie zusätzlich bitte bei der <b>.BacPac</b> Datei auch die <b>XX</b> in dem Dateinamen</p>
+				</section>
+				<section>
+					<h1>Installation in Azure</h1>
+					<p>
+						Zur Einrichtung der Übungsumgebung in Azure nutzen wir Terraform als Infrastructure-as-Code-Softwaretool (IaC).
 					</p>
 					<p>
-						<img src="static/U01/rdpConnect.png" height="200">
-						<img src="static/U01/rdpConnect2.png" height="200">
+						Im Folgenden finden Sie eine schrittweise Anleitung zur Einrichtung.
+					</p> 
+					<p>
+						<ol>
+							<li>Bitte fügen Sie beide Dateien (<b>main.ps1</b> und <b>main.tf</b>) über die Azure CLI ein.</li>
+							<li>Initialisieren Sie mithilfe von <code><b>terraform init</b></code> Terraform im Startverzeichnis.</li>
+							<li>Anschließend führen Sie bitte <code><b>terraform apply</b></code> aus um die in der Datei definierte Infrastruktur erstellen zu lassen.</li>
+						</ol>
 					</p>
+					<p>
+						Die Ausführung kann bis zu 15 min dauern. Im Anschluss ist die Infrastruktur einsatzbereit.
+					</p>
+				</section>
+				<section>
+					<h1>Hochladen der Willibald Datenbank Datei (.bacpac)</h1>
+					<p>Um die bereits bestehende Datenbank in Azure zu nutzen, muss diese zuvor importiert werden. Dazu sind folgende Schritte nötig:</p>
+					<p>
+						<ol>
+							<li>Navigieren Sie in Azure zu ihrem <b>Speicherkonto</b> (biXX)</li>
+							<li>In der linken Navigation klicken Sie unter dem Punkt <b>Datenspeicher</b> auf die Schaltfläche <b>Container</b></li>
+							<li>Wählen Sie <b>biXX</b> aus der Liste aus</li>
+							<li>Klicken Sie auf die Schaltfläche <b>Hochladen</b> im oberen Bereich</li>
+							<li>Wählen Sie die <b>WillibaldXX.bacpac</b> Datei aus</li>
+						</ol>
+					</p>
+				</section>
+				<section>
+					<h1>Ausführen des PowerShell-Skript's</h1>
+					<p>Nach dem nun alles benötigte vorhanden ist, können wir das<br>PowerShell-Skript ausführen um die Datenbank-Datei zu importieren</p>
+					<p><code><b></b>PS /home/bixxxxx> <b>./main.ps1</b></code></p>
+					<p>Ab diesem Punkt wird im Hintergrund eine neue Anfrage an den SQL-Server eröffnet.</p>
+					<p>Der gesamte Prozess des Imports kann bis zu 15 Minuten dauern.</p>
 				</section>
 			</section>
 			<section>
