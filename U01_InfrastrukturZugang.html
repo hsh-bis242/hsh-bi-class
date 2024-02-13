@@ -88,6 +88,10 @@
 				<section>
 					<h1>Einrichten der Übungsumgebung</h1>
 					<p>
+						<img height="50" src="/static/U01/azure.png" />
+						<img height="50" src="/static/U01/tf.png" />
+					</p>
+					<p>
 						Zur Einrichtung der Übungsumgebung in Azure gehen wir auf folgende Punkte in den nächsten Folien drauf ein:
 					</p>
 					<p>
@@ -100,10 +104,10 @@
 								<li>Microsoft SQL-Server</li>
 							</ul>
 							<li>
-								PowerShell-Skript zum ausführen des Terraform-Skript's
+								.BacPac Datei mit Informationen und Daten zur Datenbank
 							</li>
 							<li>
-								.BacPac Datei mit Informationen und Daten zur Datenbank
+								PowerShell-Skript zum ausführen der .BacPac-Datei
 							</li>
 						</ol>
 					</p>
@@ -111,7 +115,7 @@
 				<section>
 					<h1>Anpassen der Dateien</h1>
 					<p>Bevor wir in Azure die Infrastruktur aufsetzen, müssen beide Dateien (<b>main.ps1</b> und <b>main.tf</b>) in jeder Übungsgruppe angepasst werden.</p>
-					<p>Bitte ersetzen Sie dazu <b>alle</b> Vorkommen von <b>xx</b> bzw. <b>XX</b> in jeweils beiden Dateien. Alle Stellen sind jeweils auch mit einem Kommentar vermerkt.</p>
+					<p>Bitte ersetzen Sie dazu <b>alle</b> Vorkommen von <b>xx</b> bzw. <b>XX</b> in jeweils beiden Dateien. Alle Stellen sind jeweils auch mit einem Kommentar versehen.</p>
 					<p>Ändern Sie zusätzlich bitte bei der <b>.BacPac</b> Datei auch die <b>XX</b> in dem Dateinamen</p>
 				</section>
 				<section>
@@ -125,8 +129,8 @@
 					<p>
 						<ol>
 							<li>Bitte fügen Sie beide Dateien (<b>main.ps1</b> und <b>main.tf</b>) über die Azure CLI ein.</li>
-							<li>Initialisieren Sie mithilfe von <code><b>terraform init</b></code> Terraform im Startverzeichnis.</li>
-							<li>Anschließend führen Sie bitte <code><b>terraform apply</b></code> aus um die in der Datei definierte Infrastruktur erstellen zu lassen.</li>
+							<li>Initialisieren Sie mithilfe von <code><b>terraform init</b></code>, Terraform im Startverzeichnis.</li>
+							<li>Anschließend führen Sie bitte <code><b>terraform apply</b></code> aus, um die in der Datei definierte Infrastruktur bereitstellen zu lassen.</li>
 						</ol>
 					</p>
 					<p>
