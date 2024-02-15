@@ -92,7 +92,7 @@
 						<img height="50" src="/static/U01/tf.png" />
 					</p>
 					<p>
-						Zur Einrichtung der Übungsumgebung in Azure gehen wir auf folgende Punkte in den nächsten Folien drauf ein:
+						Die Einrichtung der Übungsumgebung erfolgt mithilfe folgender Technologien:
 					</p>
 					<p>
 						<ol>
@@ -104,19 +104,20 @@
 								<li>Microsoft SQL-Server</li>
 							</ul>
 							<li>
-								.BacPac Datei mit Informationen und Daten zur Datenbank
+								.BacPac-Datei mit Modell und Daten des Core-DWH
 							</li>
 							<li>
-								PowerShell-Skript zum ausführen der .BacPac-Datei
+								Powershell-Skript, zum Initialisieren des Core-DWH
 							</li>
 						</ol>
 					</p>
 				</section>
 				<section>
 					<h1>Anpassen der Dateien</h1>
-					<p>Bevor wir in Azure die Infrastruktur aufsetzen, müssen beide Dateien (<b>main.ps1</b> und <b>main.tf</b>) in jeder Übungsgruppe angepasst werden.</p>
+					<p>Vor Inbetriebnahme der Infrastruktur, laden Sie bitte folgende drei Dateien herunter: 
+						<b><a href="static/U01/Scripts/main.ps1">main.ps1</a></b>, <b><a href="static/U01/Scripts/main.tf">main.tf</a></b> und <b><a href="static/U01/Scripts/Willibald.bacpac">Willibald.bacpac</a></b>.</p>
+						<p>In den beiden Dateien <b><a href="static/U01/Scripts/main.ps1">main.ps1</a></b> und <b><a href="static/U01/Scripts/main.tf">main.tf</a></b> müssen vor der Ausführung noch einige Stellen angepasst werden!</p>
 					<p>Bitte ersetzen Sie dazu <b>alle</b> Vorkommen von <b>xx</b> bzw. <b>XX</b> in jeweils beiden Dateien. Alle Stellen sind jeweils auch mit einem Kommentar versehen.</p>
-					<p>Ändern Sie zusätzlich bitte bei der <b>.BacPac</b> Datei auch die <b>XX</b> in dem Dateinamen</p>
 				</section>
 				<section>
 					<h1>Installation in Azure</h1>
@@ -128,9 +129,13 @@
 					</p> 
 					<p>
 						<ol>
-							<li>Bitte fügen Sie beide Dateien (<b>main.ps1</b> und <b>main.tf</b>) über die Azure CLI ein.</li>
-							<li>Initialisieren Sie mithilfe von <code><b>terraform init</b></code>, Terraform im Startverzeichnis.</li>
-							<li>Anschließend führen Sie bitte <code><b>terraform apply</b></code> aus, um die in der Datei definierte Infrastruktur bereitstellen zu lassen.</li>
+							<li>Bitte fügen Sie beide Dateien (<b><a href="static/U01/Scripts/main.ps1">main.ps1</a></b> und <b><a href="static/U01/Scripts/main.tf">main.tf</a></b>) über die Azure CLI ein.</li>
+							<li>Initialisieren Sie Terraform im Startverzeichnis:
+								<pre><code>terraform init</code></pre>
+							</li>
+							<li>Anschließend stellen Sie bitte die Infrastruktur mit folgendem Command bereit:
+								<pre><code>terraform apply</code></pre>
+							</li>
 						</ol>
 					</p>
 					<p>
@@ -146,14 +151,14 @@
 							<li>In der linken Navigation klicken Sie unter dem Punkt <b>Datenspeicher</b> auf die Schaltfläche <b>Container</b></li>
 							<li>Wählen Sie <b>biXX</b> aus der Liste aus</li>
 							<li>Klicken Sie auf die Schaltfläche <b>Hochladen</b> im oberen Bereich</li>
-							<li>Wählen Sie die <b>WillibaldXX.bacpac</b> Datei aus</li>
+							<li>Wählen Sie die <b>Willibald.bacpac</b> Datei aus</li>
 						</ol>
 					</p>
 				</section>
 				<section>
 					<h1>Ausführen des PowerShell-Skript's</h1>
 					<p>Nach dem nun alles benötigte vorhanden ist, können wir das<br>PowerShell-Skript ausführen um die Datenbank-Datei zu importieren</p>
-					<p><code><b></b>PS /home/bixxxxx> <b>./main.ps1</b></code></p>
+					<pre><code>PS /home/bixxxxx> ./main.ps1</code></pre>
 					<p>Ab diesem Punkt wird im Hintergrund eine neue Anfrage an den SQL-Server eröffnet.</p>
 					<p>Der gesamte Prozess des Imports kann bis zu 15 Minuten dauern.</p>
 				</section>
