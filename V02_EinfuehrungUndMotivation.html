@@ -172,23 +172,91 @@
 				</section>
 			</section>
 			<section>
-				<h1>Abgrenzung OLTP</h1>
-				<figure>
-					<img src="static/V02/Koenig-Anwendungssystempyramide.png">
-					<figcaption>
-						In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
-						und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
-						Berlin: Springer
-					</figcaption>
-				</figure>
-				<aside class="notes">
-					Online Transaction Processing
-					Operative Systeme
-					Transaktionale Systeme
-					Oltp hat in der Regel höhere Verfügbarkeit Anforderungen als die dispositiven Systeme.
-					OLTP = Schwerpunkt auf einzelne, schnelle Transaktionen, Schreibvorgänge üblich;
-					OLAP = Schwerpunkt auf Batchverarbeitung, große Datenmengen, Schreibvorgänge unüblich.
-				</aside>
+				<section>
+					<h1>Abgrenzung OLTP</h1>
+					<figure>
+						<img src="static/V02/Koenig-Anwendungssystempyramide.png">
+						<figcaption>
+							In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
+							und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+							Berlin: Springer
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Online Transaction Processing
+						Operative Systeme
+						Transaktionale Systeme
+						Oltp hat in der Regel höhere Verfügbarkeit Anforderungen als die dispositiven Systeme.
+						OLTP = Schwerpunkt auf einzelne, schnelle Transaktionen, Schreibvorgänge üblich;
+						OLAP = Schwerpunkt auf Batchverarbeitung, große Datenmengen, Schreibvorgänge unüblich.
+					</aside>
+				</section>
+				<section>
+					<h1>OLTP vs. OLAP</h1>
+					<h2>Ziele und Zwecke</h2>
+					<figure>
+
+						<table style="font-size:small">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>Operative Systeme</th>
+									<th>Data Warehouse</th>
+									<th>Data Mart</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Ziel der Daten</th>
+									<td>Betriebsgenau</td>
+									<td>Themenorientiert, integriert, historisiert und persistent</td>
+									<td>Leichtverständlich</td>
+								</tr>
+								<tr>
+									<th>Modellierungsziel</th>
+									<td>Schnelle Transaktionen</td>
+									<td>Datenintegration und Historisierung</td>
+									<td>Schnelles Reporting & Datenanalyse</td>
+								</tr>
+								<tr>
+									<th>Anwendungsbereich</th>
+									<td>Anwendungsspezifisch</td>
+									<td>Unternehmensweit</td>
+									<td>Fachbereich</td>
+								</tr>
+								<tr>
+									<th>Modellbeziehungen</th>
+									<td>Optimiert für transaktionelle Verarbeitung</td>
+									<td>Einzigartige NBR, spezifisch, Abbildung des Zusammenhangs von Fachbegriffen</td>
+									<td>Abgeleitete Verbindungen, unterschiedliche Granularitäten und Hierarchien, basiert auf Geltungsbereichsspezifischen Berechnungen</td>
+								</tr>
+								<tr>
+									<th>Herausstechende Merkmale</th>
+									<td>Häufig generalisierte Entitäten</td>
+									<td>Keine orts- oder zeitabhängigen Zusammenstellungen</td>
+									<td>Orts- und Zeitdimensionen</td>
+								</tr>
+								<tr>
+									<th>Leitspruch</th>
+									<td>Control & Capture</td>
+									<td>Copy & Keep</td>
+									<td>Format & Deliver</td>
+								</tr>
+								<tr>
+									<th>Redundanz</th>
+									<td>Nicht erwünscht</td>
+									<td>Akkzeptabel und typisch</td>
+									<td>Soweit wie nötig</td>
+								</tr>
+							</tbody>
+						
+						</table>
+						&nbsp;
+						<figcaption>
+							Eigene Darstellung, in Anlehnung an <a href="https://alligatorcompany.gitlab.io/acs-docs/">Glunde, T., Alligator Company (2023)</a>
+						</figcaption>
+					</figure>
+				</section>
 			</section>
 			<section>
 				<section>
@@ -205,6 +273,16 @@
 							b.telligent Deutschland GmbH (2022)
 						</figcaption>
 					</figure>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>Quellsystemformate</h2>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2></h2>
 				</section>
 			</section>
 			<section>
