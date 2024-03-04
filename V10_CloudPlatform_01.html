@@ -126,6 +126,43 @@
 				</ul>
 			</section>
 			<section>
+				<h1>Infrastructure as Code (IaC)</h1>
+				<ul>
+					<li>Tools: Terraform, Chef, Puppet, ...</li>
+					<li>Speichert die Konfiguration einer Ressource in einer Datei (Versionierung der Konfiguration in git)</li>
+					<li>Eine Ressource kann jederzeit in anderen Account oder Instanz des cloud-providers mit der gleichen Konfiguration erzeugt werden (Produktisierung)</li>
+					<li>Verringert undokumentierte Ad-hoc Konfigurationen einzelner Instanzen einer Ressource</li>
+					<li>Kein navigieren in einer UI nötig</li>
+					<li>Nachteilig ist, dass die Kompatiblität des IaC-providers zu einer Ressource gegeben sein muss, bei Updates und Änderungen von Ressourcen muss auch das IaC tool aktualisiert werden</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Terraform script</h1>
+				<pre><code>terraform {
+	required_providers {
+		docker = {
+			source  = "kreuzwerker/docker"
+			version = "~> 3.0.1"
+		}
+	}
+}
+	provider "docker" {}
+	resource "docker_image" "nginx" {
+		name         = "nginx"
+		keep_locally = false
+	}
+					  
+	resource "docker_container" "nginx" {
+		image = docker_image.nginx.image_id
+		name  = "tutorial"
+		ports {
+			internal = 80
+			external = 8000
+		}
+	}</code>
+				</pre>
+			</section>
+			<section>
 				<h1>Microservices</h1>
 				<img src="static/V10/microservices.jpg" alt="Image 1" height="280">
 				<p>Unabhängig - Autonom - Dezentral - Lose verbunden</p>
