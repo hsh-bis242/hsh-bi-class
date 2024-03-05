@@ -24,8 +24,8 @@ $mainColor: #222;
 $headingColor: #222;
 
 $mainFontSize: 28px;
-$mainFont: Arial, Helvetica, sans-serif;
-$headingFont: Arial, Helvetica, sans-serif;
+$mainFont: "Source Sans Pro", Helvetica, sans-serif;
+$headingFont: "Source Sans Pro", Helvetica, sans-serif;
 $headingTextShadow: none;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
@@ -154,3 +154,7 @@ background-color: yellow;
 padding: 4px 10px;
 border: 1px solid $hsh_orange;
 }
+
+:root {
+    --hsh_orange: #{$hsh_orange};
+  }
