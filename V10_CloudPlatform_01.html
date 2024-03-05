@@ -36,132 +36,139 @@
 					</figcaption>
 			</section>
 			<section>
-				<h1>Charakteristik - on-demand and self-service</h1>
-				<ul>
-					<li>Interaktion mit Admin oder irgendeiner Person fällt weg keine personelle Abhängigkeiten</li>
-					<li>Eigenständiges bereitstellen einer computing-ressource zu jeder Tageszeit</li>
-					<li>Ermöglicht flexible, spontane und agile Entwicklungsprozesse</li>
-				</ul>
-				<img src="./static/V10/on-demand-netflix.jpg" height="280">
+				<section>
+					<h1>Charakteristik - on-demand and self-service</h1>
+					<ul>
+						<li>Interaktion mit Admin oder irgendeiner Person fällt weg keine personelle Abhängigkeiten</li>
+						<li>Eigenständiges bereitstellen einer computing-ressource zu jeder Tageszeit</li>
+						<li>Ermöglicht flexible, spontane und agile Entwicklungsprozesse</li>
+					</ul>
+					<img src="./static/V10/on-demand-netflix.jpg" height="280">
+				</section>
+				<section>
+					<h1>Charakteristik - broad network access</h1>
+					<ul>
+						<li>Sehr flexible Zugangsmöglichkeit um auf die computing-Ressourcen zuzugreifen</li>
+						<li>Alle Funktionalitäten über den Browser oder Apps erreichbar</li>
+						<li>Die Art und Konfiguration des clients Rechners spielt eine untergeordnete Rolle (Smartphone, tablet, iOS, Linux, ...)</li>
+					</ul>
+					<img src="./static/V10/network.jpg" height="280">
+				</section>
+				<section>
+					<h1>Charakteristik - resource pooling</h1>
+					<ul>
+						<li>Die potentiellen Ressourcen eines Nutzers werden mehreren Nutzern zur Verfügung gestellt und sind nicht statisch reserviert</li>
+						<li>Multi-tenant - mehrere Kunden nutzen die gleiche computing Hardware ohne voneinander zu wissen oder sich gegenseitig zu beeinträchtigen</li>
+						<li>Die Ressourcen werden verbrauchsabhängig verteilt</li>
+						<li>Nur begränzten Einfluss auf geo-location der Ressourcen meist nur über Region (North-europe) seltener über Land(Staat) oder Rechenzentrum</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Charakteristik - rapid elasticity</h1>
+					<ul>
+						<li>Beim hoch- oder runterskalieren der Ressourcen gibt es keine negativen Konsequenzen für den Nutzer</li>
+						<li>Theoretisch unbegrenzte Ressourcen - aber auch unbegrenzte Kosten</li>
+						<li>Die Ressourcen werden verbrauchsabhängig verteilt</li>
+					</ul>
+					<img src="./static/V10/elastic.jpg" height="280">
+				</section>
+				<section>
+					<h1>Charakteristik - measured service</h1>
+					<ul>
+						<li>Monitoring der Verbräuche und Auslastung, ermöglicht Analyse wieviele Ressourcen benötigt werden um bestimmte tasks zu erfüllen</li>
+						<li>Kosten können verringert werden</li>
+						<li>Transparenz und Planungssicherheit</li>
+					</ul>
+					<img src="./static/V10/monitoring.jpg" height="280">
+				</section>
 			</section>
 			<section>
-				<h1>Charakteristik - broad network access</h1>
-				<ul>
-					<li>Sehr flexible Zugangsmöglichkeit um auf die computing-Ressourcen zuzugreifen</li>
-					<li>Alle Funktionalitäten über den Browser oder Apps erreichbar</li>
-					<li>Die Art und Konfiguration des clients Rechners spielt eine untergeordnete Rolle (Smartphone, tablet, iOS, Linux, ...)</li>
-				</ul>
-				<img src="./static/V10/network.jpg" height="280">
+				<section>
+					<h1>Service Models - SASS - Software as a Service</h1>
+					<ul>
+						<li>Anwendungen können in der cloud Infrastruktur genutzt werden</li>
+						<li>Hierbei kommt wieder die Charakteristik "broad network access" zu tragen Zugriff von vielen verschiedenen client-Plattformen</li>
+						<li>Der Nutzer hat keine Kontrolle über die Konfiguration der unterliegenden Komponenten wie z.B. das Betriebssystem, Speichertechnologie, Netzwerk oder Rechenkapazität </li>
+						<li>Azure SQL</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Service Models - IASS - Infrastructure as a Service</h1>
+					<ul>
+						<li>Dem Nutzer wird eine Basis-Infrastruktur zur Verfügung gestellt - Speicher, Rechenkapazität und Netzwerke</li>
+						<li>Es kann eigenständig ein Betriebssystem und weitere Software installiert werden</li>
+						<li>Erweiterte Konfigurationsmöglichkeiten über z.B. Netzwerkkomponenten können bereitgestellt werden (Firewall, Ports etc.)</li>
+						<li>VM und Container</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Service Models - PASS - Platform as a Service</h1>
+					<ul>
+						<li>Ordnet sich zwischen SASS und IASS an</li>
+						<li>Nutzer bekommen eine Application vom Anbieter deployed in der cloud Infrastruktur</li>
+						<li>Diese Applikation kann komplett vom Nutzer konfiguriert werden</li>
+						<li>Zusätzlich können auch Konfigurationen für das Betriebssystem und den Speicher vorgenommen werden</li>
+						<li>App Engines</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Service Models - Weitere models</h1>
+					<ul>
+						<li>Database as a Service</li>
+						<li>Function as a Service</li>
+						<li>Bare Metal as a Service</li>
+					</ul>
+				</section>
 			</section>
 			<section>
-				<h1>Charakteristik - resource pooling</h1>
-				<ul>
-					<li>Die potentiellen Ressourcen eines Nutzers werden mehreren Nutzern zur Verfügung gestellt und sind nicht statisch reserviert</li>
-					<li>Multi-tenant - mehrere Kunden nutzen die gleiche computing Hardware ohne voneinander zu wissen oder sich gegenseitig zu beeinträchtigen</li>
-					<li>Die Ressourcen werden verbrauchsabhängig verteilt</li>
-					<li>Nur begränzten Einfluss auf geo-location der Ressourcen meist nur über Region (North-europe) seltener über Land(Staat) oder Rechenzentrum</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Charakteristik - rapid elasticity</h1>
-				<ul>
-					<li>Beim hoch- oder runterskalieren der Ressourcen gibt es keine negativen Konsequenzen für den Nutzer</li>
-					<li>Theoretisch unbegrenzte Ressourcen - aber auch unbegrenzte Kosten</li>
-					<li>Die Ressourcen werden verbrauchsabhängig verteilt</li>
-				</ul>
-				<img src="./static/V10/elastic.jpg" height="280">
-			</section>
-			<section>
-				<h1>Charakteristik - measured service</h1>
-				<ul>
-					<li>Monitoring der Verbräuche und Auslastung, ermöglicht Analyse wieviele Ressourcen benötigt werden um bestimmte tasks zu erfüllen</li>
-					<li>Kosten können verringert werden</li>
-					<li>Transparenz und Planungssicherheit</li>
-				</ul>
-				<img src="./static/V10/monitoring.jpg" height="280">
-			</section>
-			<section>
-				<h1>Service Models - SASS - Software as a Service</h1>
-				<ul>
-					<li>Anwendungen können in der cloud Infrastruktur genutzt werden</li>
-					<li>Hierbei kommt wieder die Charakteristik "broad network access" zu tragen Zugriff von vielen verschiedenen client-Plattformen</li>
-					<li>Der Nutzer hat keine Kontrolle über die Konfiguration der unterliegenden Komponenten wie z.B. das Betriebssystem, Speichertechnologie, Netzwerk oder Rechenkapazität </li>
-					<li>Azure SQL</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Service Models - IASS - Infrastructure as a Service</h1>
-				<ul>
-					<li>Dem Nutzer wird eine Basis-Infrastruktur zur Verfügung gestellt - Speicher, Rechenkapazität und Netzwerke</li>
-					<li>Es kann eigenständig ein Betriebssystem und weitere Software installiert werden</li>
-					<li>Erweiterte Konfigurationsmöglichkeiten über z.B. Netzwerkkomponenten können bereitgestellt werden (Firewall, Ports etc.)</li>
-					<li>VM und Container</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Service Models - PASS - Platform as a Service</h1>
-				<ul>
-					<li>Ordnet sich zwischen SASS und IASS an</li>
-					<li>Nutzer bekommen eine Application vom Anbieter deployed in der cloud Infrastruktur</li>
-					<li>Diese Applikation kann komplett vom Nutzer konfiguriert werden</li>
-					<li>Zusätzlich können auch Konfigurationen für das Betriebssystem und den Speicher vorgenommen werden</li>
-					<li>App Engines</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Service Models - Weitere models</h1>
-				<ul>
-					<li>Database as a Service</li>
-					<li>Function as a Service</li>
-					<li>Bare Metal as a Service</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Deployment models</h1>
-				<ul>
-					<li>Private cloud - Für eine Organization wird exklusiv Infrastruktur bereitgestellt</li>
-					<li>Community cloud - Mehrere Organisationen mit gleichen Interessen teilen sich die cloud-Infrastruktur</li>
-					<li>Public Cloud - Die cloud Infrastruktur kann von jeder Institution oder natürlichen Person im Rahmen der festgelegten AGB genutzt werden</li>
-					<li>Hybrid Cloud - Zwei oder mehr getrennte cloud Infrastrukturen sind durch angeglichene Standards und Technologien miteinander kompatibel, Daten und Anwendungen können portiert werden</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Infrastructure as Code (IaC)</h1>
-				<ul>
-					<li>Tools: Terraform, Chef, Puppet, ...</li>
-					<li>Speichert die Konfiguration einer Ressource in einer Datei (Versionierung der Konfiguration in git)</li>
-					<li>Eine Ressource kann jederzeit in anderen Account oder Instanz des cloud-providers mit der gleichen Konfiguration erzeugt werden (Produktisierung)</li>
-					<li>Verringert undokumentierte Ad-hoc Konfigurationen einzelner Instanzen einer Ressource</li>
-					<li>Kein navigieren in einer UI nötig</li>
-					<li>Nachteilig ist, dass die Kompatiblität des IaC-providers zu einer Ressource gegeben sein muss, bei Updates und Änderungen von Ressourcen muss auch das IaC tool aktualisiert werden</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Terraform script</h1>
-				<pre><code>terraform {
-	required_providers {
-		docker = {
-			source  = "kreuzwerker/docker"
-			version = "~> 3.0.1"
+				<section>
+					<h1>Deployment models</h1>
+					<ul>
+						<li>Private cloud - Für eine Organization wird exklusiv Infrastruktur bereitgestellt</li>
+						<li>Community cloud - Mehrere Organisationen mit gleichen Interessen teilen sich die cloud-Infrastruktur</li>
+						<li>Public Cloud - Die cloud Infrastruktur kann von jeder Institution oder natürlichen Person im Rahmen der festgelegten AGB genutzt werden</li>
+						<li>Hybrid Cloud - Zwei oder mehr getrennte cloud Infrastrukturen sind durch angeglichene Standards und Technologien miteinander kompatibel, Daten und Anwendungen können portiert werden</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Infrastructure as Code (IaC)</h1>
+					<ul>
+						<li>Tools: Terraform, Chef, Puppet, ...</li>
+						<li>Speichert die Konfiguration einer Ressource in einer Datei (Versionierung der Konfiguration in git)</li>
+						<li>Eine Ressource kann jederzeit in anderen Account oder Instanz des cloud-providers mit der gleichen Konfiguration erzeugt werden (Produktisierung)</li>
+						<li>Verringert undokumentierte Ad-hoc Konfigurationen einzelner Instanzen einer Ressource</li>
+						<li>Kein navigieren in einer UI nötig</li>
+						<li>Nachteilig ist, dass die Kompatiblität des IaC-providers zu einer Ressource gegeben sein muss, bei Updates und Änderungen von Ressourcen muss auch das IaC tool aktualisiert werden</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Terraform script</h1>
+					<pre><code>terraform {
+		required_providers {
+			docker = {
+				source  = "kreuzwerker/docker"
+				version = "~> 3.0.1"
+			}
 		}
 	}
-}
-	provider "docker" {}
-	resource "docker_image" "nginx" {
-		name         = "nginx"
-		keep_locally = false
-	}
-					  
-	resource "docker_container" "nginx" {
-		image = docker_image.nginx.image_id
-		name  = "tutorial"
-		ports {
-			internal = 80
-			external = 8000
+		provider "docker" {}
+		resource "docker_image" "nginx" {
+			name         = "nginx"
+			keep_locally = false
 		}
-	}</code>
-				</pre>
+						
+		resource "docker_container" "nginx" {
+			image = docker_image.nginx.image_id
+			name  = "tutorial"
+			ports {
+				internal = 80
+				external = 8000
+			}
+		}</code>
+					</pre>
+				</section>
 			</section>
+			<section>
 			<section>
 				<h1>Microservices</h1>
 				<img src="static/V10/microservices.jpg" alt="Image 1" height="280">
@@ -239,6 +246,8 @@
 					https://learn.microsoft.com/de-de/dotnet/architecture/microservices/container-docker-introduction/docker-containers-images-registries
 				</figcaption>
 			</section>
+		</section>
+		<section>
 			<section>
 				<h1>Cloud computing kann auch Open Source</h1>
 				<ul>
@@ -263,6 +272,8 @@ As a Foundation we intentionally do not define a technical strategy: that is det
 				 <a
 				href="https://www.apache.org/index.html#projects-list">Apache-Projektliste</a>		
 			</section>
+		</section>
+		<section>
 			<section style="font-size: 20px">
 				<h1>On-Premise vs. Cloud</h1>
 				<table>
@@ -325,6 +336,7 @@ As a Foundation we intentionally do not define a technical strategy: that is det
 					<li>Keine externen Abhängigkeiten oder vendor-lock-in erlauben</li>
 				</ul>
 			</section>
+		</section>
 			<section>
 				<h1>Risiken von Cloud computing</h1>
 				<ul>
@@ -344,36 +356,38 @@ As a Foundation we intentionally do not define a technical strategy: that is det
 				<figcaption>https://www.statista.com/chart/18819/worldwide-market-share-of-leading-cloud-infrastructure-service-providers/</figcaption>
 			</section>
 			<section>
-				<h1>Cloud und AI - Use Cases</h1>
-				<ul>
-					<li>IoT - Lagerbestände, Qualität, Zeitfolge und Lieferketten</li>
-					<li>Chatbots - Beratung, Support und Social Media</li>
-					<li>Business Intelligence - Analytics</li>
-					<li>AI as a service - Vorgefertigte Lösungen</li>
-					<li>Cognitive Cloud - Finanzmärkte und Gesundheitssystem, Komplexe Analysen von Experten</li>
-					<li>Linguistik - Übersetzung, Speech to Text und Text to Speech</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Cloud und AI Synergien</h1>
-				<ul>
-					<li>Initiale Kostensenkung</li>
-					<li>Schneller produktiv</li>
-					<li>Toolstack für Automatisierung</li>
-				</ul>
-				<p><img src="static/V10/cloud_ai_synergien.jpg" height="180"></p>
-			</section>
-			<section>
-				<h1>Cloud und AI Nachteile</h1>
-				<ul>
-					<li>Datensicherheit und -schutz</li>
-					<li>Netzwerk und Konnektivität</li>
-					<li>Toolstack für Automatisierung</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Google Cloud und AI</h1>
-				<a href="https://cloud.google.com/products/ai?hl=de">Google Cloud AI Produkte</a> 
+				<section>
+					<h1>Cloud und AI - Use Cases</h1>
+					<ul>
+						<li>IoT - Lagerbestände, Qualität, Zeitfolge und Lieferketten</li>
+						<li>Chatbots - Beratung, Support und Social Media</li>
+						<li>Business Intelligence - Analytics</li>
+						<li>AI as a service - Vorgefertigte Lösungen</li>
+						<li>Cognitive Cloud - Finanzmärkte und Gesundheitssystem, Komplexe Analysen von Experten</li>
+						<li>Linguistik - Übersetzung, Speech to Text und Text to Speech</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Cloud und AI Synergien</h1>
+					<ul>
+						<li>Initiale Kostensenkung</li>
+						<li>Schneller produktiv</li>
+						<li>Toolstack für Automatisierung</li>
+					</ul>
+					<p><img src="static/V10/cloud_ai_synergien.jpg" height="180"></p>
+				</section>
+				<section>
+					<h1>Cloud und AI Nachteile</h1>
+					<ul>
+						<li>Datensicherheit und -schutz</li>
+						<li>Netzwerk und Konnektivität</li>
+						<li>Toolstack für Automatisierung</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Google Cloud und AI</h1>
+					<a href="https://cloud.google.com/products/ai?hl=de">Google Cloud AI Produkte</a> 
+				</section>
 			</section>
 		</div>
 	</div>
