@@ -154,3 +154,7 @@ background-color: yellow;
 padding: 4px 10px;
 border: 1px solid $hsh_orange;
 }
+
+:root {
+    --hsh_orange: #{$hsh_orange};
+  }
