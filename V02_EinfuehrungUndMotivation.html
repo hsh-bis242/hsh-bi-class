@@ -28,37 +28,6 @@
 				</div>
 			</section>
 			<section>
-				<h1>Einf&uuml;hrungsvideo: Lufthansa / Teradata</h1>
-				<figure>
-				<iframe id="videoLufthansa" width="700" height="400"
-					src="//www.youtube.com/embed/oIhOqKHaTQg?enablejsapi=1&html5=1" frameborder="0"
-					allowfullscreen></iframe>
-				<figcaption>
-					<a href="https://www.youtube.com/watch?v=oIhOqKHaTQg">Youtube</a>
-				</figcaption>
-				</figure>
-				<aside class="notes">
-					LH: 4:37 min
-					Tableau: 3:32 min
-
-					Was ist hier anders als bei anderen WI Themen?
-					Zielgruppe Entscheider
-					Datenanalyse
-					Datenquelle: Operative Systeme
-				</aside>
-			</section>
-			<section>
-				<h1>Einf&uuml;hrungsvideo: Tableau</h1>
-				<figure>
-				<iframe id="videoTableau" width="700" height="400"
-					src="//www.youtube.com/embed/MlaiI7o2BvY?enablejsapi=1&html5=1" frameborder="0"
-					allowfullscreen></iframe>
-					<figcaption>
-						<a href="https://www.youtube.com/watch?v=MlaiI7o2BvY">Youtube</a>
-					</figcaption>
-				</figure>
-			</section>
-			<section>
 				<section>
 					<h1>Problemstellungen</h1>
 					<h2>Beispielfragestellungen</h2>
@@ -192,6 +161,9 @@
 				</section>
 			</section>
 			<section>
+				<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="contain" data-background-repeat="no-repeat">
+
+				</section>
 				<section data-background-image="static/V02/btelligent-Referenzarchitektur_BI.png">
 
 				</section>
@@ -200,23 +172,118 @@
 				</section>
 			</section>
 			<section>
-				<h1>Abgrenzung OLTP</h1>
-				<figure>
-					<img src="static/V02/Koenig-Anwendungssystempyramide.png">
-					<figcaption>
-						In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
-						und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
-						Berlin: Springer
-					</figcaption>
-				</figure>
-				<aside class="notes">
-					Online Transaction Processing
-					Operative Systeme
-					Transaktionale Systeme
-					Oltp hat in der Regel höhere Verfügbarkeit Anforderungen als die dispositiven Systeme.
-					OLTP = Schwerpunkt auf einzelne, schnelle Transaktionen, Schreibvorgänge üblich;
-					OLAP = Schwerpunkt auf Batchverarbeitung, große Datenmengen, Schreibvorgänge unüblich.
-				</aside>
+				<section>
+					<h1>Abgrenzung OLTP</h1>
+					<figure>
+						<img src="static/V02/Koenig-Anwendungssystempyramide.png">
+						<figcaption>
+							In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
+							und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+							Berlin: Springer
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Online Transaction Processing
+						Operative Systeme
+						Transaktionale Systeme
+						Oltp hat in der Regel höhere Verfügbarkeit Anforderungen als die dispositiven Systeme.
+						OLTP = Schwerpunkt auf einzelne, schnelle Transaktionen, Schreibvorgänge üblich;
+						OLAP = Schwerpunkt auf Batchverarbeitung, große Datenmengen, Schreibvorgänge unüblich.
+					</aside>
+				</section>
+				<section>
+					<h1>OLTP vs. OLAP</h1>
+					<h2>Ziele und Zwecke</h2>
+					<figure>
+
+						<table style="font-size:small">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>Operative Systeme</th>
+									<th>Data Warehouse</th>
+									<th>Data Mart</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Ziel der Daten</th>
+									<td>Betriebsgenau</td>
+									<td>Themenorientiert, integriert, historisiert und persistent</td>
+									<td>Leichtverständlich</td>
+								</tr>
+								<tr>
+									<th>Modellierungsziel</th>
+									<td>Schnelle Transaktionen</td>
+									<td>Datenintegration und Historisierung</td>
+									<td>Schnelles Reporting & Datenanalyse</td>
+								</tr>
+								<tr>
+									<th>Anwendungsbereich</th>
+									<td>Anwendungsspezifisch</td>
+									<td>Unternehmensweit</td>
+									<td>Fachbereich</td>
+								</tr>
+								<tr>
+									<th>Modellbeziehungen</th>
+									<td>Optimiert für transaktionelle Verarbeitung</td>
+									<td>Einzigartige NBR, spezifisch, Abbildung des Zusammenhangs von Fachbegriffen</td>
+									<td>Abgeleitete Verbindungen, unterschiedliche Granularitäten und Hierarchien, basiert auf Geltungsbereichsspezifischen Berechnungen</td>
+								</tr>
+								<tr>
+									<th>Herausstechende Merkmale</th>
+									<td>Häufig generalisierte Entitäten</td>
+									<td>Keine orts- oder zeitabhängigen Zusammenstellungen</td>
+									<td>Orts- und Zeitdimensionen</td>
+								</tr>
+								<tr>
+									<th>Leitspruch</th>
+									<td>Control & Capture</td>
+									<td>Copy & Keep</td>
+									<td>Format & Deliver</td>
+								</tr>
+								<tr>
+									<th>Redundanz</th>
+									<td>Nicht erwünscht</td>
+									<td>Akkzeptabel und typisch</td>
+									<td>Soweit wie nötig</td>
+								</tr>
+							</tbody>
+						
+						</table>
+						&nbsp;
+						<figcaption>
+							Eigene Darstellung, in Anlehnung an <a href="https://alligatorcompany.gitlab.io/acs-docs/">Glunde, T., Alligator Company (2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Technologien</h1>
+					<figure>
+						<div class="r-stack">
+							<img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+							<svg height="480" width="850">
+								<ellipse cx="350" cy="220" rx="350" ry="180" fill-opacity="0.0"
+  								style="stroke:var(--hsh_orange);stroke-width:2" />
+							</svg>
+						</div>
+						<figcaption>
+							b.telligent Deutschland GmbH (2022)
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>Quellsystemformate</h2>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2></h2>
+				</section>
 			</section>
 			<section>
 				<section>
@@ -263,48 +330,6 @@
 				</section>
 				<section>
 					<h1>Anwendungen</h1>
-					<h2>Reporting</h2>
-					<figure>
-						<img src="static/V02/Tableau_Reporting_Overview.png" height="480">
-						<figcaption>
-							https://www.tableau.com/de-de/products/desktop
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>Reporting</h2>
-					<figure>
-						<img src="static/V02/Gluchowski-Reporting_BI.png">
-						<figcaption>
-							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
-							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
-							Springer
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>Dashboards</h2>
-					<figure>
-						<img src="static/V02/PowerBI_Dashboard_Overview_annotated.png" height="480">
-						<figcaption>
-							Microsoft PowerBI Desktop (https://powerbi.microsoft.com/de-de/desktop/)
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>Dashboards</h2>
-					<figure>
-						<img src="static/V02/Koenig-Dashboard_USA.png" height="480">
-						<figcaption>
-							https://databoss.starschema.net/creating-simple-dashboard-tableau-talend-mysql/
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
 					<h3>Online Analytical Processing</h3>
 					<p>
@@ -317,112 +342,18 @@
 						<b>historischen, konsolidierten Datenbest&auml;nden</b>.
 					</p>
 				</section>
+
 				<section>
 					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<p>
-						Multidimensionale Perspektiven auf verf&uuml;gbare quantitative Datenbest&auml;nde haben sich
-						als geeignet erwiesen, um den Mitarbeitern einen flexiblen und intuitiven Zugang zu den
-						ben&ouml;tigten Informationen zu er&ouml;ffnen.
-					</p>
-					<p>
-						<b>Multidimensionalit&auml;t</b> als zentrales Gestaltungsparadigma:
-					</p>
-					<p>
-						Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher Klassen
-						logisch zusammengeh&ouml;riger Informationsobjekte aufgliedern.
-					</p>
-					<p>
-						Korrespondiert mit der naturgem&auml;ß mehrdimensionalen Problemsicht der
-						Unternehmungsanalytiker.
-					</p>
-					<aside class="notes">
-						Informationssysteme, die betrieblichen Fach- und Führungskräften bei ihren Entscheidungsaufgaben
-						wertvolle Unterstützung liefern wollen, müssen sich an dem Geschäftsverständnis bzw. an der
-						Sichtweise auf die eigene Unternehmung orientieren.
-						Multidimensionalität
-						- Form der logischen Anordnung quantitativer, betriebswirtschaftlicher Größen
-					</aside>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<p>
-						Betriebswirtschaftliche <b>Kenngr&ouml;ßen</b> (= <b>Fakten</b>)
-					</p>
-					<ul>
-						<li>Umsatz</li>
-					</ul>
-					<p>
-						<b>Dimensionen</b>
-					</p>
-					<p>
-					<ul>
-						<li>Kunden</li>
-						<li>Artikel</li>
-						<li>Regionen</li>
-					</ul>
-					</p>
-					<p>
-						hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)
-					</p>
-					<p>
-						Dimensionen entlang derer sich betriebswirtschaftliche Kenngr&ouml;ßen im Zeitablauf untersuchen
-						lassen.
-					</p>
-					<p>
-						Ums&auml;tze pro Monat in den verschiedenen Regionen und Produktgruppen
-					</p>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
+					<h2>Dashboards</h2>
 					<figure>
-						<img src="static/V02/Koenig-Wuerfeldarstellung_1.png">
+						<img src="static/V02/PowerBI_Dashboard_Overview_annotated.png" height="480">
 						<figcaption>
-							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
+							Microsoft PowerBI Desktop (https://powerbi.microsoft.com/de-de/desktop/)
 						</figcaption>
 					</figure>
 				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<figure>
-						<img src="static/V02/Koenig-Wuerfeldarstellung_2.png" height="480">
-						<figcaption>
-							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<figure>
-						<img src="static/V02/Koenig-Fachlicher_Stern_OLAP.png">
-						<figcaption>
-							Fachlicher Stern (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business
-							Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>ROLAP</h2>
-					<figure>
-						<img src="static/V02/PowerBI_Sternschema.png" height="480">
-						<!-- 
-							<img src="static/V02/Koenig-Sternschema_ROLAP.png">
-						-->
-						<figcaption>
-							Sternschema (https://learn.microsoft.com/de-de/power-bi/guidance/star-schema)
-						</figcaption>
-						<!--
-						<figcaption>
-							Sternschema (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
-						</figcaption>
-						-->
-					</figure>
-				</section>
+
 				<section>
 					<h1>Anwendungen</h1>
 					<h2>Data Mining</h2>
@@ -685,6 +616,330 @@
 				</aside>
 			</section>
 			<section>
+			<section>
+				<h1>Rollen in BI-Projekten</h1>
+				<figure>
+					<img src="static/V02/2013_vanBeek-business_intelligence_roles_and_competences.png" height="480">
+					<figcaption>
+						<a href="https://www.passionned.com/business-intelligence-roles-and-competences/">van Beek, D. (2013). Business Intelligence roles and competencies (abgerufen am 01.02.2024)</a>
+					</figcaption>
+				</figure>
+				<aside class="notes">
+					<p>Effective BI project teams are characterized - in contrast with conventional IT project teams - by their
+						multidisciplinary nature: business professionals, usability experts, information analysts, (senior) managers,
+						they
+						all play prominent role on the Business Intelligence stage:</p>
+					<h2 id="business-intelligence-project-manager">1. Business
+						Intelligence project manager</h2>
+					<p>The Business Intelligence project manager has knowledge of both business and technology and knows how to bridge
+						the
+						gap between all stakeholders involved in the project.</p>
+					<p>They understand the politics that are involved in Business Intelligence and they are the main discussion partner
+						for
+						the client when it comes to schedules, budgets, targets and resources. The project manager often works with
+						multiple
+						clients across multiple departments and therefore should be sure of their ground.</p>
+					<p>This is especially true when clients tend to go for short-term solutions and fail to opt for a balanced <a
+							title="Data warehouse" href="https://www.passionned.com/data-warehouse/">data warehouse
+							architecture</a>. The project manager should prevent these clients from opting for a much less flexible
+						'report
+						database'.</p>
+					<p>Obviously, the project manager has sufficient experience with and knowledge of Business Intelligence
+						architectures,
+						data warehousing and data models, however their greatest asset is their ability to weigh up various interests
+						and to
+						unearth the differing arguments.</p>
+					<p>This allows them to map out the best way of achieving good project results in terms of quality, budget and
+						return,
+						with satisfied clients and users as a result. The project manager reports to the steering committee and
+						maintains an
+						extensive network of relationships with external consultants, the business managers, experts and suppliers.</p>
+					<h3 id="project-manager-key-competencies">Project Manager key competencies</h3>
+					<ul>
+						<li>understands the concept of the Intelligent organization and is capable of easily explaining this concept to
+							project members as well as 'defending' it within the organization;</li>
+						<li>is able to reconcile short term and long term interests, individual and organizational interests;</li>
+						<li>writes the project plan and monitors the budgets, resources and schedules;</li>
+						<li>is aware of both the main risks and the key success factors of BI projects and manages the project with
+							these in
+							mind;</li>
+						<li>has an extensive network and is ultimately responsible for the project result.</li>
+					</ul>
+					<h2 id="business-analyst">2. Business Analyst</h2>
+					<p>The business analyst is the 'key user' of the BI system and works in close collaboration with the BI consultant,
+						the
+						client, the sponsor and the users.</p>
+					<p>They often act as a product director on the client's side. They create the most important reports and provide -
+						both
+						on request and on their own initiative - ad hoc analysis for managers and knowledge workers. They have thorough
+						knowledge of the business processes and know the underlying systems well.</p>
+					<p>The business analyst - often jointly responsible with controllers - determines the indicators and dimensions and
+						makes sure these are unambiguous, consistent and recognizable. They assist the organization's management with
+						all
+						types of reports and analysis thereby making good use of the possibilities offered by the various BI tools -
+						from
+						reports to interactive analysis, from visualization to data mining.</p>
+					<h3 id="business-analyst-key-competencies">Business analyst key competencies
+					</h3>
+					<ul>
+						<li>has thorough knowledge of the business and the business processes;</li>
+						<li>is communicative, quick-witted and accurate;</li>
+						<li>has in-depth knowledge of various statistical functions and visualizations;</li>
+						<li>has thorough knowledge of and experience with the <a title="BI tool selection criteria"
+								href="https://www.passionned.com/business-intelligence/tools/selection-criteria/">functioning of
+								different BI tools</a>;</li>
+						<li>hands-on mentality.</li>
+					</ul>
+					<h2 id="technical-bi-project-manager">3. Technical BI project
+						manager</h2>
+					<p>The technical BI project manager mainly focuses on technology and on efficient implementation of the plans once
+						these
+						are accepted.</p>
+					<p>They control the project on an operational level and they manage the BI architect, <a
+							title="Business Intelligence consultant"
+							href="https://www.passionned.com/hire/business-intelligence-consultant/">the Business
+							Intelligence-consultant</a>, the ETL developer and the system administrators. Often, they are a working
+						supervisor. In smaller projects, the technical project manager often also takes on the roles of project manager
+						and/or architect.</p>
+					<h3 id="technical-project-leader-key-competencies">Technical project leader key
+						competencies</h3>
+					<ul>
+						<li>Makes sure that the project plan is efficiently implemented and monitors the progress and quality of the
+							project;</li>
+						<li>has a very sound technical understanding of technologies, tools and methods and is able to take decisive
+							action
+							quickly, when necessary;</li>
+						<li>is quality conscious but has a certain pragmatism;</li>
+						<li>has hands-on experience with <a title="Business Intelligence Tools"
+								href="https://www.passionned.com/business-intelligence/tools/">various Business
+								Intelligence tools</a>.</li>
+					</ul>
+					<h2 id="business-intelligence-consultant">4. Business
+						Intelligence consultant</h2>
+					<p>The BI consultant is the link pin between the technical and business roles, at an operational level. They
+						translate
+						the information requirements into technical specifications and are responsible for the final changes in the
+						functional design.</p>
+					<p>The Business Intelligence consultant works closely together with the business analyst, the ETL developer and the
+						Business Intelligence architect. They are generally responsible for the design, the construction and the
+						maintenance
+						of the data marts and data cubes and he ensures that all essential analysis functionality is embedded.</p>
+					<h3 id="bi-consultant-key-competencies">BI consultant key competencies</h3>
+					<ul>
+						<li>Knows and comprehends the possibilities of BI tools in every detail;</li>
+						<li>has thorough knowledge of SQL, relational databases, OLAP and MDX;</li>
+						<li>has knowledge of analytical, statistical and relative time functions;</li>
+						<li>is communicative and decisive.</li>
+					</ul>
+					<h2 id="business-intelligence-client">5. Business Intelligence
+						client</h2>
+					<p>The client (or business manager) determines both the scope and the business case for BI and does this together
+						with
+						the users, the business analyst and the project manager.</p>
+					<p>They approve (or rejects) the plan of action and provides the budget. They ensure availability of resources
+						within
+						the organization and have sufficient knowledge of the overall possibilities of Business Intelligence, data
+						warehouses, <a title="Key Performance Indicators (KPIs)"
+							href="https://www.passionned.com/key-performance-indicators-kpi/">KPIs</a> and portals.
+					</p>
+					<p>They make sure that major course changes are pre-discussed and agreed upon and they are the chairperson of the
+						steering committee. Often, the client is also one of the main sponsors of the project. Large projects often
+						appoint
+						a so-called 'delegated client' - usually the information manager - who represents the client with regard to
+						operational issues.</p>
+					<h3 id="client-key-competencies">Client key competencies</h3>
+					<ul>
+						<li>Has sufficient general knowledge of (relationships in) business operations;</li>
+						<li>understands the possibilities Business Intelligence offers for the business and for the organization as a
+							whole;
+						</li>
+						<li>is well aware of the key success factors of BI and ensures that these success factors are being realized in
+							the
+							best possible way;</li>
+						<li>keeps an eye on the big picture and is decisive.</li>
+					</ul>
+					<h2 id="etl-developer">6. ETL developer</h2>
+					<p>The ETL developer designs and develops the ETL processes for the data warehouse - or makes sure that it is being
+						done.</p>
+					<h3 id="etl-developer-key-competencies">ETL developer key competencies</h3>
+					<ul>
+						<li>Has extensive knowledge of SQL and databases;</li>
+						<li>is inventive;</li>
+						<li>is an expert in the field of <a title="ETL TOOLS &amp; DATA INTEGRATION"
+								href="https://www.passionned.com/extract-transform-load/">ETL tools</a>;</li>
+						<li>is a software engineer who focuses on aspects such as maintainability, scalability, performance and so
+							forth;
+						</li>
+						<li>works meticulously and is tenacious.</li>
+					</ul>
+					<h2 id="business-intelligence-sponsor">7. Business Intelligence
+						sponsor</h2>
+					<p>The Business Intelligence sponsor is a future user of the Business Intelligence system who usually appears at the
+						time the possibilities of the Business Intelligence system take shape or have already (partially) been
+						established.
+					</p>
+					<p>In most cases, the sponsor is a member of the management team or even of the Board of Directors. The sponsor
+						plays an
+						important role in projects that exceed the boundaries of departments or business units and in which different
+						interests must be weighed. They support the concept of a single version of the truth.</p>
+					<p>Together with the business analyst, the sponsor designs the initial integral reports and analyses and does this
+						with
+						a certain ease. Where necessary, they promote <a title="Business Intelligence systems"
+							href="https://www.passionned.com/business-intelligence/tools/">the Business Intelligence
+							system</a> within the management team and at lower management levels. They have a decisive role in the
+						steering
+						committee, particularly when it comes to determining the future increments and the actual using of information
+						and
+						knowledge in the organization by ensuring that the management information is embedded in the PDCA cycle at
+						different
+						levels.</p>
+					<h3 id="sponsor-key-competencies">Sponsor key competencies</h3>
+					<ul>
+						<li>Recognizes the importance of Business Intelligence for the organization in the areas of <a
+								title="Performance Management" href="https://www.passionned.com/performance-management/">performance
+								management</a>, innovation and organizational development;</li>
+						<li>is enthusiastic and able to 'sell' the BI system within the organization;</li>
+						<li>takes action and has excellent management skills.</li>
+					</ul>
+					<h2 id="database-administrator-dba">8. Database Administrator
+						(DBA)</h2>
+					<p>The Database Administrator (DBA) makes sure that the databases and the data models are created on the computer
+						systems and monitors the growth of the data.</p>
+					<p>They alert the organization if actions are needed with regard to data (growth). They also monitor - usually in
+						close
+						consultation with the system administrators - the processing of the data warehouse and warns the BI project
+						manager
+						if something goes wrong.</p>
+					<p>Where necessary, they resolve the issue and reloads the <a title="Data warehouse"
+							href="https://www.passionned.com/data-warehouse/">data warehouse</a>. The DBA also takes
+						care of the monitoring of the response times of reports and analysis and works with the BI consultant in order
+						to -
+						if necessary - add aggregations or indexes. Lastly, the DBA ensures timely transferring of historical data from
+						the
+						data warehouse to an archive.</p>
+					<h3 id="dba-key-competencies">DBA key competencies</h3>
+					<ul>
+						<li>Has extensive knowledge of SQL, indexes, relational databases and OLAP;</li>
+						<li>is an expert in database-tuning;</li>
+						<li>is pro-active and works in a disciplined way and in accordance with procedures.</li>
+					</ul>
+					<h2 id="business-intelligence-architect">9. Business
+						Intelligence architect</h2>
+					<p>The Business Intelligence architect translates the basic principles of Business Intelligence, the business
+						requirements and the information needs into a future-proof data warehouse (and/or portal) architecture.</p>
+					<p>It is very important that the architecture is future-proof because the return on BI systems generally increases
+						as
+						more and more source systems are connected to it and when it supports additional business processes. The
+						architect
+						thus has a crucial role when it comes to the long-term interests of Business Intelligence and may therefore be a
+						bit
+						difficult when dealing with BI project managers or clients who tend to focus on the short term.</p>
+					<p>The architect has a thorough knowledge of the main IT technologies and architectures and is able to provide
+						generic
+						solutions, structures and data models quickly. They do not operate individually and are very creative and
+						communicative.</p>
+					<h3 id="bi-architect-key-competencies">BI architect key competencies</h3>
+					<ul>
+						<li>Is quirky and creative and has a healthy dose of persuasiveness and communication skills;</li>
+						<li>is familiar with the latest IT developments and more specifically with BI technologies and methods for data
+							warehousing, EAI and portals;</li>
+						<li>has detailed knowledge of the approaches, principles and perspectives of 'gurus' in the fields of Business
+							Intelligence, application integration, metadata and <a title="Data warehouse"
+								href="https://www.passionned.com/data-warehouse/">data warehousing</a>;</li>
+						<li>is able to 'defend' the chosen architecture on the basis of practical and conceptual arguments;</li>
+						<li>thinks and acts both in the abstract and generally;</li>
+						<li>has in-depth knowledge of the possibilities (and functions) of SQL and relational databases;</li>
+						<li>has knowledge of dimensional modeling using star schemas, snowflake schemas and Data Vaults.</li>
+					</ul>
+					<h2 id="system-administrator">10. System administrator</h2>
+					<p>The system administrator both installs and configures the hardware and <a class="normal"
+							title="Business Intelligence Software"
+							href="https://www.passionned.com/business-intelligence/tools/">Business Intelligence-software</a> and
+						monitors the availability of the systems and
+						services.</p>
+					<p>They also control and monitor both the system load and the performance. Lastly, the system administrator ensures
+						reliable user authentication as well as - together with the DBA - the authorization of the various components of
+						the
+						BI system.</p>
+					<h3 id="system-administrator-key-competencies">System administrator key
+						competencies</h3>
+					<ul>
+						<li>Has thorough knowledge of operating systems and system &amp; web services;</li>
+						<li>has general knowledge of the infrastructural side of BI tools, ETL tools and portals;</li>
+						<li>is pro-active and works in a disciplined way and in accordance with procedures.</li>
+					</ul>
+					<h2 id="business-intelligence-user">11. Business Intelligence
+						user</h2>
+					<p>Business Intelligence users exist both at operational and executive level. After all, BI systems serve all levels
+						in
+						the organization.</p>
+					<p>At the lower levels, we find both the subject matter experts and the process experts, who can tell us
+						'everything'
+						about the benefit of processes at different stages, how these processes run and what dependencies and exceptions
+						exist. At the higher levels, we find the managers.</p>
+					<p>They primarily explain and manage the correlations between processes and the associated indicators. The user is
+						often
+						also the tester and has an important voice in the acceptance of the BI system.</p>
+					<h3 id="user-key-competencies">User key competencies</h3>
+					<ul>
+						<li>Has detailed knowledge of business operations and processes;</li>
+						<li>understands what reporting and analyzing entails;</li>
+						<li>uses indicators for line management;</li>
+						<li>communicates the numbers;</li>
+						<li>develops standards for the key indicators and regularly evaluates and adjusts these;</li>
+						<li>is communicative and open.</li>
+					</ul>
+					<h2 id="additional-business-intelligence-roles">12. Additional
+						Business Intelligence roles</h2>
+					<p>These roles are necessary in particular in the larger BI projects:</p>
+					<ul>
+						<li><strong>Trainer/coach:</strong> assists users in obtaining maximum output from the BI system, provides
+							training
+							at several levels and must have knowledge of the<a title="Reporting tools"
+								href="https://www.passionned.com/business-intelligence/tools/"> tools for BI reporting
+								and analysis</a>. Good trainers and coaches devote sufficient attention to the use and application of
+							information and knowledge with regard to the tasks and responsibilities of the users. They train and coach
+							managers in setting up and securing a PDCA cycle.</li>
+						<li><strong>Meta data manager:</strong> defines and manages the metadata in the project and ensures that this is
+							both filed and accessible for users, developers and designers. Works in close collaboration with both the
+							database administrator and the data steward.</li>
+						<li><strong>Data steward:</strong> monitors the quality of data from a business angle and submits proposals for
+							improving data quality. If relevant, they develop policies regarding the quality of data, often in
+							cooperation
+							with the meta data manager and the business analyst.</li>
+						<li><strong>Tester:</strong> is responsible for the reliability of the processing of the BI system and initially
+							tests whether the system contains the correct figures. They continue to do this on a regular basis. Provides
+							support in devising and implementing monitoring mechanisms to (automatically or procedurally) verify the
+							reliability of the BI system. Facilitates the EDP auditor and/or the accountant during the yearly
+							calibration of
+							the BI system.</li>
+						<li><strong>Usability expert:</strong> this expert in the fields of psychology, usability and ergonomics is
+							concerned with the ease of use of the BI system and provides the business analyst with the necessary 'input'
+							with regard to graphics and visualizations. Moreover, they ensure that the BI system is in line with (now
+							and in
+							the future) the tasks, responsibilities and personal preferences of the users.</li>
+					</ul>
+					<p>In smaller BI projects, we can easily combine some of these roles. We could combine the roles of technical
+						project
+						manager and project manager, the BI consultant and the trainer, or the client and the sponsor. In large
+						projects,
+						these roles are usually not combined. In fact, we then even add some of the additional roles - meta data
+						manager,
+						usability expert and so forth - to the project team.</p>
+					<h2 id="a-multidisciplinary-project-team">A multidisciplinary project team</h2>
+					<p>For a multidisciplinary project team to properly function, it is necessary that adjacent roles have sufficient
+						knowledge of each other's problems, experience, ambitions, plans and expertise. Each role should be able to
+						communicate easily - speak each other's language - with its adjacent roles in order to quickly 'change gear' and
+						take action. This should be the main focus of the project manager, in addition to compiling an expert team -,
+						particularly at the start of the project. This aspect is particularly important because, in the <a
+							title="Business Intelligence" href="https://www.passionned.com/business-intelligence/">world of Business
+							Intelligence</a>, there are many different ideas with respect to the
+						architecture and the most suitable data model. It is the task of the project managers to bring these different
+						ideas
+						to light and then to work towards a shared vision.</p>
+				</aside>
+			</section>
+			<section>
 				<h1>Rollen in BI-Projekten</h1>
 				<figure>
 					<img src="static/V02/2023_Cirkel_Projektrollen.jpg" height="480">
@@ -697,6 +952,7 @@
 					Erst ab Data-Scientist kommen die Nutzergruppen von der Folie vorher zum Tragen
 				</aside>
 			</section>
+		</section>
 			<section>
 				<section>
 					<h1>Anwendungsbeispiel</h1>
@@ -772,6 +1028,42 @@
 						</ul>
 					</ul>
 				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Einf&uuml;hrungsvideo: Lufthansa / Teradata</h1>
+					<figure>
+					<iframe id="videoLufthansa" width="700" height="400"
+						src="//www.youtube.com/embed/oIhOqKHaTQg?enablejsapi=1&html5=1" frameborder="0"
+						allowfullscreen></iframe>
+					<figcaption>
+						<a href="https://www.youtube.com/watch?v=oIhOqKHaTQg">Youtube</a>
+					</figcaption>
+					</figure>
+					<aside class="notes">
+						LH: 4:37 min
+						Tableau: 3:32 min
+
+						Was ist hier anders als bei anderen WI Themen?
+						Zielgruppe Entscheider
+						Datenanalyse
+						Datenquelle: Operative Systeme
+					</aside>
+				</section>
+				
+				<section>
+					<h1>Einf&uuml;hrungsvideo: Tableau</h1>
+					<figure>
+					<iframe id="videoTableau" width="700" height="400"
+						src="//www.youtube.com/embed/MlaiI7o2BvY?enablejsapi=1&html5=1" frameborder="0"
+						allowfullscreen></iframe>
+						<figcaption>
+							<a href="https://www.youtube.com/watch?v=MlaiI7o2BvY">Youtube</a>
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 			<section>
 				<h1>Literatur</h1>
