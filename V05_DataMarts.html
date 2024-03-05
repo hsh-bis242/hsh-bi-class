@@ -1161,6 +1161,21 @@
 						<li>Filtern und löschen unnötiger Bestandteile</li>
 					</ul>
 				</section>
+				<section>
+					<h1>Wo sollte getestet werden?</h1>
+					<img src="./static/V05/btelligent-Referenzarchitektur_BI.png" alt="" height="480">
+				</section>
+				<section>
+					<h1>Herausforderungen beim Testing</h1>
+					<ul>
+						<li>Daten werden mehrmals transformiert</li>
+						<li>Nur Probleme die auch dem Entwickler bekannt sind können getestet werden, stezt oftmals fachliches Wissen vorraus</li>
+						<li>Einschätzung von Auswirkungen und Risiken von Fehlertypen auf den Prozess</li>
+						<li>Definition was im ETL-Prozess ausgelöst wird im Fehlerfall: Catch Execption/Error, send warning und continue oder throw Error und break bei der Test-Ausführung</li>
+						<li>Fehler in Quellsystemdaten werden nicht zeitnah behoben oder sogar akzeptiert </li>
+						<li>Bestimmte Ungenauigkeiten und fehlgeschalgene Tests sind erlaubt, festlegen von Fehlertoleranzen</li>
+					</ul>
+				</section>
 
 			</section>
 
