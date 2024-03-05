@@ -1,0 +1,156 @@
+/**
+ * Hochschule Hannover theme for reveal.js. This is based on the "white" theme.
+ *
+ * By Timo Cirkel
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(./fonts/source-sans-pro/source-sans-pro.css);
+
+// Add some custom variables
+$hsh_orange: #dc3c05;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 28px;
+$mainFont: Arial, Helvetica, sans-serif;
+$headingFont: Arial, Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: $hsh_orange;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 1.2em;
+$heading2Size: 1.15em;
+$heading3Size: 1.05em;
+$heading4Size: 1.0em;
+
+
+// Change text colors against dark slide backgrounds
+@include dark-bg-text-color(#fff);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+//Customization
+//Print Logo on every site:
+body::after {
+    content: url(../../static/logo.svg);
+    width: 5vw;
+    min-width: 30px;
+    position: fixed;
+    bottom: 130px;
+    right: 50px;
+    z-index: -1;
+  }
+
+.reveal h1 {
+    border-bottom: 2px solid $hsh_orange;
+}
+
+.reveal p {
+    text-align: center;
+}
+
+.reveal table td {
+    vertical-align:top;
+}
+
+.reveal img {
+    margin: var(--r-block-margin) calc(var(--r-block-margin)/2);
+}
+
+.reveal .progress {
+    height: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.g_center {
+    align-items: center;
+}
+
+.g_top {
+    align-items: top;
+}
+
+.grid_40 {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 40% auto;
+}
+
+.grid_50 {
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+figcaption {
+    font-size: x-small;
+}
+
+tr:hover {
+background-color: $selectionBackgroundColor;
+}
+
+.img-overlay-wrap {
+position: relative;
+display: inline-block; /* <= shrinks container to image size */
+transition: transform 150ms ease-in-out;
+}
+
+.img-overlay-wrap img { /* <= optional, for responsiveness */
+display: block;
+max-width: 100%;
+height: auto;
+}
+
+.img-overlay-wrap svg {
+position: absolute;
+top: 0;
+left: 0;
+}
+
+.customer-logo {
+padding: 30px;
+}
+
+.profile_image {
+height:300px;
+border-right: solid $hsh_orange 15px;
+border-radius: 5px;
+}
+
+div.pdf-page {
+background:  rgb(255, 255, 255,0)!important;
+}
+
+.tiny {
+font-size: 10px;
+}
+
+.box {
+display: inline-block;
+background-color: yellow;
+padding: 4px 10px;
+border: 1px solid $hsh_orange;
+}
