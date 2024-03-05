@@ -459,3 +459,7 @@ div.pdf-page {
   padding: 4px 10px;
   border: 1px solid #dc3c05;
 }
+
+:root {
+  --hsh_orange: #dc3c05;
+}
