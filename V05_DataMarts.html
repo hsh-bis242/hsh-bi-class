@@ -806,33 +806,18 @@
 
 				<section>
 					<h1>Historisierung mögliche Architekturen</h1>
-					<p>Mögliche Architekturen die Änderungen an historisierten Objekten berücksichtigen müssen:</p>
+					<p>Mögliche Architekturen und Konzepte für Historisierung in Data Marts</p>
 					<ul>
-						<li>Anpassung des historischen Datenmaterials an neue Strukturen
-							<ul>
-								<li>Gute Lösung bei kleinen Datenbestand </li>
-								<li>alte Strukturen und Historie sind nicht vorhanden </li>
-							</ul>
-						</li>
-						<li>Separate Speicherung des historischen Datenbestandes zusätzlich zu neuen Strukturen
-							<ul>
-								<li>Für großen Datenbestand </li>
-								<li>Komplexität für Anwender</li>
-								<li>alte Strukturen abrufbar </li>
-							</ul>
-						</li>
-						<li>Aufbau paralleler Hierarchien mit allen Strukturen
-							<ul>
-								<li>Dimensionsstruktur komplex </li>
-								<li>beliebiges Reporting möglich </li>
-							</ul>
-						</li>
-						<li>Gültigkeitsstempel beliebige Strukturen abrufbar
-							<ul>
-								<li>Performancefrage</li>
-							</ul>
-						</li>
+						<li>Point-in-Time (pit) satellites für Data Vault Modellierung verwenden</li>
+						<li>Bridge tables um KPIs oder Attribute einer anderen Entität an die zu historisierende Entität zu joinen, z.B. Kreditkarten-Daten an den Customer</li>
+						<li>Historie auf technischen Ladezeitpunkt des DWHs oder fachliche Event-timestamps aufbauen</li>
+						<li>Snapshots erstellen oder Historie rückwirkend neu berechnen</li>
+						<li>Late Arriving Dimensions</li>
 					</ul>
+				</section>
+				<section>
+					<h1>Historisierung mögliche Architekturen</h1>
+					<img src="./static/V05/btelligent-Referenzarchitektur_BI.png" alt="" height="480">
 				</section>
 
 			</section>
