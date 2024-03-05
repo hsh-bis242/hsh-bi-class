@@ -28,37 +28,6 @@
 				</div>
 			</section>
 			<section>
-				<h1>Einf&uuml;hrungsvideo: Lufthansa / Teradata</h1>
-				<figure>
-				<iframe id="videoLufthansa" width="700" height="400"
-					src="//www.youtube.com/embed/oIhOqKHaTQg?enablejsapi=1&html5=1" frameborder="0"
-					allowfullscreen></iframe>
-				<figcaption>
-					<a href="https://www.youtube.com/watch?v=oIhOqKHaTQg">Youtube</a>
-				</figcaption>
-				</figure>
-				<aside class="notes">
-					LH: 4:37 min
-					Tableau: 3:32 min
-
-					Was ist hier anders als bei anderen WI Themen?
-					Zielgruppe Entscheider
-					Datenanalyse
-					Datenquelle: Operative Systeme
-				</aside>
-			</section>
-			<section>
-				<h1>Einf&uuml;hrungsvideo: Tableau</h1>
-				<figure>
-				<iframe id="videoTableau" width="700" height="400"
-					src="//www.youtube.com/embed/MlaiI7o2BvY?enablejsapi=1&html5=1" frameborder="0"
-					allowfullscreen></iframe>
-					<figcaption>
-						<a href="https://www.youtube.com/watch?v=MlaiI7o2BvY">Youtube</a>
-					</figcaption>
-				</figure>
-			</section>
-			<section>
 				<section>
 					<h1>Problemstellungen</h1>
 					<h2>Beispielfragestellungen</h2>
@@ -192,6 +161,9 @@
 				</section>
 			</section>
 			<section>
+				<section data-background-image="./static/dwh_fabrik.jpg" data-background-size="contain" data-background-repeat="no-repeat">
+
+				</section>
 				<section data-background-image="static/V02/btelligent-Referenzarchitektur_BI.png">
 
 				</section>
@@ -200,23 +172,118 @@
 				</section>
 			</section>
 			<section>
-				<h1>Abgrenzung OLTP</h1>
-				<figure>
-					<img src="static/V02/Koenig-Anwendungssystempyramide.png">
-					<figcaption>
-						In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
-						und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
-						Berlin: Springer
-					</figcaption>
-				</figure>
-				<aside class="notes">
-					Online Transaction Processing
-					Operative Systeme
-					Transaktionale Systeme
-					Oltp hat in der Regel höhere Verfügbarkeit Anforderungen als die dispositiven Systeme.
-					OLTP = Schwerpunkt auf einzelne, schnelle Transaktionen, Schreibvorgänge üblich;
-					OLAP = Schwerpunkt auf Batchverarbeitung, große Datenmengen, Schreibvorgänge unüblich.
-				</aside>
+				<section>
+					<h1>Abgrenzung OLTP</h1>
+					<figure>
+						<img src="static/V02/Koenig-Anwendungssystempyramide.png">
+						<figcaption>
+							In Anlehnung an: Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme
+							und Business Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte.
+							Berlin: Springer
+						</figcaption>
+					</figure>
+					<aside class="notes">
+						Online Transaction Processing
+						Operative Systeme
+						Transaktionale Systeme
+						Oltp hat in der Regel höhere Verfügbarkeit Anforderungen als die dispositiven Systeme.
+						OLTP = Schwerpunkt auf einzelne, schnelle Transaktionen, Schreibvorgänge üblich;
+						OLAP = Schwerpunkt auf Batchverarbeitung, große Datenmengen, Schreibvorgänge unüblich.
+					</aside>
+				</section>
+				<section>
+					<h1>OLTP vs. OLAP</h1>
+					<h2>Ziele und Zwecke</h2>
+					<figure>
+
+						<table style="font-size:small">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>Operative Systeme</th>
+									<th>Data Warehouse</th>
+									<th>Data Mart</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Ziel der Daten</th>
+									<td>Betriebsgenau</td>
+									<td>Themenorientiert, integriert, historisiert und persistent</td>
+									<td>Leichtverständlich</td>
+								</tr>
+								<tr>
+									<th>Modellierungsziel</th>
+									<td>Schnelle Transaktionen</td>
+									<td>Datenintegration und Historisierung</td>
+									<td>Schnelles Reporting & Datenanalyse</td>
+								</tr>
+								<tr>
+									<th>Anwendungsbereich</th>
+									<td>Anwendungsspezifisch</td>
+									<td>Unternehmensweit</td>
+									<td>Fachbereich</td>
+								</tr>
+								<tr>
+									<th>Modellbeziehungen</th>
+									<td>Optimiert für transaktionelle Verarbeitung</td>
+									<td>Einzigartige NBR, spezifisch, Abbildung des Zusammenhangs von Fachbegriffen</td>
+									<td>Abgeleitete Verbindungen, unterschiedliche Granularitäten und Hierarchien, basiert auf Geltungsbereichsspezifischen Berechnungen</td>
+								</tr>
+								<tr>
+									<th>Herausstechende Merkmale</th>
+									<td>Häufig generalisierte Entitäten</td>
+									<td>Keine orts- oder zeitabhängigen Zusammenstellungen</td>
+									<td>Orts- und Zeitdimensionen</td>
+								</tr>
+								<tr>
+									<th>Leitspruch</th>
+									<td>Control & Capture</td>
+									<td>Copy & Keep</td>
+									<td>Format & Deliver</td>
+								</tr>
+								<tr>
+									<th>Redundanz</th>
+									<td>Nicht erwünscht</td>
+									<td>Akkzeptabel und typisch</td>
+									<td>Soweit wie nötig</td>
+								</tr>
+							</tbody>
+						
+						</table>
+						&nbsp;
+						<figcaption>
+							Eigene Darstellung, in Anlehnung an <a href="https://alligatorcompany.gitlab.io/acs-docs/">Glunde, T., Alligator Company (2023)</a>
+						</figcaption>
+					</figure>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>Technologien</h1>
+					<figure>
+						<div class="r-stack">
+							<img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+							<svg height="480" width="850">
+								<ellipse cx="350" cy="220" rx="350" ry="180" fill-opacity="0.0"
+  								style="stroke:var(--hsh_orange);stroke-width:2" />
+							</svg>
+						</div>
+						<figcaption>
+							b.telligent Deutschland GmbH (2022)
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2>Quellsystemformate</h2>
+				</section>
+
+				<section>
+					<h1>Technologien</h1>
+					<h2></h2>
+				</section>
 			</section>
 			<section>
 				<section>
@@ -256,48 +323,6 @@
 				</section>
 				<section>
 					<h1>Anwendungen</h1>
-					<h2>Reporting</h2>
-					<figure>
-						<img src="static/V02/Tableau_Reporting_Overview.png" height="480">
-						<figcaption>
-							https://www.tableau.com/de-de/products/desktop
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>Reporting</h2>
-					<figure>
-						<img src="static/V02/Gluchowski-Reporting_BI.png">
-						<figcaption>
-							Gluchowski, P., Gabriel, R., & Dittmar, C. (2008). Management Support Systeme und Business
-							Intelligence: Computergestützte Informationssysteme für Fach- und Führungskräfte. Berlin:
-							Springer
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>Dashboards</h2>
-					<figure>
-						<img src="static/V02/PowerBI_Dashboard_Overview_annotated.png" height="480">
-						<figcaption>
-							Microsoft PowerBI Desktop (https://powerbi.microsoft.com/de-de/desktop/)
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>Dashboards</h2>
-					<figure>
-						<img src="static/V02/Koenig-Dashboard_USA.png" height="480">
-						<figcaption>
-							https://databoss.starschema.net/creating-simple-dashboard-tableau-talend-mysql/
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
 					<h2>OLAP</h2>
 					<h3>Online Analytical Processing</h3>
 					<p>
@@ -310,112 +335,18 @@
 						<b>historischen, konsolidierten Datenbest&auml;nden</b>.
 					</p>
 				</section>
+
 				<section>
 					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<p>
-						Multidimensionale Perspektiven auf verf&uuml;gbare quantitative Datenbest&auml;nde haben sich
-						als geeignet erwiesen, um den Mitarbeitern einen flexiblen und intuitiven Zugang zu den
-						ben&ouml;tigten Informationen zu er&ouml;ffnen.
-					</p>
-					<p>
-						<b>Multidimensionalit&auml;t</b> als zentrales Gestaltungsparadigma:
-					</p>
-					<p>
-						Betriebswirtschaftlich relevantes Zahlenmaterial simultan entlang unterschiedlicher Klassen
-						logisch zusammengeh&ouml;riger Informationsobjekte aufgliedern.
-					</p>
-					<p>
-						Korrespondiert mit der naturgem&auml;ß mehrdimensionalen Problemsicht der
-						Unternehmungsanalytiker.
-					</p>
-					<aside class="notes">
-						Informationssysteme, die betrieblichen Fach- und Führungskräften bei ihren Entscheidungsaufgaben
-						wertvolle Unterstützung liefern wollen, müssen sich an dem Geschäftsverständnis bzw. an der
-						Sichtweise auf die eigene Unternehmung orientieren.
-						Multidimensionalität
-						- Form der logischen Anordnung quantitativer, betriebswirtschaftlicher Größen
-					</aside>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<p>
-						Betriebswirtschaftliche <b>Kenngr&ouml;ßen</b> (= <b>Fakten</b>)
-					</p>
-					<ul>
-						<li>Umsatz</li>
-					</ul>
-					<p>
-						<b>Dimensionen</b>
-					</p>
-					<p>
-					<ul>
-						<li>Kunden</li>
-						<li>Artikel</li>
-						<li>Regionen</li>
-					</ul>
-					</p>
-					<p>
-						hierarchische Beziehungen (Navigationspfade, Verdichtungspfade)
-					</p>
-					<p>
-						Dimensionen entlang derer sich betriebswirtschaftliche Kenngr&ouml;ßen im Zeitablauf untersuchen
-						lassen.
-					</p>
-					<p>
-						Ums&auml;tze pro Monat in den verschiedenen Regionen und Produktgruppen
-					</p>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
+					<h2>Dashboards</h2>
 					<figure>
-						<img src="static/V02/Koenig-Wuerfeldarstellung_1.png">
+						<img src="static/V02/PowerBI_Dashboard_Overview_annotated.png" height="480">
 						<figcaption>
-							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
+							Microsoft PowerBI Desktop (https://powerbi.microsoft.com/de-de/desktop/)
 						</figcaption>
 					</figure>
 				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<figure>
-						<img src="static/V02/Koenig-Wuerfeldarstellung_2.png" height="480">
-						<figcaption>
-							W&uuml;rfeldarstellung mehrdimensional strukturierter Daten
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>OLAP</h2>
-					<figure>
-						<img src="static/V02/Koenig-Fachlicher_Stern_OLAP.png">
-						<figcaption>
-							Fachlicher Stern (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business
-							Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
-						</figcaption>
-					</figure>
-				</section>
-				<section>
-					<h1>Anwendungen</h1>
-					<h2>ROLAP</h2>
-					<figure>
-						<img src="static/V02/PowerBI_Sternschema.png" height="480">
-						<!-- 
-							<img src="static/V02/Koenig-Sternschema_ROLAP.png">
-						-->
-						<figcaption>
-							Sternschema (https://learn.microsoft.com/de-de/power-bi/guidance/star-schema)
-						</figcaption>
-						<!--
-						<figcaption>
-							Sternschema (Humm, B., Wietek, F. (2005) Architektur von Data Warehouse und Business Intelligence Systemen. Informatik Spektrum. 23.02.2005.)
-						</figcaption>
-						-->
-					</figure>
-				</section>
+
 				<section>
 					<h1>Anwendungen</h1>
 					<h2>Data Mining</h2>
@@ -1090,6 +1021,42 @@
 						</ul>
 					</ul>
 				</section>
+			</section>
+
+			<section>
+				<section>
+					<h1>Einf&uuml;hrungsvideo: Lufthansa / Teradata</h1>
+					<figure>
+					<iframe id="videoLufthansa" width="700" height="400"
+						src="//www.youtube.com/embed/oIhOqKHaTQg?enablejsapi=1&html5=1" frameborder="0"
+						allowfullscreen></iframe>
+					<figcaption>
+						<a href="https://www.youtube.com/watch?v=oIhOqKHaTQg">Youtube</a>
+					</figcaption>
+					</figure>
+					<aside class="notes">
+						LH: 4:37 min
+						Tableau: 3:32 min
+
+						Was ist hier anders als bei anderen WI Themen?
+						Zielgruppe Entscheider
+						Datenanalyse
+						Datenquelle: Operative Systeme
+					</aside>
+				</section>
+				
+				<section>
+					<h1>Einf&uuml;hrungsvideo: Tableau</h1>
+					<figure>
+					<iframe id="videoTableau" width="700" height="400"
+						src="//www.youtube.com/embed/MlaiI7o2BvY?enablejsapi=1&html5=1" frameborder="0"
+						allowfullscreen></iframe>
+						<figcaption>
+							<a href="https://www.youtube.com/watch?v=MlaiI7o2BvY">Youtube</a>
+						</figcaption>
+					</figure>
+				</section>
+
 			</section>
 			<section>
 				<h1>Literatur</h1>
