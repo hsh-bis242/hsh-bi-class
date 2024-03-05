@@ -27,67 +27,67 @@
 					<h2>Data Marts</h2>
 				</div>
 			</section>
+			
+				<section>
+					<h1>Data Marts</h1>
+					<img src="./static/V05/data-marts.jpg" alt="Schaubild Datenquellen">
+				</section>
 
-			<section>
-				<h1>Data Marts</h1>
-				<img src="./static/V05/data-marts.jpg" alt="Schaubild Datenquellen">
-			</section>
-
-			<section>
-				<h1>Data Mart Einordnung</h1>
-				<ul>
-					<li>Externe (Teil-)Sicht auf das Data Warehouse</li>
-					<li>Subjektorientiert</li>
-					<li>Deckt Anforderungen einer speziellen Nutzergruppe ab</li>
-					<li>Kann aber auch im Sinne es Golden Records übergreifend im gesamten Unternehmen vorhanden sein (Standardisierung vs. Individualisierung)</li>
-					<li>Struktur der Data Marts hängt immer stark von Reporting Anforderungen ab (Unterschied Controlling & Marketing)</li>
-					<li>Trennung nach Historisierung und Aktualität</li>
-					<li>Unterschiedliche Aggregationsstufen</li>
-				</ul>
-			</section>
-
-			<section>
-				<h1>Gründe für Data Marts</h1>
-				<div class="grid">
-					<div calss="griditem">
-						<ul>
-							<li>Eigenständigkeit</li>
-							<li>Datenschutz</li>
-							<li>Lastverteilung</li>
-							<li>Datenvolumen</li>
-							<li>Vereinfachung</li>
-							<li>Verarbeitung durch OLAP Software</li>
-						</ul>
+				<section>
+					<h1>Data Mart Einordnung</h1>
+					<ul>
+						<li>Externe (Teil-)Sicht auf das Data Warehouse</li>
+						<li>Subjektorientiert</li>
+						<li>Deckt Anforderungen einer speziellen Nutzergruppe ab</li>
+						<li>Kann aber auch im Sinne es Golden Records übergreifend im gesamten Unternehmen vorhanden sein (Standardisierung vs. Individualisierung)</li>
+						<li>Struktur der Data Marts hängt immer stark von Reporting Anforderungen ab (Unterschied Controlling & Marketing)</li>
+						<li>Trennung nach Historisierung und Aktualität</li>
+						<li>Unterschiedliche Aggregationsstufen</li>
+					</ul>
+				</section>
+				<section>
+				<section>
+					<h1>Gründe für Data Marts</h1>
+					<div class="grid">
+						<div calss="griditem">
+							<ul>
+								<li>Eigenständigkeit</li>
+								<li>Datenschutz</li>
+								<li>Lastverteilung</li>
+								<li>Datenvolumen</li>
+								<li>Vereinfachung</li>
+								<li>Verarbeitung durch OLAP Software</li>
+							</ul>
+						</div>
+						<div class="griditem">
+							<img src="./static/V05/Data_Marts.png" width="940">
+						</div>
 					</div>
-					<div class="griditem">
-						<img src="./static/V05/Data_Marts.png" width="940">
-					</div>
-				</div>
-				
-			</section>
+					
+				</section>
 
-			<section>
-				<h1>Vorgehen Data Mart</h1>
-				<ul>
-					<li>Anforderungsanalyse (Scope definieren)</li>
-					<li>Entitäten, Attribute und Quelltabellen in unterliegenden DWH-Layer identifizieren </li>
-					<li>Berechnungslogiken der KPIs festlegen</li>
-					<li>Fakten und Dimensionen bestimmen</li>
-					<li>Relationale Umsetzung in Star oder Snowflake Schema</li>
-					<li>Abschließend Übergabe Dokumentation für Erstellung Cubes in SSAS, PowerCubes oder MDDB oder direkt als Reports auf Basis des relationalen Data Marts</li>
-				</ul>
-			</section>
+				<section>
+					<h1>Vorgehen Data Mart</h1>
+					<ul>
+						<li>Anforderungsanalyse (Scope definieren)</li>
+						<li>Entitäten, Attribute und Quelltabellen in unterliegenden DWH-Layer identifizieren </li>
+						<li>Berechnungslogiken der KPIs festlegen</li>
+						<li>Fakten und Dimensionen bestimmen</li>
+						<li>Relationale Umsetzung in Star oder Snowflake Schema</li>
+						<li>Abschließend Übergabe Dokumentation für Erstellung Cubes in SSAS, PowerCubes oder MDDB oder direkt als Reports auf Basis des relationalen Data Marts</li>
+					</ul>
+				</section>
 
-			<section>
-				<h1>Aggregation und Filter Data Mart</h1>
-				<ul>
-					<li>Beschränkung auf Teile des Schemas nur bestimmte Kennzahlen oder Dimensionen</li>
-					<li>Inhaltliche Beschränkung, nur bestimmte Filialen oder das letzte Jahresergebnis</li>
-					<li>Verringerung der Granularität nur Artikelgruppen</li>
-					<li>Zeitlicher Horizont und Historisierung Beschränkung z.B. auf Monatsergebnisse </li>
-				</ul>
-			</section>
-
+				<section>
+					<h1>Aggregation und Filter Data Mart</h1>
+					<ul>
+						<li>Beschränkung auf Teile des Schemas nur bestimmte Kennzahlen oder Dimensionen</li>
+						<li>Inhaltliche Beschränkung, nur bestimmte Filialen oder das letzte Jahresergebnis</li>
+						<li>Verringerung der Granularität nur Artikelgruppen</li>
+						<li>Zeitlicher Horizont und Historisierung Beschränkung z.B. auf Monatsergebnisse </li>
+					</ul>
+				</section>
+		</section>
 			<section>
 				<section>
 					<h1>Fakten</h1>
@@ -806,33 +806,18 @@
 
 				<section>
 					<h1>Historisierung mögliche Architekturen</h1>
-					<p>Mögliche Architekturen die Änderungen an historisierten Objekten berücksichtigen müssen:</p>
+					<p>Mögliche Architekturen und Konzepte für Historisierung in Data Marts</p>
 					<ul>
-						<li>Anpassung des historischen Datenmaterials an neue Strukturen
-							<ul>
-								<li>Gute Lösung bei kleinen Datenbestand </li>
-								<li>alte Strukturen und Historie sind nicht vorhanden </li>
-							</ul>
-						</li>
-						<li>Separate Speicherung des historischen Datenbestandes zusätzlich zu neuen Strukturen
-							<ul>
-								<li>Für großen Datenbestand </li>
-								<li>Komplexität für Anwender</li>
-								<li>alte Strukturen abrufbar </li>
-							</ul>
-						</li>
-						<li>Aufbau paralleler Hierarchien mit allen Strukturen
-							<ul>
-								<li>Dimensionsstruktur komplex </li>
-								<li>beliebiges Reporting möglich </li>
-							</ul>
-						</li>
-						<li>Gültigkeitsstempel beliebige Strukturen abrufbar
-							<ul>
-								<li>Performancefrage</li>
-							</ul>
-						</li>
+						<li>Point-in-Time (pit) satellites für Data Vault Modellierung verwenden</li>
+						<li>Bridge tables um KPIs oder Attribute einer anderen Entität an die zu historisierende Entität zu joinen, z.B. Kreditkarten-Daten an den Customer</li>
+						<li>Historie auf technischen Ladezeitpunkt des DWHs oder fachliche Event-timestamps aufbauen</li>
+						<li>Snapshots erstellen oder Historie rückwirkend neu berechnen</li>
+						<li>Late Arriving Dimensions</li>
 					</ul>
+				</section>
+				<section>
+					<h1>Historisierung mögliche Architekturen</h1>
+					<img src="./static/V05/btelligent-Referenzarchitektur_BI.png" alt="" height="480">
 				</section>
 
 			</section>
@@ -843,7 +828,7 @@
 
 			<section>
 				<h1>Unabhängige Data Marts (fast lane)</h1>
-				<img src="./static/V05/unabhängige_datamarts.png" alt="">
+				<img src="./static/V05/unabhängige_datamarts.png" alt="" height="480">
 			</section>
 
 			<section>
@@ -899,7 +884,14 @@
 						<li>No Wall of Code oder Spaghetti code</li>
 					</ul>
 				</section>
-	
+				<section>
+					<h1>Data Lineage - technical</h1>
+					<img src="./static/V05/lineage_technical.png" alt="">
+				</section>
+				<section>
+					<h1>Data Lineage - business</h1>
+					<img src="./static/V05/lineage_business.png" alt="">
+				</section>
 				<section>
 					<h1>Umgang mit Datenqualitätsproblemen</h1>
 					<ul>
@@ -1167,6 +1159,21 @@
 						</li>
 						<li>Lesbarkeit - Kodierungen ersetzen</li>
 						<li>Filtern und löschen unnötiger Bestandteile</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Wo sollte getestet werden?</h1>
+					<img src="./static/V05/btelligent-Referenzarchitektur_BI.png" alt="" height="480">
+				</section>
+				<section>
+					<h1>Herausforderungen beim Testing</h1>
+					<ul>
+						<li>Daten werden mehrmals transformiert</li>
+						<li>Nur Probleme die auch dem Entwickler bekannt sind können getestet werden, stezt oftmals fachliches Wissen vorraus</li>
+						<li>Einschätzung von Auswirkungen und Risiken von Fehlertypen auf den Prozess</li>
+						<li>Definition was im ETL-Prozess ausgelöst wird im Fehlerfall: Catch Execption/Error, send warning und continue oder throw Error und break bei der Test-Ausführung</li>
+						<li>Fehler in Quellsystemdaten werden nicht zeitnah behoben oder sogar akzeptiert </li>
+						<li>Bestimmte Ungenauigkeiten und fehlgeschalgene Tests sind erlaubt, festlegen von Fehlertoleranzen</li>
 					</ul>
 				</section>
 
