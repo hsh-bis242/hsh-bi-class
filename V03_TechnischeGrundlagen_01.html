@@ -35,7 +35,7 @@
 				<h1>Einordnung</h1>
 				<figure>
 					<div class="r-stack">
-						<img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+						<img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
 						<svg height="480" width="850">
 							<ellipse cx="130" cy="230" rx="100" ry="150" fill-opacity="0.0"
 								style="stroke:var(--hsh_orange);stroke-width:2" />
@@ -46,117 +46,117 @@
 					</figcaption>
 				</figure>
 			</section>
-
 			<section>
-				<h1>Quellen und Heterogenität der Daten</h1>
-				<ul>
-					<li>Operative Systeme</li>
-					<li>Web - Öffentliche und interne Quellen</li>
-					<li>Dateien</li>
-					<li>Lieferanten der Daten für das Data Warehouse
-						<ul>
-							<li>Gehören nicht direkt zum DWH</li>
-							<li>Können intern (Unternehmen) oder extern (z.B. staatl. Einrichtung) sein</li>
-							<li>Heterogen bzgl. Struktur, Inhalt und Schnittstellen (Datenbanken, Dateien)</li>
-							<li>Auswahl der Quellen und Qualität der Daten von besonderer Bedeutung</li>
+				<section>
+					<h1>Quellen und Heterogenität der Daten</h1>
+					<ul>
+						<li>Operative Systeme</li>
+						<li>Web - Öffentliche und interne Quellen</li>
+						<li>Dateien</li>
+						<li>Lieferanten der Daten für das Data Warehouse
+							<ul>
+								<li>Gehören nicht direkt zum DWH</li>
+								<li>Können intern (Unternehmen) oder extern (z.B. staatl. Einrichtung) sein</li>
+								<li>Heterogen bzgl. Struktur, Inhalt und Schnittstellen (Datenbanken, Dateien)</li>
+								<li>Auswahl der Quellen und Qualität der Daten von besonderer Bedeutung</li>
+							</ul>
+						</li>
+					</ul>
+					<p>Herausforderung für Data Mart und Reporting Daten müssen Homogen transformiert und konsumiert werden in übergreifenden Strukturen</p>
+				</section>
+
+				<section>
+					<h1>Klassifikationen Daten</h1>
+					<div class="grid">
+						<div class="griditem"  style="float: left">
+							<img data-src="static/V03/sources.jpg" height="480">
+						</div>
+						<ul style="line-height: 2.0">
+							<li>Herkunft: intern, extern</li>
+							<li>Zeit: aktuell, historisch</li>
+							<li>Nutzungsebene: Primärdaten, Metadaten</li>
+							<li>Inhalt: Zahl, Zeichenkette, Grafik, Dokument</li>
+							<li>Darstellung: numerisch, alphanumerisch, BLOB</li>
+							<li>Sprache und Zeichensatz (Unicode, ASCII, UTF)</li>
+							<li>Vertraulichkeitsgrad</li>
 						</ul>
-					</li>
-				</ul>
-				<p>Herausforderung für Data Mart und Reporting Daten müssen Homogen transformiert und konsumiert werden in übergreifenden Strukturen</p>
-			</section>
+					</div>
+					<p>Einige dieser Klassifikationen wirken sich auf die Data Mart Struktur und das Report Design aus</p>
+				</section>
 
-			<section>
-				<h1>Klassifikationen Daten</h1>
-				<div>
+				<section>
+					<h1>Faktoren der Datenauswahl</h1>
+					<ul>
+						<li>Qualität der Quelldaten</li>
+						<li>Verfügbarkeit (rechtlich, sozial, technisch)</li>
+						<li>Preis für Erwerb der Daten (speziell bei externen Quellen)
+						</li>
+					</ul>
+					<p>Datenauswahl einer Anbindung wird oftmals auf Reporting Anforderungen aufgebaut (Top-Down)
+					</p>
+					<img data-src="static/V03/pick_data.jpg" height="200">
+				</section>
+
+				<section>
+					<h1>Art der Daten</h1>
+					<div>
 					<div style="float: left">
-						<img src="static/V03/sources.jpg" height="480">
+						<img data-src="static/V03/camera.png">
+						<br>
+						<br>
+						<img data-src="static/V03/log.png">
 					</div>
 					<div>
-						<p>Herkunft: intern, extern</p>
-						<p>Zeit: aktuell, historisch</p>
-						<p>Nutzungsebene: Primärdaten, Metadaten</p>
-						<p>Inhalt: Zahl, Zeichenkette, Grafik, Dokument</p>
-						<p>Darstellung: numerisch, alphanumerisch, BLOB</p>
-						<p>Sprache und Zeichensatz (Unicode, ASCII, UTF)</p>
-						<p>Vertraulichkeitsgrad</p>
-					</div>
+					<ul>
+						<li>Snapshots: Quelle liefert immer kompletten Datenbestand
+							<ul>
+								<li>Neuer Lieferantenkatalog, neue Preisliste </li>
+								<li>Änderungen erkennen</li>
+								<li>Historie korrekt abbilden</li>
+							</ul>
+						</li>
+						<li>Logs: Quelle liefert jede Änderung
+							<ul>
+								<li>Transaktionslogs, Anwendungsgesteuertes Logging</li>
+								<li>Änderungen effizient einspielen</li>
+							</ul>
+						</li>
+						<li>Netto-Logs: Quelle liefert Netto-Änderungen
+							<ul>
+								<li>Katalogupdates, Snapshot-Deltas</li>
+								<li>Keine vollständige Historie möglich</li>
+								<li>Änderungen effizient einspielbar</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-				<p>Einige dieser Klassifikationen wirken sich auf die Data Mart Struktur und das Report Design aus</p>
-			</section>
-
-			<section>
-				<h1>Faktoren der Datenauswahl</h1>
-				<ul>
-					<li>Qualität der Quelldaten</li>
-					<li>Verfügbarkeit (rechtlich, sozial, technisch)</li>
-					<li>Preis für Erwerb der Daten (speziell bei externen Quellen)
-					</li>
-				</ul>
-				<p>Datenauswahl einer Anbindung wird oftmals auf Reporting Anforderungen aufgebaut (Top-Down)
-				</p>
-				<img src="static/V03/pick_data.jpg" height="200">
-			</section>
-
-			<section>
-				<h1>Art der Daten</h1>
-				<div>
-				<div style="float: left">
-					<img src="static/V03/camera.png">
-					<br>
-					<br>
-					<img src="static/V03/log.png">
 				</div>
-				<div>
-				<ul>
-					<li>Snapshots: Quelle liefert immer kompletten Datenbestand
-						<ul>
-							<li>Neuer Lieferantenkatalog, neue Preisliste </li>
-							<li>Änderungen erkennen</li>
-							<li>Historie korrekt abbilden</li>
-						</ul>
-					</li>
-					<li>Logs: Quelle liefert jede Änderung
-						<ul>
-							<li>Transaktionslogs, Anwendungsgesteuertes Logging</li>
-							<li>Änderungen effizient einspielen</li>
-						</ul>
-					</li>
-					<li>Netto-Logs: Quelle liefert Netto-Änderungen
-						<ul>
-							<li>Katalogupdates, Snapshot-Deltas</li>
-							<li>Keine vollständige Historie möglich</li>
-							<li>Änderungen effizient einspielbar</li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			</div>
-			</section>
+				</section>
 
+				<section>
+					<h1>Datenquellen</h1>
+					<img data-src="./static/V03/datenquellen.png" alt="Schaubild Datenquellen">
+				</section>
+			</section>
 			<section>
-				<h1>Datenquellen</h1>
-				<img src="./static/V03/datenquellen.png" alt="Schaubild Datenquellen">
-			</section>
-
-			<section>
-				<h1>Formen des Datenaustauschs</h1>
-				<ul>
-					<li>Dateien in verschiedenen Filesystemen (Lake Storage, SFTP, …)
-						<ul>
-							<li>Automatisch exportiert (JSON, XML, parquet, csv)</li>
-							<li>Manuell erstellt (Excel, csv, plain text)</li>
-						</ul>
-					</li>
-					<li>APIs
-						<ul>
-							<li>Request body enthält Daten in Formaten (JSON, XML, plain text)</li>
-							<li>Streaming</li>
-						</ul>
-					</li>
-					<li>Shared database (direkter Zugriff oder Replikation)</li>
-				</ul>
-			</section>
-
+				<section>
+					<h1>Formen des Datenaustausches</h1>
+					<ul>
+						<li>Dateien in verschiedenen Filesystemen (Lake Storage, SFTP, …)
+							<ul>
+								<li>Automatisch exportiert (JSON, XML, parquet, csv)</li>
+								<li>Manuell erstellt (Excel, csv, plain text)</li>
+							</ul>
+						</li>
+						<li>APIs
+							<ul>
+								<li>Request body enthält Daten in Formaten (JSON, XML, plain text)</li>
+								<li>Streaming</li>
+							</ul>
+						</li>
+						<li>Shared database (direkter Zugriff oder Replikation)</li>
+					</ul>
+				</section>		
 			<section>
 				<h1>CSV Format</h1>
 				<ul>
@@ -174,10 +174,12 @@
 					</li>
 				</ul>
 				<pre>
-					<code>Stunde,Montag,Dienstag,Mittwoch,Donnerstag,Freitag
-1,Mathematik,Deutsch,Englisch,Erdkunde,Politik
-2,Sport,Deutsch,Englisch,Sport,Geschichte
-3,Sport,"Religion (ev., kath.)",Kunst,,Kunst</code>
+					<code data-trim class="language-txt">
+						Stunde,Montag,Dienstag,Mittwoch,Donnerstag,Freitag
+						1,Mathematik,Deutsch,Englisch,Erdkunde,Politik
+						2,Biologie,Deutsch,Englisch,Biologie,Geschichte
+						3,Biologie,"Religion (ev., kath.)",Kunst,,Kunst
+					</code>
 				</pre>
 			</section>
 
@@ -196,28 +198,30 @@
 					</li>
 				</ul>
 				<pre>
-					<code>{
-"firstName": "John",
-"lastName": "Smith",
-"isAlive": true,
-"age": 27,
-"address": {
-	"streetAddress": "21 2nd Street",
-	"city": "New York",
-	"state": "NY",
-	"postalCode": "10021-3100"
-},
-"phoneNumbers": [
-	{
-		"type": "home",
-		"number": "212 555-1234"
-	},
-	{
-		"type": "office",
-		"number": "646 555-4567"
-	}
-	]
-}</code>
+					<code data-trim class="language-json">
+						{
+							"firstName": "John",
+							"lastName": "Smith",
+							"isAlive": true,
+							"age": 27,
+							"address": {
+							"streetAddress": "21 2nd Street",
+							"city": "New York",
+							"state": "NY",
+							"postalCode": "10021-3100"
+						},
+						"phoneNumbers": [
+							{
+							"type": "home",
+							"number": "212 555-1234"
+							},
+							{
+							"type": "office",
+							"number": "646 555-4567"
+							}
+						]
+						}
+					</code>
 				</pre>
 			</section>
 
@@ -237,18 +241,20 @@
 					</li>
 				</ul>
 				<pre>
-					<code><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<verzeichnis>
-	<titel>Wikipedia Städteverzeichnis</titel>
-	<eintrag>
-		<stichwort>Genf</stichwort>
-		<eintragstext>Genf ist der Sitz von ...</eintragstext>
-	</eintrag>
-	<eintrag>
-		<stichwort>Köln</stichwort>
-		<eintragstext>Köln ist eine Stadt, die ...</eintragstext>
-	</eintrag>
-</verzeichnis></code>
+					<code data-trim>
+						<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+						<verzeichnis>
+							<titel>Wikipedia Städteverzeichnis</titel>
+							<eintrag>
+								<stichwort>Genf</stichwort>
+								<eintragstext>Genf ist der Sitz von ...</eintragstext>
+							</eintrag>
+							<eintrag>
+								<stichwort>Köln</stichwort>
+								<eintragstext>Köln ist eine Stadt, die ...</eintragstext>
+							</eintrag>
+						</verzeichnis>		
+					</code>
 				</pre>
 			</section>
 
@@ -269,134 +275,195 @@
 					</li>
 				</ul>
 			</section>
-
+		</section>
+		<section>
+			<h1>Application Programming Interfaces (API)</h1>
+			<p>Heterogene Anwendugnen können Daten austauschen und unabhängig voneiander agieren</p>
+			<p>Beispiel "The CAT API" Endpunkt für ein zufälliges Katzen Bild <b>https://api.thecatapi.com/v1/images/search</b> liefert folgende JSON-Response mit der Bild URL:</p>
+			<pre>
+				<code data-trim>
+					[{"id":"ctu","url":"https://cdn2.thecatapi.com/images/ctu.jpg","width":1999,"height":1760}]
+				</code>
+			</pre>
+		</section>
+		<section>
+			<h1>HTTP Methoden</h1>
+			<ul>
+				<li>GET - Fragt eine Ressource an and und bezieht Daten</li>
+				<li>POST - Überträgt Daten und kann eine Änderung im Zielsystem erzeugen</li>
+				<li>PUT - Überschreibt eine Ressource im Ziel mit dem Payload der Anfrage</li>
+				<li>DELETE - Löscht die Ressource</li>
+			</ul>
+			<p>Javascript GET Beispiel</p>
+			<pre>
+				<code data-trim>
+					const headers = new Headers({
+						"Content-Type": "application/json",
+						"x-api-key": "DEMO-API-KEY"
+					});
+					
+					var requestOptions = {
+						method: 'GET',
+						headers: headers,
+						redirect: 'follow'
+					};
+					
+					fetch("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1", requestOptions)
+						.then(response => response.text())
+						.then(result => console.log(result))
+						.catch(error => console.log('error', error));
+				</code>
+			</pre>
+		</section>
 			<section>
 				<h1>Erwartung und Realität von Anbindungen</h1>
-				<img src="./static/V03/erwartung_und_realitaet_von_anbindungen.png" alt="Schaubild Datenquellen">
+				<img data-src="./static/V03/erwartung_und_realitaet_von_anbindungen.png" alt="Schaubild Datenquellen">
 			</section>
-
 			<section>
-				<h1>Aufbereitungsschritte der Daten bis zum Report</h1>
-				<ul>
-					<li>Primärschlüssel definieren und festlegen</li>
-					<li>Historisierung der Daten</li>
-					<li>Vereinheitlichung der Datentypen und Attributenamen</li>
-					<li>Gewährleistung der Datenqualität durch Transformationen</li>
-					<li>Deduplizierung</li>
-				</ul>
-				<p>Schritte werden abhängig von DWH Architektur und Datenmodellierung in anderen DWH-Layern durchgeführt (Data Vault, Persistent Staging Area)</p>
-			</section>
+				<section>
+					<h1>Aufbereitungsschritte der Daten bis zum Report</h1>
+					<ul>
+						<li>Primärschlüssel definieren und festlegen</li>
+						<li>Historisierung der Daten</li>
+						<li>Vereinheitlichung der Datentypen und Attributenamen</li>
+						<li>Gewährleistung der Datenqualität durch Transformationen</li>
+						<li>Deduplizierung</li>
+					</ul>
+					<p>Schritte werden abhängig von DWH Architektur und Datenmodellierung in anderen DWH-Layern durchgeführt (Data Vault, Persistent Staging Area)</p>
+				</section>
 
-			<section>
-				<h1>Referenzarchitektur</h1>
-				<figure>
-					<div class="r-stack">
-						<img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
-						<svg height="480" width="850">
-							<ellipse cx="360" cy="230" rx="180" ry="150" fill-opacity="0.0"
-								style="stroke:var(--hsh_orange);stroke-width:2" />
-						</svg>
-					</div>
-					<figcaption>
-						b.telligent Deutschland GmbH (2022)
-					</figcaption>
-				</figure>
-			</section>
 
-			<section>
-				<h1>Fragestellungen bei Anbindungen</h1>
-				<ul>
-					<li>In welcher Schicht im DWH werden Daten bereinigt und gefiltert?</li>
-					<li>Wann wird die Datenqualität geprüft?</li>
-					<li>Muss Datenqualität über den gesamten Lade-Prozess des DWHs geprüft werden?</li>
-					<li>Müssen Business Rules und Transformationen schon vor dem Laden angewendet werden?</li>
-				</ul>
-				<p>Einfluss auf diese Fragen haben die Datenschutzrechtliche Einordung der Daten, die Integrität, erlaubte Fehlertoleranz, die Genauigkeit der Daten, Kosten und die Performance.</p>
-			</section>
+				<section>
+					<h1>Referenzarchitektur</h1>
+					<figure>
+						<div class="r-stack">
+							<img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+							<svg height="480" width="850">
+								<ellipse cx="360" cy="230" rx="180" ry="150" fill-opacity="0.0"
+									style="stroke:var(--hsh_orange);stroke-width:2" />
+							</svg>
+						</div>
+						<figcaption>
+							b.telligent Deutschland GmbH (2022)
+						</figcaption>
+					</figure>
+				</section>
 
-			<section>
-				<h1>Push vs. Pull</h1>
-				<div class="grid">
-					<div class="griditem">
-						<img src="static/V03/pull.jpg" height="160">
-						<br>
-						<img src="static/V03/push.jpg" height="160">
-					</div>
-					<div class="griditem">
-						<ul>
-							<li>PULL
-								<ul>
-									<li>Zum festgelegten Zeitpunkt als batch werden Daten aus der Quelle abgerufen</li>
-									<li>Re-run jederzeit möglich</li>
-									<li>Kein Realtime</li>
-								</ul>
-							</li>
-							<li>PUSH</li>
+				<section>
+					<h1>Fragestellungen bei Anbindungen</h1>
+					<ul>
+						<li>In welcher Schicht im DWH werden Daten bereinigt und gefiltert?</li>
+						<li>Wann wird die Datenqualität geprüft?</li>
+						<li>Muss Datenqualität über den gesamten Lade-Prozess des DWHs geprüft werden?</li>
+						<li>Müssen Business Rules und Transformationen schon vor dem Laden angewendet werden?</li>
+					</ul>
+					<p>Einfluss auf diese Fragen haben die Datenschutzrechtliche Einordung der Daten, die Integrität, erlaubte Fehlertoleranz, die Genauigkeit der Daten, Kosten und die Performance.</p>
+				</section>
+
+				<section>
+					<h1>Push vs. Pull</h1>
+					<div class="grid">
+						<div class="griditem">
+							<img data-src="static/V03/pull.jpg" height="160">
+							<br>
+							<img data-src="static/V03/push.jpg" height="160">
+						</div>
+						<div class="griditem">
 							<ul>
-								<li>Nahe oder im Quellsystem integrierte Komponente, die Daten aufgrund eines Events überträgt</li>
-								<li>Zielsystem muss durchgängig verfügbar sein</li>
+								<li>PULL
+									<ul>
+										<li>Zum festgelegten Zeitpunkt als batch werden Daten aus der Quelle abgerufen</li>
+										<li>Re-run jederzeit möglich</li>
+										<li>Kein Realtime</li>
+									</ul>
+								</li>
+								<li>PUSH</li>
+								<ul>
+									<li>Nahe oder im Quellsystem integrierte Komponente, die Daten aufgrund eines Events überträgt</li>
+									<li>Zielsystem muss durchgängig verfügbar sein</li>
+								</ul>
 							</ul>
-						</ul>
+						</div>
 					</div>
-				</div>
-			</section>
-
-			<section>
-				<h1>ETL vs. ELT</h1>
-				<div class="grid">
-					<div class="griditem">
-						<ul>
-							<li>ELT entstand aus Big Data und cloud-Ansätzen
-								<ul>
-									<li>Höhere Rechenkapazitäten und Parallelisierungstechniken ermöglichen es Rohdaten erst zu laden und im Zielsystem zu transformieren</li>
-								</ul>
-							</li>
-							<li>ETL klassischer DWH Ansatz
-								<ul>
-									<li>Bevor Daten ins DWH geladen werden finden schon Transformationen statt</li>
-								</ul>
-							</li>
-						</ul>
+				</section>
+				<section>
+					<h1>Der Security-Aspekt</h1>
+					<ul>
+						<li>Rollenbasierte Zugriffskontrolle</li>
+						<li>Verschlüsselung von PII Daten</li>
+						<li>Logging von Benutzerzugriffen</li>
+						<li>Service principals oder tokens für Datenaustausch definieren und diese verschlüsselt übermitteln</li>
+						<li>Key-Vault für Login-Daten</li>
+						<li>Firewall Regeln definieren</li>
+					</ul>
+				</section>
+				<section>
+					<h1>ETL vs. ELT</h1>
+					<div class="grid">
+						<div class="griditem">
+							<ul>
+								<li>ELT entstand aus Big Data und cloud-Ansätzen
+									<ul>
+										<li>Höhere Rechenkapazitäten und Parallelisierungstechniken ermöglichen es Rohdaten erst zu laden und im Zielsystem zu transformieren</li>
+									</ul>
+								</li>
+								<li>ETL klassischer DWH Ansatz
+									<ul>
+										<li>Bevor Daten ins DWH geladen werden finden schon Transformationen statt</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="griditem">
+							<img data-src="./static/V03/etl_elt.png" alt="">
+						</div>
 					</div>
-					<div class="griditem">
-						<img src="./static/V03/etl_elt.png" alt="">
-					</div>
-				</div>
-			</section>
+				</section>
 
-			<section>
-				<h1>Warum ELT und ETL tools sinnvoll sind</h1>
-				<ul>
-					<li>Darstellung visuelle Datenfluss (Lineage)</li>
-					<li>GUIs und Editoren mit Einblick auf Datenbank, Bessere Benutzererfahrung </li>
-					<li>Datenerfassung, -transformation und -konsolidierung automatisieren</li>
-					<li>Komponenten oder Funktionalitäten zur Datenbereinigung und Auditing</li>
-					<li>Wiederverwendbarkeit von Logiken in templates</li>
-				</ul>
-				<figure>
-					<img src="./static/V03/informatica.png" height="320">
-					<figcaption>
-						https://www.informatica.com/products/cloud-data-integration.html
-					</figcaption>
-				</figure>
-			</section>
-
-			<section>
-				<h1>Herausforderungen der ETL/ELT Prozesse</h1>
-				<ul>
-					<li>Starke Heterogenität der Quellsysteme und Daten </li>
-					<li>Verschiedene Arten der Anbindung und Formate </li>
-					<li>Heterogene Daten zu einem konsistenten Data Mart zusammensetzen</li>
-					<li>Lade- und Aktualisierungszeitpunkte synchronisieren (Welche Daten müssen zu welchem Zeitpunkt im Report vorliegen)</li>
-				</ul>
-				<img src="./static/V03/puzzle.jpg" height="320">
-			</section>
+				<section>
+					<h1>Warum ELT und ETL tools sinnvoll sind</h1>
+					<ul>
+						<li>Darstellung visuelle Datenfluss (Lineage)</li>
+						<li>GUIs und Editoren mit Einblick auf Datenbank, Bessere Benutzererfahrung </li>
+						<li>Datenerfassung, -transformation und -konsolidierung automatisieren</li>
+						<li>Komponenten oder Funktionalitäten zur Datenbereinigung und Auditing</li>
+						<li>Wiederverwendbarkeit von Logiken in templates</li>
+					</ul>
+					<figure>
+						<img data-src="./static/V03/informatica.png" height="320">
+						<figcaption>
+							https://www.informatica.com/products/cloud-data-integration.html
+						</figcaption>
+					</figure>
+				</section>
 			
-			<section>
-				<h1>Modernes Data Warehouse auch als Quelle</h1>
-				<img src="./static/V03/dwh_als_quelle.png" alt="">
+				<section>
+					<h1>Herausforderungen der ETL/ELT Prozesse</h1>
+					<ul>
+						<li>Starke Heterogenität der Quellsysteme und Daten </li>
+						<li>Verschiedene Arten der Anbindung und Formate </li>
+						<li>Heterogene Daten zu einem konsistenten Data Mart zusammensetzen</li>
+						<li>Lade- und Aktualisierungszeitpunkte synchronisieren (Welche Daten müssen zu welchem Zeitpunkt im Report vorliegen)</li>
+					</ul>
+					<img data-src="./static/V03/puzzle.jpg" height="320">
+				</section>
+				<section>
+					<h1>Abgrenzungen Tool-Tpyen</h1>
+					<p>Viele "Data" Tools fallen nicht nur unter eine Kategorie, sondern können das gesamte Anforderungsspektrum einer Data Solution abdecken, 
+						einige Tools eignen sich besonders gut um einen Use-Case effizient zu unterstützen</p>
+					<ul>
+						<li>ETL Tools - Extrahiert und transformiert Daten und lädt diese in eine andere Zielstruktur oder System (Informatica)</li>
+						<li>Automatisierungstools - automatisiert einen Teil oder den gesamten ETL-Prozess (dbt)</li>
+						<li>Data Mining Tools - Entdecken von Zusammenhängen und Mustern, Erkenntnisse aus Daten ableiten (KNIME)</li>
+					</ul>
+					<p>In der Praxis kann jedes dieser Tools Use-Cases für Automatisierung, ETL und Data Mining erfüllen</p>
+				</section>
 			</section>
-
+				<section>
+					<h1>Modernes Data Warehouse auch als Quelle</h1>
+					<img data-src="./static/V03/dwh_als_quelle.png" alt="">
+				</section>
+			
 			<section>
 				<h1>Literatur</h1>
 				<ul>

@@ -14,7 +14,7 @@ There is a github action activated, which will automatically upload all pushes t
 You can combine the class "r-data-stack" and svg syntax to mark things on an image:
 
     <div class="r-stack">
-	  <img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+	  <img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
 		<svg height="480" width="850">
 		  <ellipse cx="720" cy="195" rx="70" ry="20" fill-opacity="0.0" style="stroke:var(--hsh_orange);stroke-width:2" />
 		</svg>
@@ -24,7 +24,7 @@ You can combine the class "r-data-stack" and svg syntax to mark things on an ima
 Use `figure` and `figcaption` to quote an image:
 
     <figure>
-		<img src="./static/V05/barchart.svg" height="480">
+		<img data-src="./static/V05/barchart.svg" height="480">
 		<figcaption>
           Gluchowski, (...)
 	  </figcaption>

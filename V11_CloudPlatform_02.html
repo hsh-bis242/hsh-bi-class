@@ -25,49 +25,54 @@
 				<h2>Cloud Plattformen (2)</h2>
 			</section>
 			<section>
-				<h1>Microsoft Azure</h1>
-				<img src="static/V11/azure_wiki_article.png" alt="Image 1">
-				<img src="static/V11/azure_wiki.png" alt="Image 1">
-				<figcaption>
-					en.wikipedia.org/wiki/Microsoft_Azure (Zugriff am 01.05.2020)
-				</figcaption>
+				<section>
+					<h1>Modern Data Warehousing</h1>
+					<img data-src="static/V11/azure_01.png" alt="Image 1">
+					<figcaption>https://www.youtube.com/watch?v=G8e55N-ityg</figcaption>
+				</section>
+				<section>
+					<h1>Modern Data Warehousing</h1>
+					<img data-src="static/V11/azure_02.png" alt="Image 1">
+					<figcaption>https://www.youtube.com/watch?v=G8e55N-ityg</figcaption>
+				</section>
 			</section>
 			<section>
-				<h1>Microsoft Azure</h1>
-				<p> portal.azure.com</p>
-				<img src="static/V11/azure_start_page.png" alt="Image 1">
-			</section>
+				<section>
+					<h1>Microsoft Azure</h1>
+					<img data-src="static/V11/azure_wiki_article.png" alt="Image 1">
+					<img data-src="static/V11/azure_wiki.png" alt="Image 1">
+					<figcaption>
+						en.wikipedia.org/wiki/Microsoft_Azure (Zugriff am 01.05.2020)
+					</figcaption>
+				</section>
+				<section>
+					<h1>Microsoft Azure</h1>
+					<p> portal.azure.com</p>
+					<img data-src="static/V11/azure_start_page.png" alt="Image 1">
+				</section>
+				<section>
+					<h1>Übersicht Azure Services</h1>
+				<a href="https://azurecharts.com/overview">Azure Services</a>	
+				</section>
 			<section>
-				<h1>Modern Data Warehousing</h1>
-				<img src="static/V11/azure_01.png" alt="Image 1">
-				<figcaption>https://www.youtube.com/watch?v=G8e55N-ityg</figcaption>
-			</section>
-			<section>
-				<h1>Modern Data Warehousing</h1>
-				<img src="static/V11/azure_02.png" alt="Image 1">
-				<figcaption>https://www.youtube.com/watch?v=G8e55N-ityg</figcaption>
-			</section>
-			<section>
-				<h1>Übersicht Azure Services</h1>
-			<a href="https://azurecharts.com/overview">Azure Services</a>	
-			</section>
-			<section>
-				<h1>Modern Data Warehousing</h1>
-				<img src="static/V11/azure_03.png" alt="Image 1">
+				<h1>Microsoft Azure - modern data warehouse</h1>
+				<img data-src="static/V11/azure_03.png" alt="Image 1">
 				<figcaption>https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/modern-data-warehouse</figcaption>
 			</section>
 			<section>
-				<h1>Modern Data Warehousing</h1>
-				<img src="static/V11/azure_04.png" alt="Image 1">
-				<img src="static/V11/azure_05.png" alt="Image 1">
-				<figcaption>https://azure.microsoft.com/en-us/pricing/calculator/</figcaption>
-			</section>
-			<section>
-				<h1>Modern Data Warehousing</h1>
-				<img src="static/V11/azure_06.png" alt="Image 1">
+				<h1>Microsoft Azure - modern data warehouse</h1>
+				<img data-src="static/V11/azure_06.png" alt="Image 1">
 				<figcaption>https://www.youtube.com/watch?v=ivt19IZO41Y
 				</figcaption>
 			</section>
+			<section>
+				<h1>Microsoft Azure - Pricing</h1>
+				<img data-src="static/V11/azure_04.png" alt="Image 1">
+				<img data-src="static/V11/azure_05.png" alt="Image 1">
+				<figcaption>https://azure.microsoft.com/en-us/pricing/calculator/</figcaption>
+			</section>
+		</section>
+		<section>
 			<section>
 				<h1>Azure Datenbank</h1>
 				<p>Azure stellt zwei SQL Datenbanken bereit:</p>
@@ -75,53 +80,6 @@
 					<li>Azure SQL Database (Computer mit SQL Server)</li>
 					<li>Azure Synapse Analytics (vormals SQL DW)</li>
 					<li>Alternative in AWS Redshift und Google Big Query</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Azure Synapse</h1>
-				<p>Massively Parallel Processing (MPP) Architektur
-					Control Node verteilt Abfrage an Compute Nodes, parallele Berechnung, Zusammenführung der Ergebnisse im Control Node
-					</p>
-				<ul>
-					<li>Basiert auf der Microsoft SQL Server Engine</li>
-					<li>Skalierbarkeit, Elastizität, Concurrency</li>
-					<li>Für ein (großes) Cloud DWH optimiert</li>
-					<li>Die verteilten Tabellen erscheinen logisch als eine Tabelle</li>
-					<li>Trennung von Compute & Storage ermöglicht das (kostensparende) Stoppen der Datenbank (Compute)</li>
-					<li>Integration mit Data Factory</li>
-					<li>Hochverfügbar (99.9%)</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Azure Synapse</h1>
-				<p>Problem: Skalierbarkeit des verteilten Speichers („Storage“)
-					</p>
-				<ul>
-					<li>Eine Gleichverteilung der Daten bei Erhöhung der Anzahl der Speicherknoten ist aufwendig</li>
-					<li>Round Robin Distribution, Hash Distribution, Replicated Distribution</li>
-					<li>Maximal 60 Speicherknoten</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Azure Synapse</h1>
-				<p>Ressourcen Management
-					</p>
-				<ul>
-					<li>Compute Data Warehouse Units (cDWUs): Ein Mix aus CPU, Speicher und I/O</li>
-					<li>cDWU 100 (Minimum)</li>
-					<li>1 Compute Node und 100 GB Speicher verteilt auf 60 Speicherknoten</li>
-					<li>cDWU 30000 (Maximum): 60 Compute Nodes und 18 TB Speicher auf jedem der 60 Speicherknoten</li>
-				</ul>
-			</section>
-			<section>
-				<h1>Azure Synapse</h1>
-				<p>Ressourcen-Klassen: Wieviel Rechenkapazität wird jeder Query zugeteilt?
-					</p>
-				<ul>
-					<li>Eine größere Ressourcen-Klasse teilt jeder Abfrage mehr Ressourcen zu, begrenzt aber die Concurrency</li>
-					<li>Eine kleinere Ressourcen-Klasse bewirkt das Gegenteil</li>
-					<li>Es gibt statische und dynamische Ressourcen-Klassen. Sie definieren das Verhalten beim Hochskalieren des Clusters</li>
-					<li>Eine statischen Ressourcen-Klasse ordnet der Abfrage immer eine definierte Menge an Ressourcen zu. Das erhöht dann die mögliche Concurrency für mehrere Abfragen. Sie eignet sich daher für definierte und vorhersagbare Abfragen</li>
 				</ul>
 			</section>
 			<section>
@@ -172,18 +130,69 @@
 					<li>Bis ca. 100 TB auch günstiger</li>
 				</ul>
 			</section>
+		</section>
+		<section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Massively Parallel Processing (MPP) Architektur
+					Control Node verteilt Abfrage an Compute Nodes, parallele Berechnung, Zusammenführung der Ergebnisse im Control Node
+					</p>
+				<ul>
+					<li>Basiert auf der Microsoft SQL Server Engine</li>
+					<li>Skalierbarkeit, Elastizität, Concurrency</li>
+					<li>Für ein (großes) Cloud DWH optimiert</li>
+					<li>Die verteilten Tabellen erscheinen logisch als eine Tabelle</li>
+					<li>Trennung von Compute & Storage ermöglicht das (kostensparende) Stoppen der Datenbank (Compute)</li>
+					<li>Integration mit Data Factory</li>
+					<li>Hochverfügbar (99.9%)</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Problem: Skalierbarkeit des verteilten Speichers („Storage“)
+					</p>
+				<ul>
+					<li>Eine Gleichverteilung der Daten bei Erhöhung der Anzahl der Speicherknoten ist aufwendig</li>
+					<li>Round Robin Distribution, Hash Distribution, Replicated Distribution</li>
+					<li>Maximal 60 Speicherknoten</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Ressourcen Management
+					</p>
+				<ul>
+					<li>Compute Data Warehouse Units (cDWUs): Ein Mix aus CPU, Speicher und I/O</li>
+					<li>cDWU 100 (Minimum)</li>
+					<li>1 Compute Node und 100 GB Speicher verteilt auf 60 Speicherknoten</li>
+					<li>cDWU 30000 (Maximum): 60 Compute Nodes und 18 TB Speicher auf jedem der 60 Speicherknoten</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Azure Synapse</h1>
+				<p>Ressourcen-Klassen: Wieviel Rechenkapazität wird jeder Query zugeteilt?
+					</p>
+				<ul>
+					<li>Eine größere Ressourcen-Klasse teilt jeder Abfrage mehr Ressourcen zu, begrenzt aber die Concurrency</li>
+					<li>Eine kleinere Ressourcen-Klasse bewirkt das Gegenteil</li>
+					<li>Es gibt statische und dynamische Ressourcen-Klassen. Sie definieren das Verhalten beim Hochskalieren des Clusters</li>
+					<li>Eine statischen Ressourcen-Klasse ordnet der Abfrage immer eine definierte Menge an Ressourcen zu. Das erhöht dann die mögliche Concurrency für mehrere Abfragen. Sie eignet sich daher für definierte und vorhersagbare Abfragen</li>
+				</ul>
+			</section>
 			<section>
 				<h1>Azure Synapse Studio</h1>
-				<img src="static/V11/azure_07.png" alt="Image 1">
+				<img data-src="static/V11/azure_07.png" alt="Image 1">
 				<figcaption>https://kohera.be/blog/azure-cloud/azure-synapse-analytics-where-azure-dwh-spark-adf-meet/
 				</figcaption>
 			</section>
 			<section>
 				<h1>Azure Synapse Studio</h1>
-				<img src="static/V11/azure_08.png" alt="Image 1">
+				<img data-src="static/V11/azure_08.png" alt="Image 1">
 				<figcaption>https://azure.microsoft.com/de-de/services/synapse-analytics/
 				</figcaption>
 			</section>
+		</section>
+			<section>
 			<section>
 				<h1>Azure Data Factory</h1>
 				<h2>adf.azure.com</h2>
@@ -200,10 +209,10 @@
 					</p>
 					<p>Alternative: AWS Glue</p>
 					<figcaption>https://learn.microsoft.com/en-us/azure/data-factory/introduction</figcaption>
-			</section>
+			</section>	
 			<section>
 				<h1>Azure Data Factory</h1>
-				<img src="static/V11/azure_09.png" alt="Image 1">
+				<img data-src="static/V11/azure_09.png" alt="Image 1">
 			</section>
 			<section>
 				<h1>Azure Data Factory Komponenten</h1>
@@ -304,8 +313,10 @@ Es können drei verschiedne Arten von Trigger erstellt werden:
 			</section>
 			<section>
 				<h1>Azure Data Factory Beispiel Aggregation UI</h1>
-					<img src="static/V11/azure_10.png" alt="Image 1"> 
+					<img data-src="static/V11/azure_10.png" alt="Image 1"> 
 			</section>
+		</section>
+		<section>
 			<section>
 				<h1>Azure Analysis Services</h1>
 				<p>Azure Analysis Services (AAS) ist ein in der Cloud gehosteter Dienst und ein vollständig verwaltetes Platform-as-a-Service-Tool (PaaS), mit dem Data Engineers Datenbanktabellen modellieren und Benutzern diese semantischen Datenmodelle bereitstellen können</p>
@@ -351,6 +362,7 @@ Es können drei verschiedne Arten von Trigger erstellt werden:
 				<p>Datenbanken wie Snowflake ermöglichen durch neue Speichertechniken tabulare Strukturen mit größerer Performance und Datenmenge, Technologie wird stetig weiterentwickelt </p>
 				<p>AAS unterstützt nur tabellarische Projekte</p>
 			</section>
+		</section>
 			<section> 
 				<h1>Literatur</h1>
 				<ul>
