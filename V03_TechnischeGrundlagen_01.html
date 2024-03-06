@@ -35,7 +35,7 @@
 				<h1>Einordnung</h1>
 				<figure>
 					<div class="r-stack">
-						<img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+						<img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
 						<svg height="480" width="850">
 							<ellipse cx="130" cy="230" rx="100" ry="150" fill-opacity="0.0"
 								style="stroke:var(--hsh_orange);stroke-width:2" />
@@ -69,7 +69,7 @@
 					<h1>Klassifikationen Daten</h1>
 					<div class="grid">
 						<div class="griditem"  style="float: left">
-							<img src="static/V03/sources.jpg" height="480">
+							<img data-src="static/V03/sources.jpg" height="480">
 						</div>
 						<ul style="line-height: 2.0">
 							<li>Herkunft: intern, extern</li>
@@ -94,17 +94,17 @@
 					</ul>
 					<p>Datenauswahl einer Anbindung wird oftmals auf Reporting Anforderungen aufgebaut (Top-Down)
 					</p>
-					<img src="static/V03/pick_data.jpg" height="200">
+					<img data-src="static/V03/pick_data.jpg" height="200">
 				</section>
 
 				<section>
 					<h1>Art der Daten</h1>
 					<div>
 					<div style="float: left">
-						<img src="static/V03/camera.png">
+						<img data-src="static/V03/camera.png">
 						<br>
 						<br>
-						<img src="static/V03/log.png">
+						<img data-src="static/V03/log.png">
 					</div>
 					<div>
 					<ul>
@@ -135,7 +135,7 @@
 
 				<section>
 					<h1>Datenquellen</h1>
-					<img src="./static/V03/datenquellen.png" alt="Schaubild Datenquellen">
+					<img data-src="./static/V03/datenquellen.png" alt="Schaubild Datenquellen">
 				</section>
 			</section>
 			<section>
@@ -173,10 +173,13 @@
 						</ul>
 					</li>
 				</ul>
-				<pre><code>Stunde,Montag,Dienstag,Mittwoch,Donnerstag,Freitag
-1,Mathematik,Deutsch,Englisch,Erdkunde,Politik
-2,Biologie,Deutsch,Englisch,Biologie,Geschichte
-3,Biologie,"Religion (ev., kath.)",Kunst,,Kunst</code>
+				<pre>
+					<code data-trim class="language-txt">
+						Stunde,Montag,Dienstag,Mittwoch,Donnerstag,Freitag
+						1,Mathematik,Deutsch,Englisch,Erdkunde,Politik
+						2,Biologie,Deutsch,Englisch,Biologie,Geschichte
+						3,Biologie,"Religion (ev., kath.)",Kunst,,Kunst
+					</code>
 				</pre>
 			</section>
 
@@ -195,28 +198,30 @@
 					</li>
 				</ul>
 				<pre>
-					<code>{
-"firstName": "John",
-"lastName": "Smith",
-"isAlive": true,
-"age": 27,
-"address": {
-	"streetAddress": "21 2nd Street",
-	"city": "New York",
-	"state": "NY",
-	"postalCode": "10021-3100"
-},
-"phoneNumbers": [
-	{
-		"type": "home",
-		"number": "212 555-1234"
-	},
-	{
-		"type": "office",
-		"number": "646 555-4567"
-	}
-	]
-}</code>
+					<code data-trim class="language-json">
+						{
+							"firstName": "John",
+							"lastName": "Smith",
+							"isAlive": true,
+							"age": 27,
+							"address": {
+							"streetAddress": "21 2nd Street",
+							"city": "New York",
+							"state": "NY",
+							"postalCode": "10021-3100"
+						},
+						"phoneNumbers": [
+							{
+							"type": "home",
+							"number": "212 555-1234"
+							},
+							{
+							"type": "office",
+							"number": "646 555-4567"
+							}
+						]
+						}
+					</code>
 				</pre>
 			</section>
 
@@ -236,18 +241,20 @@
 					</li>
 				</ul>
 				<pre>
-					<code><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<verzeichnis>
-	<titel>Wikipedia Städteverzeichnis</titel>
-	<eintrag>
-		<stichwort>Genf</stichwort>
-		<eintragstext>Genf ist der Sitz von ...</eintragstext>
-	</eintrag>
-	<eintrag>
-		<stichwort>Köln</stichwort>
-		<eintragstext>Köln ist eine Stadt, die ...</eintragstext>
-	</eintrag>
-</verzeichnis></code>
+					<code data-trim>
+						<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+						<verzeichnis>
+							<titel>Wikipedia Städteverzeichnis</titel>
+							<eintrag>
+								<stichwort>Genf</stichwort>
+								<eintragstext>Genf ist der Sitz von ...</eintragstext>
+							</eintrag>
+							<eintrag>
+								<stichwort>Köln</stichwort>
+								<eintragstext>Köln ist eine Stadt, die ...</eintragstext>
+							</eintrag>
+						</verzeichnis>		
+					</code>
 				</pre>
 			</section>
 
@@ -273,9 +280,10 @@
 			<h1>Application Programming Interfaces (API)</h1>
 			<p>Heterogene Anwendugnen können Daten austauschen und unabhängig voneiander agieren</p>
 			<p>Beispiel "The CAT API" Endpunkt für ein zufälliges Katzen Bild <b>https://api.thecatapi.com/v1/images/search</b> liefert folgende JSON-Response mit der Bild URL:</p>
-			<pre><code>
-				[{"id":"ctu","url":"https://cdn2.thecatapi.com/images/ctu.jpg","width":1999,"height":1760}]
-			</code>
+			<pre>
+				<code data-trim>
+					[{"id":"ctu","url":"https://cdn2.thecatapi.com/images/ctu.jpg","width":1999,"height":1760}]
+				</code>
 			</pre>
 		</section>
 		<section>
@@ -287,28 +295,29 @@
 				<li>DELETE - Löscht die Ressource</li>
 			</ul>
 			<p>Javascript GET Beispiel</p>
-			<pre><code>
-				const headers = new Headers({
-					"Content-Type": "application/json",
-					"x-api-key": "DEMO-API-KEY"
-				  });
-				  
-				  var requestOptions = {
-					method: 'GET',
-					headers: headers,
-					redirect: 'follow'
-				  };
-				  
-				  fetch("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1", requestOptions)
-					.then(response => response.text())
-					.then(result => console.log(result))
-					.catch(error => console.log('error', error));
-			</code>
+			<pre>
+				<code data-trim>
+					const headers = new Headers({
+						"Content-Type": "application/json",
+						"x-api-key": "DEMO-API-KEY"
+					});
+					
+					var requestOptions = {
+						method: 'GET',
+						headers: headers,
+						redirect: 'follow'
+					};
+					
+					fetch("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1", requestOptions)
+						.then(response => response.text())
+						.then(result => console.log(result))
+						.catch(error => console.log('error', error));
+				</code>
 			</pre>
 		</section>
 			<section>
 				<h1>Erwartung und Realität von Anbindungen</h1>
-				<img src="./static/V03/erwartung_und_realitaet_von_anbindungen.png" alt="Schaubild Datenquellen">
+				<img data-src="./static/V03/erwartung_und_realitaet_von_anbindungen.png" alt="Schaubild Datenquellen">
 			</section>
 			<section>
 				<section>
@@ -328,7 +337,7 @@
 					<h1>Referenzarchitektur</h1>
 					<figure>
 						<div class="r-stack">
-							<img src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
+							<img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" height="480" widht="850">
 							<svg height="480" width="850">
 								<ellipse cx="360" cy="230" rx="180" ry="150" fill-opacity="0.0"
 									style="stroke:var(--hsh_orange);stroke-width:2" />
@@ -355,9 +364,9 @@
 					<h1>Push vs. Pull</h1>
 					<div class="grid">
 						<div class="griditem">
-							<img src="static/V03/pull.jpg" height="160">
+							<img data-src="static/V03/pull.jpg" height="160">
 							<br>
-							<img src="static/V03/push.jpg" height="160">
+							<img data-src="static/V03/push.jpg" height="160">
 						</div>
 						<div class="griditem">
 							<ul>
@@ -406,7 +415,7 @@
 							</ul>
 						</div>
 						<div class="griditem">
-							<img src="./static/V03/etl_elt.png" alt="">
+							<img data-src="./static/V03/etl_elt.png" alt="">
 						</div>
 					</div>
 				</section>
@@ -421,7 +430,7 @@
 						<li>Wiederverwendbarkeit von Logiken in templates</li>
 					</ul>
 					<figure>
-						<img src="./static/V03/informatica.png" height="320">
+						<img data-src="./static/V03/informatica.png" height="320">
 						<figcaption>
 							https://www.informatica.com/products/cloud-data-integration.html
 						</figcaption>
@@ -436,7 +445,7 @@
 						<li>Heterogene Daten zu einem konsistenten Data Mart zusammensetzen</li>
 						<li>Lade- und Aktualisierungszeitpunkte synchronisieren (Welche Daten müssen zu welchem Zeitpunkt im Report vorliegen)</li>
 					</ul>
-					<img src="./static/V03/puzzle.jpg" height="320">
+					<img data-src="./static/V03/puzzle.jpg" height="320">
 				</section>
 				<section>
 					<h1>Abgrenzungen Tool-Tpyen</h1>
@@ -452,7 +461,7 @@
 			</section>
 				<section>
 					<h1>Modernes Data Warehouse auch als Quelle</h1>
-					<img src="./static/V03/dwh_als_quelle.png" alt="">
+					<img data-src="./static/V03/dwh_als_quelle.png" alt="">
 				</section>
 			
 			<section>
