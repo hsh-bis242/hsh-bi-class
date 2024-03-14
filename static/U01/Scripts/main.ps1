@@ -1,13 +1,20 @@
+param(
+    [Int32]$groupnumber=0,
+    [String]$sqlpassword="ryDZo5*~71[Q-"
+)
+
+$groupname = "bi{0:d2}" -f $groupnumber
+
 $resourceGroupName = "rgBI"
-$storageAccountName = "bixx" # edit XX
+$storageAccountName = $groupname
 $storageAccountKey = (Get-AzStorageAccountKey -ResourceGroupName "$resourceGroupName" -Name "$storageAccountName")[0].Value
-$containerName = "bixx" # edit XX
+$containerName = $groupname
 $uri = "https://$storageAccountName.blob.core.windows.net/$containerName"
 
-$serverName="bixx" # edit xx
-$databaseName="WillibaldXX" # edit XX
-$username="bixx" # edit xx
-$password="ryDZo5*~71[Q-" # edit password
+$serverName=$groupname
+$databaseName="Willibald{0:d2}" -f $groupnumber
+$username=$groupname
+$password=$sqlpassword
 $passwordSecureString = ConvertTo-SecureString -String $password -AsPlainText -Force
 
 $context = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey

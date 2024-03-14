@@ -113,38 +113,43 @@
 					</p>
 				</section>
 				<section>
-					<h1>Anpassen der Dateien</h1>
-					<p>Vor Inbetriebnahme der Infrastruktur, laden Sie bitte folgende drei Dateien herunter: 
-						<b><a href="static/U01/Scripts/main.ps1" download>main.ps1</a></b>, <b><a href="static/U01/Scripts/main.tf" download>main.tf</a></b> und <b><a href="static/U01/Scripts/Willibald.bacpac" download>Willibald.bacpac</a></b>.</p>
-						<p>In den beiden Dateien <b><a href="static/U01/Scripts/main.ps1" download>main.ps1</a></b> und <b><a href="static/U01/Scripts/main.tf" download>main.tf</a></b> müssen vor der Ausführung noch einige Stellen angepasst werden!</p>
-					<p>Bitte ersetzen Sie dazu <b>alle</b> Vorkommen von <b>xx</b> bzw. <b>XX</b> in jeweils beiden Dateien. Alle Stellen sind jeweils auch mit einem Kommentar versehen.</p>
+					<h1>Download der Dateien</h1>
+					<p>
+						Vor Inbetriebnahme der Infrastruktur, laden Sie bitte folgende drei Dateien herunter:
+						<ul>
+							<li><a href="static/U01/Scripts/main.ps1" download>main.ps1</a></li>
+							<li><a href="static/U01/Scripts/main.tf" download>main.tf</a></li>
+							<li><a href="static/U01/Scripts/Willibald.bacpac" download>Willibald.bacpac</a></li>
+						</ul>
+					</p>
 				</section>
 				<section>
 					<h1>Installation in Azure</h1>
 					<p>
 						Zur Einrichtung der Übungsumgebung in Azure nutzen wir Terraform als Infrastructure-as-Code-Softwaretool (IaC).
 					</p>
+					<ol>
+						<li>Bitte laden Sie beide Dateien (<b><a href="static/U01/Scripts/main.ps1" download>main.ps1</a></b> und <b><a
+									href="static/U01/Scripts/main.tf" download>main.tf</a></b>) über die Azure CLI hoch.</li>
+						<li>Ihr Benutzer darf keine neue Ressourcengruppe erstellen.</li>
+						<li>Auch haben Sie beim Start der Cloud Shell bereits einen Storage Account erstellt.</li>
+						<li>Anschließend stellen Sie bitte die Infrastruktur mit folgenden Commands bereit:</li>
+					</ol>
+					<pre>
+						<code data-trim class="language-powershell">
+							terraform init
+							terraform import -var "groupnumber=XX" azurerm_resource_group.rgBI /subscriptions/1f75bacb-8d7d-4e96-87cb-f7e4216886e5/resourceGroups/rgBI
+							terraform import -var "groupnumber=XX" azurerm_storage_account.bistorage /subscriptions/1f75bacb-8d7d-4e96-87cb-f7e4216886e5/resourceGroups/rgBI/providers/Microsoft.Storage/storageAccounts/biXX
+							terraform apply -var "groupnumber=XX" -var "sqlpassword=ryDZo5*~71[Q-"
+						</code>
+					</pre>
 					<p>
-						Im Folgenden finden Sie eine schrittweise Anleitung zur Einrichtung.
-					</p> 
-					<p>
-						<ol>
-							<li>Bitte fügen Sie beide Dateien (<b><a href="static/U01/Scripts/main.ps1">main.ps1</a></b> und <b><a href="static/U01/Scripts/main.tf">main.tf</a></b>) über die Azure CLI ein.</li>
-							<li>Initialisieren Sie Terraform im Startverzeichnis:
-								<pre><code>terraform init</code></pre>
-							</li>
-							<li>Anschließend stellen Sie bitte die Infrastruktur mit folgendem Command bereit:
-								<pre><code>terraform apply</code></pre>
-							</li>
-						</ol>
-					</p>
-					<p>
-						Die Ausführung kann bis zu 15 min dauern. Im Anschluss ist die Infrastruktur einsatzbereit.
+						Die Ausführung kann bis zu 15 Minuten dauern. Anschließend steht die Infrastruktur bereit.
 					</p>
 				</section>
 				<section>
-					<h1>Hochladen der Willibald Datenbank Datei (.bacpac)</h1>
-					<p>Um die bereits bestehende Datenbank in Azure zu nutzen, muss diese zuvor importiert werden. Dazu sind folgende Schritte nötig:</p>
+					<h1>Import des Core-DWH (1/2)</h1>
+					<p>Nun muss noch das Core-DWH importiert werden. Dazu sind folgende Schritte nötig:</p>
 					<p>
 						<ol>
 							<li>Navigieren Sie in Azure zu ihrem <b>Speicherkonto</b> (biXX)</li>
@@ -156,10 +161,10 @@
 					</p>
 				</section>
 				<section>
-					<h1>Ausführen des PowerShell-Skript's</h1>
+					<h1>Import des Core-DWH (2/2)</h1>
 					<p>Nach dem nun alles benötigte vorhanden ist, können wir das<br>PowerShell-Skript ausführen um die Datenbank-Datei zu importieren</p>
-					<pre><code>PS /home/bixxxxx> ./main.ps1</code></pre>
-					<p>Ab diesem Punkt wird im Hintergrund eine neue Anfrage an den SQL-Server eröffnet.</p>
+					<pre><code class="language-powershell">./main.ps1 -groupnumber X -sqlpassword "ryDZo5*~71[Q-"</code></pre>
+					<p>Ab diesem Punkt wird im Hintergrund ein Prozess auf dem SQL-Server ausgeführt.</p>
 					<p>Der gesamte Prozess des Imports kann bis zu 15 Minuten dauern.</p>
 				</section>
 			</section>
@@ -178,13 +183,10 @@
 					<div class="grid_50">
 						<div class="griditem">
 							<p>
-								Nun klonen wir das Github-Repository auf den Übungsserver.
+								Nun klonen wir das Github-Repository.
 							</p>
 							<p>
-								Wir empfehlen Ihnen die Übungen mithilfe der Entwicklungsumgebung <b>Visual Studio Code</b> umzusetzen. Diese ist auf dem Server vorinstalliert.
-							</p>
-							<p>
-								Öffnen Sie eine Remotedesktopverbindung zum Server und starten Sie die Software.
+								Wir empfehlen Ihnen die Übungen mithilfe der Entwicklungsumgebung <b>Visual Studio Code</b> umzusetzen.
 							</p>
 							<p>
 								Direkt auf der Willkommensseite finden Sie den Link zum Klonen eines Git-Repositorys.
