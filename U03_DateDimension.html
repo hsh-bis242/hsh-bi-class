@@ -164,7 +164,7 @@ CREATE TABLE dim_date
 					<ul>
 						<li>Beim Einlesen der CSV-Datei sollte eine Spalte umbennant werden. KNIME interpretiert das <a href="https://www.w3.org/International/questions/qa-utf8-bom.de.html">UTF8-BOM</a> nicht.</li>
 						<li>Bei der Roten-Punkt-Verbindung handelt es sich um Flowvariablen die Sie im zweiten Configure-Tab der Knime-Node einsetzen müssen (Create Date&Time Range)</li>
-						<li>Die dim_date Tabelle sollte bei einem zweiten oder weiteren Erstellungsversuch vorher per SQL-Editor gedroppt werden, die KNIME Node replaced diese leider nicht automatisch</li>
+						<li>Die dim_date Tabelle sollte bei einem zweiten oder weiteren Erstellungsversuch vorher per SQL-Editor dropped werden, die CREATE TABLE KNIME Node replaced die Tabelle leider nicht automatisch</li>
 						<li>In KNIME werden Java-Datentypen in den Spalten verwendet, es sollte immer drauf geachtet werden, dass für jeden Verarbeitungsschritt die Datentypen entsprechen umgewandelt und abgestimmt sind</li>
 					</ul>
 				</section>
