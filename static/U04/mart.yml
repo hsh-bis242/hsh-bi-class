@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: willibald_data_mart
-    schema: dm_ol
+    schema: dbo
     tables:
 
       - name: dim_date

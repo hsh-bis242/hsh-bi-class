@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: willibald_dwh_links
-    schema: dwh_sl
+    schema: dbo
     tables:
     
       - name: lnk_bestellung_kreditkarte

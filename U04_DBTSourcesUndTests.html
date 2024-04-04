@@ -50,7 +50,7 @@
 					</div>
 				</section>
 				<section>
-					<h1>DWH-Datenmodell mit pgAdmin anzeigen</h1>
+					<h1>DWH-Datenmodell im SQL Server anzeigen</h1>
 					<div class="grid_50">
 						<div class="griditem">
 							<p>Wir empfehlen die <a href="https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql">SQL Server (mssql) Erweiterung für Visual Studio Code</a>. Damit können Sie alle Tabellen, Views und Daten in Ihrer Datenbank anzeigen.</p>
@@ -125,6 +125,14 @@
   - package: dbt-labs/dbt_utils
     version: 1.1.1</code>
 					</pre>
+					<p>
+						Anschließend können Sie die neuen Abhängigkeiten mit folgendem Befehl installieren:
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							dbt deps
+						</code>
+					</pre>
 				</section>
 				<section>
 					<h1>Anlegen von dbt-source-Dateien</h1>
@@ -175,7 +183,7 @@
 			<section>
 				<h1>Ergebnis der Übung</h1>
 				<ul>
-					<li>Alle Satelliten, Hubs und Links aus dem Schema <b>dwh_sl</b> sind mit Tests in den yml-Dateien angelegt.</li>
+					<li>Alle Satelliten, Hubs und Links sind mit Tests in den yml-Dateien angelegt.</li>
 					<li>Die Tests müssen ausführbar sein.</li>
 					<li>Die Fragen in den vorgegeben yml-Dateien wurden beantwortet.</li>
 					<li>Für eine Notenverbesserung und erfolgreiche Absolvierung werden die yml-Dateien auf Vollständigkeit geprüft und ausgeführt. Sind 3 von 5 Fragen zufriedenstellend beantwortet gilt dies als erfolgreich.</li>
