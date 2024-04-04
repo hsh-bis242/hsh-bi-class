@@ -19,7 +19,11 @@ sources:
             tests:
               - accepted_values: 
                   values: [-1]
-
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - bestellung_sk
+                - inscription_timestamp
 
 
       - name: sat_kreditkarte
@@ -34,3 +38,8 @@ sources:
             tests:
               - accepted_values: 
                   values: [-1]
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - bestellung_sk
+                - inscription_timestamp

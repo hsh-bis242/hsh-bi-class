@@ -45,9 +45,6 @@ sources:
             tests:
               - unique
               - not_null
-              - relationships:
-                  to: source('willibald_dwh_links', 'lnk_bestellung_kunde')
-                  field: kunde_sk
           - name: audit_trail_id
             tests:
               - accepted_values: 
