@@ -50,14 +50,14 @@
 					</div>
 				</section>
 				<section>
-					<h1>DWH-Datenmodell mit pgAdmin anzeigen</h1>
+					<h1>DWH-Datenmodell im SQL Server anzeigen</h1>
 					<div class="grid_50">
 						<div class="griditem">
-							<p>Auf dem Server ist pgAdmin installiert. Damit können Sie alle Tabellen, Views und Daten in Ihrer Datenbank anzeigen.</p>
+							<p>Wir empfehlen die <a href="https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql">SQL Server (mssql) Erweiterung für Visual Studio Code</a>. Damit können Sie alle Tabellen, Views und Daten in Ihrer Datenbank anzeigen.</p>
 							<p>Per Rechtsklick auf eine Tabelle können Sie ein Select-Skript erzeugen, um die Daten anzeigen zu lassen.</p>
 						</div>
 						<div class="griditem">
-							<img data-src="static/U04/pgAdmin.png" height="400">
+							<img data-src="static/U04/mssql.png">
 						</div>
 					</div>
 				</section>
@@ -117,28 +117,60 @@
 					<img data-src="static/U04/source_yml_entry.png">
 				</section>
 				<section>
+					<h1>Laden von Erweiterungspaketen</h1>
+					<p>In Links und Satelliten bietet es sich an die Kombination aus zwei Spalten auf Eindeutigkeit zu prüfen.</p>
+					<p>Dafür muss ein Erweiterungspaket geladen werden. Erstellen Sie dafür die Datei <b>packages.yml</b> direkt im dbt-Projektverzeichnis und füllen diese mit folgendem Inhalt:</p>
+					<pre>
+						<code>packages:
+  - package: dbt-labs/dbt_utils
+    version: 1.1.1</code>
+					</pre>
+					<p>
+						Anschließend können Sie die neuen Abhängigkeiten mit folgendem Befehl installieren:
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							dbt deps
+						</code>
+					</pre>
+				</section>
+				<section>
 					<h1>Anlegen von dbt-source-Dateien</h1>
 					<p>In den yml-Dateien werden 5 Fragen gestellt. Bitte versuchen Sie diese zu beantworten. Per Hashtag können Sie Zeilen in yml-Dateien auskommentieren.</p>
 					<img data-src="static/U04/questions_tests.png">
 				</section>
 				<section>
-					<h1>Ausführen der dbt-Tests</h1>
-					<ul>
-						<li>
-							In Visual Studio Code können Sie ein Terminal öffnen:
-							<img data-src="static/U04/terminal.png">
-						</li>
-						<li>Um dbt-Befehle ausführen zu können müssen Sie sich im Verzeichnis <b>dev\bis242ws230x\willibald_dm\</b> befinden. Wechseln Sie also ggf. per <b>cd .\willibald_dm\</b> nach dem Start des Terminals ins Unterverzeichnis.</li>
-						<li>Die Tests können Sie mit dem Befehl <b>dbt test --select source:*</b> ausführen. Es werden dann alle Source-Dateien getestet.</li>
-						<li>Alternativ können Sie spezifisch den internen Namen der yml-Dateien angeben. Dieser wird ganz oben in der Datei definiert. <b>dbt test --select source:willibald_dwh_sats</b></li>
-						<li>Es ist auch möglich ein ganz spezifisches Objekt zu testen: <b>dbt test --select source:willibald_dwh_sats.hub_kreditkarte</b></li>
-					</ul>
+					<div class="r-fit-text">
+						<h1>Ausführen der dbt-Tests</h1>
+						<ul>
+							<li>
+								In Visual Studio Code können Sie ein Terminal öffnen:
+								<pre><img data-src="static/U04/terminal.png"></pre>
+							</li>
+							<li>
+								Um dbt-Befehle ausführen zu können müssen Sie sich im Verzeichnis <b>dev\bis242ws230x\willibald_dm\</b> befinden:
+								<pre><code>cd .\willibald_dm\</code></pre>
+							</li>
+							<li>
+								Um alle Tests auszuführen setzen Sie folgenden Befehl ab:
+								<pre><code>dbt test --select source:*</code></pre>
+							</li>
+							<li>
+								Alternativ können Sie spezifisch den internen Namen der yml-Dateien angeben. Dieser wird ganz oben in der Datei definiert.
+								<pre><code>dbt test --select source:willibald_dwh_sats</code></pre>
+							</li>
+							<li>
+								Es ist auch möglich ein ganz spezifisches Objekt zu testen:
+								<pre><code>dbt test --select source:willibald_dwh_sats.hub_kreditkarte</code></pre>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section>
 					<h1>Tests ausführen</h1>
 					<p>Wenn ein Test fehlschlägt heißt dies nicht, dass Sie einen Fehler gemacht haben. Der Test hat Probleme oder Fehler in den Daten gefunden. Hier ein Beispiel:</p>
 					<img data-src="static/U04/test_execution.png">
-					<p>Die Zahl hinter dem FAIL zeigt die Anzahl der Zeilen an, welche den Test nicht bestanden haben.</p>
+					<p>Die Zahl hinter der Meldung zeigt die Anzahl der Zeilen an, welche den Test nicht bestanden haben.</p>
 				</section>
 				<section>
 					<h1>Tests ausführen</h1>
@@ -151,10 +183,9 @@
 			<section>
 				<h1>Ergebnis der Übung</h1>
 				<ul>
-					<li>Alle Satelliten, Hubs und Links aus dem Schema <b>dwh_sl</b> sind mit Tests in den yml-Dateien angelegt.</li>
+					<li>Alle Satelliten, Hubs und Links sind mit Tests in den yml-Dateien angelegt.</li>
 					<li>Die Tests müssen ausführbar sein.</li>
 					<li>Die Fragen in den vorgegeben yml-Dateien wurden beantwortet.</li>
-					<li>Die Tests müssen nicht fachlich sinnvoll sein. Dies können Sie in der kurzen Übungszeit nicht bewerten.</li>
 					<li>Für eine Notenverbesserung und erfolgreiche Absolvierung werden die yml-Dateien auf Vollständigkeit geprüft und ausgeführt. Sind 3 von 5 Fragen zufriedenstellend beantwortet gilt dies als erfolgreich.</li>
 					<li>Vergessen Sie nicht die Änderungen in Ihr git-Repository zu pushen. Probieren Sie gerne auch das Branching-Feature von git aus.</li>
 				</ul>

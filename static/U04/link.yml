@@ -2,21 +2,20 @@ version: 2
 
 sources:
   - name: willibald_dwh_links
-    schema: dwh_sl
+    schema: dbo
     tables:
     
       - name: lnk_bestellung_kreditkarte
         columns:
           - name: bestellung_sk
             tests:
-              - unique
               - not_null
               - relationships:
                   to: source('willibald_dwh_hubs', 'hub_bestellung')
                   field: bestellung_sk
           - name: kreditkarte_sk
             tests:
-            # Dieser unique test failed. Warum ist dieser aus fachlicher Sicht unnötig?
+            # Dieser unique test failed. Warum ist dieser aus fachlicher Sicht falsch?
             # Antwort:
               - unique
               - not_null
@@ -27,14 +26,18 @@ sources:
             tests:
               - accepted_values: 
                   values: [-1]
-
+        # Hier wird auf die eindeutige Kombination zweier Spalten getestet. Dafür muss das Package dbt-labs/dbt_utils über eine packages.yml geleaden werden.
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - bestellung_sk
+                - kreditkarte_sk
 
 
       - name: lnk_bestellung_kunde
         columns:
           - name: bestellung_sk
             tests:
-              - unique
               - not_null
               - relationships:
                   to: source('willibald_dwh_hubs', 'hub_bestellung')
@@ -49,3 +52,8 @@ sources:
             tests:
               - accepted_values: 
                   values: [-1]
+        tests:
+          - dbt_utils.unique_combination_of_columns:
+              combination_of_columns:
+                - bestellung_sk
+                - kunde_sk

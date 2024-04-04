@@ -209,6 +209,19 @@
 					Hinweis: Ein Neustart kann hier erforderlich sein damit pip genutzt werden kann bei Windows, die ENVIRONMENT PATH
 					Variablen werden erst nach einen Neustart gesetzt
 				</section>
+				<section>
+					<h1>Installation von ODBC-Treibern</h1>
+					<p>
+						Gegebenenfalls müssen auf Ihrem System die ODBC Treiber für SQL Server installiert werden. Geben Sie folgenden Befehl in Ihrer lokalen Powershell ein:
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							Get-OdbcDriver -Name "ODBC Driver*SQL Server"
+						</code>
+					</pre>
+					<p>Sollte der Befehl keine Antwort liefern, müssen Sie die Treiber installieren. Diese können hier heruntergeladen werden:</p>
+					<a href="https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16">Download ODBC Driver for SQL Server</a>
+				</section>
 			</section>
 			<section>
 				<section>
