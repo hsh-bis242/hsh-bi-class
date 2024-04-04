@@ -117,6 +117,16 @@
 					<img data-src="static/U04/source_yml_entry.png">
 				</section>
 				<section>
+					<h1>Laden von Erweiterungspaketen</h1>
+					<p>In Links und Satelliten bietet es sich an die Kombination aus zwei Spalten auf Eindeutigkeit zu prüfen.</p>
+					<p>Dafür muss ein Erweiterungspaket geladen werden. Erstellen Sie dafür die Datei <b>packages.yml</b> direkt im dbt-Projektverzeichnis und füllen diese mit folgendem Inhalt:</p>
+					<pre>
+						<code>packages:
+  - package: dbt-labs/dbt_utils
+    version: 1.1.1</code>
+					</pre>
+				</section>
+				<section>
 					<h1>Anlegen von dbt-source-Dateien</h1>
 					<p>In den yml-Dateien werden 5 Fragen gestellt. Bitte versuchen Sie diese zu beantworten. Per Hashtag können Sie Zeilen in yml-Dateien auskommentieren.</p>
 					<img data-src="static/U04/questions_tests.png">
