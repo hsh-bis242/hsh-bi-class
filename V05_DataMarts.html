@@ -39,7 +39,7 @@
 						<li>Externe (Teil-)Sicht auf das Data Warehouse</li>
 						<li>Subjektorientiert</li>
 						<li>Deckt Anforderungen einer speziellen Nutzergruppe ab</li>
-						<li>Kann aber auch im Sinne es Golden Records übergreifend im gesamten Unternehmen vorhanden sein (Standardisierung vs. Individualisierung)</li>
+						<li>Kann aber auch im Sinne des Golden Records übergreifend im gesamten Unternehmen vorhanden sein (Standardisierung vs. Individualisierung)</li>
 						<li>Struktur der Data Marts hängt immer stark von Reporting Anforderungen ab (Unterschied Controlling & Marketing)</li>
 						<li>Trennung nach Historisierung und Aktualität</li>
 						<li>Unterschiedliche Aggregationsstufen</li>
@@ -288,7 +288,7 @@
 								<li>Normalized = schlechtere Query Performance</li>
 								<li>Niedrige Redundanzen</li>
 								<li>Daten sind gesplittet über die Dimensionen</li>
-								<li>Cube processing performanter</li>
+								<li>Cube processing ist langsamer</li>
 							</ul>
 						</div>
 					</div>
@@ -979,12 +979,14 @@
 						<li>Eindeutigkeit (Interpretierbarkeit) und Schlüsselintegrität (Schlüssel und Referenzen)</li>
 					</ul>
 				</section>
-	
-					
+				<section>
+					<h1>Wo sollte getestet werden?</h1>
+					<img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" alt="" height="480">
+				</section>
 				<section>
 					<h1>Häufige Fehler</h1>
 					<ul>
-						<li>Eindeutigkeit verletzt (Deduplizierung)</li>
+						<li>Eindeutigkeit verletzt (Deduplizierung- Business Logik)</li>
 						<li>Unterschiedliche Repräsentation (Business Logik)</li>
 						<li>Widersprüchliche Werte (Business Logik)</li>
 						<li>Referentielle Integrität verletzt (Business Logik)</li>
@@ -999,7 +1001,7 @@
 				</section>
 	
 				<section style="font-size: 23px">
-					<p>Customer</p>
+					<p>Customer am 01.03.2023</p>
 					<table>
 						<thead>
 							<tr>
@@ -1071,7 +1073,7 @@
 				</section>
 	
 				<section style="font-size: 23px">
-					<p>Customer</p>
+					<p>Customer am 01.03.2023</p>
 					<table>
 						<thead>
 							<tr>
@@ -1098,7 +1100,8 @@
 							</tr>
 							<tr>
 								<td style="color: red">1</td>
-								<td>Thorsten Schmidt</td>
+								<td style="color: greenyellow">Thorsten 
+									Schmidt</td>
 								<td>15.04.88</td>
 								<td>34</td>
 								<td>W</td>
@@ -1158,12 +1161,14 @@
 							</ul>
 						</li>
 						<li>Lesbarkeit - Kodierungen ersetzen</li>
-						<li>Filtern und löschen unnötiger Bestandteile</li>
+						<li>Filtern und löschen unnötiger Bestandteile (Data Scrubbing and Cleaning)</li>
 					</ul>
-				</section>
-				<section>
-					<h1>Wo sollte getestet werden?</h1>
-					<img data-src="static/V02/btelligent-Referenzarchitektur_BI.png" alt="" height="480">
+					<p>Für Reporting:</p>
+					<ul>
+						<li>Business Rules werden genutzt für eine Deduplizierung von Datensätzen</li>
+						<li>Abweichungen bereinigen bei z.B. Transaktionen und Überweisungen (Retouren und Discounts)</li>
+						<li>Fehlende Daten auffüllen ➡️ NULL Values ungern gesehen in Reports</li>
+					</ul>
 				</section>
 				<section>
 					<h1>Herausforderungen beim Testing</h1>
@@ -1178,18 +1183,6 @@
 				</section>
 
 			</section>
-
-			
-
-			<section>
-				<h1>Data Scrubbing and Cleaning</h1>
-				<ul>
-					<li>Business Rules werden genutzt für eine Deduplizierung von Datensätzen</li>
-					<li>Abweichungen bereinigen bei z.B. Transaktionen und Überweisungen (Retouren und Discounts)</li>
-					<li>Fehlende Daten auffüllen ➡️ NULL Values ungern gesehen in Reports</li>
-				</ul>
-			</section>
-
 			<section>
 				<h1>Datengröße und Problematiken</h1>
 				<ul>
@@ -1237,7 +1230,7 @@
 				<ul>
 					<li>Nicht nur technische Tests automatisieren auch immer fachliche Tests automatisiert testen
 						<ul>
-							<li>Freud Detection </li>
+							<li>Fraud Detection </li>
 							<li>Anomalien</li>
 						</ul>
 					</li>
