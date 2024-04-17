@@ -175,9 +175,9 @@ SELECT * FROM
 {{ config(materialized='table') }}
 SELECT	ROW_NUMBER() OVER (ORDER BY t.snapshot_date) AS snapshot_date_id,
 		t.snapshot_date
-  FROM	(
-			SELECT	DISTINCT CAST(inscription_timestamp AS DATE) + 1 AS snapshot_date
-			  FROM	{{ source('willibald_dwh_sats', 'sat_position') }}
+	FROM	(
+			SELECT	DISTINCT DATEADD(DAY, 1, CAST(inscription_timestamp AS DATE)) AS snapshot_date
+				FROM	{{ source('willibald_dwh_sats', 'sat_position') }}
 		) t	
 							</code>
 						</pre>
@@ -192,7 +192,7 @@ SELECT	ROW_NUMBER() OVER (ORDER BY t.snapshot_date) AS snapshot_date_id,
 							Diese hat die Granularität aller Bestellpositionen pro Ladedatum.</p>
 						<pre>
 							pit_bestellposition.sql
-							<code class="language-sql"><script type="text/template">
+							<code class="language-sql" data-trim><script type="text/template">
 {{ config(materialized='table') }}
 SELECT      sd.snapshot_date_id,
 			sd.snapshot_date,
@@ -305,7 +305,7 @@ SELECT      sd.snapshot_date_id,
 	AND      sprod.inscription_timestamp <= sd.snapshot_date
 	AND      sprod.inscription_end_timestamp >= sd.snapshot_date
 	JOIN      {{source('willibald_dwh_hubs', 'hub_produkttyp')}} hpt
-	ON      hpt.produkttyp_id = sprod.typ::CHAR(1)
+	ON      hpt.produkttyp_id =  CONVERT(CHAR(1), sprod.typ)
 	JOIN      {{source('willibald_dwh_sats', 'sat_produkttyp')}} spt
 	ON      spt.produkttyp_sk = hpt.produkttyp_sk
 	AND      spt.change_data_indicator != 'D'
@@ -517,8 +517,8 @@ SELECT  t.snapshot_date_id AS dim_snapshot_id,
 		t.dim_kunde_sk AS dim_customer_id,
 		t.menge AS quantity,
 		(t.menge * t.preis) - t.rabatt AS revenue,
-		(t.lieferdatum IS NOT NULL OR t.kaufdatum IS NOT NULL) AS is_delivered,
-		t.lieferdatum-t.wunschdatum AS deviation_delivered_requested_days
+		CASE WHEN t.lieferdatum IS NOT NULL THEN 1 WHEN t.kaufdatum IS NOT NULL THEN 1 ELSE 0 END AS is_delivered,
+		DATEDIFF(DAY, t.lieferdatum, t.wunschdatum) AS deviation_delivered_requested_days
 	FROM {{ ref('int_bestellposition') }} t
 	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddb
 	ON ddb.date_value = t.bestelldatum
