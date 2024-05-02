@@ -128,7 +128,7 @@
 
 				<section>
 					<div class="r-fit-text">
-						<h1>Hinweise zur technischen Modellierung</h1>
+						<h1>Hinweise zur technischen Modellierung (1/2)</h1>
 						<ul>
 							<li>Zu jedem Ladezeitpunkt (Inscription_Timestamp) werden die
 								Produktkategoriedaten stark verändert. Alle Daten im Fakt sollen deshalb auf einen
@@ -157,6 +157,20 @@ SELECT * FROM
 "willibald_dm_bis24200"."dwh_sl"."sat_bestellung"
 							</code>
 						</pre>
+					</div>
+				</section>
+
+				<section>
+					<div class="r-fit-text">
+
+						<h1>Hinweise zur technischen Modellierung (2/2)</h1>
+
+						<ul>
+							<li>
+								Beachten Sie, dass der Wohnorts-Satellit Multiaktiv ist. Nutzen Sie für die Selektion ins dimensionale Modell schlicht den neuesten Eintrag.
+							</li>
+						</ul>
+							
 					</div>
 				</section>
 
@@ -247,15 +261,6 @@ SELECT      sd.snapshot_date_id,
 			bes.wunschdatum,
 			bes.kaufdatum,
 			bes.rabatt AS rabatt_bestellung,
-			--Vereinspartner
-			svpb.vereinspartner_sk AS vereinspartner_bestellung_sk,
-			svpb.inscription_timestamp AS vereinspartner_bestellung_inscription_timestamp,
-			svpb.vereinspartner_id,
-			svpb.rabatt1,
-			svpb.rabatt2,
-			svpb.rabatt3,
-			/*svpk.vereinspartner_sk AS vereinspartner_kunde_sk,
-			svpk.inscription_timestamp AS vereinspartner_kunde_inscription_timestamp,*/
 			--Kunde
 			skd.kunde_sk,
 			skd.inscription_timestamp AS kunde_inscription_timestamp,
@@ -389,24 +394,6 @@ SELECT      sd.snapshot_date_id,
 	AND      slab.change_data_indicator != 'D'
 	AND      slab.inscription_timestamp <= sd.snapshot_date
 	AND      slab.inscription_end_timestamp >= sd.snapshot_date
-	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_vereinspartner')}} lbvp
-	ON      lbvp.bestellung_sk = bes.bestellung_sk
-	LEFT JOIN (SELECT s.vereinspartner_sk,
-					s.inscription_timestamp,
-					s.inscription_end_timestamp,
-					s.change_data_indicator,
-					h.vereinspartner_id,
-					s.rabatt1,
-					s.rabatt2,
-					s.rabatt3
-				FROM {{source('willibald_dwh_hubs', 'hub_vereinspartner')}} h
-				JOIN {{source('willibald_dwh_sats', 'sat_vereinspartner')}} s
-					ON s.vereinspartner_sk = h.vereinspartner_sk
-			) svpb
-	ON      svpb.vereinspartner_sk = lbvp.vereinspartner_sk
-	AND      svpb.change_data_indicator != 'D'
-	AND      svpb.inscription_timestamp <= sd.snapshot_date
-	AND      svpb.inscription_end_timestamp >= sd.snapshot_date
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_kunde')}} lbk
 	ON      lbk.bestellung_sk = bes.bestellung_sk
 	LEFT JOIN {{source('willibald_dwh_sats', 'sat_kunde')}} skd
@@ -419,13 +406,7 @@ SELECT      sd.snapshot_date_id,
 	AND      swkd.change_data_indicator != 'D'
 	AND      swkd.inscription_timestamp <= sd.snapshot_date
 	AND      swkd.inscription_end_timestamp >= sd.snapshot_date
-	/*LEFT JOIN {{source('willibald_dwh_links', 'lnk_kunde_vereinspartner')}} lkvp
-	ON      lkvp.kunde_sk = skd.kunde_sk
-	LEFT JOIN {{source('willibald_dwh_sats', 'sat_vereinspartner')}} svpk
-	ON      svpk.vereinspartner_sk = lkvp.vereinspartner_sk
-	AND      svpk.change_data_indicator != 'D'
-	AND      svpk.inscription_timestamp <= sd.snapshot_date
-	AND      svpk.inscription_end_timestamp >= sd.snapshot_date*/
+	AND      swkd.BIS IS NULL
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_bestellung_kreditkarte')}} lbkk
 	ON      lbkk.bestellung_sk = bes.bestellung_sk
 	LEFT JOIN {{source('willibald_dwh_links', 'lnk_kunde_kreditkarte')}} lkkk
@@ -440,6 +421,7 @@ SELECT      sd.snapshot_date_id,
 	AND      swkk.change_data_indicator != 'D'
 	AND      swkk.inscription_timestamp <= sd.snapshot_date
 	AND      swkk.inscription_end_timestamp >= sd.snapshot_date
+	AND      swkk.BIS IS NULL
 						</script></code>
 					</pre>
 				</section>
@@ -477,12 +459,6 @@ COALESCE(lieferadresse_lieferung_plz, lieferadresse_position_plz, lieferadresse_
 COALESCE(lieferadresse_lieferung_ort, lieferadresse_position_ort, lieferadresse_bestellung_ort) AS lieferadresse_ort,
 COALESCE(lieferadresse_lieferung_land, lieferadresse_position_land, lieferadresse_bestellung_land) AS lieferadresse_land,
 
-RANK() OVER (ORDER BY vereinspartner_bestellung_sk, vereinspartner_bestellung_inscription_timestamp) AS dim_vereinspartner_sk,
-vereinspartner_id,
-rabatt1,
-rabatt2,
-rabatt3,
-
 RANK() OVER (ORDER BY kunde_sk, kunde_inscription_timestamp, kunde_wohnort_sk, kunde_wohnort_inscription_timestamp, kunde_kreditkarte_sk, kunde_kreditkarte_inscription_timestamp, kunde_kreditkarte_wohnort_sk, kunde_kreditkarte_wohnort_inscription_timestamp) AS dim_kunde_sk,
 COALESCE(kunde_geschlecht, kunde_kreditkarte_geschlecht) AS geschlecht,
 COALESCE(kunde_geburtsdatum, kunde_kreditkarte_geburtsdatum) AS geburtsdatum,
@@ -495,74 +471,61 @@ FROM  {{ref('pit_bestellposition')}}
 				</section>
 
 				<section>
-					<h1>Beispiellösung - Fakten und Dimensionen (1/2)</h1>
+					<h1>Beispiellösung - Fakten und Dimensionen (1/3)</h1>
 					<p>
 						Jetzt können die Daten der einzelnen Dimensionen- und Faktentabellen einfach aus dem dbt-Modell
 						<b>int_bestellposition</b> "herausgeschnitten" werden:
 					</p>
-					<div class="grid">
-						<div class="griditem">
-							<pre>
-								fact_order_item.sql
-								<code class="language-sql" data-trim>
-{{ config(materialized='table') }}
-SELECT  t.snapshot_date_id AS dim_snapshot_id,
-		ddb.date_id AS dim_order_date_id,
-		ddw.date_id AS dim_delivery_requested_date_id,
-		ddk.date_id AS dim_purchase_date_id,
-		ddl.date_id AS dim_delivery_date_id,
-		t.dim_product_sk AS dim_product_id,
-		t.dim_lieferung_sk AS dim_delivery_id,
-		t.dim_vereinspartner_sk AS dim_club_id,
-		t.dim_kunde_sk AS dim_customer_id,
-		t.menge AS quantity,
-		(t.menge * t.preis) - t.rabatt AS revenue,
-		CASE WHEN t.lieferdatum IS NOT NULL THEN 1 WHEN t.kaufdatum IS NOT NULL THEN 1 ELSE 0 END AS is_delivered,
-		DATEDIFF(DAY, t.lieferdatum, t.wunschdatum) AS deviation_delivered_requested_days
-	FROM {{ ref('int_bestellposition') }} t
-	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddb
-	ON ddb.date_value = t.bestelldatum
-	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddw
-	ON ddw.date_value = t.wunschdatum
-	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddk
-	ON ddk.date_value = t.kaufdatum
-	LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddl
-	ON ddl.date_value = t.lieferdatum
-								</code>
-							</pre>
-						</div>
-						<div class="griditem">
-							<pre>
-								dim_club.sql
-								<code class="language-sql" data-trim>
-{{ config(materialized='table') }}
-SELECT DISTINCT t.dim_vereinspartner_sk AS dim_club_id,
-				t.vereinspartner_id AS club_name,
-				t.rabatt1 AS discount1,
-				t.rabatt2 AS discount2,
-				t.rabatt3 AS discount3
-	FROM  {{ ref('int_bestellposition') }} t
-								</code>
-							</pre>
-							<pre>
-								dim_customer.sql
-								<code class="language-sql" data-trim>
-{{ config(materialized='table') }}
-SELECT DISTINCT t.dim_kunde_sk AS dim_customer_id,
-				t.geschlecht AS gender,
-				t.geburtsdatum AS birth_date,
-				t.plz AS postal_code,
-				t.ort AS city,
-				t.land AS country
-	FROM  {{ ref('int_bestellposition') }} t
-								</code>
-							</pre>
-						</div>
-					</div>
+				
+					<pre>
+												fact_order_item.sql
+												<code class="language-sql" data-trim>
+				{{ config(materialized='table') }}
+				SELECT  t.snapshot_date_id AS dim_snapshot_id,
+						ddb.date_id AS dim_order_date_id,
+						ddw.date_id AS dim_delivery_requested_date_id,
+						ddk.date_id AS dim_purchase_date_id,
+						ddl.date_id AS dim_delivery_date_id,
+						t.dim_product_sk AS dim_product_id,
+						t.dim_lieferung_sk AS dim_delivery_id,
+						t.dim_kunde_sk AS dim_customer_id,
+						t.menge AS quantity,
+						(t.menge * t.preis) - t.rabatt AS revenue,
+						CASE WHEN t.lieferdatum IS NOT NULL THEN 1 WHEN t.kaufdatum IS NOT NULL THEN 1 ELSE 0 END AS is_delivered,
+						DATEDIFF(DAY, t.lieferdatum, t.wunschdatum) AS deviation_delivered_requested_days
+					FROM {{ ref('int_bestellposition') }} t
+					LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddb
+					ON ddb.date_value = t.bestelldatum
+					LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddw
+					ON ddw.date_value = t.wunschdatum
+					LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddk
+					ON ddk.date_value = t.kaufdatum
+					LEFT JOIN {{source('willibald_data_mart', 'dim_date')}} ddl
+					ON ddl.date_value = t.lieferdatum
+												</code>
+											</pre>
+				
+				</section>
+				
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (2/3)</h1>
+					<pre>
+										dim_customer.sql
+										<code class="language-sql" data-trim>
+				{{ config(materialized='table') }}
+				SELECT DISTINCT t.dim_kunde_sk AS dim_customer_id,
+						t.geschlecht AS gender,
+						t.geburtsdatum AS birth_date,
+						t.plz AS postal_code,
+						t.ort AS city,
+						t.land AS country
+				FROM  {{ ref('int_bestellposition') }} t
+										</code>
+									</pre>
 				</section>
 
 				<section>
-					<h1>Beispiellösung - Fakten und Dimensionen (2/2)</h1>
+					<h1>Beispiellösung - Fakten und Dimensionen (3/3)</h1>
 					<div class="grid">
 						<div class="griditem">
 							<pre>
@@ -695,9 +658,9 @@ FROM {{source('willibald_data_mart', 'dim_date')}}
 						</div>
 						<div class="griditem">
 							<pre>
-								dim_delivery_purchase_date.sql
+								dim_purchase_date.sql
 								<code class="language-sql" data-trim>
-SELECT  date_id AS dim_delivery_purchase_date_id,
+SELECT  date_id AS dim_purchase_date_id,
 		date_value,
 		date_iso,
 		"day",
