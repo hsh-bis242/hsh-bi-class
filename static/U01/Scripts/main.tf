@@ -15,10 +15,9 @@ variable "sqlpassword" {
 }
 
 provider "azurerm" {
-  features {
-
-  }
+  features {}
   skip_provider_registration = true
+  subscription_id = "1f75bacb-8d7d-4e96-87cb-f7e4216886e5"
 }
 
 // Resourcengruppe
