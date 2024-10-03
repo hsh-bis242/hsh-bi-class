@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 09 - git Nutzung
-	</title>
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 09 - Git</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
@@ -14,36 +13,843 @@
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
-	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
-			
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>git</h2>
-				</div>
+
+			<section class="r-fit-text">
+				<img data-src="static/U09/git-logo-orange.svg">
+				<h2>Ein Grundlagenworkshop</h2>
+				<aside class="notes">
+					<figcaption>
+						<a href="https://commons.wikimedia.org/wiki/File:Git-logo-orange.svg">Jason Long</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>, via Wikimedia Commons
+					</figcaption>
+				</aside>
 			</section>
 
+			<section>
+				<h1>Definition und Historie</h1>
+				<div class="grid">
+					<div class="griditem">
+						<br>
+						<br>
+						<br>
+						<figure>
+							<iframe width="250" height="150" data-src="https://www.youtube.com/embed/4XpnKHJAok8" frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen></iframe>
+							<figcaption>
+								<a href="https://www.youtube.com/watch?v=4XpnKHJAok8">Tech Talk: Linus Torvalds on git</a> (2007). In <i>Youtube</i>.
+							</figcaption>
+						</figure>
+					</div>
+					<div class="griditem">
+						<figure>
+							<p>
+								Git ist ein <strong>verteiltes</strong> Versionswerwaltungssystem: Jeder Entwickler arbeitet mit einer lokalen Kopie des kompletten Repository.
+							</p>
+							<p>
+								Typischerweise "klont" er sich dieses von einem Server, pflegt Änderungen ein und aktualisiert das gehostete Archiv,
+								falls er die Rechte dazu hat.
+							</p>
+							<p>
+								Jeder Beteiligte hat damit ein vollständiges Backup und kann ohne Netzwerkverbindung arbeiten.
+							</p>
+							<p>
+								Den Grundstein legte <strong>Linus Torvalds</strong>. Er brauchte eine quelloffene Alternative zu BitKeeper für die Entwicklung des Linux-Kernels.
+							</p>
+		
+							<figcaption>
+								<a href="https://www.heise.de/select/ct/archiv/2014/5/seite-176">Herbert Braun (2014). Unvergessen. c't, 5, 176-181.</a>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+				
+
+				<aside class="notes">
+					<p>
+						Den Grundstein für das Git-System legte 2005 Linus Torvalds. Er benötigte für die Entwicklung des Linux-Kernels eine
+						Versionsverwaltung, die mit einer riesigen Menge Code und sehr vielen Mitarbeitern umgehen konnte. Zuvor hatte die Mehrzahl der Linux-
+						Entwickler anhand von BitKeeper die Vorzüge einer verteilten Versionsverwaltung kennengelernt. Als eines der ersten Systeme
+						dieser Art stand BitKeeper jedoch unter einer kommerziellen Lizenz.
+					</p>
+						Nachdem die Allianz mit dem Hersteller zerbrochen war, musste schnell quelloffener Ersatz her. Im April 2005 programmierte
+						Torvald deshalb sein eigenes Versionskontrollsystem, für das seither der Google-Angestellte Junio Hamano zuständig ist.
+						Torvalds' Humor findet sich in der Namenswahl wieder: "git" steht im britischen Englisch für "Blödmann" und stellt sich in
+						seiner Manpage als "stupid content tracker" vor.
+				</aside>
+			</section>
+
+			<section>
 				<section>
-					<h1>Aufgabe: git Tutorial abschließen</h1>
-					<a href="https://learngitbranching.js.org/">git Tutorial Website</a>
-					<p>Mindestens 12 Aufgaben auf der git tutorial Website abschließen und entweder ein Screenshot der Aufgabenüberischt an uns per email senden oder in der Übung die Übersicht mit 12 erfolgreichen Aufgaben vorzeigen</p>
+					<div>
+						<h1>Versionsverwaltungssysteme</h1>
+						<h2>Definition</h2>
+						<figure>
+							<blockquote>
+								Eine <strong>Versionsverwaltung</strong> ist ein System, das zur Erfassung von Änderungen an Dokumenten oder Dateien verwendet wird. Alle Versionen werden in einem Archiv mit <a href="https://de.wikipedia.org/wiki/Zeitstempel" title="Zeitstempel">Zeitstempel</a> und Benutzerkennung gesichert und können später wiederhergestellt werden. Versionsverwaltungssysteme werden typischerweise in der Softwareentwicklung eingesetzt, um <a href="https://de.wikipedia.org/wiki/Quelltext" title="Quelltext">Quelltexte</a> zu verwalten. Versionsverwaltung kommt auch bei <a href="https://de.wikipedia.org/wiki/B%C3%BCroanwendung" class="mw-redirect" title="Büroanwendung">Büroanwendungen</a> oder <a href="https://de.wikipedia.org/wiki/Content-Management-System" title="Content-Management-System">Content-Management-Systemen</a> zum Einsatz.
+							</blockquote>
+							<figcaption>
+								<a href="https://de.wikipedia.org/w/index.php?title=Versionsverwaltung&oldid=226425173">Versionsverwaltung</a> (2022, 24. September). In <i>Wikipedia</i>.
+							</figcaption>
+						</figure>
+					</div>
 				</section>
 
 				<section>
-					<h1>Aufgabe: git Tutorial abschließen</h1>
-					<p>Hier ein Screenshot der Übersicht, in welcher die ersten drei Aufgaben erfolgreich abgeschlossen wurden, die Reihenfolge spielt für das Erledigen der Übung keine Rolle, Ihr könnt also 12 beliebige Aufgaben lösen</p>
-					<p>Ihr könnt die Bearbeitung auch unterbrechen und mehrere Screenshots erstellen</p>
-					<p>ACHTUNG: Wenn Ihr den Browser oder die Session schließt, könnte auch die Übersicht zurückgesetzt werden (Browser-cookie abhängig)</p>
-					<img data-src="static/U09/git_tutorial.png">
+					<h1>Versionsverwaltungssysteme</h1>
+					<h2>Hauptaufgaben</h2>
+					<figure>
+						<ul><li><a href="https://de.wikipedia.org/wiki/Protokollierung" class="mw-redirect" title="Protokollierung">Protokollierungen</a> der Änderungen: Es kann jederzeit nachvollzogen werden, wer wann was geändert hat.</li>
+							<li><a href="https://de.wikipedia.org/wiki/Rollback" title="Rollback">Wiederherstellung</a> von alten Ständen einzelner Dateien: Somit können versehentliche Änderungen jederzeit wieder rückgängig gemacht werden.</li>
+							<li><a href="https://de.wikipedia.org/wiki/Elektronische_Archivierung" title="Elektronische Archivierung">Archivierung</a> der einzelnen Stände eines Projektes: Dadurch ist es jederzeit möglich, auf alle Versionen zuzugreifen.</li>
+							<li>Koordinierung des gemeinsamen Zugriffs von mehreren Entwicklern auf die Dateien.</li>
+							<li>Gleichzeitige Entwicklung mehrerer <a href="https://de.wikipedia.org/wiki/Entwicklungszweig" class="mw-redirect" title="Entwicklungszweig">Entwicklungszweige</a> (engl. <i>Branch</i>) eines Projektes, was nicht mit der <a href="https://de.wikipedia.org/wiki/Abspaltung_(Softwareentwicklung)" title="Abspaltung (Softwareentwicklung)">Abspaltung</a> eines anderen Projekts (engl. <i>Fork</i>) verwechselt werden darf.</li>
+						</ul>
+						<figcaption>
+							<a href="https://de.wikipedia.org/wiki/Versionsverwaltung">Versionsverwaltung</a> (2024, 22. Februar). In <i>Wikipedia</i>.
+						</figcaption>
+					</figure>
 				</section>
 
+				<section>
+					<h1>Git vs. SVN</h1>
+					
+					<figure>
+						<table style="font-size:smaller">
+							<tbody>
+								<tr>
+									<th></th>
+									<th>SVN</th>
+									<th>Git</th>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<td><strong>Versionsverwaltung</strong></td>
+									<td>zentral</td>
+									<td>verteilt</td>
+								</tr>
+								<tr>
+									<td><strong>Repository</strong></td>
+									<td>ein zentrales Repository, in dem Arbeitskopien erzeugt werden</td>
+									<td>lokal vorliegende Repository-Kopien, in denen gearbeitet wird</td>
+								</tr>
+								<tr>
+									<td><strong>Zugangsberechtigung</strong></td>
+									<td>pfadbasiert</td>
+									<td>für das gesamte Verzeichnis</td>
+								</tr>
+								<tr>
+									<td><strong>Änderungsverfolgung</strong></td>
+									<td>zeichnet Dateien auf</td>
+									<td>zeichnet Inhalte auf</td>
+								</tr>
+								<tr>
+									<td><strong>Änderungshistorie</strong></td>
+									<td>nur im Repository komplett, Arbeitskopien enthalten nur neueste Version</td>
+									<td>Repository und Arbeitskopien enthalten die komplette Historie</td>
+								</tr>
+								<tr>
+									<td><strong>Netzwerkanbindung</strong></td>
+									<td>bei jedem Zugriff</td>
+									<td>nur zur Synchronisation notwendig</td>
+								</tr>
+							</tbody>
+						</table>
+						<figcaption>
+							<a href="https://www.ionos.de/digitalguide/websites/web-entwicklung/git-vs-svn-versionsverwaltung-im-vergleich/">Git vs. SVN - Von verteilter und zentralisierter Versionsverwaltung</a> (2020, 15. Juni). In <i>IONOS</i>.
+						</figcaption>
+					</figure>
+
+				</section>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Funktionsweise</h1>
+					<figure>
+						<img data-src="static/U09/basic-remote-workflow.png" height="480">
+						<figcaption>
+							Quelle: <a href="https://brsmedia.in/git-repository-commands/">BRS Media Technologies</a>
+						</figcaption>
+					</figure>
+
+					<aside class="notes">
+						<p>
+							Die drei wichtigsten Dateizustände in git sind:
+							<ul>
+								<li>Modified</li>
+								<li>Staged</li>
+								<li>Committed</li>
+							</ul>
+						</p>
+					</aside>
+				</section>
+				
+				<section>
+					<h1>Git vs. Github</h1>
+					<div class="grid">
+						<div class="grid">
+
+							<div class="griditem">
+	
+								<figure>
+									<table style="font-size:small">
+										<thead>
+											<tr>
+												<th>Git</th>
+												<th>GitHub</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Git is a software.</td>
+												<td>GitHub is a service.</td>
+											</tr>
+											<tr>
+												<td>Git is a command-line tool</td>
+												<td>GitHub is a graphical user interface</td>
+											</tr>
+											<tr>
+												<td>Git is installed locally on the system</td>
+												<td>GitHub is hosted on the web</td>
+											</tr>
+											<tr>
+												<td>Git is maintained by linux.</td>
+												<td>GitHub is maintained by Microsoft.</td>
+											</tr>
+											<tr>
+												<td>Git is focused on version control and code sharing.</td>
+												<td>GitHub is focused on centralized source code hosting.</td>
+											</tr>
+											<tr>
+												<td>Git is a version control system to manage source code history.&nbsp;<br>&nbsp;</td>
+												<td>GitHub is a hosting service for Git repositories.</td>
+											</tr>
+											<tr>
+												<td>Git was first released in 2005.&nbsp;<br>&nbsp;</td>
+												<td>GitHub was launched in 2008.</td>
+											</tr>
+											<tr>
+												<td>Git has no user management feature.&nbsp;<br>&nbsp;</td>
+												<td>GitHub has a built-in user management feature.</td>
+											</tr>
+											<tr>
+												<td>Git is open-source licensed.</td>
+												<td>GitHub includes a free-tier and pay-for-use tier.</td>
+											</tr>
+											<tr>
+												<td>Git has minimal external tool configuration.</td>
+												<td>GitHub has an active marketplace for tool integration.</td>
+											</tr>
+											<tr>
+												<td>Git provides a Desktop interface named Git Gui.</td>
+												<td>GitHub provides a Desktop interface named GitHub Desktop.</td>
+											</tr>
+											<tr>
+												<td>Git competes with CVS, Azure DevOps Server, Subversion, Mercurial, etc.</td>
+												<td>GitHub competes with GitLab, Bit Bucket, AWS Code Commit, etc.</td>
+											</tr>
+										</tbody>
+									</table>
+									<figcaption>
+										<a href="https://www.geeksforgeeks.org/difference-between-git-and-github/">Difference Between Git and GitHub</a> (2023, 10. März). In <i>GeeksforGeeks</i>.
+									</figcaption>
+								</figure>
+								
+							</div>
+	
+							<div class="griditem">
+	
+								<figure>
+									<img data-src="static/U09/github-logo.webp" width="300">
+									<figcaption>
+										Quelle: <a href="https://github.blog/2013-04-16-new-github-logo/">Github Blog</a>
+									</figcaption>
+								</figure>
+	
+							</div>
+	
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Alternativen zu GitHub</h1>
+					<figure>
+						<table>
+							<tr>
+								<td colspan="2" style="text-align: center; align-items: center;">
+									<a href="https://github.com/"><img data-src="static/U09/github-logo.webp" width="200"></a>
+									<br>
+									Github
+								</td>
+								<td colspan="2" style="text-align: center; align-items: center;">
+									<a href="https://about.gitlab.com/"><img data-src="static/U09/gitlab-logo.svg" width="200"></a>
+									<br>
+									Gitlab
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align: center; align-items: center;">
+									<a href="https://dev.azure.com/"><img data-src="static/U09/Azure-DevOps-logo.png" width="100"></a>
+									<br>
+									Azure DevOps
+								</td>
+								<td style="text-align: center; align-items: center;">
+									<a href="https://bitbucket.org/product/"><img data-src="static/U09/bitbucket-logo.svg" width="100"></a>
+									<br>
+									Bitbucket
+								</td>
+								<td style="text-align: center; align-items: center;">
+									<a href="https://about.gitea.com/"><img data-src="static/U09/gitea-logo.svg" width="100"></a>
+									<br>
+									Gitea
+								</td>
+								<td style="text-align: center; align-items: center;">
+									<a href="https://gitolite.com/"><img data-src="static/U09/gitolite-logo.png" width="100"></a>
+									<br>
+									Gitolite
+								</td>
+							</tr>
+						</table>
+						<figcaption>
+							Softwareauswahl basiert auf <a href="https://www.rheinwerk-verlag.de/git-projektverwaltung-fuer-entwickler-und-devops-teams/">Öggl, B., & Kofler, M. (2022).</a>
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Software</h1>
+					<h2>Git-Bash</h2>
+					<figure>
+						<img data-src="static/U09/git-bash.png" height="400">
+						<figcaption>Quelle: <a href="https://georgebodocanportofolio.blogspot.com/2021/08/download-gitbash-download-gitbash-how.html">georgebodocanportofolio</a></figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Software</h1>
+					<h2>Git GUI</h2>
+					<figure>
+						<img data-src="static/U09/git-gui.png" height="400">
+						<figcaption>
+							<a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Graphical-Interfaces">Appendix A: Git in Other Environments - Graphical Interfaces</a> (2014). In <i>Pro Git</i>, p. 455.
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Software</h1>
+					<h2>GitHub Desktop</h2>
+					<figure>
+						<img data-src="static/U09/github-win.png" height="400">
+						<figcaption>
+							<a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Graphical-Interfaces">Appendix A: Git in Other Environments - Graphical Interfaces</a> (2014). In <i>Pro Git</i>, p. 455f.
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Software</h1>
+					<h2>Visual Studio Code</h2>
+					<figure>
+						<img data-src="static/U09/git-vscode.png">
+						<figcaption>
+							<a href="https://code.visualstudio.com/docs/sourcecontrol/overview">Using Git source control in VS Code</a> (2024, 02. Januar). In <i>Documentation for Visual Studio Code</i>.
+						</figcaption>
+					</figure>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Workflow</h1>
+					<figure>
+						<img data-src="static/U09/git-handhabung.svg" height="480">
+						<figcaption>
+							In Anlehnung an Öggl, B., & Kofler, M. (2022)
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>Gitflow</h1>
+					<div class="grid">
+						<div class="griditem">
+							<figure>
+								<img data-src="static/U09/gitflow.png" height="480">
+								<figcaption>
+									<a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> (2010, 05. Januar). In <i>nvie.com</i>.
+								</figcaption>
+							</figure>
+						</div>
+						<div class="griditem">
+							<ul>
+								<li>Zwei Hauptzweige</li>
+								<ul>
+									<li>Main</li>
+									<li>Develop</li>
+								</ul>
+								<li>Drei Nebenzweige</li>
+								<ul>
+									<li>Feature</li>
+									<li>Release</li>
+									<li>Hotfix</li>
+								</ul>
+							</ul>
+							<br>
+							<figure>
+								<blockquote style="font-size:smaller">
+									Der vorgestellte Workflow stellt die Stabilität des Main-Branches an die erste Stelle und nimmt dafür die erhöhte Komplexität von vielen Branches in Kauf. Außerdem ermöglicht es dieser Workflow, mehrere Versionen parallel zu verwalten. 
+								</blockquote>
+								<figcaption>
+									Öggl, B., & Kofler, M. (2022). S. 285
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</section>
+
+			</section>
 			
+			<section>
+				<iframe data-src="static/U09/git-cheat-sheet-education.pdf" height="600" width="1000"></iframe>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Workshop</h1>
+					<ol>
+						<li>Git installieren</li>
+						<li>Github-Account anlegen</li>
+						<li>
+							Arbeiten mit Git:
+							<ol>
+								<li>git clone</li>
+								<li>git checkout</li>
+								<li>git add</li>
+								<li>git status</li>
+								<li>git commit</li>
+								<li>.gitignore</li>
+								<li>git push</li>
+							</ol>
+						</li>						
+						<li>Erstellen eines Pull-Requests</li>
+						<li>Review und Mergen eines Pull-Requests</li>
+						<li>Umgang mit Merge-Konflikten</li>
+						<li>git fetch und git pull</li>
+					</ol>
+				</section>
+
+				<section>
+					<h1>Git installieren</h1>
+					<p>Falls noch nicht geschehen, installiert bitte den Git-Client auf eurem Computer und konfiguriert eure E-Mail-Adresse:</p>
+					<pre>
+
+						<code data-trim class="language-powershell">
+							winget install --id Git.Git -e --source winget
+							git config --global user.name "Timo Cirkel"
+							git config --global user.email "tcirkel@doerffler.com"
+						</code>
+
+					</pre>
+
+					<p>
+						Sollte die Installation per winget für euch nicht in Frage kommen, könnt ihr den Installer hier herunterladen:
+						<a href="https://git-scm.com/downloads">Git - Downloads</a>
+					</p>
+				</section>
+
+				<section>
+					<h1>Github-Account anlegen</h1>
+					<p>Ihr arbeitet im Workshop mit folgendem Github-Repository:</p>
+					<p><a href="https://github.com/doerffler/git-workshop-playground">doerffler/git-workshop-playground</a></p>
+					<p>Zum Zugriff benötigt ihr einen Github-Account. Den könnt ihr euch, wenn noch nicht vorhanden, hier anlegen:</p>
+					<a href="https://github.com/signup">Zur Github-Account-Registrierung</a>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Das Szenario</h2>
+					<p>Ihr arbeitet gemeinsam an einer Webseite. Diese besteht aus reinem HTML und gibt einen Überblick über die Kursteilnehmer.</p>
+					<p>Im Laufe des Workshops sollt ihr eine einfache Seite über euch selbst anlegen und sie der Kursteilnehmerübersicht auf der Hauptseite hinzufügen.</p>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Klonen des Workshop-Repositorys</h2>
+					<p>Zunächst klont ihr das Workshop-Repository auf euren Computer, um mit der Entwicklungsarbeit beginnen zu können.</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							git clone https://github.com/doerffler/git-workshop-playground.git
+							cd git-workshop-playground
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Anlegen eines Entwicklungszweiges</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>Das Workshop-Repository ist nach dem Gitflow-Paradigma organisiert. Es gibt einen <strong>main</strong> und einen <strong>develop</strong> Zweig.</p>
+							<p>Legt bitte euren eigenen <b>Feature</b>-Zweig an:</p>
+							<pre>
+								<code data-trim class="language-powershell">
+									git checkout develop
+									git checkout -b feature/TICI
+								</code>
+							</pre>
+						</div>
+						<div class="griditem">
+							<img data-src="static/U09/gitgraph-checkoutFeature.svg">
+						</div>
+					</div>
+
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Erstellen eurer Teilnehmerseite</h2>
+					<div class="grid">
+						<div class="griditem">
+							<p>Kopiert euch bitte die Datei TICI.html und legt sie unter eurem Kürzel ab. Ändert dann die Inhalte des HTML-Dokumentes (oder lasst es bleiben).</p>
+							<p>Fügt außerdem der Kursteilnehmerübersichtsseite (<strong>index.html</strong>) einen Link auf eure eigene Seite hinzu.</p>
+						</div>
+						<div class="griditem">
+							<pre>
+								TICI.html
+								<code data-trim class="language-html">
+									<script type="text/template">
+										<html>
+											<head><title>Kursteilnehmer: Timo Cirkel</title></head>
+											<body>
+												<table>
+													<tr>
+														<th>Name:</th>
+														<td>Timo</td>
+													</tr>
+													<tr>
+														<th>Lieblingsgetränk:</th>
+														<td>Energy-Drink</td>
+													</tr>
+													<tr>
+														<th>Lieblingsbetriebssystem:</th>
+														<td>Windows 2000</td>
+													</tr>
+												</table>
+											</body>
+										</html>
+									</script>
+								</code>
+							</pre>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Überprüfen der eigenen lokalen Änderungen</h2>
+					<p>
+						Ihr könnt euch alle Änderungen zwischen eurem Arbeitsbereich und dem lokalen Repository auflisten lassen.
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							git diff
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Datei für die Versionierung indizieren</h2>
+					<p>
+						Die neu ins Arbeitsverzeichnis aufgenommene Datei muss noch für die Versionierung indiziert / gestaged werden:
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							git add .
+							git status
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Aufnahme der Änderungen in die Versionshistorie</h2>
+					<p>
+						Die neu angelegte Seite kann mit folgendem Befehl in die Versionshistorie aufgenommen werden:
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							git commit -m "Adds the page of TICI"
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Das .gitignore-File</h2>
+					<p>
+						
+					</p>
+				</section>
+
+				
+				<section>
+					<h1>Arbeiten mit Git</h1>
+					<h2>Übertragen der Änderungen ins Remote-Repository</h2>
+					<p>Die Änderungen sind nun in der Versionshistorie integriert und können ans Remote-Repository (Github) übertragen werden.</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							git push -u origin feature/TICI
+						</code>
+					</pre>
+					<p>Die -u Option muss nur beim ersten Push des Branches angegeben werden. Anschließend reicht ein einfaches git push.</p>
+				</section>
+
+				<section>
+					<h1>Erstellen eines Pull-Requests</h1>
+					<p>
+						Ab jetzt befinden sich eure Änderungen im Remote-Repository und ihr könnt auf die <a href="https://github.com/doerffler/git-workshop-playground">Github-Oberfläche</a> wechseln.</p>
+					</p>
+					<p>
+					Um unsere Änderungen in den develop-Zweig zu integrieren stellen wir einen Pull-Request (PR). Tragt als Reviewer bitte euren
+					rechten Tischnachbarn ein.
+					</p>
+						
+				</section>
+
+				<section>
+					<h1>Review und Merge des PR</h1>
+					<p>Ihr werdet bei Github darüber informiert, sobald euch jemand als Reviewer für einen neuen PR einsetzt.
+					</p>
+					<p>Schaut euch bitte den an euch gestellten PR an, prüft die Änderungen und bittet den Author, per
+						<strong>Review-Comment</strong>, darum sein Lieblings-ETL-Tool auf der Seite zu nennen.
+					</p>
+					<p>Sobald ihr als Author über den Review-Comment benachrichtigt werdet, macht bitte die entsprechende Änderung, committed diese und pusht sie. Der PR wird dann automatisch aktualisiert.</p>
+					<p>Nach erfolgter Änderung könnt ihr als PR-Reviewer den PR akkzeptieren.</p>
+				</section>
+
+				<section>
+					<h1>Umgang mit Merge-Konflikten (1/2)</h1>
+					<p>Euer PR wird sich sehr wahrscheinlich aufgrund eines Merge-Konflikts an der <strong>index.html</strong> nicht nach develop mergen lassen.</p>
+					<p>
+						Um diesen zu beheben, gibt es zwei Möglichkeiten:
+						<ul>
+							<li><strong>Rebase</strong> eures Feature-Zweigs</li>
+							<li><strong>Merge</strong> des develop-Zweigs in euren Feature-Zweig</li>
+						</ul>
+					</p>
+					<p>
+						Wir entscheiden uns hier für die Merge-Variante.
+					</p>
+					<pre>
+						<code data-trim class="language-powershell">
+							git checkout feature/TICI
+							git merge develop
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<div class="r-fit-text">
+						<h1>Umgang mit Merge-Konflikten (2/2)</h1>
+						<p>
+							Git wird euch darüber informieren, dass es beim Merge-Vorgang zu einem Fehler kam und euch darum bitten diesen Fehler manuell zu beheben.
+						</p>
+						<p>
+							Dazu markiert Git die fehlerhafte Stelle innerhalb der <strong>index.html</strong>
+						</p>
+						<p>
+							Natürlich sollen alle in der index.html erfolgten Einträge bestehen bleiben. Entfernt also die Konfliktmarkierungen und ändert das HTML so, dass anschließend alle Einträge zu den Teilnehmerseiten zu finden sind.
+						</p>
+						<p>Dann könnt ihr die index.html für den nächsten Commit vorsehen, diesen durchführen und pushen.</p>
+						<pre>
+							<code data-trim class="language-powershell" class="language-powershell">
+								git add index.html
+								git commit -m "Resolves merge conflict"
+								git push
+							</code>
+						</pre>
+						<p>Es sollte nun möglich sein den PR zu mergen. Tut dies bitte und löscht euren Feature-Zweig über Github.</p>
+					</div>
+				</section>
+
+				<section>
+					<h1>git fetch && git pull</h1>
+					<p>
+						Es gibt nun Änderungen im Remote-Repository, die ihr noch nicht in euer lokales Repository übernommen habt. Prüft bitte zunächst ob wirklich neue Änderungen vorliegen:
+					</p>
+					<pre>
+						<code data-trim class="language-powershell" class="language-powershell">
+							git fetch --prune
+							git checkout develop
+							git status
+							git branch -d feature/TICI
+						</code>
+					</pre>
+					<p>
+						Die Änderungen könnt ihr euch dann vom Remote-Repository pullen.
+					</p>
+					<pre>
+						<code data-trim class="language-powershell" class="language-powershell">
+							git pull
+						</code>
+					</pre>
+				</section>
+
+			</section>
+
+			<section>
+
+
+				<section>
+					<div class="r-fit-text">
+						<h1>CI/CD</h1>
+						<figure>
+								<h2>Continuous Integration (CI)</h2>
+								<p>
+									<blockquote>
+										Automatisierungsprozess für Entwicklungsteams, der ein häufigeres Zusammenführen von Codeänderungen
+										zu einem gemeinsamen Codezweig oder „Trunk“ ermöglicht. Im Zuge dieser Updates werden automatisierte
+										Testschritte angestoßen, die für die Zuverlässigkeit der zusammengeführten Codeänderungen sorgen.
+										<br>(...)<br>
+										Bei einer erfolgreichen CI werden die von Entwicklungsteams vorgenommenen Codeänderungen nach der
+										Zusammenführung validiert, indem die Anwendung automatisch entwickelt und verschiedene Stufen
+										automatisierter Tests - in der Regel Unit- und Integrationstests - durchgeführt werden. So wird
+										sichergestellt, dass die Anwendung nach den Änderungen weiterhin funktioniert. Wenn bei den
+										automatisierten Tests ein Konflikt zwischen neuem und bestehendem Code entdeckt wird, lassen sich
+										diese Fehler dank CI einfach und regelmäßig beheben.
+									</blockquote>
+								</p>
+								<figcaption>
+									<a href="https://www.redhat.com/de/topics/devops/what-is-ci-cd">Was ist CI/CD?</a> (2023, 9. Februar).
+									In <i>Red Hat - Technologiethemen - DevOps</i>
+								</figcaption>
+							</figure>
+					</div>
+				</section>
+				<section>
+					<div class="r-fit-text">
+						<h1>CI/CD</h1>
+						<figure>
+								<h2>Continuous Delivery (CD)</h2>
+								<p>
+									<blockquote>
+										Bei einer Continuous Integration werden regelmäßig neue Codeänderungen für Apps entwickelt, getestet und in einem gemeinsamen Repository zusammengeführt. Damit soll der Konflikt verhindert werden, den zu viele Branches einer App verursachen können, wenn sie zeitgleich entwickelt werden.
+										<br>
+										Das „CD“ in CI/CD kann für Continuous Deployment oder Continuous Delivery stehen. Dies sind Methoden zur Automatisierung weiterer Stufen in der Pipeline.
+									</blockquote>
+								</p>
+								<figcaption>
+									<a href="https://www.redhat.com/de/topics/devops/what-is-ci-cd">Was ist CI/CD?</a> (2023, 9. Februar).
+									In <i>Red Hat - Technologiethemen - DevOps</i>
+								</figcaption>
+							</figure>
+					</div>
+				</section>
+
+				<section>
+					<h1>CI/CD</h1>
+					<figure>
+						<img data-src="static/U09/ci-cd-flow.png">
+						<figcaption>
+							<a href="https://www.redhat.com/de/topics/devops/what-is-ci-cd">Was ist CI/CD?</a> (2023, 9. Februar).
+							In <i>Red Hat - Technologiethemen - DevOps</i>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<h1>CI/CD</h1>
+					<h2>Praktische Umsetzung</h2>
+					<p>
+						CI/CD wird nicht mithilfe von Git implementiert, sondern in der Regel durch die Code-Hosting-Plattformen.
+						<br>
+						Diese bringen Funktionalitäten mit, um auf neu hinzugefügten Code zu reagieren.
+						<br>
+						So können Webseiten hochgeladen, Dockercontainer gebaut und Unit-Tests gestartet und ausgewertet werden.
+					</p>
+
+					<aside class="notes">
+						Bei Github sind die meisten CI/CD-Funktionen durch sogenannte Github-Actions implementiert.
+					</aside>
+				</section>
+
+			</section>
+
+			<section>
+			
+				<section>
+					<h1>FAQ</h1>
+					<h3>Enthält meine Commit-Historie sensitive Daten?</h3>
+					<pre>
+						
+						<code data-trim class="language-powershell">
+							git log -S password
+						</code>
+
+					</pre>
+					<h3>Wie lösche ich Sensitive Daten aus Git?</h3>
+					<p>Am Einfachsten/Sichersten mit dem Python-Script <a href="https://github.com/newren/git-filter-repo">filter-repo</a></p>
+					<pre>
+
+						<code data-trim class="language-powershell">
+							git filter-repo --path .env --invert-paths
+						</code>
+
+					</pre>
+				</section>
+
+				<section>
+					<iframe data-src="https://ohshitgit.com/de" width="1000" height="600"></iframe>
+				</section>
+
+			</section>
+
+			<section>
+				
+				<section>
+					<h1>Literatur</h1>
+					<div class="grid">
+						<div class="griditem">
+							<img data-src="static/U09/git-buch-cover.png" height="200">
+						</div>
+						<div class="griditem">
+							Öggl, B., & Kofler, M. (2022). Git: Projektverwaltung für Entwickler und DevOps-Teams. Inkl. Praxistipps und Git-Kommandoreferenz.
+						</div>
+						<div class="griditem">
+							<img data-src="static/U09/progit2-buch-cover.png" height="200">
+						</div>
+						<div class="griditem">
+							<a href="https://git-scm.com/book/de/v2">Chacon, S., & Straub, B. (2014). Pro Git. Apress.</a>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h1>Learn Git branching</h1>
+					<p>
+						Um das Branching in Git zu üben empfiehlt sich folgende <a href="https://learngitbranching.js.org/?locale=de_DE">Demo</a>:
+					</p>
+					<iframe data-src="https://learngitbranching.js.org/?locale=de_DE" width="1000" height="450"></iframe>
+				</section>
+
+			</section>
 
 		</div>
 	</div>
@@ -63,7 +869,6 @@
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
-
 </body>
 
 </html>

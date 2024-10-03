@@ -1,0 +1,25 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1524 1411" width="1524" height="1411">
+	<title>slp-logo-svg</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M-559 -561.4L5151.4 -561.4L5151.4 1973.3L-559 1973.3L-559 -561.4Z" />
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #e24329 } 
+		.shp1 { fill: #fca326 } 
+		.shp2 { fill: #fc6d26 } 
+	</style>
+	<g id="Clip-Path" clip-path="url(#cp1)">
+		<g id="Layer">
+			<path id="Layer" class="shp0" d="M761.6 1410.55L1042.16 543.03L481.45 543.03L761.6 1410.55Z" />
+			<path id="Layer" class="shp1" d="M88.5 543.03L3.06 806.6C-4.67 830.53 3.68 856.95 24.09 871.87L761.61 1410.55L88.5 543.03Z" />
+			<path id="Layer" class="shp0" d="M88.5 543.03L481.47 543.03L312.34 20.56C303.69 -6.17 265.97 -6.17 257 20.56L88.5 543.03Z" />
+			<path id="Layer" class="shp1" d="M1435.14 543.03L1520.27 806.6C1528 830.53 1519.65 856.95 1499.25 871.87L761.62 1410.55L1435.14 543.03Z" />
+			<path id="Layer" class="shp0" d="M1435.14 543.03L1042.18 543.03L1210.98 20.56C1219.64 -6.17 1257.36 -6.17 1266.33 20.56L1435.14 543.03Z" />
+			<path id="Layer" class="shp2" d="M761.62 1410.55L1042.18 543.03L1435.14 543.03L761.62 1410.55Z" />
+			<path id="Layer" class="shp2" d="M761.61 1410.55L88.5 543.03L481.47 543.03L761.61 1410.55Z" />
+		</g>
+	</g>
+</svg>
