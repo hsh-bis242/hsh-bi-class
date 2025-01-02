@@ -73,9 +73,9 @@
 				<section>
 					<h1>Übungsdatenmodell - Data Vault</h1>
 					<figure>
-						<a href="static/U02/willibald-datavault.png"><img data-src="static/U02/willibald-datavault.png"></a>
+						<img data-src="static/U02/willibald_full_DV_model_V03.jpg" height="500">
 						<figcaption>
-							Eigene Darstellung
+							<a href="https://www.linkedin.com/posts/remcobroekmans_linkedin-activity-7087048664107343873-xcWC">Remco Broekmans via LinkedIn</a>
 						</figcaption>
 					</figure>
 				</section>
@@ -120,110 +120,19 @@
 						</div>
 					</div>
 				</section>
+			</section>
+			<section>
+
 				<section>
-					<h1>dbt-Projekt initialisieren</h1>
-					<p>
-						Öffnen Sie Ihr, in der letzten Übung geklontes, lokales Repository mit Visual Studio Code. Öffnen Sie innerhalb der IDE ein Terminal.
-						<img data-src="static/U02/vscodeNewTerminal.png">
-					</p>
-					<p>
-						Geben Sie dort folgenden Befehl ein:
-					</p>
-					<pre>
-						<code>dbt init</code>
-					</pre>
-					<p>
-						Bei der Initialisierung geben Sie als Projektnamen <b>willibald_dm</b> ein und wählen <b>SQL Server</b> als Zieldatenbank aus.
-					</p>
-					<p>
-						Eventuell werden Sie bereits nach Datenbankverbindungsinformationen gefragt. Diese finden Sie auf der nächsten Folie, können aber auch zunächst die Standardwerte (einfach immer mit Enter bestätigen) übernehmen.
-					</p>
-				</section>	
-				<section>
-					<h1>profiles.yml erstellen</h1>
-					<p>
-						Die Verbindungseinstellungen eines dbt-Projekt werden in einer <b>profiles.yml</b>-Datei definiert. Geben Sie folgenden Befehl ins Terminal ein:
-					</p>
-					<pre>
-						<code>code $env:USERPROFILE\.dbt\profiles.yml</code>
-					</pre>
-					<p>
-						Schreiben Sie nun folgenden Inhalt in die Datei:
-					</p>
-					<pre>
-						<code data-trim data-line-numbers="7,9,10,11">
-							willibald_dm:
-								target: dev
-								outputs:
-									dev:
-										type: sqlserver
-										driver: 'ODBC Driver 18 for SQL Server' # (The ODBC Driver installed on your system)
-										server: biXX.database.windows.net
-										port: 1433
-										database: WillibaldXX
-										user: biXX
-										password: 'ryDZo5*~71[Q-'
-										schema: dm_ol
-						</code>
-					</pre>
-					<p>
-						Sie können eine Beispiel-YAML auch hier herunterladen: <a href="static/U02/profiles.yml" download>Beispielprofildatei</a>.
-					</p>
-					<p>
-						In <b>server</b>, <b>database</b>, <b>user</b> und <b>password</b> bitte Ihre Zugangsdaten eintragen.
-					</p>
+					<h1>How does the willibald data gets loaded?</h1>
 				</section>
-				<section>
-					<h1>Testen der Konfiguration</h1>
-					<p>
-						Geben Sie folgende Statements ins Terminal ein:
-					</p>
-					<pre>
-						<code data-trim>
-							cd willibald_dm
-							dbt debug
-						</code>
-					</pre>
-					<p>
-						War die Ausführung erfolgreich, sehen Sie folgende Ergebnisse:
-						<img data-src="./static/U02/dbtDebug01.jpg" height="80">
-						<img data-src="./static/U02/dbtDebug02.jpg" height="80">
-					</p>
-				</section>
-				<section>
-					<h1>Testen von dbt run</h1>
-					<p>
-						Führen Sie bitte folgendes Statement im Terminal aus:
-					</p>
-					<pre>
-						<code>dbt run</code>
-					</pre>
-					<p>
-						Dieser Befehl erstellt die im Verzeichnis <b>models/example/</b> definierten Modelle des dbt-Projekts in der Datenbank. Dort sollten anschließend zwei Objekte existieren:	
-					</p>
-					<ul>
-						<li>my_first_dbt_model (Tabelle)</li>
-						<li>my_second_dbt_model (View)</li>
-					</ul>
-					<p>
-						Prüfen Sie diese bitte mithilfe des Tools pgAdmin.
-					</p>
-				</section>
+
 			</section>
 			<section>
 				<section>
-					<div class="r-fit-text">
-						<h1>Zugriff auf die Datenbank mit VSCode</h1>
-						<p>
-							Um mit Visual Studio Code auf Ihre Datenbank zuzugreifen, installieren Sie die Erweiterung über den <a href="https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql">Marketplace</a>.
-						</p>
-						<p>
-							Anschließend können Sie links im Menü auf "SQL Server" klicken und eine neue Connection anlegen.
-						</p>
-						<img data-src="static/U02/mssql-create_connection.png" height="400">
-					</div>
+					<h1>Zugriff auf die Datenbankdaten mithilfe von dbeaver</h1>
 				</section>
-			</section>
+			</section>			
 			<section>
 				<section>
 					<div class="r-fit-text">
