@@ -27,36 +27,18 @@
 					<h2>Zugang zur Infrastruktur</h2>
 				</div>
 			</section>
+			
 			<section>
-				<h1>Aufgabenstellung</h1>
-				<ol>
-					<li>Beitreten einer Übungsgruppe in Moodle</li>
-					<li>Anlegen eines Github-Kontos und Beitritt zur Organisation dieses Kurses</li>
-					<li>&Uuml;bungsumgebung in Azure hochfahren</li>
-					<li>Klonen des Github-Repositorys</li>
-				</ol>
+				<h1>Beitritt zu einer Übungsgruppe</h1>
+				<p>
+					Bitte suchen Sie sich einen oder zwei Übungspartner und treten mit ihnen gemeinsam einer der leeren bereits in
+					Moodle angelegten Gruppen (BIS2420X) bei:
+				</p>
+				<p>
+					<a href="https://moodle.hs-hannover.de/mod/choicegroup/view.php?id=926622">Zur Gruppenauswahl in Moodle</a>
+				</p>
 			</section>
-			<section>
-				<section>
-					<h1>Beitritt zu einer Übungsgruppe</h1>
-					<p>
-						Bitte suchen Sie sich einen oder zwei Übungspartner und treten mit ihnen gemeinsam einer der leeren bereits in
-						Moodle angelegten Gruppen (BIS2420X) bei:
-					</p>
-					<p>
-						<a href="https://moodle.hs-hannover.de/mod/choicegroup/view.php?id=926622">Zur Gruppenauswahl in Moodle</a>
-					</p>
-				</section>
-				<section>
-					<h1>Zugangsdaten der Übungsgruppe</h1>
-					<p>
-						Durch die Zugehörigkeit zu einer Übungsgruppe sollten Sie nun die für die Durchführung der Übung nötigen Zugangsdaten in Moodle anzeigen können:
-					</p>
-					<p>
-						<a href="https://moodle.hs-hannover.de/course/view.php?id=27254#section-2">Benutzernamen und Passwörter in Moodle</a>
-					</p>
-				</section>
-			</section>
+			
 			<section>
 				<section>
 					<h1>Anlegen eines Github-Kontos</h1>
@@ -197,18 +179,13 @@
 				
 				<section>
 					<h1>Erstellen einer Python venv</h1>
+					<p><strong>Visual Studio Code</strong> unterstützt Sie bei der Erstellung einer virtuellen Python-Umgebung.</p>
+					<p>Dafür installieren Sie zunächst die <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in Visual Studio Code.</p>
+					<p>Nun steht im Visual Studio Kommandofenster (<strong>View - Command Palette...</strong>) der Befehl "<strong>Python: Create Environment...</strong>" zur Verfügung.</p>
+					<p>Wählen Sie erst <strong>Venv</strong> als <strong>Environment Type</strong> und anschließend die <strong>im vorherigen Schritt installierte Pythoninstallation</strong> aus.</p>
+					<p>Installieren Sie die <strong>Dependencies</strong> aus der <strong>requirements.txt</strong>.</p>
 				</section>
-				<section>
-					<h1>Installation dbt</h1>
-					<p>
-						Auf der Command-line dbt mittels pip installieren
-					</p>
-					<pre>
-						<code>pip install dbt-core dbt-duckdb</code>
-					</pre>
-					Hinweis: Damit pip unter Windows nutzbar ist, könnte ein Neustart erforderlich sein. Die PATH Umgebungsvariable
-					wird erst nach einem Neustart der aktuellen Anwendung gelesen.
-				</section>
+
 				<section>
 					<h1>Ausführen von dbt</h1>
 					<p>
@@ -217,14 +194,19 @@
 					<pre>
 						<code class="language-bash" data-trim>
 							cd willibald_dm
-							dbt deps
-							dbt debug
-							dbt seed
-							dbt run
+							dbt build
 						</code>
 					</pre>
 				</section>
 			
+			</section>
+
+			<section>
+				<h1>Zugriff auf die Datenbankdaten</h1>
+				<p>Es gibt einige Datenbankmanagementtools, die auf DuckDb-Datenbanken zugreifen können.</p>
+				<p>Wir empfehlen Ihnen die Open Source Anwendung <a href="https://dbeaver.io/download/">DBeaver CE</a>.</p>
+				<img data-src="static/U01/logo-dbeaver.png">
+				<p>Sie können die Datenbankdatei "dev_willibald_dwh.duckdb" einfach damit öffnen. Es gibt keinen Passwortschutz.</p>
 			</section>
 		</div>
 	</div>
