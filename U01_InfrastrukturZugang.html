@@ -77,7 +77,7 @@
 					<h1>Github-Organisation HSH-BIS242</h1>
 					<p>
 						Sobald Sie einen Github-Account angelegt haben und dort eingeloggt sind, schreiben Sie bitte eine Mail mit dem Betreff <b>Einladung zu HSH-BIS242</b>, ihrem <b>Git-Benutzernamen oder der registrierten Mailadresse</b>, sowie Ihrer <b>Moodle-Übungsgruppe</b> an<br>
-						<a href="mailto:timo.cirkel@hs-hannover.de">timo.cirkel@hs-hannover.de</a>:<br>
+						<a href="mailto:peter.grass@hs-hannover.de">peter.grass@hs-hannover.de</a>:<br>
 					</p>
 					<p>
 						Sie werden dann der Github-Organisation hinzugefügt und bekommen Zugriff auf ein Übungsrepository.
@@ -107,54 +107,33 @@
 				<section>
 					<h1>Installation python</h1>
 					<p>
-						Falls Python bereits installiert ist aber kein pip kann alternativ in der Command-line dieser Befehl pip
-						installieren
+						Falls Python bereits ohne den Paketmanager pip installiert ist, kann pip mithilfe des folgenden Befehls nachinstalliert werden:
 					<pre>
 						<code>py -m ensurepip --upgrade</code>
 					</pre>
 					</p>
 				</section>
 			</section>
+
 			<section>
 				<section>
-					<h1>Forken des Basisrepositorys</h1>
-				</section>
-				<section>
-					<h1>Erstellen einer Python venv</h1>
-				</section>
-				<section>
-					<h1>Installation dbt</h1>
+					<h1>Installation von Visual Studio Code</h1>
+					<img data-src="static/U01/vscode_logo.svg" height="100">
 					<p>
-						Auf der Command-line dbt mittels pip installieren
+						Wir empfehlen Visual Studio Code als IDE zur Bearbeitung der Übung zu verwenden. Es kann aber auch jeder andere
+						Texteditor verwendet werden.
 					</p>
-					<pre>
-						<code>pip install dbt-core dbt-duckdb</code>
-					</pre>
-					Hinweis: Damit pip unter Windows nutzbar ist, könnte ein Neustart erforderlich sein. Die PATH Umgebungsvariable
-					wird erst nach einem Neustart der aktuellen Anwendung gelesen.
-				</section>
-				<section>
-					<h1>Ausführen von dbt</h1>
 					<p>
-						Mit dbt kann nun eine neue Datenbank angelegt und beladen werden:
+						Bitte installieren Sie <a href="https://code.visualstudio.com/Download">Visual Studio Code</a>, wenn noch nicht vorhanden.
 					</p>
-					<pre>
-						<code class="language-bash" data-trim>
-							cd willibald_dm
-							dbt deps
-							dbt debug
-							dbt seed
-							dbt run
-						</code>
-					</pre>
 				</section>
-				
 			</section>
+
 			<section>
 				<section>
 					<h1>Klonen des Github-Repositorys (1/4)</h1>
 					<p>
-						Zum Abschluss der Übung testen Sie bitte den Zugriff auf das Github-Übungsrepository. Dazu öffnen Sie Ihr Repository auf Github:<br>
+						Testen Sie bitte den Zugriff auf Ihr Github-Übungsrepository. Dazu öffnen Sie Ihr Repository auf Github:<br>
 						<a href="https://github.com/orgs/hsh-bis242/repositories">Übersicht der Organisations-Repositories auf Github</a>
 					</p>
 					<p>Wählen Sie ihr Übungsrepository aus. Sie bekommen dort eine Clone-URL angezeigt. Kopieren Sie diese:</p>
@@ -212,6 +191,40 @@
 						Der Editor öffnet nun ihr (noch leeres) lokales Repository und fragt ob Sie den Inhalten in diesem Verzeichnis vertrauen. Bestätigen Sie das.
 					</p>
 				</section>
+			</section>
+
+			<section>
+				
+				<section>
+					<h1>Erstellen einer Python venv</h1>
+				</section>
+				<section>
+					<h1>Installation dbt</h1>
+					<p>
+						Auf der Command-line dbt mittels pip installieren
+					</p>
+					<pre>
+						<code>pip install dbt-core dbt-duckdb</code>
+					</pre>
+					Hinweis: Damit pip unter Windows nutzbar ist, könnte ein Neustart erforderlich sein. Die PATH Umgebungsvariable
+					wird erst nach einem Neustart der aktuellen Anwendung gelesen.
+				</section>
+				<section>
+					<h1>Ausführen von dbt</h1>
+					<p>
+						Mit dbt kann nun eine neue Datenbank angelegt und beladen werden:
+					</p>
+					<pre>
+						<code class="language-bash" data-trim>
+							cd willibald_dm
+							dbt deps
+							dbt debug
+							dbt seed
+							dbt run
+						</code>
+					</pre>
+				</section>
+			
 			</section>
 		</div>
 	</div>
