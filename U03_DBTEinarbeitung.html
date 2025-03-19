@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 03 - Einarbeitung GIT & DBT Projekt</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<div class="r-fit-text">
+					<h1>Übung Business Intelligence</h1>
+					<h2>Einarbeitung GIT & DBT Projekt</h2>
+				</div>
+			</section>
+			<section>
+				<section>
+					<h1>Aufgabenstellung</h1>
+					<ol>
+						<li>git branch erstellen</li>
+						<li>dbt Modell erstellen</li>
+						<ul>
+							<li>.sql File erstellen</li>
+							<li>Modell ausführen</li>
+							<li>Daten überprüfen</li>
+						</ul>
+						<li>dbt Modell dokumentieren</li>
+						<ul>
+							<li>.yml File erstellen</li>
+							<li>Modellbeschreibung hinzufügen</li>
+							<li>dbt Dokumentation generieren</li>
+						</ul>						
+						<li>Änderungen in git pushen</li>
+						<li>Änderungen der Gruppenmitglieder pullen</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>git Branch erstellen</h1>
+						<p>
+							branch erstellen über Command Line (1x pro Gruppe):
+						</p>
+						<pre>
+							<code class="language-bash" data-trim>
+								# in Projektverzeichnis navigieren
+								cd ..../bis242ss250x
+
+								# branch erstellen
+								git branch uebung
+
+								# branch lokal auschecken
+								git checkout uebung
+
+								# branch veröffentlichen
+								git push
+							</code>
+							<img data-src="static/U03/git_uebung.png"">
+						</pre>
+						<p>Anschließend auf github.com überprüfen ob der branch erstellt wurde</p>
+				</section>
+				<section>
+					<h1>dbt Modell erstellen</h1>
+						<p>
+							Im Ordner "uebung3" soll ein neues dbt Modell erstellt werden, siehe <a href="https://docs.getdbt.com/docs/build/sql-models">dbt Doku</a>
+						</p>
+						<ul>
+							<li>Webshop-Bestellungen vom 20.03.2022 inkl. Vor- und Nachname des Kunden</li>
+							<li>eigenes Namenskürzel im Modellnamen, z.B. uebung3_mv.sql</li>
+							<li>Materialisierung: Tabelle</li>
+							<li>Modell ausführen (am besten nur das neue Modell)</li>
+						</ul>
+						<p><b>Daten mit DBeaver überprüfen und Screenshot als "uebung3_tabelle_{kürzel}.png" in Ordner "uebung"</b></p>
+				</section>
+				<section>
+					<h1>dbt Modell dokumentieren</h1>
+						<p>
+							Zu dem erstellten Modell soll eine kurze Beschreibung hinzugefügt werden
+						</p>
+						<ul>
+							<li>uebung3_{kürzel}.yml Datei mit Beschreibung erstellen, siehe <a href="https://docs.getdbt.com/docs/build/documentation#adding-descriptions-to-your-project">dbt Doku</a></li>
+							<li>HTML Dokumentation des dbt Modells erzeugen und aufrufen, siehe <a href="https://docs.getdbt.com/docs/build/documentation#generating-documentation">dbt Doku</a></li>
+						</ul>
+						<p><b>Screenshot des Modells aus der HTML Doku als "uebung3_doku_{kürzel}.png" in den Ordner uebung legen</b></p>
+				</section>
+				<section>
+					<h1>Änderungen in git pushen</h1>
+						<p>
+							Änderungen in VS Code überprüfen und über Command Line pushen
+						</p>
+						<img data-src="static/U03/git_push.png"">
+						<pre>
+							<code class="language-bash" data-trim>
+								# Änderungen in lokaler Staging Area hinzufügen
+								git add -A
+
+								# commit auf lokales Repository
+								git commit -m "kurze Beschreibung was geändert wurde"
+
+								# pushen
+								git push
+							</code>
+						</pre>
+						<p>Anschließend auf github.com überprüfen ob die Änderungen angekommen sind</p>
+				</section>
+				<section>
+					<h1>Änderungen der Gruppenmitglieder pullen</h1>
+						<pre>
+							<code class="language-bash" data-trim>
+								# lokales git synchronisieren
+								git fetch --all
+							</code>
+						</pre>
+						<img data-src="static/U03/git_push.png"">
+						<pre>
+							<code class="language-bash" data-trim>
+									# Änderungen in lokales Repository holen
+									git pull
+								</code>
+						</pre>
+						<p>Anschließend überprüfen ob die Files der Gruppenmitglieder vorhanden sind</p>
+				</section>
+			</section>
+			<section>
+				<h1>Ergebnis der Übung</h1>
+					<ul>
+						<li>Tabelle in duckdbt erstellt und Screenshot aus DBeaver abgelegt</li>
+						<li>.sql und .yml Datei in git gepusht</li>
+						<li>dbt Doku generiert und Screenshot abgelegt</li>
+					</ul>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
