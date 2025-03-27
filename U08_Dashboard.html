@@ -35,8 +35,15 @@
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Installation von Power BI</h2>
 					<p>Wir arbeiten mit Power BI Desktop. Dies ist auf den Labor-PCs bereits vorinstalliert. Für Ihre privaten Computer können Sie es hier herunterladen: <a href="https://www.microsoft.com/store/productId/9NTXR16HNW1T">Microsoft Store</a></p>
-					<p>Beim ersten Start verlangt Power BI nach einer Anmeldung. Dazu können Sie die Benutzerdaten Ihrer Gruppe (biXXXXX@hshannoverde.onmicrosoft.com und Passwort) verwenden</p>
-					<p>Die Anmeldung kann aber auch einfach weggeklickt werden. Power BI funktioniert dann trotzdem.</p>
+					<p>Beim ersten Start verlangt Power BI nach einer Anmeldung. Diese kann einfach weggeklickt werden. Power BI funktioniert dann trotzdem.</p>
+				</section>
+
+				<section>
+					<h1>Aufgabe: Sternschema in Power BI laden</h1>
+					<h2>DuckDB Power Query Connector installieren</h2>
+					<p>Um auf Daten in der von uns genutzten DuckDB-Datenbank zuzugreifen, müssen Sie noch die entsprechende Power BI Extension installieren.</p>
+					<p>Die Installation ist hier beschrieben:</p>
+					<a href="https://motherduck.com/docs/integrations/bi-tools/powerbi/">Power BI with DuckDB and MotherDuck</a>
 				</section>
 
 				<section>
@@ -46,12 +53,12 @@
 						<div class="griditem">
 							<ol>
 								<li>Stellen Sie nun eine Verbindung zu Ihrem Sternschema her.</li>
-								<li>Dazu klicken Sie direkt im Startscreen auf "Daten aus SQL Server importieren".</li>
-								<li>Tragen Sie dann Ihre Datenbankzugangsdaten ein.</li>
+								<li>Dazu wählen Sie <strong>DuckDB</strong> in der Liste der abfragbaren Datenquellen aus.</li>
+								<li>Wählen Sie dann den Speicherort Ihrer DuckDB-Datei:<br><strong>~\dev_willibald_dwh.duckdb</strong></li>
 								<ul>
+									<li>Setzen Sie <strong>read_only</strong> auf <em>true</em></li>
 									<li>Als Datenkonnektivitätsmodus wählen Sie "Importieren".</li>
 								</ul>
-								<li>Bei der Abfrage Ihrer Zugangsdaten müssen Sie im Bereich links den Authentifizierungsmodus "Datenbank" auswählen.</li>
 							</ol>
 						</div>
 					</div>
@@ -59,16 +66,9 @@
 
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Verbindung zum Datenbankserver herstellen</h2>
-					<img data-src="static/U08/PowerBIDatabaseCredentials.png" height="200">
-					<img data-src="static/U08/PowerBIUsernameAndPassword.png" height="200">
-				</section>
-
-				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Tabellen auswählen</h2>
-					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "dm_ol" befinden. Mit Ausnahme der int_bestellposition, dim_date, pit_bestellposition und sys_snapshot_date. Klicken Sie anschließend auf "Laden".</p>
-					<img data-src="static/U08/PowerBISelectStarSchema.png" height="400">
+					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "willibald_ol_dm" befinden. Klicken Sie anschließend auf "Laden".</p>
+					<img data-src="static/U08/PowerBISelectStarSchema.png" height="300">
 				</section>
 
 				<section>
@@ -96,9 +96,8 @@
 						<h2>Beziehungen zur Datumsdimension reparieren</h2>
 						<img data-src="static/U08/PowerBIVRSDataModel.png" height="360" style="float: right">
 						<p>Durch den Aufbau des Sternschemas sieht das automatisch angelegte Datenmodell gut aus.</p>
-						<p>Zwischen den Datumsdimensionen sind unnötige (aber funktionale) Verbindungen entstanden. Löschen Sie diese.</p>
-						<p>Verbergen Sie der Übersichtlichkeit wegen die ID-Spalten in allen Tabellen.</p>
-						<p>Sie können außerdem den Namen der Fakten und Dimensionen anpassen (Schemanamen und Prefix dim_ entfernen)</p>
+						<p>Verbergen Sie der Übersichtlichkeit wegen die HKEY-Spalten in allen Tabellen.</p>
+						<p>Sie können außerdem den Namen der Fakten und Dimensionen anpassen (Datenbank- und Schemanamen entfernen)</p>
 					</div>
 				</section>
 
@@ -109,7 +108,7 @@
 						<img data-src="static/U08/PowerBIStoreAddressHierarchy.png" style="float:right">
 						<p>Legen Sie in beiden Dimensionen, welche Adressen enthalten, jeweils eine Hierarchie an. Und zwar in folgender Reihenfolge:</p>
 						<p><b>country - city - postal_code</b></p>
-						<p>Legen Sie außerdem eine Produktkategorienhierarchie an: <b>super_category - upper_category - category</b></p>
+						<p>Legen Sie außerdem eine Produktkategorienhierarchie an: <b>supercategory_name - productcategory_name</b></p>
 						<p>Die in Hierarchien verwendenten Datenfelder k&ouml;nnen Sie anschließend ausblenden.</p>
 					</div>
 				</section>
@@ -119,15 +118,22 @@
 			<section>
 				<section>
 					<h1>Aufgabe: Aufbau des Dashboards</h1>
-					<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs der Videothek übersichtlich darstellt:</p>
+					<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs übersichtlich darstellt:</p>
 					<ul>
 						<li>Wie verteilen sich die Umsätze auf die Produktkategorien?</li>
-						<li>Welches sind die Umsatzstärksten Städte (nach Kundenwohnort)?</li>
+						<li>Welches sind die umsatzstärksten Städte (nach Lieferort)?</li>
 						<li>Wie häufig werden Samen verspätet geliefert?</li>
 						<li>Was ist die durchschnittliche Lieferzeitabweichung pro Lieferdienst?</li>
 						<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Produkte?</li>
 					</ul>
+					<!--
+							Now that we have a working data set, we can extend these questions:
+					 		- Utilize the date_dimension (especially holidays and vacations)
+							- Create a map with sales in different federal states
+							- etc
+					 -->
 				</section>
+			
 				<section>
 					<h1>Aufgabe: Aufbau des Dashboards</h1>
 					<h2>Umsetzungshinweise</h2>
@@ -135,6 +141,13 @@
 					<p>Um korrekte Ergebnisse zu bekommen, muss die Auswertung immer auf genau ein Snapshotdatum gefiltert sein.</p>
 					<p>Erstellen Sie deshalb zuerst einen Filter für die aktuelle oder alle Seiten auf ein Snapshotdatum Ihrer Wahl.</p>
 				</section>
+
+				<section>
+					<h1>Aufgabe: Aufbau des Dashboards</h1>
+					<h2>Beispiellösung</h2>
+					<img data-src="static/U08/PowerBISampleDashboard.png" width="100%">
+				</section>
+
 			</section>
 
 		</div>
