@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 04 - dbt Tests und Macros</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<div class="r-fit-text">
+					<h1>Übung Business Intelligence</h1>
+					<h2>dbt Tests und Macros</h2>
+				</div>
+			</section>
+			<section>
+				<section>
+					<h1>Aufgabenstellung</h1>
+					<ol>
+						<li>dbt Modell erstellen</li>
+						<ul>
+							<li>.sql File erstellen</li>
+							<li>Modell ausführen</li>
+							<li>Daten überprüfen</li>
+						</ul>
+						<li>dbt Tests verstehen und erstellen</li>
+						<ul>
+							<li>.yml File erstellen</li>
+							<li>Tests hinzufügen</li>
+							<li>Tests ausführen</li>
+						</ul>
+						<li>dbt Macros verstehen und erstellen</li>
+						<ul>
+							<li>Macro erstellen</li>
+							<li>Macro in Modell nutzen</li>
+						</ul>
+						<li>Änderungen in git pushen</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>dbt Modell erstellen</h1>
+						<p>
+							branch "uebung" soll erneut genutzt werden
+						</p>
+						<p>
+							Im Ordner "uebung4" soll ein neues dbt Modell erstellt werden
+						</p>
+						<ul>
+							<li>Positionen aller Webshop Bestellungen mit Positionspreis, Produktname, Produktpreis und Rabatt </li>
+							<li>eigenes Namenskürzel im Modellnamen, z.B. uebung4_mv.sql</li>
+							<li>Materialisierung: Tabelle</li>
+							<li>Modell ausführen (am besten nur das neue Modell) und Daten anschauen</li>
+						</ul>
+				</section>
+				<section>
+					<h1>Test erstellen</h1>
+						<p>
+							Zu dem erstellten Modell soll eine kurze Beschreibung und Tests hinzugefügt werden
+						</p>
+						<ul>
+							<li>uebung4_{kürzel}.yml Datei mit Beschreibung erstellen</li>
+							<li>Test hinzufügen: Produktname muss gefüllt sein, siehe <a href="https://docs.getdbt.com/docs/build/data-tests#generic-data-tests">dbt Doku</a></li>
+							<li>Test ausführen</li>
+						</ul>
+						<p><b>Screenshot des Testergebnis im Terminal als "uebung4_test_{kürzel}.png" in den Ordner uebung4 legen</b></p>
+				</section>
+				<section>
+					<h1>Macro erstellen</h1>
+						<p>Es soll ein Macro erstellt und verwendet werden</p>
+						<ul>
+							<li>Macro-Datei im Ordner willibald_dwh/macros erstellen</li>
+							<li>Es soll ein Macro geschrieben werden, das Geldbeträge in Dollar umrechnet</li>
+							<ul>
+								<li>Input für da Macro: Liste von Attributen</li>
+								<li>Umrechnungsfaktro: 1,08</li>
+								<li>Hilfestellung: Einfaches Macro, das schon existiert: willibald_dwh/macros/hashcolumn.sql</li>
+								<li>siehe auch <a href="https://docs.getdbt.com/docs/build/jinja-macros">dbt Doku</a></li>
+							</ul>
+						</ul>
+				</section>
+				<section>
+					<h1>Macro verwenden</h1>
+						<ul>
+							<li>Nutze das macro in uebung4_{kürzel}.sql um die 3 Werte in Dollar umzurechnen</li>
+							<li>Die Tabelle soll diese Felder haben:</li>
+							<ul>
+								<li>Bestelldatum</li>
+								<li>Produktname</li>
+								<li>Positionspreis_in_Euro</li>
+								<li>Produktpreis_in_Euro</li>
+								<li>Rabatt_in_Euro</li>
+								<li>Positionspreis_in_Dollar</li>
+								<li>Produktpreis_in_Dollar</li>
+								<li>Rabatt_in_Dollar</li>
+							</ul>
+							<li><b>Tabelle neu erstellen (dbt run)</b></li>
+						</ul>
+				</section>
+				<section>
+					<h1>Änderungen in git pushen</h1>
+						<p>
+							Änderungen in VS Code überprüfen und über Command Line oder VS Code GUI pushen
+						</p>
+						<img data-src="static/U03/git_push.png"">
+						<p>Zur Erinnerung: Beispiel Command Line</p>
+						<pre>
+							<code class="language-bash" data-trim>
+								# Änderungen in lokaler Staging Area hinzufügen
+								git add -A
+
+								# commit auf lokales Repository
+								git commit -m "kurze Beschreibung was geändert wurde"
+
+								# pushen
+								git push
+							</code>
+						</pre>
+						<p>Anschließend auf github.com überprüfen ob die Änderungen angekommen sind</p>
+				</section>
+			</section>
+			<section>
+				<h1>Ergebnis der Übung</h1>
+					<ul>
+						<li>Neue Tabelle erstellt</li>
+						<li>Test durchgeführt und Screenshot abgelegt</li>
+						<li>Macro erstellt und in dbt Modell verwendet</li>
+						<li>Änderungen gepusht</li>
+					</ul>
+			</section>			
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
