@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 05 - Aufbau von Dimensionen
+		und
+		Fakten
+	</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/hsh.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+</head>
+
+<body>
+
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<div class="r-fit-text">
+					<h1>Übung Business Intelligence</h1>
+					<h2>Aufbau von Dimensionen und Fakten</h2>
+				</div>
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Aufgabenstellung - Datenmodellierung</h1>
+					<p>Modellieren Sie ein Sternschema auf das Willibald-DWH-Datenmodell.</p>
+					<ul>
+						<li>Welche Fakten können Sie identifizieren?</li>
+						<li>Welche Dimensionen können Sie identifizieren?</li>
+						<li><b>Listen Sie einige Fakten/Dimensionen in einer Text-Datei im Ordner uebung5</b></li>
+					</ul>
+				</section>
+
+				<section data-background="static/U02/willibald_datavault.svg" data-background-size="contain"></section>
+
+				<section>
+					<div class="r-fit-text">
+						<h1>Fachliche Hinweise zur Modellierung (1/2)</h1>
+						<figure>
+							<div class="grid_50">
+								<div class="griditem">
+									<img data-src="static/U05/willibald-auswertung.png">
+								</div>
+								<div class="griditem">
+									<ul>
+										<li><strong>Menge:</strong>
+											Die Menge bestellter Produkte. Wird direkt aus der Bestellposition
+											übernommen.</li>
+										<li><strong>Erlös:</strong>
+											Der Betrag, welcher für die bestellte Produktmenge zu bezahlen ist. Hierzu
+											werden Menge und Preis aus der Bestellposition multipliziert und
+											anschließend der Rabatt abgezogen.</li>
+										<li><strong>Offener Auftrag:</strong>
+											Eine 1 kennzeichnet, ob dieser Auftrag noch offen ist.</li>
+										<li><strong>Vollständig gelieferter Auftrag:</strong>
+											Eine 1 kennzeichnet, ob dieser Auftrag vollständig geliefert wurde.</li>
+										<li><strong>Abweichung zwischen Wunsch- und Lieferdatum:</strong>
+											Errechnet sich aus der Bestellung.Wunschdatum und dem letzten
+											Lieferung.LieferDatum. Die Abweichung ist negativ, wenn die Lieferung vor
+											dem Wunschtermin erfolgte.</li>
+									</ul>
+								</div>
+							</div>
+							<figcaption>
+								<a href="https://ddvug.net/willibalds-daen/">https://dwa-compare.info/</a>
+							</figcaption>
+						</figure>
+					</div>
+				</section>
+
+				<section>
+					<div>
+						<h1>Fachliche Hinweise zur Modellierung (2/2)</h1>
+						<ul>
+							<li>Es existieren zwei Links zwischen den Hubs Kunde und Vereinspartner</li>
+							<ul>
+								<li><b>lnk_customer_association</b> enthält alle Kunden, die einem Vereinspartner
+									zugeordnet sind.</li>
+								<li><b>lnk_association_contact</b> definiert welcher Kunde als Ansprechpartner des
+									Vereinspartners agiert.</li>
+							</ul>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>Beispielsternschema</h1>
+					<img data-src="static/U05/Starschema-willibald.svg" height="480">
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<h1>Aufgabenstellung - ELT Entwicklung</h1>
+					<p>Implementieren Sie das von Ihnen modellierte Sternschema in dbt.</p>
+					<ul>
+						<li>Legen Sie Ihr Datenmodell im Schema "ol_dm" an.</li>
+						<li>Erstellen Sie dbt-Modelle (.sql files) um Ihr Sternschema in der duckdb zu
+							erzeugen und zu beladen.</li>
+						<li>dbt-Projekt ins Github-Repository pushen und Pull Request stellen.</li>
+					</ul>
+				</section>
+
+				<section>
+					<div class="r-fit-text">
+						<h1>Hinweise zur technischen Modellierung</h1>
+						<ul>
+							<li>Zu jedem Ladezeitpunkt (loadingid) werden die
+								Produktkategoriedaten stark verändert. Alle Daten im Fakt sollen deshalb auf einen
+								Ladezeitpunkt gefiltert werden können.</li>
+							<li>
+								Beachten Sie, dass die Zuordnung des Wohnorts zum Kunden multiaktiv ist. Hier sollte auf ein fachlich relevantes Datum eingeschränkt werden.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+			</section>
+
+			<section>
+
+				<section>
+					<div class="r-fit-text">
+						<h1>Beispiellösung - Ladezeitstempel im Fakt</h1>
+						<p>Aufbau einer Tabelle, die einen Eintrag pro Ladezeitstempel enthält.</p>
+						<pre>
+							models/05_dm_ol/dim_snapshot.sql
+							<code class="language-sql" data-trim>
+								SELECT  {{ hashcolumn(source_model_name = "lh", list_columns = ["loadingid"], hashcolumn_name = "hkey_" + this.name) }},
+												lh.loadingts AS loadingdate,
+												DATE_PART('year', lh.loadingts) AS year,
+												DATE_PART('month', lh.loadingts) AS month
+								FROM  {{ ref("loading_history") }} lh
+							</code>
+						</pre>
+
+					</div>
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (1/6)</h1>
+					<p>
+						Die Daten der einzelnen Dimensionen- und Faktentabellen können alle basierend auf der Bridgetabelle
+						im Business Vault abgeleitet werden:
+					</p>
+				
+					<pre>
+						models/05_dm_ol/fact_orderitem_roadshow.sql
+						<code class="language-sql" data-trim>
+							{{ config(materialized="ephemeral") }}
+							WITH cte_delivery AS (
+								SELECT  NULL AS deliveryaddress_id,
+												NULL AS deliveryservice_id,
+												NULL AS deliverydate
+							)
+							SELECT      {{ hashcolumn(source_model_name = "brdg_rs", list_columns = ["sys_loadingid"], hashcolumn_name = "hkey_dim_snapshot") }},
+													{{ hashcolumn(source_model_name = "sat_rss", list_columns = ["orderdate", "federalstate_key"], hashcolumn_name = "hkey_dim_orderdate") }},
+													{{ hashcolumn(source_model_name = "sat_rss", list_columns = ["requesteddate", "federalstate_key"], hashcolumn_name = "hkey_dim_requesteddate") }},
+													{{ hashcolumn(source_model_name = "sat_rss", list_columns = ["deliverydate", "federalstate_key"], hashcolumn_name = "hkey_dim_deliverydate") }},
+													{{ dbt_utils.generate_surrogate_key(["hub_product.product_id", "brdg_rs.sys_loadingid"]) }} AS hkey_dim_product,
+													{{ dbt_utils.generate_surrogate_key(["hub_association.association_id", "brdg_rs.sys_loadingid"]) }} AS hkey_dim_association,
+													{{ dbt_utils.generate_surrogate_key(["hub_customer.customer_id", "brdg_rs.sys_loadingid"]) }} AS hkey_dim_customer,
+													{{ dbt_utils.generate_surrogate_key(["cte_dlvry.deliveryaddress_id", "cte_dlvry.deliveryservice_id", "cte_dlvry.deliverydate", "brdg_rs.sys_loadingid"]) }} AS hkey_dim_delivery,
+													sat_rss.quantity,
+													sat_rss.amount,
+													sat_rss.discount,
+													sat_rss.proceed,
+													sat_rss.is_completely_delivered AS completely_delivered,
+													sat_rss.deviation_delivery_request_days AS deviation_days
+							FROM      	{{ ref("brdg_orderitem_roadshow") }} brdg_rs
+							JOIN      	{{ effective_sat("csat_roadshowsale_kpi", "sat_rss", "hkey_lnk_roadshowsale", "brdg_rs") }}
+							JOIN      	{{ ref("hub_product") }} hub_product
+								ON    		hub_product.hkey_hub_product = brdg_rs.hkey_hub_product
+							LEFT JOIN 	{{ ref("hub_association") }} hub_association
+								ON    		hub_association.hkey_hub_association = brdg_rs.hkey_hub_association
+							LEFT JOIN 	{{ ref("hub_customer") }} hub_customer
+								ON    		hub_customer.hkey_hub_customer = brdg_rs.hkey_hub_customer
+							CROSS JOIN	cte_delivery AS cte_dlvry
+						</code>
+					</pre>
+				
+				</section>
+				
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (2/6)</h1>
+					<pre>
+						models/05_dm_ol/fact_orderitem_webshop.sql
+						<code class="language-sql" data-trim>
+							{{ config(materialized="ephemeral") }}
+							SELECT      {{ hashcolumn(source_model_name = "brdg_ws", list_columns = ["sys_loadingid"], hashcolumn_name = "hkey_dim_snapshot") }},
+													{{ hashcolumn(source_model_name = "sat_wsoi", list_columns = ["orderdate", "federalstate_key"], hashcolumn_name = "hkey_dim_orderdate") }},
+													{{ hashcolumn(source_model_name = "sat_wsoi", list_columns = ["requesteddate", "federalstate_key"], hashcolumn_name = "hkey_dim_requesteddate") }},
+													{{ hashcolumn(source_model_name = "sat_wsoi", list_columns = ["deliverydate", "federalstate_key"], hashcolumn_name = "hkey_dim_deliverydate") }},
+													{{ dbt_utils.generate_surrogate_key(["hub_product.product_id", "brdg_ws.sys_loadingid"]) }} AS hkey_dim_product,
+													{{ dbt_utils.generate_surrogate_key(["hub_association.association_id", "brdg_ws.sys_loadingid"]) }} AS hkey_dim_association,
+													{{ dbt_utils.generate_surrogate_key(["hub_customer.customer_id", "brdg_ws.sys_loadingid"]) }} AS hkey_dim_customer,
+													{{ dbt_utils.generate_surrogate_key(["hub_deliveryaddress.deliveryaddress_id", "hub_deliveryservice.deliveryservice_id", "lnk_webshoporderitem_delivery.deliverydate", "brdg_ws.sys_loadingid"]) }} AS hkey_dim_delivery,
+													sat_wsoi.quantity,
+													sat_wsoi.amount,
+													sat_wsoi.discount,
+													sat_wsoi.proceed,
+													sat_wsoi.is_completely_delivered AS completely_delivered,
+													sat_wsoi.deviation_delivery_request_days AS deviation_days
+							FROM      	{{ ref("brdg_orderitem_webshop") }} brdg_ws
+							JOIN      	{{ ref("csat_webshoporderitem_kpi") }} sat_wsoi
+								ON    	  sat_wsoi.hkey_hub_webshoporderitem = brdg_ws.hkey_hub_webshoporderitem
+							AND       	sat_wsoi.sys_loadingid = brdg_ws.sys_loadingid
+							JOIN      	{{ ref("hub_product") }} hub_product
+								ON    	  hub_product.hkey_hub_product = brdg_ws.hkey_hub_product
+							LEFT JOIN 	{{ ref("hub_association") }} hub_association
+								ON    	  hub_association.hkey_hub_association = brdg_ws.hkey_hub_association
+							JOIN      	{{ ref("hub_customer") }} hub_customer
+								ON    	  hub_customer.hkey_hub_customer = brdg_ws.hkey_hub_customer
+							LEFT JOIN 	{{ ref("lnk_webshoporderitem_delivery") }} lnk_webshoporderitem_delivery
+								ON    	  lnk_webshoporderitem_delivery.hkey_lnk_webshoporderitem_delivery = brdg_ws.hkey_lnk_webshoporderitem_delivery
+							JOIN      	{{ ref("hub_deliveryaddress") }} hub_deliveryaddress
+								ON    	  hub_deliveryaddress.hkey_hub_deliveryaddress = brdg_ws.hkey_hub_deliveryaddress
+							LEFT JOIN 	{{ ref("hub_deliveryservice") }} hub_deliveryservice
+								ON    	  hub_deliveryservice.hkey_hub_deliveryservice = brdg_ws.hkey_hub_deliveryservice
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (3/6)</h1>
+
+						<pre>
+							models/05_dm_ol/fact_orderitem.sql
+							<code class="language-sql" data-trim>
+								SELECT      *
+									FROM      {{ ref("fact_orderitem_webshop") }}
+									UNION ALL
+								SELECT      *
+									FROM      {{ ref("fact_orderitem_roadshow") }}
+							</code>
+						</pre>
+
+						<pre>
+							models/05_dm_ol/dim_product.sql
+							<code class="language-sql" data-trim>
+								WITH cte_product AS (
+									SELECT      brdg.sys_loadingid,
+															hub_product.product_id,
+															sat_product.description,
+															sat_product.circumference,
+															pt.description AS producttype,
+															sat_product.price,
+															sat_product.plantinglocation,
+															sat_product.plantingdistance,
+															hub_productcategory.productcategory_id,
+															sat_productcategory.name AS productcategory_name,
+															hub_supercategory.productcategory_id AS supercategory_id,
+															sat_supercategory.name AS supercategory_name
+										FROM      {{ ref("brdg_orderitem_all") }} brdg
+										JOIN      {{ ref("hub_product") }} hub_product
+										ON      	brdg.hkey_hub_product = hub_product.hkey_hub_product
+										JOIN      {{ effective_sat("sat_product_context", "sat_product", "hkey_hub_product", "brdg") }}
+										LEFT JOIN {{ ref("ref_producttype") }} pt
+										ON      	pt.producttype = sat_product.producttype
+										JOIN      {{ ref("hub_productcategory") }} hub_productcategory
+										ON      	hub_productcategory.hkey_hub_productcategory = brdg.hkey_hub_productcategory
+										LEFT JOIN {{ effective_sat("sat_productcategory_context", "sat_productcategory", "hkey_hub_productcategory", "brdg") }}
+										LEFT JOIN {{ ref("hub_productcategory") }} hub_supercategory
+										ON      	hub_supercategory.hkey_hub_productcategory = brdg.hkey_hub_supercategory
+										LEFT JOIN {{ effective_sat("sat_productcategory_context", "sat_supercategory", "hkey_hub_productcategory", "brdg", "hkey_hub_supercategory") }}
+									)
+									SELECT DISTINCT {{ hashcolumn(source_model_name = "cte", list_columns = ["product_id", "sys_loadingid"], hashcolumn_name = "hkey_dim_product") }},
+																cte.product_id,
+																cte.description,
+																cte.circumference,
+																cte.producttype,
+																cte.price,
+																cte.plantinglocation,
+																cte.plantingdistance,
+																IFNULL(cte.productcategory_name, 'No category') AS productcategory_name,
+																IFNULL(cte.supercategory_name, 'No super category') AS supercategory_name
+									FROM          cte_product cte
+							</code>
+						</pre>
+
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (4/6)</h1>
+
+						<pre>
+							models/05_dm_ol/dim_delivery.sql
+							<code class="language-sql" data-trim>
+								WITH cte_delivery AS (
+									SELECT      brdg.sys_loadingid,
+															lnk_delivery.deliverydate,
+															hub_deliveryservice.deliveryservice_id,
+															sat_deliveryservice.name AS deliveryservice_name,
+															hub_dlvryaddrss.deliveryaddress_id,
+															sat_dlvryaddrss.postalcode,
+															sat_dlvryaddrss.city,
+															fs.federalstate_code,
+															fs.federalstate_name,
+															IFNULL(CAST(sat_dlvryaddrss.country AS VARCHAR), 'Germany') AS country
+									  FROM      {{ ref("brdg_orderitem_all") }} brdg
+									  LEFT JOIN {{ ref("lnk_webshoporderitem_delivery") }} lnk_delivery
+										ON      	lnk_delivery.hkey_lnk_webshoporderitem_delivery = brdg.hkey_lnk_webshoporderitem_delivery
+									  LEFT JOIN {{ ref("hub_deliveryservice") }} hub_deliveryservice
+										ON     	 	brdg.hkey_hub_deliveryservice = hub_deliveryservice.hkey_hub_deliveryservice
+									  LEFT JOIN {{ effective_sat("sat_deliveryservice_context", "sat_deliveryservice", "hkey_hub_deliveryservice", "brdg") }}
+									  LEFT JOIN {{ ref("hub_deliveryaddress") }} hub_dlvryaddrss
+										ON      	hub_dlvryaddrss.hkey_hub_deliveryaddress = brdg.hkey_hub_deliveryaddress
+									  LEFT JOIN {{ effective_sat("sat_deliveryaddress_context", "sat_dlvryaddrss", "hkey_hub_deliveryaddress", "brdg") }}
+									  LEFT JOIN {{ ref("ref_postalcode_federalstate") }} pc_fs
+										ON      	pc_fs.postalcode = sat_dlvryaddrss.postalcode
+									  LEFT JOIN {{ ref("federalstatecode") }} fs
+										ON     	 	pc_fs.federal_state_key = fs.key
+								)
+								SELECT DISTINCT {{ hashcolumn(source_model_name = "cte", list_columns = ["deliveryaddress_id", "deliveryservice_id", "deliverydate", "sys_loadingid"], hashcolumn_name = "hkey_dim_delivery") }},
+																IFNULL(cte.deliveryservice_name, 'No delivery') AS deliveryservice_name,
+																cte.postalcode,
+																cte.city,
+																IFNULL(cte.federalstate_code, 'XX') AS federalstate_code,
+																IFNULL(cte.federalstate_name, 'Unbekannt') AS federalstate_name,
+																cte.country
+								  FROM          (
+																	SELECT	*
+																	  FROM 	cte_delivery cte
+																	 UNION ALL
+																	SELECT	lh.loadingid AS sys_loadingid,
+																					NULL AS deliverydate,
+																					NULL AS deliveryservice_id,
+																					NULL AS deliveryservice_name,
+																					NULL AS deliveryaddress_id,
+																					NULL AS postalcode,
+																					NULL AS city,
+																					NULL AS federalstate_code,
+																					NULL AS federalstate_name,
+																					'Germany' AS country
+																	  FROM	{{ ref("loading_history") }} lh
+												) cte
+							</code>
+						</pre>
+
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (5/6)</h1>
+
+						<pre>
+							models/05_dm_ol/dim_customer.sql
+							<code class="language-sql" data-trim>
+								WITH cte_customer_residence AS (
+									SELECT      lnk.hkey_hub_customer,
+															sat.sys_loadingid,
+															sat.sys_loadingid_validto, 
+															lnk.validfrom,
+															IFNULL(sat.validto, DATE '9999-12-31') AS validto,
+															sat.street,
+															sat.housenumber,
+															sat.addresssupplement,
+															sat.postalcode,
+															sat.city,
+															fs.federalstate_code,
+															fs.federalstate_name,
+															sat.country
+									FROM      	{{ ref("lnk_customer_residence") }} lnk
+									JOIN      	{{ ref("lsat_customer_residence_context") }} sat
+										ON    	  sat.hkey_lnk_customer_residence = lnk.hkey_lnk_customer_residence
+									LEFT JOIN 	{{ ref("ref_postalcode_federalstate") }} pc_fs
+										ON    	  pc_fs.postalcode = sat.postalcode
+									LEFT JOIN 	{{ ref("federalstatecode") }} fs
+										ON    	  pc_fs.federal_state_key = fs.key
+									WHERE     	sat.sys_cdc != 'D'
+								),
+								cte_customer AS (
+									SELECT      brdg.sys_loadingid,
+															hub_customer.customer_id,
+															sat_customer.firstname,
+															sat_customer.lastname,
+															sat_customer.gender,
+															sat_customer.birthdate,
+															cte_residence.postalcode,
+															cte_residence.city,
+															cte_residence.federalstate_code,
+															cte_residence.federalstate_name,
+															CAST(cte_residence.country AS VARCHAR) AS country
+									FROM      	{{ ref("brdg_orderitem_all") }} brdg
+									JOIN      	{{ ref("hub_customer") }} hub_customer
+										ON    	  hub_customer.hkey_hub_customer = brdg.hkey_hub_customer
+									LEFT JOIN 	{{ effective_sat("sat_customer_context", "sat_customer", "hkey_hub_customer", "brdg") }}
+									LEFT JOIN 	{{ ref("csat_webshoporderitem_kpi") }} sat_wsoi
+										ON    	  sat_wsoi.hkey_hub_webshoporderitem = brdg.hkey_hub_webshoporderitem
+									 AND      	sat_wsoi.sys_loadingid = brdg.sys_loadingid
+									JOIN      	{{ ref("loading_history") }} lh
+										ON      	lh.loadingid = brdg.sys_loadingid
+									LEFT JOIN		cte_customer_residence cte_residence
+										ON      	cte_residence.hkey_hub_customer = brdg.hkey_hub_customer
+									 AND      	cte_residence.sys_loadingid &gt;= brdg.sys_loadingid 
+									 AND      	cte_residence.sys_loadingid_validto > brdg.sys_loadingid
+									-- Evaluating the business validity using the date of the order would be a good idea,
+									-- but we have to consider that there might be two orders with different orderdate in the same loading.
+									-- that would lead to non unique hkey_dim_customer values.
+									-- for future models we should consider to have the customer residence as an additional dimension.
+									 AND 	 	  cte_residence.validfrom &lt;= lh.loadingts
+									 AND 	 	  cte_residence.validto &gt;= lh.loadingts
+									
+								)
+								SELECT DISTINCT	{{ hashcolumn(source_model_name = "cte", list_columns = ["customer_id", "sys_loadingid"], hashcolumn_name = "hkey_dim_customer") }},
+																IFNULL(cte.customer_id, 0) AS customer_id,
+																IFNULL(cte.firstname, 'No') AS firstname,
+																IFNULL(cte.lastname, 'Customer') as lastname,
+																cte.gender,
+																cte.birthdate,
+																cte.postalcode,
+																cte.city,
+																IFNULL(cte.federalstate_code, 'XX') AS federalstate_code,
+																IFNULL(cte.federalstate_name, 'Unbekannt') AS federalstate_name,
+																IFNULL(CAST(cte.country AS VARCHAR), 'Germany') AS country
+								FROM          (
+												SELECT      *
+													FROM      cte_customer
+												 UNION ALL
+												SELECT      lh.loadingid AS sys_loadingid,
+																		NULL AS customer_id,
+																		NULL AS firstname,
+																		NULL AS lastname,
+																		NULL AS gender,
+																		NULL AS birthdate,
+																		NULL AS postalcode,
+																		NULL AS city,
+																		NULL AS federalstate_code,
+																		NULL AS federalstate_name,
+																		NULL AS country
+													FROM      {{ ref("loading_history") }} lh
+												) cte
+							</code>
+						</pre>
+
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Fakten und Dimensionen (6/6)</h1>
+
+					<pre>
+						models/05_dm_ol/dim_association.sql
+						<code class="language-sql" data-trim>
+							WITH cte_association AS (
+								SELECT  brdg.sys_loadingid,
+												hub_association.association_id,
+												sat_association.discount1,
+												sat_association.discount2,
+												sat_association.discount3
+								FROM  	{{ ref("brdg_orderitem_all") }} brdg
+								JOIN  	{{ ref("hub_association") }} hub_association
+									ON  	hub_association.hkey_hub_association = brdg.hkey_hub_association
+								JOIN  	{{ effective_sat("sat_association_context", "sat_association", "hkey_hub_association", "brdg") }}
+							)
+							SELECT DISTINCT {{ hashcolumn(source_model_name = "cte", list_columns = ["association_id", "sys_loadingid"], hashcolumn_name = "hkey_dim_association") }},
+															cte.association_id AS association_name,
+															cte.discount1,
+															cte.discount2,
+															cte.discount3
+							 FROM          	cte_association cte
+							 UNION ALL
+							SELECT          {{ hashcolumn(source_model_name = "t", list_columns = ["association_id", "sys_loadingid"], hashcolumn_name = "hkey_dim_association") }},
+															t.* EXCLUDE (association_id, sys_loadingid)
+							FROM          	(
+											SELECT  NULL AS association_id,
+															lh.loadingid AS sys_loadingid,
+															'No association' AS association_name,
+															NULL AS discount1,
+															NULL AS discount2,
+															NULL AS discount3
+												FROM  {{ ref("loading_history") }} lh
+											) t
+						</code>
+					</pre>
+
+				</section>
+
+				<section>
+					<h1>Beispiellösung - Datumsdimensionen</h1>
+					<p>Im Fakt sind drei Dat&uuml;mer angelegt: <b>Bestell-/Kauf-, Wunsch-, und Lieferdatum</b>.
+						G&auml;ngige
+						OLAP- und BI-Tools erwarten pro Datum eine Dimension. Aus der Datumsdimensions-<b>Tabelle</b>
+						werden deshalb drei <b>Views</b> abgeleitet:</p>
+					
+					<pre>
+						models/05_dm_ol/dim_deliverydate.sql,<br>
+						models/05_dm_ol/dim_orderdate.sql,<br>
+						models/05_dm_ol/dim_requesteddate.sql
+						<code class="language-sql" data-trim>
+							{{ config(materialized="view") }}
+							SELECT  hkey_dim_date AS {{ "hkey_" + this.name }},
+											{{ dbt_utils.star(ref("dim_date"), except=["hkey_dim_date"], relation_alias="dt") }}
+							  FROM	{{ ref("dim_date") }} dt
+						</code>
+					</pre>
+
+					<p>❗ Hier böte sich ein Makro an, da drei Mal der selbe Code verwendet wird ❗</p>
+						
+				</section>
+
+				<section>
+					<h1>Implementierung in dbt</h1>
+					<div class="grid">
+						<div class="griditem">
+							<p>In dbt m&uuml;ssen lediglich für jede Tabelle / View eine *.sql-Datei im Projektordner
+								unter
+								"models" angelegt werden.</p>
+							<p>Anschließend kann mit <b>dbt run</b> das Sternschema auf dem Server angelegt werden.</p>
+						</div>
+					</div>
+				</section>
+	
+			</section>
+			
+			<section>
+				<h1>Ergebnis der Übung</h1>
+				<ul>
+					<li>Textdatei mit möglichen Fakten- und Dimensionstabellen erstellt</li>
+					<li>macro für Satellit current View erstellt</li>
+					<li>min. 1 Faktentabelle und 3 Dimensionstabellen erstellt</li>
+					<li>dbt Modelle und Macros in das Git Repository gepusht (branch = uebung)</li>
+				</ul>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+
+</body>
+
+</html>
