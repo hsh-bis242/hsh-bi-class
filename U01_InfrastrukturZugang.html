@@ -183,38 +183,53 @@
 					</p>
 				</section>
 			</section>
-
-			<section>
 				
-				<section>
-					<h1>Erstellen einer Python venv</h1>
-					<p><strong>Visual Studio Code</strong> unterstützt Sie bei der Erstellung einer virtuellen Python-Umgebung.</p>
-					<p>Dafür installieren Sie zunächst die <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in Visual Studio Code.</p>
-					<p>Nun steht im Visual Studio Kommandofenster (<strong>View - Command Palette...</strong>) der Befehl "<strong>Python: Create Environment...</strong>" zur Verfügung.</p>
-					<p>Wählen Sie erst <strong>Venv</strong> als <strong>Environment Type</strong> und anschließend die <strong>im vorherigen Schritt installierte Pythoninstallation</strong> aus.</p>
-					<p>Installieren Sie die <strong>Dependencies</strong> aus der <strong>requirements.txt</strong>.</p>
-				</section>
-
-				<section>
-					<h1>Ausführen von dbt</h1>
-					<p>
-						Mit dbt kann nun eine neue Datenbank angelegt und beladen werden:
-					</p>
-					<pre>
-						<code class="language-bash" data-trim>
-							cd willibald_dwh
-							dbt build
-						</code>
-					</pre>
-				</section>
-			
+			<section>
+				<h1>Erstellen einer Python venv</h1>
+				<p><strong>Visual Studio Code</strong> unterstützt Sie bei der Erstellung einer virtuellen Python-Umgebung.</p>
+				<p>Dafür installieren Sie zunächst die <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in Visual Studio Code.</p>
+				<p>Nun steht im Visual Studio Kommandofenster (<strong>View - Command Palette...</strong>) der Befehl "<strong>Python: Create Environment...</strong>" zur Verfügung.</p>
+				<p>Wählen Sie erst <strong>Venv</strong> als <strong>Environment Type</strong> und anschließend die <strong>im vorherigen Schritt installierte Pythoninstallation</strong> aus.</p>
+				<p>Installieren Sie die <strong>Dependencies</strong> aus der <strong>requirements.txt</strong>.</p>
 			</section>
 
 			<section>
-				<h1>Zugriff auf Databricks Workspace</h1>
-				<p>Die Anmledung erfolgt über die Hochschul Mail Adresse</p>
-				<p>Workpace URL: <a href="https://dbc-30dfc2de-0f3a.cloud.databricks.com/?o=1221161588216862">Databricks</a>.</p>
-				<img data-src="static/U01/logo-databricks.png">
+				<section>
+					<h1>Zugriff auf Databricks Workspace</h1>
+					<p>Die Anmledung erfolgt über die Hochschul Mail Adresse</p>
+					<p>Workpace URL: <a href="https://dbc-30dfc2de-0f3a.cloud.databricks.com/?o=1221161588216862">Databricks</a>.</p>
+					<img data-src="static/U01/logo-databricks.png">
+				</section>
+				<section>
+					<h1>Access Token generieren</h1>
+					<p>Oben rechts auf das User Profil klicken</p>
+					<p>-> Settings -> Developer -> Access Token -> Manage -> Generate new Access Token</p>
+					<p>Lifetime auf 180 Tage setzen und Token kopieren</p>
+				</section>
+				<section>
+					<h1>Token in Umgebungsvariable hinterlegen</h1>
+					VS Code öffnen, Terminal öffnen (unter View -> Terminal)
+					<pre>
+						<code data-trim class="language-powershell">
+							[Environment]::SetEnvironmentVariable("DATABRICKS_TOKEN", "---> TOKEN_EINFÜGEN <---", "User")
+						</code>
+					</pre>
+					Anschließend VS Code neu starten
+				</section>
+			</section>
+
+			<section>
+				<h1>Ausführen von dbt</h1>
+				<p>
+					Mit dbt kann nun die Datenbank beladen werden:
+				</p>
+				<pre>
+					<code class="language-bash" data-trim>
+						cd willibald_dwh
+						dbt deps
+						dbt build
+					</code>
+				</pre>
 			</section>
 
 		</div>
