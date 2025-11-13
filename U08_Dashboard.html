@@ -40,25 +40,25 @@
 
 				<section>
 					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>DuckDB Power Query Connector installieren</h2>
-					<p>Um auf Daten in der von uns genutzten DuckDB-Datenbank zuzugreifen, müssen Sie noch die entsprechende Power BI Extension installieren.</p>
-					<p>Die Installation ist hier beschrieben:</p>
-					<a href="https://motherduck.com/docs/integrations/bi-tools/powerbi/">Power BI with DuckDB and MotherDuck</a>
-				</section>
-
-				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
 					<h2>Verbindung zum Datenbankserver herstellen</h2>
 					<div class="grid">
 						<div class="griditem">
 							<ol>
 								<li>Stellen Sie nun eine Verbindung zu Ihrem Sternschema her.</li>
-								<li>Dazu wählen Sie <strong>DuckDB</strong> in der Liste der abfragbaren Datenquellen aus.</li>
-								<li>Wählen Sie dann den Speicherort Ihrer DuckDB-Datei:<br><strong>~\dev_willibald_dwh.duckdb</strong></li>
-								<ul>
-									<li>Setzen Sie <strong>read_only</strong> auf <em>true</em></li>
-									<li>Als Datenkonnektivitätsmodus wählen Sie "Importieren".</li>
-								</ul>
+								<li>Dazu wählen Sie <strong>Databricks</strong> in der Liste der abfragbaren Datenquellen aus.</li>
+								<li>Nutzen sie die folgenden Connections Informationen:<br>
+									<table>
+										<tr>
+											<td><strong>Server-Hostname:</strong></td>
+											<td>dbc-77aa5718-ad9a.cloud.databricks.com</td>
+										</tr>
+										<tr>
+											<td><strong>HTTP-Pfad:</strong></td>
+											<td>/sql/1.0/warehouses/9d9d44f9428c50eb</td>
+										</tr>
+									</table>
+								
+								</li>siehe: <a href="https://dbc-77aa5718-ad9a.cloud.databricks.com/sql/warehouses/9d9d44f9428c50eb/connectionDetails?o=2730421249590122">Connection</a></li>
 							</ol>
 						</div>
 					</div>
