@@ -32,6 +32,22 @@
 
 			<section>
 				<section>
+					<h1>Virtuelle Umgebung aktivieren</h1>
+					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
+					<p>VS Code aktiviert die venv normalerweise automatisch. Falls nicht:</p>
+					<p><b>Windows (PowerShell):</b></p>
+					<pre><code class="language-powershell" data-trim>
+.\.venv\Scripts\Activate.ps1
+					</code></pre>
+					<p><b>macOS / Linux:</b></p>
+					<pre><code class="language-bash" data-trim>
+source .venv/bin/activate
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<section>
 					<h1>Aufgabenstellung - DWH Modell</h1>
 					<p>Analysieren des DWH Modells und der Data Vault Objekte</p>
 					<ul>
@@ -75,14 +91,8 @@
 											Der Betrag, welcher für die bestellte Produktmenge zu bezahlen ist. Hierzu
 											werden Menge und Preis aus der Bestellposition multipliziert und
 											anschließend der Rabatt abgezogen.</li>
-										<li><strong>Offener Auftrag:</strong>
-											Eine 1 kennzeichnet, ob dieser Auftrag noch offen ist.</li>
-										<li><strong>Vollständig gelieferter Auftrag:</strong>
-											Eine 1 kennzeichnet, ob dieser Auftrag vollständig geliefert wurde.</li>
-										<li><strong>Abweichung zwischen Wunsch- und Lieferdatum:</strong>
-											Errechnet sich aus der Bestellung.Wunschdatum und dem letzten
-											Lieferung.LieferDatum. Die Abweichung ist negativ, wenn die Lieferung vor
-											dem Wunschtermin erfolgte.</li>
+												<li><strong>Rabatt:</strong>
+													Der auf die Bestellung gewährte Rabatt.</li>
 									</ul>
 								</div>
 							</div>
@@ -96,13 +106,13 @@
 					<div>
 						<h1>Fachliche Hinweise zur Modellierung (2/2)</h1>
 						<ul>
-							<li>Es existieren zwei Links zwischen den Hubs Kunde und Vereinspartner</li>
+							<li>Das DWH-Modell konzentriert sich auf den Webshop-Bestellprozess</li>
 							<ul>
-								<li><b>lnk_customer_association</b> enthält alle Kunden, die einem Vereinspartner
-									zugeordnet sind.</li>
-								<li><b>lnk_association_contact</b> definiert welcher Kunde als Ansprechpartner des
-									Vereinspartners agiert.</li>
+								<li>Kunden bestellen Produkte über den Webshop</li>
+								<li>Produkte sind Produktkategorien zugeordnet (<b>lnk_product_productcategory</b>)</li>
+								<li>Bestellungen bestehen aus Bestellpositionen (<b>lnk_webshoporderitem_webshoporder</b>)</li>
 							</ul>
+							<li>Nutzen Sie die Driving-Key Link-Satelliten, um die aktuell gültigen Zuordnungen zu ermitteln</li>
 						</ul>
 					</div>
 				</section>

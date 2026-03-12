@@ -65,16 +65,44 @@
 					</p>
 				</section>
 				<section>
-					<h1>Github-Organisation HSH-BIS242</h1>
+					<h1>Beitritt zum GitHub Classroom</h1>
 					<p>
-						Sobald Sie einen Github-Account angelegt haben und dort eingeloggt sind, schreiben Sie bitte eine Mail mit dem Betreff <b>Einladung zu HSH-BIS242</b>, ihrem <b>Git-Benutzernamen oder der registrierten Mailadresse</b>, sowie Ihrer <b>Moodle-Übungsgruppe</b> an<br>
-						<a href="mailto:maximilian.vollmer@hs-hannover.de">maximilian.vollmer@hs-hannover.de</a>:<br>
+						Sobald Sie einen Github-Account angelegt haben und dort eingeloggt sind, treten Sie über den folgenden Einladungslink dem GitHub Classroom bei:
 					</p>
 					<p>
-						Sie werden dann der Github-Organisation hinzugefügt und bekommen Zugriff auf ein Übungsrepository.
+						<a href="https://classroom.github.com/a/g8uBDJZ8">Zum GitHub Classroom Assignment (SS26)</a>
+					</p>
+					<p>
+						Wählen Sie dort Ihr Team (gruppe01&nbsp;–&nbsp;gruppe10, max.&nbsp;3 Teilnehmer pro Team). GitHub erstellt automatisch ein eigenes Repository für Ihre Gruppe, z.&nbsp;B. <code>bis-242-ss26-gruppe02</code>.
 					</p>
 				</section>
 			</section>
+			<section>
+				<section>
+					<h1>Zugriff auf Databricks Workspace</h1>
+					<p>Die Anmeldung erfolgt über die Hochschul-Mail-Adresse.</p>
+					<p>Workspace URL: <a href="https://dbc-15d76289-5b7c.cloud.databricks.com/">Databricks</a></p>
+					<img data-src="static/U01/logo-databricks.png">
+				</section>
+				<section>
+					<h1>Access Token generieren</h1>
+					<p>Oben rechts auf das User Profil klicken</p>
+					<p>→ Settings → Developer → Access Token → Manage → Generate new Access Token</p>
+					<p>Lifetime auf 180 Tage setzen und Token kopieren.</p>
+					<p><b>⚠️ Speichern Sie den Token jetzt zwischen (z.&nbsp;B. in einer Textdatei). Er wird in den folgenden Schritten noch benötigt und kann danach nicht mehr angezeigt werden.</b></p>
+				</section>
+			</section>
+
+			<section>
+				<h1>Variante A: Lokales Setup</h1>
+				<p>
+					Bei dieser Variante installieren Sie alle Werkzeuge lokal auf Ihrem Rechner.
+				</p>
+				<p>
+					Alternativ können Sie auch <b>GitHub Codespaces</b> verwenden (siehe Variante&nbsp;B).
+				</p>
+			</section>
+
 			<section>
 				<section>
 					<h1>Installation python</h1>
@@ -124,10 +152,14 @@
 				<section>
 					<h1>Klonen des Github-Repositorys (1/4)</h1>
 					<p>
-						Testen Sie bitte den Zugriff auf Ihr Github-Übungsrepository. Dazu öffnen Sie Ihr Repository auf Github:<br>
+						Öffnen Sie Ihr Gruppen-Repository auf GitHub. Die URL hat folgendes Muster:<br>
+						<code>https://github.com/hsh-bis242/bis-242-ss26-gruppeXX</code>
+					</p>
+					<p>
+						Alternativ finden Sie alle Repositories Ihrer Organisation unter:<br>
 						<a href="https://github.com/orgs/hsh-bis242/repositories">Übersicht der Organisations-Repositories auf Github</a>
 					</p>
-					<p>Wählen Sie ihr Übungsrepository aus. Sie bekommen dort eine Clone-URL angezeigt. Kopieren Sie diese:</p>
+					<p>Kopieren Sie die Clone-URL Ihres Repositories:</p>
 					<img data-src="static/U01/git-cloneURL.png" height="100">
 				</section>
 				<section>
@@ -179,57 +211,107 @@
 						Sobald Sie dazu aufgefordert werden, schließen Sie das Browserfenster. Betätigen Sie die Schaltfläche "Open" in Visual Studio Code.
 					</p>
 					<p>
-						Der Editor öffnet nun ihr (noch leeres) lokales Repository und fragt ob Sie den Inhalten in diesem Verzeichnis vertrauen. Bestätigen Sie das.
+						Der Editor öffnet nun Ihr lokales Repository mit dem bereits enthaltenen Template-Code und fragt, ob Sie den Inhalten in diesem Verzeichnis vertrauen. Bestätigen Sie das.
 					</p>
 				</section>
 			</section>
 				
 			<section>
-				<h1>Erstellen einer Python venv</h1>
-				<p><strong>Visual Studio Code</strong> unterstützt Sie bei der Erstellung einer virtuellen Python-Umgebung.</p>
-				<p>Dafür installieren Sie zunächst die <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in Visual Studio Code.</p>
-				<p>Nun steht im Visual Studio Kommandofenster (<strong>View - Command Palette...</strong>) der Befehl "<strong>Python: Create Environment...</strong>" zur Verfügung.</p>
-				<p>Wählen Sie erst <strong>Venv</strong> als <strong>Environment Type</strong> und anschließend die <strong>im vorherigen Schritt installierte Pythoninstallation</strong> aus.</p>
-				<p>Installieren Sie die <strong>Dependencies</strong> aus der <strong>requirements.txt</strong>.</p>
+				<section>
+					<h1>Erstellen einer Python venv</h1>
+					<p><strong>Visual Studio Code</strong> unterstützt Sie bei der Erstellung einer virtuellen Python-Umgebung.</p>
+					<p>Dafür installieren Sie zunächst die <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in Visual Studio Code.</p>
+					<p>Nun steht im Visual Studio Kommandofenster (<strong>View → Command Palette…</strong>) der Befehl "<strong>Python: Create Environment…</strong>" zur Verfügung.</p>
+					<p>Wählen Sie erst <strong>Venv</strong> als <strong>Environment Type</strong> und anschließend die <strong>im vorherigen Schritt installierte Pythoninstallation</strong> aus.</p>
+					<p>Installieren Sie die <strong>Dependencies</strong> aus der <strong>requirements.txt</strong>.</p>
+				</section>
+				<section>
+					<h1>Databricks Token als Umgebungsvariable setzen</h1>
+					<p>Öffnen Sie ein Terminal in VS Code (<b>View → Terminal</b>) und setzen Sie den zuvor gespeicherten Token als Umgebungsvariable:</p>
+					<p><b>Windows (PowerShell):</b></p>
+					<pre><code class="language-powershell" data-trim>
+[Environment]::SetEnvironmentVariable("DATABRICKS_TOKEN", "---> TOKEN_EINFÜGEN <---", "User")
+					</code></pre>
+					<p><b>macOS / Linux:</b></p>
+					<pre><code class="language-bash" data-trim>
+echo 'export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"' >> ~/.zshrc
+source ~/.zshrc
+					</code></pre>
+					<p>Anschließend VS Code neu starten.</p>
+				</section>
+				<section>
+					<h1>Virtuelle Umgebung aktivieren</h1>
+					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
+					<p>VS Code aktiviert die venv normalerweise automatisch beim Öffnen eines neuen Terminals. Falls nicht, aktivieren Sie sie manuell:</p>
+					<p><b>Windows (PowerShell):</b></p>
+					<pre><code class="language-powershell" data-trim>
+.\.venv\Scripts\Activate.ps1
+					</code></pre>
+					<p><b>macOS / Linux:</b></p>
+					<pre><code class="language-bash" data-trim>
+source .venv/bin/activate
+					</code></pre>
+				</section>
 			</section>
 
 			<section>
 				<section>
-					<h1>Zugriff auf Databricks Workspace</h1>
-					<p>Die Anmledung erfolgt über die Hochschul Mail Adresse</p>
-					<p>Workpace URL: <a href="https://dbc-30dfc2de-0f3a.cloud.databricks.com/?o=1221161588216862">Databricks</a>.</p>
-					<img data-src="static/U01/logo-databricks.png">
+					<h1>Variante B: GitHub Codespaces</h1>
+					<p>
+						Alternativ zum lokalen Setup können Sie <b>GitHub Codespaces</b> verwenden. Damit arbeiten Sie direkt im Browser in einer vollständigen VS-Code-Umgebung &ndash; ohne lokale Installation von Python oder VS&nbsp;Code.
+					</p>
 				</section>
 				<section>
-					<h1>Access Token generieren</h1>
-					<p>Oben rechts auf das User Profil klicken</p>
-					<p>-> Settings -> Developer -> Access Token -> Manage -> Generate new Access Token</p>
-					<p>Lifetime auf 180 Tage setzen und Token kopieren</p>
+					<h1>Codespace starten</h1>
+					<p>
+						Öffnen Sie Ihr Gruppen-Repository auf GitHub und klicken Sie auf:<br>
+						<b>Code</b> → <b>Codespaces</b> → <b>Create codespace on main</b>
+					</p>
+					<p>
+						GitHub startet eine vollständige VS-Code-Umgebung im Browser. Python ist dort bereits vorinstalliert.
+					</p>
 				</section>
 				<section>
-					<h1>Token in Umgebungsvariable hinterlegen</h1>
-					VS Code öffnen, Terminal öffnen (unter View -> Terminal)
+					<h1>Abhängigkeiten installieren</h1>
+					<p>
+						Öffnen Sie im Codespace ein Terminal (<b>View → Terminal</b>) und installieren Sie die Python-Abhängigkeiten:
+					</p>
 					<pre>
-						<code data-trim class="language-powershell">
-							[Environment]::SetEnvironmentVariable("DATABRICKS_TOKEN", "---> TOKEN_EINFÜGEN <---", "User")
+						<code class="language-bash" data-trim>
+							pip install -r requirements.txt
 						</code>
 					</pre>
-					Anschließend VS Code neu starten
+				</section>
+				<section>
+					<h1>Databricks-Token im Codespace</h1>
+					<p>
+						Setzen Sie den zuvor gespeicherten Token als Umgebungsvariable im Codespace-Terminal:
+					</p>
+					<pre>
+						<code class="language-bash" data-trim>
+							export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"
+						</code>
+					</pre>
+					<p>
+						<b>Tipp:</b> Damit der Token über Neustarts hinweg erhalten bleibt, können Sie ihn als <a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces">Codespaces Secret</a> in Ihren GitHub-Einstellungen hinterlegen.
+					</p>
 				</section>
 			</section>
+
+
 
 			<section>
 				<h1>Ausführen von dbt</h1>
-				<p>
-					Mit dbt kann nun die Datenbank beladen werden:
-				</p>
-				<pre>
-					<code class="language-bash" data-trim>
-						cd willibald_dwh
-						dbt deps
-						dbt build
-					</code>
-				</pre>
+				<p><b>Hinweis:</b> Stellen Sie sicher, dass die virtuelle Umgebung aktiviert ist, bevor Sie dbt-Befehle ausführen.</p>
+				<pre><code class="language-bash" data-trim>
+# venv aktivieren (falls nicht automatisch aktiv)
+# Windows: .\.venv\Scripts\Activate.ps1
+# macOS/Linux: source .venv/bin/activate
+
+cd willibald_dwh
+dbt deps
+dbt build
+				</code></pre>
 			</section>
 
 		</div>

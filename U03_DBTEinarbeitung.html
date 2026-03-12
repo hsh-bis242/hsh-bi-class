@@ -69,8 +69,21 @@
 						</pre>
 						<p>Anschließend auf github.com überprüfen ob der branch erstellt wurde</p>
 				</section>
-				<section>
-					<h1>dbt Modell erstellen</h1>
+				<section>					<h1>Virtuelle Umgebung aktivieren</h1>
+					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
+					<p>VS Code aktiviert die venv normalerweise automatisch. Falls nicht:</p>
+					<p><b>Windows (PowerShell):</b></p>
+					<pre><code class="language-powershell" data-trim>
+.\.venv\Scripts\Activate.ps1
+					</code></pre>
+					<p><b>macOS / Linux:</b></p>
+					<pre><code class="language-bash" data-trim>
+source .venv/bin/activate
+					</code></pre>
+				</section>
+			</section>
+			<section>
+				<section>					<h1>dbt Modell erstellen</h1>
 						<p>
 							Im Ordner "uebung3" soll ein neues dbt Modell erstellt werden, siehe <a href="https://docs.getdbt.com/docs/build/sql-models">dbt Doku</a>
 						</p>
