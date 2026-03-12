@@ -4,142 +4,273 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 05 - ADWH Modell und Dimensionen und Fakten
-	</title>
+	<title>BIS242 – Übung 05 – Star-Schema</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
-
 	<div class="reveal">
 		<div class="slides">
 
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>DWH Modell und Dimensionen und Fakten</h2>
-				</div>
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Übung Business Intelligence</h1>
+				<h2>Star-Schema</h2>
+				<p class="subtitle">Übung 05 · BIS242</p>
 			</section>
 
+			<!-- ==================== ZIELE ==================== -->
 			<section>
+				<h1>Ziele der Übung</h1>
+				<ol class="steps">
+					<li>Data-Vault-Modell analysieren und verstehen</li>
+					<li>Daten in Databricks abfragen</li>
+					<li>Star-Schema konzipieren</li>
+					<li>Dimensions- und Faktentabelle als dbt-Modelle erstellen</li>
+					<li>Pull Request erstellen</li>
+				</ol>
+			</section>
+
+			<!-- ==================== VORBEREITUNG ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Vorbereitung</h1>
+					<h2>Branch &amp; Umgebung</h2>
+				</section>
 				<section>
-					<h1>Virtuelle Umgebung aktivieren</h1>
-					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
-					<p>VS Code aktiviert die venv normalerweise automatisch. Falls nicht:</p>
-					<p><b>Windows (PowerShell):</b></p>
-					<pre><code class="language-powershell" data-trim>
-.\.venv\Scripts\Activate.ps1
-					</code></pre>
-					<p><b>macOS / Linux:</b></p>
-					<pre><code class="language-bash" data-trim>
-source .venv/bin/activate
-					</code></pre>
+				<h1>Umgebung vorbereiten</h1>
+				<ol class="steps">
+					<li>Virtuelle Umgebung aktivieren</li>
+					<li>Neuen Branch anlegen: <code>git checkout -b uebung05</code></li>
+					<li><code>dbt build</code> ausführen und prüfen</li>
+				</ol>
 				</section>
 			</section>
 
+			<!-- ==================== DATA VAULT ANALYSE ==================== -->
 			<section>
-				<section>
-					<h1>Aufgabenstellung - DWH Modell</h1>
-					<p>Analysieren des DWH Modells und der Data Vault Objekte</p>
-					<ul>
-						<li>Analysieren Sie die Hubs, Links und Satelliten aus dem bestehenden DWH Modell</li>
-						<li><b>Nutzen Sie "dbt complile -s ..." um die DV Objekte und Macros besser zu verstehen</b></li>
-						<li>Erstellen Sie ein macro, das eine View erzeugt, die den gültigen Stand für einen Satelliten filtert.</li>
-						<li>Erstellen Sie mithilfe des Macros eine "Current Views" zu allen Satelliten</li>
-						<li>Änderungen am dbt-Projekt ins Github-Repository auf den branch "uebung" pushen</li>
-					</ul>
-				</section>
-				<section data-background="static/U02/willibald_datavault.svg" data-background-size="contain"></section>
-			</section>
-			<section>
-				<section>
-					<h1>Aufgabenstellung - Datenmodellierung</h1>
-					<p>Modellieren Sie ein Sternschema auf das Willibald-DWH-Datenmodell.</p>
-					<ul>
-						<li>Welche Fakten können Sie identifizieren?</li>
-						<li>Welche Dimensionen können Sie identifizieren?</li>
-						<li><b>Listen Sie einige Fakten/Dimensionen in einer Text-Datei im Ordner uebung5</b></li>
-					</ul>
+				<section class="section-divider">
+					<h1>Data-Vault-Modell</h1>
+					<h2>Analyse &amp; Verständnis</h2>
 				</section>
 				<section>
-					<h1>Beispielsternschema</h1>
-					<img data-src="static/U05/Starschema-willibald.svg" height="480">
+					<h1>Data-Vault-Architektur</h1>
+					<p class="text-center">
+						<img data-src="./static/U02/willibald_datavault.svg" height="400">
+					</p>
+					<p class="text-small text-muted">Hubs (gelb) · Links (grün) · Satelliten (blau)</p>
 				</section>
 				<section>
-					<div class="r-fit-text">
-						<h1>Fachliche Hinweise zur Modellierung (1/2)</h1>
-						<figure>
-							<div class="grid_50">
-								<div class="griditem">
-									<img data-src="static/U05/willibald-auswertung.png">
-								</div>
-								<div class="griditem">
-									<ul>
-										<li><strong>Menge:</strong>
-											Die Menge bestellter Produkte. Wird direkt aus der Bestellposition
-											übernommen.</li>
-										<li><strong>Erlös:</strong>
-											Der Betrag, welcher für die bestellte Produktmenge zu bezahlen ist. Hierzu
-											werden Menge und Preis aus der Bestellposition multipliziert und
-											anschließend der Rabatt abgezogen.</li>
-												<li><strong>Rabatt:</strong>
-													Der auf die Bestellung gewährte Rabatt.</li>
-									</ul>
-								</div>
-							</div>
-							<figcaption>
-								<a href="https://ddvug.net/willibalds-daen/">https://dwa-compare.info/</a>
-							</figcaption>
-						</figure>
+					<h1>Modellstruktur erkunden</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Analysieren Sie die Data-Vault-Modelle unter <code>models/03_il_rdv/</code>:</p>
+						<ul>
+							<li><b>Hubs:</b> Geschäftsobjekte (Kunde, Produkt, Bestellung, …)</li>
+							<li><b>Links:</b> Beziehungen zwischen Hubs</li>
+							<li><b>Satelliten:</b> Beschreibende Attribute mit Historie</li>
+						</ul>
+					</div>
+					<div class="grid-3">
+						<div class="info-card">
+							<p class="number">5</p>
+							<p>Hubs</p>
+						</div>
+						<div class="info-card">
+							<p class="number">5</p>
+							<p>Links</p>
+						</div>
+						<div class="info-card">
+							<p class="number">9</p>
+							<p>Satelliten</p>
+						</div>
 					</div>
 				</section>
 				<section>
-					<div>
-						<h1>Fachliche Hinweise zur Modellierung (2/2)</h1>
-						<ul>
-							<li>Das DWH-Modell konzentriert sich auf den Webshop-Bestellprozess</li>
+					<h1>Daten in Databricks abfragen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Führen Sie SQL-Abfragen in Databricks aus, um die Daten zu verstehen:</p>
+					</div>
+					<pre><code class="language-sql" data-trim>
+-- Beispiel: Welche Hubs gibt es?
+SELECT * FROM bis242_XX.hub_kunde LIMIT 10;
+SELECT * FROM bis242_XX.sat_kunde_webshop LIMIT 10;
+					</code></pre>
+					<div class="hint">
+						<b>Tipp:</b> Wie hängen Hub, Satellit und Link zusammen?
+						Über welche Spalte (Hash Key) werden sie verknüpft?
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== STAR-SCHEMA ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Star-Schema</h1>
+					<h2>Dimensionale Modellierung</h2>
+				</section>
+				<section>
+					<h1>Konzept: Star-Schema</h1>
+					<div class="grid-2">
+						<div>
+							<p>Ein <b>Star-Schema</b> besteht aus:</p>
 							<ul>
-								<li>Kunden bestellen Produkte über den Webshop</li>
-								<li>Produkte sind Produktkategorien zugeordnet (<b>lnk_product_productcategory</b>)</li>
-								<li>Bestellungen bestehen aus Bestellpositionen (<b>lnk_webshoporderitem_webshoporder</b>)</li>
+								<li><b>Faktentabelle:</b> Messbare Kennzahlen (z.&nbsp;B. Umsatz, Menge)</li>
+								<li><b>Dimensionstabellen:</b> Beschreibende Attribute (z.&nbsp;B. Kunde, Produkt, Zeit)</li>
 							</ul>
-							<li>Nutzen Sie die Driving-Key Link-Satelliten, um die aktuell gültigen Zuordnungen zu ermitteln</li>
+							<p>Ziel: Einfache, schnelle Abfragen für Analysen und Reporting.</p>
+						</div>
+						<div class="text-center">
+							<img data-src="./static/U05/Starschema-willibald.svg" height="300">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Beispiel-Auswertung</h1>
+					<p>Mit einem Star-Schema lassen sich Fragen wie diese beantworten:</p>
+					<div class="callout callout-blue">
+						<p><i>„Wie hoch ist der Umsatz pro Produktkategorie und Monat?"</i></p>
+					</div>
+					<p class="text-center">
+						<img data-src="./static/U05/willibald-auswertung.png" height="250">
+					</p>
+				</section>
+				<section>
+					<h1>Fachliche Hinweise (1/2)</h1>
+					<div class="callout callout-yellow">
+						<h4>Dimensionstabelle: Produkt</h4>
+						<p>Benötigt Informationen aus Hub, Satellit und ggf. Referenztabelle.
+						Überlegen Sie, welche Spalten für eine Produkt-Dimension relevant sind:</p>
+						<ul>
+							<li>Produktname, Listenpreis, Kategorie, …</li>
+							<li>Über welche Keys verknüpfen Sie Hub und Satellit?</li>
 						</ul>
 					</div>
 				</section>
 				<section>
-					<h1>Aufgabenstellung - Stern Schema Data Mart</h1>
-					<p>Implementieren Sie das von Ihnen modellierte Sternschema in dbt.</p>
-					<ul>
-						<li>Legen Sie Ihr Datenmodell im Schema "ol_dm" an.</li>
-						<li>Nutzen Sie die Hubs, Links und Satelliten aus dem bestehenden DWH Modell</li>
-						<li>Nutzen Sie die Current Views aus dem vorherigen Teil der Übung</li>
-						<li>Erstellen Sie dbt-Modelle (.sql files) um Ihr Sternschema in Databricks zu
-							erzeugen und zu beladen.</li>
-						<li>Änderungen am dbt-Projekt ins Github-Repository auf den branch "uebung" pushen</li>
-					</ul>
+					<h1>Fachliche Hinweise (2/2)</h1>
+					<div class="callout callout-yellow">
+						<h4>Faktentabelle: Bestellpositionen</h4>
+						<p>Die Faktentabelle verbindet die Dimensionen und enthält messbare Werte:</p>
+						<ul>
+							<li>Welche Links und Satelliten liefern die Kennzahlen (Preis, Menge)?</li>
+							<li>Welche Foreign Keys verweisen auf die Dimensionen?</li>
+							<li>Welche Aggregate sind sinnvoll?</li>
+						</ul>
+					</div>
 				</section>
-
 			</section>
-			
+
+			<!-- ==================== IMPLEMENTIERUNG ==================== -->
 			<section>
+				<section class="section-divider">
+					<h1>Implementierung</h1>
+					<h2>dbt-Modelle erstellen</h2>
+				</section>
+				<section>
+					<h1>Dimensionstabelle erstellen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Erstellen Sie eine Dimensionstabelle als dbt-Modell:</p>
+						<p><code>models/00_example/dim_{kuerzel}.sql</code></p>
+					</div>
+					<pre><code class="language-sql" data-trim>
+-- models/00_example/dim_{kuerzel}.sql
+SELECT
+    ???
+FROM {{ ref('???') }} AS ???
+JOIN {{ ref('???') }} AS ???
+  ON ???
+					</code></pre>
+					<div class="hint">
+						<b>Tipp:</b> Schauen Sie sich die Hub- und Satelliten-Tabellen in Databricks an.
+						Über welchen Hash Key werden sie verknüpft?
+					</div>
+				</section>
+				<section>
+					<h1>Faktentabelle erstellen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Erstellen Sie eine Faktentabelle als dbt-Modell:</p>
+						<p><code>models/00_example/fct_{kuerzel}.sql</code></p>
+					</div>
+					<pre><code class="language-sql" data-trim>
+-- models/00_example/fct_{kuerzel}.sql
+SELECT
+    ???
+FROM {{ ref('???') }} AS ???
+JOIN {{ ref('???') }} AS ???
+  ON ???
+JOIN {{ ref('???') }} AS ???
+  ON ???
+					</code></pre>
+					<div class="hint">
+						<b>Tipp:</b> Die Faktentabelle benötigt JOINs über Links und deren Satelliten.
+						Foreign Keys sollten auf Ihre Dimensionstabellen verweisen.
+					</div>
+				</section>
+				<section>
+					<h1>Modelle bauen &amp; prüfen</h1>
+					<pre><code class="language-bash" data-trim>
+dbt run -s dim_{kuerzel} fct_{kuerzel}
+					</code></pre>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Prüfen Sie in Databricks:</p>
+						<ul>
+							<li>Wurden die Views erstellt?</li>
+							<li>Enthalten sie plausible Daten?</li>
+							<li>Lässt sich damit die Beispiel-Auswertung nachbauen?</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== GIT & PR ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Abschluss</h1>
+					<h2>Git &amp; Pull Request</h2>
+				</section>
+				<section>
+				<h1>Pull Request erstellen</h1>
+				<pre><code class="language-bash" data-trim>
+git add .
+git commit -m "Übung 05: Star-Schema erstellt"
+git push -u origin uebung05
+				</code></pre>
+				<div class="task-box">
+					<h4>Aufgabe</h4>
+					<p>Erstellen Sie auf GitHub einen <b>Pull Request</b> von <code>uebung05</code> nach <code>main</code>.</p>
+				</div>
+				<p class="text-center"><img data-src="static/U03/git_pull_request.png" height="180"></p>
+				<div class="warning">
+					<b>⚠️ Mergen Sie den PR noch nicht!</b> Der Dozent wird den PR reviewen.
+				</div>
+				</section>
+			</section>
+
+			<!-- ==================== ERGEBNIS ==================== -->
+			<section class="result-slide">
 				<h1>Ergebnis der Übung</h1>
 				<ul>
-					<li>macro für Satellit current View erstellt</li>
-					<li>Current Views für Satelliten erstellt</li>
-					<li>Textdatei mit möglichen Fakten- und Dimensionstabellen erstellt</li>
-					<li>min. 1 Faktentabelle und 3 Dimensionstabellen im schema "ol_dm" in dbt erstellt</li>
-					<li>dbt Modelle und Macros in das Git Repository gepusht (branch = uebung)</li>
+					<li>✅ Data-Vault-Modell analysiert und Zusammenhänge verstanden</li>
+					<li>✅ SQL-Abfragen in Databricks durchgeführt</li>
+					<li>✅ Dimensionstabelle <code>dim_{kuerzel}.sql</code> erstellt</li>
+					<li>✅ Faktentabelle <code>fct_{kuerzel}.sql</code> erstellt</li>
+					<li>✅ Pull Request von <code>uebung05</code> → <code>main</code> auf GitHub erstellt</li>
 				</ul>
+				<div class="pruefbar">
+					<b>Prüfbar durch Dozenten:</b> Pull Request im Gruppen-Repository;
+					Views <code>dim_*</code> und <code>fct_*</code> in Databricks vorhanden.
+				</div>
 			</section>
 
 		</div>
@@ -150,17 +281,11 @@ source .venv/bin/activate
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
 
 </body>
-
 </html>

@@ -4,159 +4,258 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 04 - dbt Tests und Macros</title>
+	<title>BIS242 – Übung 04 – dbt Tests und Macros</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>dbt Tests und Macros</h2>
-				</div>
+
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Übung Business Intelligence</h1>
+				<h2>dbt Tests und Macros</h2>
+				<p class="subtitle">Übung 04 · BIS242</p>
 			</section>
+
+			<!-- ==================== ZIELE ==================== -->
 			<section>
+				<h1>Ziele der Übung</h1>
+				<ol class="steps">
+					<li>Vorhandene dbt-Tests verstehen</li>
+					<li>Verschiedene Testarten kennenlernen</li>
+					<li>Neues Modell mit Tests absichern</li>
+					<li>Macros analysieren und ein eigenes schreiben</li>
+					<li>Änderungen committen und pushen</li>
+				</ol>
+			</section>
+
+			<!-- ==================== VORBEREITUNG ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Vorbereitung</h1>
+					<h2>Branch &amp; Umgebung</h2>
+				</section>
 				<section>
-					<h1>Aufgabenstellung</h1>
-					<ol>
-						<li>dbt Modell erstellen</li>
-						<ul>
-							<li>.sql File erstellen</li>
-							<li>Modell ausführen</li>
-							<li>Daten überprüfen</li>
-						</ul>
-						<li>dbt Tests verstehen und erstellen</li>
-						<ul>
-							<li>.yml File erstellen</li>
-							<li>Tests hinzufügen</li>
-							<li>Tests ausführen</li>
-						</ul>
-						<li>dbt Macros verstehen und erstellen</li>
-						<ul>
-							<li>Macro erstellen</li>
-							<li>Macro in Modell nutzen</li>
-						</ul>
-						<li>Änderungen in git pushen</li>
+					<h1>Umgebung vorbereiten</h1>
+					<ol class="steps">
+						<li>Virtuelle Umgebung aktivieren (wie in Übung 03)</li>
+						<li>Neuen Branch anlegen: <code>git checkout -b uebung04</code></li>
+						<li>Sicherstellen, dass <code>dbt build</code> fehlerfrei durchläuft</li>
 					</ol>
 				</section>
 			</section>
+
+			<!-- ==================== TESTS ERKUNDEN ==================== -->
 			<section>
+				<section class="section-divider">
+					<h1>Tests erkunden</h1>
+					<h2>Bestehende Qualitätssicherung</h2>
+				</section>
 				<section>
-					<h1>Virtuelle Umgebung aktivieren</h1>
-					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
-					<p>VS Code aktiviert die venv normalerweise automatisch. Falls nicht:</p>
-					<p><b>Windows (PowerShell):</b></p>
-					<pre><code class="language-powershell" data-trim>
-.\.venv\Scripts\Activate.ps1
+					<h1>Tests im Projekt finden</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Suchen Sie im Projekt nach vorhandenen Tests:</p>
+						<ul>
+							<li>Schauen Sie in den <code>_*.yml</code>-Dateien unter <code>models/</code> nach <code>data_tests</code></li>
+							<li>Prüfen Sie den Ordner <code>tests/</code> auf eigenständige Test-SQL-Dateien</li>
+						</ul>
+					</div>
+					<pre><code class="language-bash" data-trim>dbt test</code></pre>
+					<p class="text-small text-muted">Führen Sie die Tests aus und beobachten Sie die Ausgabe.</p>
+				</section>
+				<section>
+					<h1>Testarten in dbt</h1>
+					<div class="grid-2">
+						<div class="callout">
+							<h4>Generic Tests (YAML)</h4>
+							<p>In <code>_*.yml</code>-Dateien definiert. Eingebaute Tests:</p>
+							<ul>
+								<li><code>unique</code></li>
+								<li><code>not_null</code></li>
+								<li><code>accepted_values</code></li>
+								<li><code>relationships</code></li>
+							</ul>
+						</div>
+						<div class="callout callout-blue">
+							<h4>Singular Tests (SQL)</h4>
+							<p>Eigene SQL-Dateien in <code>tests/</code>.
+							Jede Query, die Zeilen zurückgibt, gilt als <b>fehlgeschlagen</b>.</p>
+							<pre><code class="language-sql" data-trim>
+-- tests/mein_test.sql
+SELECT *
+FROM {{ ref('...') }}
+WHERE ???
+							</code></pre>
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== NEUES MODELL + TESTS ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Modell &amp; Tests</h1>
+					<h2>Neues Modell absichern</h2>
+				</section>
+				<section>
+					<h1>Neues Modell erstellen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Erstellen Sie ein neues Modell <code>models/00_example/uebung4_{kuerzel}.sql</code>,
+						das Bestellpositionen mit Produktinformationen verbindet – ähnlich wie in Übung 03,
+						aber mit zusätzlichen Spalten.</p>
+					</div>
+					<pre><code class="language-sql" data-trim>
+-- models/00_example/uebung4_{kuerzel}.sql
+SELECT
+    ???
+FROM {{ ref('???') }} AS ???
+JOIN {{ ref('???') }} AS ???
+  ON ???
 					</code></pre>
-					<p><b>macOS / Linux:</b></p>
+					<div class="hint">
+						<b>Tipp:</b> Relevante Seed-Tabellen: <code>webshop_position</code>, <code>webshop_produkt</code>,
+						<code>webshop_bestellung</code>. Welche Spalten eignen sich für Tests?
+					</div>
+				</section>
+				<section>
+					<h1>Tests in YAML definieren</h1>
+					<p>Ergänzen Sie die YAML-Datei um Tests für Ihr Modell:</p>
+					<pre><code class="language-yaml" data-trim>
+version: 2
+
+models:
+  - name: uebung4_{kuerzel}
+    description: "???"
+    columns:
+      - name: ???
+        data_tests:
+          - not_null
+      - name: ???
+        data_tests:
+          - ???
+					</code></pre>
+					<div class="hint">
+						<b>Tipp:</b> Überlegen Sie, welche Spalten <code>not_null</code> sein sollten
+						und ob es Spalten gibt, bei denen <code>unique</code> oder <code>accepted_values</code> sinnvoll wäre.
+					</div>
+				</section>
+				<section>
+					<h1>Tests ausführen</h1>
 					<pre><code class="language-bash" data-trim>
-source .venv/bin/activate
+dbt run -s uebung4_{kuerzel}
+dbt test -s uebung4_{kuerzel}
 					</code></pre>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Passen Sie Ihr Modell und die Tests an, bis alle Tests <b>grün</b> sind.
+						Machen Sie einen Screenshot der erfolgreichen Test-Ausgabe.</p>
+					</div>
 				</section>
 			</section>
+
+			<!-- ==================== MACROS ==================== -->
 			<section>
-				<section>
-					<h1>dbt Modell erstellen</h1>
-						<p>
-							branch "uebung" soll erneut genutzt werden
-						</p>
-						<p>
-							Im Ordner "uebung4" soll ein neues dbt Modell erstellt werden
-						</p>
-						<ul>
-							<li>Positionen aller Webshop Bestellungen mit Positionspreis, Produktname, Produktpreis und Rabatt </li>
-							<li>eigenes Namenskürzel im Modellnamen, z.B. uebung4_mv.sql</li>
-							<li>Materialisierung: Tabelle</li>
-							<li>Modell ausführen (am besten nur das neue Modell) und Daten anschauen</li>
-						</ul>
+				<section class="section-divider">
+					<h1>Macros</h1>
+					<h2>Wiederverwendbare SQL-Logik</h2>
 				</section>
 				<section>
-					<h1>Test erstellen</h1>
-						<p>
-							Zu dem erstellten Modell soll eine kurze Beschreibung und Tests hinzugefügt werden
-						</p>
+					<h1>Vorhandene Macros analysieren</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Öffnen Sie den Ordner <code>macros/</code> und schauen Sie sich die Dateien an:</p>
 						<ul>
-							<li>uebung4_{kürzel}.yml Datei mit Beschreibung erstellen</li>
-							<li>Test hinzufügen: Produktname muss gefüllt sein, siehe <a href="https://docs.getdbt.com/docs/build/data-tests#generic-data-tests">dbt Doku</a></li>
-							<li>Test ausführen</li>
+							<li>Was machen die Macros <code>hub.sql</code> und <code>sat.sql</code>?</li>
+							<li>Wie werden sie in den Modellen unter <code>models/03_il_rdv/</code> aufgerufen?</li>
+							<li>Welche Parameter werden übergeben?</li>
 						</ul>
-						<p><b>Screenshot des Testergebnis im Terminal als "uebung4_test_{kürzel}.png" in den Ordner uebung4 legen</b></p>
+					</div>
+					<div class="hint">
+						<b>Tipp:</b> Macros nutzen Jinja-Syntax (<code>{% macro ... %}</code>) und generieren
+						dynamisch SQL-Code. Vergleichen Sie ein Macro mit dem generierten SQL in <code>target/compiled/</code>.
+					</div>
 				</section>
 				<section>
-					<h1>Macro erstellen</h1>
-						<p>Es soll ein Macro erstellt und verwendet werden</p>
-						<ul>
-							<li>Macro-Datei im Ordner willibald_dwh/macros erstellen</li>
-							<li>Es soll ein Macro geschrieben werden, das Geldbeträge in Dollar umrechnet</li>
-							<ul>
-								<li>Input für da Macro: Liste von Attributen</li>
-								<li>Umrechnungsfaktro: 1,08</li>
-								<li>Hilfestellung: Einfaches Macro, das schon existiert: willibald_dwh/macros/hashcolumn.sql</li>
-								<li>siehe auch <a href="https://docs.getdbt.com/docs/build/jinja-macros">dbt Doku</a></li>
-							</ul>
-						</ul>
-				</section>
-				<section>
-					<h1>Macro verwenden</h1>
-						<ul>
-							<li>Nutze das macro in uebung4_{kürzel}.sql um die 3 Werte in Dollar umzurechnen</li>
-							<li>Die Tabelle soll diese Felder haben:</li>
-							<ul>
-								<li>Bestelldatum</li>
-								<li>Produktname</li>
-								<li>Positionspreis_in_Euro</li>
-								<li>Produktpreis_in_Euro</li>
-								<li>Rabatt_in_Euro</li>
-								<li>Positionspreis_in_Dollar</li>
-								<li>Produktpreis_in_Dollar</li>
-								<li>Rabatt_in_Dollar</li>
-							</ul>
-							<li><b>Tabelle neu erstellen (dbt run)</b></li>
-						</ul>
-				</section>
-				<section>
-					<h1>Änderungen in git pushen</h1>
-						<p>
-							Änderungen in VS Code überprüfen und über Command Line oder VS Code GUI pushen
-						</p>
-						<img data-src="static/U03/git_push.png"">
-						<p>Zur Erinnerung: Beispiel Command Line</p>
-						<pre>
-							<code class="language-bash" data-trim>
-								# Änderungen in lokaler Staging Area hinzufügen
-								git add -A
-
-								# commit auf lokales Repository
-								git commit -m "kurze Beschreibung was geändert wurde"
-
-								# pushen
-								git push
-							</code>
-						</pre>
-						<p>Anschließend auf github.com überprüfen ob die Änderungen angekommen sind</p>
+					<h1>Eigenes Macro schreiben</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Erstellen Sie ein einfaches Macro in <code>macros/</code>, das eine häufig benötigte SQL-Logik kapselt.</p>
+					</div>
+					<pre><code class="language-sql" data-trim>
+-- macros/uebung4_{kuerzel}.sql
+{% macro ???(???) %}
+    SELECT
+        ???
+    FROM {{ ref(???) }}
+    WHERE ???
+{% endmacro %}
+					</code></pre>
+					<div class="hint">
+						<b>Ideen:</b> Ein Macro, das nur Zeilen ab einem bestimmten Datum filtert,
+						oder eines, das eine Standard-Aggregation (COUNT, SUM) auf eine beliebige Tabelle anwendet.
+					</div>
 				</section>
 			</section>
+
+			<!-- ==================== MACRO VERWENDEN ==================== -->
 			<section>
+				<h1>Macro verwenden</h1>
+				<div class="task-box">
+					<h4>Aufgabe</h4>
+					<p>Rufen Sie Ihr Macro in einem neuen oder bestehenden Modell auf und prüfen Sie das Ergebnis:</p>
+				</div>
+				<pre><code class="language-sql" data-trim>
+-- models/00_example/uebung4_{kuerzel}_macro.sql
+{{ ???('???') }}
+				</code></pre>
+				<pre><code class="language-bash" data-trim>
+dbt run -s uebung4_{kuerzel}_macro
+				</code></pre>
+			</section>
+
+			<!-- ==================== GIT ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Abschluss</h1>
+					<h2>Git Push</h2>
+				</section>
+				<section>
+					<h1>Änderungen pushen</h1>
+				<pre><code class="language-bash" data-trim>
+git add .
+git commit -m "Übung 04: Tests und Macro erstellt"
+git push -u origin uebung04
+				</code></pre>
+				<p class="text-center"><img data-src="static/U03/git_push.png" height="130"></p>
+				</section>
+			</section>
+
+			<!-- ==================== ERGEBNIS ==================== -->
+			<section class="result-slide">
 				<h1>Ergebnis der Übung</h1>
-					<ul>
-						<li>Neue Tabelle erstellt</li>
-						<li>Test durchgeführt und Screenshot abgelegt</li>
-						<li>Macro erstellt und in dbt Modell verwendet</li>
-						<li>Änderungen gepusht</li>
-					</ul>
-			</section>			
+				<ul>
+					<li>✅ Bestehende Tests im Projekt analysiert</li>
+					<li>✅ Neues Modell <code>uebung4_{kuerzel}.sql</code> mit YAML-Tests erstellt</li>
+					<li>✅ <code>dbt test</code> läuft erfolgreich (Screenshot gemacht)</li>
+					<li>✅ Vorhandene Macros verstanden</li>
+					<li>✅ Eigenes Macro <code>uebung4_{kuerzel}.sql</code> geschrieben und verwendet</li>
+				</ul>
+				<div class="pruefbar">
+					<b>Prüfbar durch Dozenten:</b> Branch <code>uebung04</code> im Gruppen-Repository;
+					View <code>uebung4_*</code> in Databricks vorhanden; Tests grün.
+				</div>
+			</section>
+
 		</div>
 	</div>
 
@@ -165,17 +264,11 @@ source .venv/bin/activate
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
 
 </body>
-
 </html>

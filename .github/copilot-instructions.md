@@ -98,6 +98,16 @@ Dieses Repository enthält die Lehrmaterialien als webbasierte Foliensätze.
 - `U01_*.html`, `U02_*.html`, … sind **Übungseinheiten**. Sie beziehen sich direkt auf das dbt-Projekt in `hsh-bis242-bis-242-bis242base` und setzen einen Databricks-Free-Workspace voraus.
 - `V01_*.html`, `V02_*.html`, … sind **Vorlesungsfolien** mit theoretischen und konzeptionellen Inhalten.
 
+### Referenzlösungen (`loesungen/`)
+- Der Ordner `loesungen/` enthält Musterlösungen für die Übungen U03–U05 (nur für Dozenten).
+- Studierende erhalten in den Folien nur Hinweise/Scaffolds, keine fertigen Lösungen.
+- Bei Änderungen an Übungsfolien müssen die Referenzlösungen ggf. ebenfalls aktualisiert werden.
+
+### Übungs-Output und Prüfbarkeit
+- Jede Übung (U01–U05) endet mit einem **„Ergebnis der Übung"**-Abschnitt, der die prüfbaren Artefakte auflistet.
+- Jeder Abschnitt enthält einen **„Prüfbar durch Dozenten"**-Hinweis, der beschreibt, wo und wie die Ergebnisse kontrolliert werden können (z. B. Pull Request auf GitHub, Tabellen in Databricks).
+- In den Hilfestellungen (Scaffolds) der Übungen werden **keine fertigen SQL-Lösungen** gezeigt – nur Hinweise auf relevante Tabellen, Spalten und Syntax.
+
 ### Arbeitsregeln für Copilot in `hsh-bi-class`
 - Behandle jede Top-Level-HTML-Datei als eigenständiges Foliendeck.
 - Halte HTML-Markup kompatibel zu den im Repository bereits verwendeten `reveal.js`-Konventionen.

@@ -4,157 +4,221 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 08 - Aufbau eines Dashboards
-	</title>
+	<title>BIS242 – Übung 06 – Dashboard</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
-			
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>Aufbau eines Dashboards</h2>
-				</div>
+
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Übung Business Intelligence</h1>
+				<h2>Aufbau eines Dashboards</h2>
+				<p class="subtitle">Übung 06 · BIS242</p>
 			</section>
 
+			<!-- ==================== ZIELE ==================== -->
 			<section>
+				<h1>Ziele der Übung</h1>
+				<ol class="steps">
+					<li>Power BI Desktop installieren und Star-Schema laden</li>
+					<li>Datenmodell in Power BI aufbauen und bereinigen</li>
+					<li>Hierarchien anlegen</li>
+					<li>Dashboard mit KPIs erstellen</li>
+				</ol>
+			</section>
 
-				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Installation von Power BI</h2>
-					<p>Wir arbeiten mit Power BI Desktop. Dies ist auf den Labor-PCs bereits vorinstalliert. Für Ihre privaten Computer können Sie es hier herunterladen: <a href="https://www.microsoft.com/store/productId/9NTXR16HNW1T">Microsoft Store</a></p>
-					<p>Beim ersten Start verlangt Power BI nach einer Anmeldung. Diese kann einfach weggeklickt werden. Power BI funktioniert dann trotzdem.</p>
+			<!-- ==================== POWER BI SETUP ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Power BI Setup</h1>
+					<h2>Installation &amp; Datenanbindung</h2>
 				</section>
-
 				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Verbindung zum Datenbankserver herstellen</h2>
-					<div class="grid">
-						<div class="griditem">
-							<ol>
-								<li>Stellen Sie nun eine Verbindung zu Ihrem Sternschema her.</li>
-								<li>Dazu wählen Sie <strong>Databricks</strong> in der Liste der abfragbaren Datenquellen aus.</li>
-								<li>Nutzen sie die folgenden Connections Informationen:<br>
-									<table>
-										<tr>
-											<td><strong>Server-Hostname:</strong></td>
-											<td>dbc-77aa5718-ad9a.cloud.databricks.com</td>
-										</tr>
-										<tr>
-											<td><strong>HTTP-Pfad:</strong></td>
-											<td>/sql/1.0/warehouses/9d9d44f9428c50eb</td>
-										</tr>
-									</table>
-								
-								</li>siehe: <a href="https://dbc-77aa5718-ad9a.cloud.databricks.com/sql/warehouses/9d9d44f9428c50eb/connectionDetails?o=2730421249590122">Connection</a></li>
-							</ol>
+					<h1>Installation von Power BI</h1>
+					<p>Power BI Desktop ist auf den Labor-PCs bereits vorinstalliert.
+					Für private Computer:</p>
+					<div class="callout callout-blue">
+						<p><b>→</b> <a href="https://www.microsoft.com/store/productId/9NTXR16HNW1T">Power BI Desktop im Microsoft Store</a></p>
+					</div>
+					<div class="hint">
+						<b>Tipp:</b> Beim ersten Start verlangt Power BI eine Anmeldung.
+						Diese kann einfach weggeklickt werden – Power BI funktioniert trotzdem.
+					</div>
+				</section>
+				<section>
+					<h1>Verbindung zu Databricks</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Stellen Sie eine Verbindung zu Ihrem Star-Schema her.
+						Wählen Sie <b>Databricks</b> als Datenquelle aus.</p>
+					</div>
+					<table>
+						<tr>
+							<td><b>Server-Hostname:</b></td>
+							<td><code>dbc-15d76289-5b7c.cloud.databricks.com</code></td>
+						</tr>
+						<tr>
+							<td><b>HTTP-Pfad:</b></td>
+							<td><code>/sql/1.0/warehouses/4c4bcb9dfa01a5f0</code></td>
+						</tr>
+					</table>
+					<div class="hint">
+						<b>Tipp:</b> Die Connection-Details finden Sie auch direkt in Ihrem
+						<a href="https://dbc-15d76289-5b7c.cloud.databricks.com/">Databricks Workspace</a>
+						unter SQL Warehouses → Connection Details.
+					</div>
+				</section>
+				<section>
+					<h1>Tabellen auswählen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Wählen Sie alle <b>Tabellen und Views</b> im Schema
+						<code>willibald_ol_dm</code> der Datenbank <code>bis242_XX</code> aus
+						und klicken Sie auf „Laden".</p>
+					</div>
+					<p class="text-center">
+						<img data-src="static/U08/PowerBISelectStarSchema.png" height="280">
+					</p>
+				</section>
+			</section>
+
+			<!-- ==================== DATENMODELL ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Datenmodell</h1>
+					<h2>Beziehungen &amp; Hierarchien</h2>
+				</section>
+				<section>
+					<h1>Beziehungen aufbauen</h1>
+					<div class="grid-2">
+						<div>
+							<p>Power BI erkennt Fremdschlüsselbeziehungen anhand gleichlautender Spaltennamen automatisch.</p>
+							<div class="task-box">
+								<h4>Aufgabe</h4>
+								<p>Wechseln Sie in die <b>Modellansicht</b> und prüfen Sie das entstandene Datenmodell.</p>
+							</div>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U08/PowerBIModelView.png" height="280">
 						</div>
 					</div>
 				</section>
-
 				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Tabellen auswählen</h2>
-					<p>Wählen Sie alle <b>Tabellen und Views</b> aus, die sich im Schema "willibald_ol_dm" in der Datenbank "bis242_00" befinden. Klicken Sie anschließend auf "Laden".</p>
-					<img data-src="static/U08/PowerBISelectStarSchema.png" height="300">
-				</section>
-
-				<section>
-					<h1>Training: Modell in PowerBI aufbauen</h1>
-					<p>Microsoft bietet <a href="https://learn.microsoft.com/en-us/training/modules/design-model-power-bi">umfangreiche Trainingsmaterialien</a> für PowerBI an. Deren Bearbeitung ist keine Voraussetzung für diese Übung, kann sich aber für jeden lohnen, der tiefer in die Welt der BI-Tools eintauchen möchte.</p>
-				</section>
-
-				<section>
-					<h1>Aufgabe: Sternschema in Power BI laden</h1>
-					<h2>Beziehungen aufbauen</h2>
-					<div class="grid">
-						<div class="griditem">
-							<p>Die Fremdschlüsselbeziehungen vom Fakt zu den Dimensionen kann Power BI aufgrund der gleichlautenden Spaltennamen automatisch herstellen.</p>
-							<p>Wechseln Sie in die Modellansicht und werfen Sie einen Blick auf das entstandene Datenmodell.</p>
+					<h1>Modell bereinigen</h1>
+					<div class="grid-2">
+						<div>
+							<div class="task-box">
+								<h4>Aufgabe</h4>
+								<ul>
+									<li>Verbergen Sie die <b>HKEY-Spalten</b> in allen Tabellen</li>
+									<li>Passen Sie die Tabellennamen an (Datenbank-/Schemanamen entfernen)</li>
+								</ul>
+							</div>
 						</div>
-						<div class="griditem">
-							<img data-src="static/U08/PowerBIModelView.png">
+						<div class="text-center">
+							<img data-src="static/U08/PowerBIVRSDataModel.png" height="300">
 						</div>
 					</div>
 				</section>
-
 				<section>
-					<div class="r-fit-text">
-						<h1>Aufgabe: Sternschema in Power BI laden</h1>
-						<h2>Beziehungen zur Datumsdimension reparieren</h2>
-						<img data-src="static/U08/PowerBIVRSDataModel.png" height="360" style="float: right">
-						<p>Durch den Aufbau des Sternschemas sieht das automatisch angelegte Datenmodell gut aus.</p>
-						<p>Verbergen Sie der Übersichtlichkeit wegen die HKEY-Spalten in allen Tabellen.</p>
-						<p>Sie können außerdem den Namen der Fakten und Dimensionen anpassen (Datenbank- und Schemanamen entfernen)</p>
+					<h1>Hierarchien anlegen</h1>
+					<div class="grid-2">
+						<div>
+							<div class="task-box">
+								<h4>Aufgabe</h4>
+								<p>Legen Sie folgende Hierarchien an:</p>
+								<ul>
+									<li><b>Adress-Hierarchie</b> (in beiden Adress-Dimensionen):<br>
+									<code>country → city → postal_code</code></li>
+									<li><b>Produktkategorien-Hierarchie:</b><br>
+									<code>supercategory_name → productcategory_name</code></li>
+								</ul>
+								<p class="text-small text-muted">Die in Hierarchien verwendeten Datenfelder können Sie anschließend ausblenden.</p>
+							</div>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U08/PowerBIStoreAddressHierarchy.png" height="300">
+						</div>
 					</div>
 				</section>
-
 				<section>
-					<div class="r-fit-text">
-						<h1>Aufgabe: Sternschema in Power BI laden</h1>
-						<h2>Anlegen von Addresshierarchien</h2>
-						<img data-src="static/U08/PowerBIStoreAddressHierarchy.png" style="float:right">
-						<p>Legen Sie in beiden Dimensionen, welche Adressen enthalten, jeweils eine Hierarchie an. Und zwar in folgender Reihenfolge:</p>
-						<p><b>country - city - postal_code</b></p>
-						<p>Legen Sie außerdem eine Produktkategorienhierarchie an: <b>supercategory_name - productcategory_name</b></p>
-						<p>Die in Hierarchien verwendenten Datenfelder k&ouml;nnen Sie anschließend ausblenden.</p>
+					<h1>Optionales Training</h1>
+					<p>Microsoft bietet umfangreiche Trainingsmaterialien für Power BI an:</p>
+					<div class="callout callout-blue">
+						<p><b>→</b> <a href="https://learn.microsoft.com/en-us/training/modules/design-model-power-bi">Power BI Training: Design a model</a></p>
+					</div>
+					<p class="text-small text-muted">Die Bearbeitung ist keine Voraussetzung für diese Übung,
+					kann sich aber für jeden lohnen, der tiefer in die Welt der BI-Tools eintauchen möchte.</p>
+				</section>
+			</section>
+
+			<!-- ==================== DASHBOARD ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Dashboard</h1>
+					<h2>KPIs visualisieren</h2>
+				</section>
+				<section>
+					<h1>Dashboard entwerfen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Entwerfen und implementieren Sie ein Dashboard, das folgende KPIs übersichtlich darstellt:</p>
+						<ul>
+							<li>Wie verteilen sich die Umsätze auf die Produktkategorien?</li>
+							<li>Welches sind die umsatzstärksten Städte (nach Lieferort)?</li>
+							<li>Wie häufig werden Samen verspätet geliefert?</li>
+							<li>Was ist die durchschnittliche Lieferzeitabweichung pro Lieferdienst?</li>
+							<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Produkte?</li>
+						</ul>
 					</div>
 				</section>
-
+				<section>
+					<h1>Umsetzungshinweise</h1>
+					<div class="grid-2">
+						<div>
+							<div class="callout callout-yellow">
+								<h4>Snapshotdatum filtern</h4>
+								<p>Für korrekte Ergebnisse muss die Auswertung auf genau ein
+								<b>Snapshotdatum</b> gefiltert sein.</p>
+								<p>Erstellen Sie zuerst einen Filter für die aktuelle oder alle Seiten
+								auf ein Snapshotdatum Ihrer Wahl.</p>
+							</div>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U08/PowerBIFilterPageData.png" height="300">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Beispiellösung</h1>
+					<p class="text-center">
+						<img data-src="static/U08/PowerBISampleDashboard.png" height="450">
+					</p>
+				</section>
 			</section>
 
-			<section>
-				<section>
-					<h1>Aufgabe: Aufbau des Dashboards</h1>
-					<p>Entwerfen und Implementieren Sie ein Dashboard, dass folgende KPIs übersichtlich darstellt:</p>
-					<ul>
-						<li>Wie verteilen sich die Umsätze auf die Produktkategorien?</li>
-						<li>Welches sind die umsatzstärksten Städte (nach Lieferort)?</li>
-						<li>Wie häufig werden Samen verspätet geliefert?</li>
-						<li>Was ist die durchschnittliche Lieferzeitabweichung pro Lieferdienst?</li>
-						<li>Welches sind die 5 umsatzstärksten und die 5 umsatzschwächsten Produkte?</li>
-					</ul>
-					<!--
-							Now that we have a working data set, we can extend these questions:
-					 		- Utilize the date_dimension (especially holidays and vacations)
-							- Create a map with sales in different federal states
-							- etc
-					 -->
-				</section>
-			
-				<section>
-					<h1>Aufgabe: Aufbau des Dashboards</h1>
-					<h2>Umsetzungshinweise</h2>
-					<img data-src="static/U08/PowerBIFilterPageData.png" style="float:right">
-					<p>Um korrekte Ergebnisse zu bekommen, muss die Auswertung immer auf genau ein Snapshotdatum gefiltert sein.</p>
-					<p>Erstellen Sie deshalb zuerst einen Filter für die aktuelle oder alle Seiten auf ein Snapshotdatum Ihrer Wahl.</p>
-				</section>
-
-				<section>
-					<h1>Aufgabe: Aufbau des Dashboards</h1>
-					<h2>Beispiellösung</h2>
-					<img data-src="static/U08/PowerBISampleDashboard.png" width="100%">
-				</section>
-
-			</section>
-			<section>
+			<!-- ==================== ERGEBNIS ==================== -->
+			<section class="result-slide">
 				<h1>Ergebnis der Übung</h1>
 				<ul>
-					<li>Dashboard erstellt analog zum Beispiel</li>
-					<li>.pbix Datei in git eingecheckt im Ordner bis242ws250x (nicht in willibald_dwh!)</li>
+					<li>✅ Power BI mit Databricks verbunden und Star-Schema geladen</li>
+					<li>✅ Datenmodell bereinigt (HKEY ausgeblendet, Namen angepasst)</li>
+					<li>✅ Hierarchien angelegt (Adresse, Produktkategorie)</li>
+					<li>✅ Dashboard mit KPI-Visualisierungen erstellt</li>
 				</ul>
+				<div class="pruefbar">
+					<b>Prüfbar durch Dozenten:</b> <code>.pbix</code>-Datei im Gruppen-Repository eingecheckt
+					(im Ordner <code>bis242ssXX</code>, nicht in <code>willibald_dwh</code>!).
+				</div>
 			</section>
 
 		</div>
@@ -165,13 +229,8 @@
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>

@@ -4,314 +4,320 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 01 - Zugang zur Infrastruktur
-	</title>
+	<title>BIS242 – Übung 01 – Zugang zur Infrastruktur</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>Zugang zur Infrastruktur</h2>
-				</div>
+
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Übung Business Intelligence</h1>
+				<h2>Zugang zur Infrastruktur</h2>
+				<p class="subtitle">Übung 01 · BIS242</p>
 			</section>
-			
+
+			<!-- ==================== ZIELE ==================== -->
 			<section>
+				<h1>Ziele der Übung</h1>
+				<ol class="steps">
+					<li>Übungsgruppe in Moodle beitreten</li>
+					<li>GitHub-Account anlegen &amp; Classroom beitreten</li>
+					<li>Databricks-Workspace einrichten &amp; Access Token generieren</li>
+					<li>Entwicklungsumgebung aufsetzen (lokal oder Codespaces)</li>
+					<li><code>dbt build</code> erfolgreich ausführen</li>
+				</ol>
+			</section>
+
+			<!-- ==================== GRUPPENBILDUNG ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Gruppenbildung</h1>
+					<h2>Moodle &amp; Vorkenntnisse</h2>
+				</section>
 				<section>
 					<h1>Beitritt zu einer Übungsgruppe</h1>
-					<p>
-						Bitte suchen Sie sich einen oder zwei Übungspartner und treten mit ihnen gemeinsam einer der leeren bereits in
-						Moodle angelegten Gruppen (BIS2420X) bei:
-					</p>
-					<p>
-						<a href="https://moodle.hs-hannover.de/mod/choicegroup/view.php?id=1022317">Zur Gruppenauswahl in Moodle</a>
-					</p>
+					<p>Suchen Sie sich einen oder zwei Übungspartner und treten Sie gemeinsam einer der leeren Gruppen (BIS2420X) in Moodle bei:</p>
+					<div class="callout callout-blue">
+						<p><b>→</b> <a href="https://moodle.hs-hannover.de/mod/choicegroup/view.php?id=1022317">Zur Gruppenauswahl in Moodle</a></p>
+					</div>
 				</section>
-
 				<section>
 					<h1>Abfrage Vorkenntnisse</h1>
-					<p>
-						<img data-src="static/U01/QR_Code_Umfrage.png">
+					<p class="text-center">Bitte scannen Sie den QR-Code und füllen Sie die kurze Umfrage aus:</p>
+					<p class="text-center">
+						<img data-src="static/U01/QR_Code_Umfrage.png" height="350">
 					</p>
 				</section>
 			</section>
-			
+
+			<!-- ==================== GITHUB ==================== -->
 			<section>
+				<section class="section-divider">
+					<h1>GitHub &amp; Classroom</h1>
+					<h2>Versionskontrolle einrichten</h2>
+				</section>
 				<section>
-					<h1>Anlegen eines Github-Kontos</h1>
-					<p>
-						<img data-src="static/U01/logo-github.png">
-					</p>
-					<p>
-						Wir setzen git als Quellcodeverwaltungssystem für die Übungen ein. Unsere Git-Repositories verwalten wir über Github. Dazu benötigt mindestens ein Mitglied Ihrer Übungsgruppe einen Github-Account.
-					</p>
-					<p>
-						Gerne können Sie einen vorhanden privaten Github-Account für die Übungen verwenden. Ansonsten legen Sie einfach einen neuen Github-Account mit Ihrer HSH-Mailadresse an:
-					</p>
-					<p>
-						<a href="https://github.com/signup">Zur Github-Account-Registrierung</a>
-					</p>
+					<h1>GitHub-Account anlegen</h1>
+					<div class="grid-2">
+						<div>
+							<p>Wir nutzen <b>Git</b> als Quellcodeverwaltungssystem. Mindestens ein Gruppenmitglied benötigt einen GitHub-Account.</p>
+							<p>Sie können einen vorhandenen privaten Account nutzen oder einen neuen mit Ihrer HSH-Mailadresse anlegen:</p>
+							<div class="callout callout-blue">
+								<p><b>→</b> <a href="https://github.com/signup">Zur GitHub-Registrierung</a></p>
+							</div>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U01/logo-github.png" height="200">
+						</div>
+					</div>
 				</section>
 				<section>
 					<h1>Beitritt zum GitHub Classroom</h1>
-					<p>
-						Sobald Sie einen Github-Account angelegt haben und dort eingeloggt sind, treten Sie über den folgenden Einladungslink dem GitHub Classroom bei:
-					</p>
-					<p>
-						<a href="https://classroom.github.com/a/g8uBDJZ8">Zum GitHub Classroom Assignment (SS26)</a>
-					</p>
-					<p>
-						Wählen Sie dort Ihr Team (gruppe01&nbsp;–&nbsp;gruppe10, max.&nbsp;3 Teilnehmer pro Team). GitHub erstellt automatisch ein eigenes Repository für Ihre Gruppe, z.&nbsp;B. <code>bis-242-ss26-gruppe02</code>.
-					</p>
+					<p>Sobald Sie eingeloggt sind, treten Sie über den Einladungslink dem Classroom bei:</p>
+					<div class="callout">
+						<p><b>→</b> <a href="https://classroom.github.com/a/g8uBDJZ8">Zum GitHub Classroom Assignment (SS26)</a></p>
+					</div>
+					<p>Wählen Sie Ihr Team (<b>gruppe01</b> – <b>gruppe10</b>, max. 3 Teilnehmer).</p>
+					<p>GitHub erstellt automatisch ein Repository für Ihre Gruppe, z.&nbsp;B.:</p>
+					<pre><code data-trim>https://github.com/hsh-bis242/bis-242-ss26-gruppe02</code></pre>
 				</section>
 			</section>
+
+			<!-- ==================== DATABRICKS ==================== -->
 			<section>
+				<section class="section-divider">
+					<h1>Databricks Workspace</h1>
+					<h2>Cloud-Datenbank einrichten</h2>
+				</section>
 				<section>
-					<h1>Zugriff auf Databricks Workspace</h1>
-					<p>Die Anmeldung erfolgt über die Hochschul-Mail-Adresse.</p>
-					<p>Workspace URL: <a href="https://dbc-15d76289-5b7c.cloud.databricks.com/">Databricks</a></p>
-					<img data-src="static/U01/logo-databricks.png">
+					<h1>Zugriff auf Databricks</h1>
+					<div class="grid-2">
+						<div>
+							<p>Die Anmeldung erfolgt über Ihre <b>Hochschul-Mail-Adresse</b>.</p>
+							<div class="callout callout-blue">
+								<p><b>→</b> <a href="https://dbc-15d76289-5b7c.cloud.databricks.com/">Zum Databricks Workspace</a></p>
+							</div>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U01/logo-databricks.png" height="150">
+						</div>
+					</div>
 				</section>
 				<section>
 					<h1>Access Token generieren</h1>
-					<p>Oben rechts auf das User Profil klicken</p>
-					<p>→ Settings → Developer → Access Token → Manage → Generate new Access Token</p>
-					<p>Lifetime auf 180 Tage setzen und Token kopieren.</p>
-					<p><b>⚠️ Speichern Sie den Token jetzt zwischen (z.&nbsp;B. in einer Textdatei). Er wird in den folgenden Schritten noch benötigt und kann danach nicht mehr angezeigt werden.</b></p>
-				</section>
-			</section>
-
-			<section>
-				<h1>Variante A: Lokales Setup</h1>
-				<p>
-					Bei dieser Variante installieren Sie alle Werkzeuge lokal auf Ihrem Rechner.
-				</p>
-				<p>
-					Alternativ können Sie auch <b>GitHub Codespaces</b> verwenden (siehe Variante&nbsp;B).
-				</p>
-			</section>
-
-			<section>
-				<section>
-					<h1>Installation python</h1>
-					<p>
-						Python (<a href="https://www.python.org/downloads/">python.org</a>) installieren, wenn es nicht bereits auf
-						dem Rechner installiert ist
-					</p>
-					<p>
-						<b>checkmark setzen bei "Add python.exe to PATH"</b>
-					</p>
-					<img src="./static/U02/python_path.jpg" alt="" height="300">
-				</section>
-				<section>
-					<h1>Installation python</h1>
-					<p>
-						Im python installer "customize installation" auswählen und checkmark setzen bei pip, falls nicht bereits
-						gesetzt
-					</p>
-					<img src="./static/U02/python-installer.jpg" alt="" height="300">
-				</section>
-				<section>
-					<h1>Installation python</h1>
-					<p>
-						Falls Python bereits ohne den Paketmanager pip installiert ist, kann pip mithilfe des folgenden Befehls nachinstalliert werden:
-					<pre>
-						<code>py -m ensurepip --upgrade</code>
-					</pre>
-					</p>
-				</section>
-			</section>
-
-			<section>
-				<section>
-					<h1>Installation von Visual Studio Code</h1>
-					<img data-src="static/U01/vscode_logo.svg" height="100">
-					<p>
-						Wir empfehlen Visual Studio Code als IDE zur Bearbeitung der Übung zu verwenden. Es kann aber auch jeder andere
-						Texteditor verwendet werden.
-					</p>
-					<p>
-						Bitte installieren Sie <a href="https://code.visualstudio.com/Download">Visual Studio Code</a>, wenn noch nicht vorhanden.
-					</p>
-				</section>
-			</section>
-
-			<section>
-				<section>
-					<h1>Klonen des Github-Repositorys (1/4)</h1>
-					<p>
-						Öffnen Sie Ihr Gruppen-Repository auf GitHub. Die URL hat folgendes Muster:<br>
-						<code>https://github.com/hsh-bis242/bis-242-ss26-gruppeXX</code>
-					</p>
-					<p>
-						Alternativ finden Sie alle Repositories Ihrer Organisation unter:<br>
-						<a href="https://github.com/orgs/hsh-bis242/repositories">Übersicht der Organisations-Repositories auf Github</a>
-					</p>
-					<p>Kopieren Sie die Clone-URL Ihres Repositories:</p>
-					<img data-src="static/U01/git-cloneURL.png" height="100">
-				</section>
-				<section>
-					<h1>Klonen des Github-Repositorys (2/4)</h1>
-					<div class="grid_50">
-						<div class="griditem">
-							<p>
-								Nun klonen wir das Github-Repository.
-							</p>
-							<p>
-								Wir empfehlen Ihnen die Übungen mithilfe der Entwicklungsumgebung <b>Visual Studio Code</b> umzusetzen.
-							</p>
-							<p>
-								Direkt auf der Willkommensseite finden Sie den Link zum Klonen eines Git-Repositorys.
-							</p>
-						</div>
-						<div class="griditem">
-							<img data-src="static/U01/vscode-cloneGitRepo_1.png" height="350">
-						</div>
+					<ol class="steps">
+						<li>Oben rechts auf das <b>User Profil</b> klicken</li>
+						<li><b>Settings → Developer → Access Token → Manage → Generate new Token</b></li>
+						<li>Lifetime auf <b>180 Tage</b> setzen und Token kopieren</li>
+					</ol>
+					<div class="warning">
+						<b>⚠️ Speichern Sie den Token jetzt</b> (z.&nbsp;B. in einer Textdatei). Er wird in den folgenden Schritten benötigt und kann danach nicht mehr angezeigt werden.
 					</div>
 				</section>
-				<section>
-					<h1>Klonen des Github-Repositorys (3/4)</h1>
-					<p>
-						Nachdem Sie den Link auf der Willkommensseite angeklickt haben, öffnet sich eine Eingabeaufforderung, in welche Sie die vorher kopierte Clone-URL von Github einfügen. Und mit der Eingabetaste bestätigen.
-						<img data-src="static/U01/vscode-cloneGitRepo_2.png" height="100">
-					</p>
-					<div class="grid_50">
-						<div class="griditem">
-							<img data-src="static/U01/vscode-cloneGitRepo_3.png">
-						</div>
-						<div class="griditem">
-							<p>
-								Sie werden nun gebeten einen Speicherort auszuwählen, in den das Repository geklont wird. Wir empfehlen hierfür einen neuen Unterordner "dev" direkt in Ihrem Benutzerverzeichnis zu erstellen.
-							</p>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h1>Klonen des Github-Repositorys (4/4)</h1>
-					<p>
-						Git fordert Sie auf sich gegenüber Github zu authentifizieren.
-					</p>
-					<p>
-						Klicken Sie auf <b>"Sign in with your browser"</b>. Geben Sie Ihre Github-Zugangsdaten ein und erlauben Sie ggf. den Zugriff auf Ihr Github-Konto.
-					</p>
-					<img data-src="static/U01/vscode-cloneGitRepo_4.png" style="float:right;">
-					<p>
-						Sobald Sie dazu aufgefordert werden, schließen Sie das Browserfenster. Betätigen Sie die Schaltfläche "Open" in Visual Studio Code.
-					</p>
-					<p>
-						Der Editor öffnet nun Ihr lokales Repository mit dem bereits enthaltenen Template-Code und fragt, ob Sie den Inhalten in diesem Verzeichnis vertrauen. Bestätigen Sie das.
-					</p>
-				</section>
-			</section>
-				
-			<section>
-				<section>
-					<h1>Erstellen einer Python venv</h1>
-					<p><strong>Visual Studio Code</strong> unterstützt Sie bei der Erstellung einer virtuellen Python-Umgebung.</p>
-					<p>Dafür installieren Sie zunächst die <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in Visual Studio Code.</p>
-					<p>Nun steht im Visual Studio Kommandofenster (<strong>View → Command Palette…</strong>) der Befehl "<strong>Python: Create Environment…</strong>" zur Verfügung.</p>
-					<p>Wählen Sie erst <strong>Venv</strong> als <strong>Environment Type</strong> und anschließend die <strong>im vorherigen Schritt installierte Pythoninstallation</strong> aus.</p>
-					<p>Installieren Sie die <strong>Dependencies</strong> aus der <strong>requirements.txt</strong>.</p>
-				</section>
-				<section>
-					<h1>Databricks Token als Umgebungsvariable setzen</h1>
-					<p>Öffnen Sie ein Terminal in VS Code (<b>View → Terminal</b>) und setzen Sie den zuvor gespeicherten Token als Umgebungsvariable:</p>
-					<p><b>Windows (PowerShell):</b></p>
-					<pre><code class="language-powershell" data-trim>
-[Environment]::SetEnvironmentVariable("DATABRICKS_TOKEN", "---> TOKEN_EINFÜGEN <---", "User")
-					</code></pre>
-					<p><b>macOS / Linux:</b></p>
-					<pre><code class="language-bash" data-trim>
-echo 'export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"' >> ~/.zshrc
-source ~/.zshrc
-					</code></pre>
-					<p>Anschließend VS Code neu starten.</p>
-				</section>
-				<section>
-					<h1>Virtuelle Umgebung aktivieren</h1>
-					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
-					<p>VS Code aktiviert die venv normalerweise automatisch beim Öffnen eines neuen Terminals. Falls nicht, aktivieren Sie sie manuell:</p>
-					<p><b>Windows (PowerShell):</b></p>
-					<pre><code class="language-powershell" data-trim>
-.\.venv\Scripts\Activate.ps1
-					</code></pre>
-					<p><b>macOS / Linux:</b></p>
-					<pre><code class="language-bash" data-trim>
-source .venv/bin/activate
-					</code></pre>
-				</section>
 			</section>
 
+			<!-- ==================== CODESPACES ==================== -->
 			<section>
-				<section>
-					<h1>Variante B: GitHub Codespaces</h1>
-					<p>
-						Alternativ zum lokalen Setup können Sie <b>GitHub Codespaces</b> verwenden. Damit arbeiten Sie direkt im Browser in einer vollständigen VS-Code-Umgebung &ndash; ohne lokale Installation von Python oder VS&nbsp;Code.
-					</p>
+				<section class="section-divider">
+					<h1>Variante A: GitHub Codespaces</h1>
+					<h2>Cloud-IDE im Browser</h2>
 				</section>
 				<section>
 					<h1>Codespace starten</h1>
-					<p>
-						Öffnen Sie Ihr Gruppen-Repository auf GitHub und klicken Sie auf:<br>
-						<b>Code</b> → <b>Codespaces</b> → <b>Create codespace on main</b>
-					</p>
-					<p>
-						GitHub startet eine vollständige VS-Code-Umgebung im Browser. Python ist dort bereits vorinstalliert.
-					</p>
+					<div class="warning">
+						<b>⚠️ Voraussetzung:</b> GitHub Codespaces mit ausreichend Stunden erfordern
+						erfolgreich beantragte <a href="https://education.github.com/benefits">GitHub Education Benefits</a>.
+					</div>
+					<ol class="steps">
+						<li>Gruppen-Repository auf GitHub öffnen</li>
+						<li><b>Code → Codespaces → Create codespace on main</b></li>
+						<li>GitHub startet eine VS-Code-Umgebung im Browser (Python vorinstalliert)</li>
+					</ol>
 				</section>
 				<section>
-					<h1>Abhängigkeiten installieren</h1>
-					<p>
-						Öffnen Sie im Codespace ein Terminal (<b>View → Terminal</b>) und installieren Sie die Python-Abhängigkeiten:
-					</p>
-					<pre>
-						<code class="language-bash" data-trim>
-							pip install -r requirements.txt
-						</code>
-					</pre>
-				</section>
-				<section>
-					<h1>Databricks-Token im Codespace</h1>
-					<p>
-						Setzen Sie den zuvor gespeicherten Token als Umgebungsvariable im Codespace-Terminal:
-					</p>
-					<pre>
-						<code class="language-bash" data-trim>
-							export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"
-						</code>
-					</pre>
-					<p>
-						<b>Tipp:</b> Damit der Token über Neustarts hinweg erhalten bleibt, können Sie ihn als <a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces">Codespaces Secret</a> in Ihren GitHub-Einstellungen hinterlegen.
-					</p>
+					<h1>Abhängigkeiten &amp; Token</h1>
+					<p>Im Codespace-Terminal ausführen:</p>
+					<pre><code class="language-bash" data-trim>
+pip install -r requirements.txt
+export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"
+					</code></pre>
+					<div class="hint">
+						<b>Tipp:</b> Damit der Token über Neustarts erhalten bleibt, hinterlegen Sie ihn als
+						<a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces">Codespaces Secret</a>.
+					</div>
 				</section>
 			</section>
 
-
-
+			<!-- ==================== LOKALES SETUP ==================== -->
 			<section>
-				<h1>Ausführen von dbt</h1>
-				<p><b>Hinweis:</b> Stellen Sie sicher, dass die virtuelle Umgebung aktiviert ist, bevor Sie dbt-Befehle ausführen.</p>
-				<pre><code class="language-bash" data-trim>
-# venv aktivieren (falls nicht automatisch aktiv)
-# Windows: .\.venv\Scripts\Activate.ps1
-# macOS/Linux: source .venv/bin/activate
+				<section class="section-divider">
+					<h1>Variante B: Lokales Setup</h1>
+					<h2>Python · VS Code · Git Clone</h2>
+				</section>
+				<section>
+					<h1>Installation Python</h1>
+					<div class="grid-2">
+						<div>
+							<p>Python (<a href="https://www.python.org/downloads/">python.org</a>) installieren, wenn nicht bereits vorhanden.</p>
+							<div class="warning">
+								<b>Wichtig:</b> Checkmark setzen bei <b>"Add python.exe to PATH"</b>
+							</div>
+							<p>Im Installer "Customize installation" wählen und <b>pip</b> aktivieren.</p>
+						</div>
+						<div class="text-center">
+							<img src="./static/U02/python_path.jpg" alt="Python PATH" height="250">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>pip nachinstallieren (falls nötig)</h1>
+					<p>Falls Python bereits ohne pip installiert ist:</p>
+					<pre><code data-trim>py -m ensurepip --upgrade</code></pre>
+				</section>
+				<section>
+					<h1>Installation Visual Studio Code</h1>
+					<div class="grid-2">
+						<div>
+							<p>Wir empfehlen <b>Visual Studio Code</b> als IDE. Es kann aber auch jeder andere Texteditor verwendet werden.</p>
+							<div class="callout callout-blue">
+								<p><b>→</b> <a href="https://code.visualstudio.com/Download">VS Code herunterladen</a></p>
+							</div>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U01/vscode_logo.svg" height="120">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Repository klonen (1/2)</h1>
+					<p>Öffnen Sie Ihr Gruppen-Repository auf GitHub:</p>
+					<pre><code data-trim>https://github.com/hsh-bis242/bis-242-ss26-gruppeXX</code></pre>
+					<p>Kopieren Sie die <b>Clone-URL</b>:</p>
+					<p class="text-center"><img data-src="static/U01/git-cloneURL.png" height="100"></p>
+					<div class="hint">
+						<b>Tipp:</b> Alle Repositories finden Sie unter
+						<a href="https://github.com/orgs/hsh-bis242/repositories">github.com/orgs/hsh-bis242/repositories</a>
+					</div>
+				</section>
+				<section>
+					<h1>Repository klonen (2/2)</h1>
+					<div class="grid-2">
+						<div>
+							<ol class="steps">
+								<li>In VS Code: <b>Clone Git Repository</b> auf der Willkommensseite</li>
+								<li>Clone-URL einfügen und bestätigen</li>
+								<li>Speicherort wählen (z.&nbsp;B. <code>~/dev/</code>)</li>
+								<li>Bei Authentifizierung: <b>"Sign in with your browser"</b></li>
+							</ol>
+						</div>
+						<div class="text-center">
+							<img data-src="static/U01/vscode-cloneGitRepo_1.png" height="320">
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Python venv erstellen</h1>
+					<ol class="steps">
+						<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extension</a> in VS Code installieren</li>
+						<li><b>View → Command Palette</b> → <b>"Python: Create Environment…"</b></li>
+						<li><b>Venv</b> als Environment Type wählen</li>
+						<li>Dependencies aus <code>requirements.txt</code> installieren</li>
+					</ol>
+				</section>
+				<section>
+					<h1>Databricks Token setzen</h1>
+					<p>Öffnen Sie ein Terminal in VS Code (<b>View → Terminal</b>):</p>
+					<div class="os-tabs">
+						<div class="os-tab">
+							<h4>🪟 Windows (PowerShell)</h4>
+							<pre><code class="language-powershell" data-trim>
+[Environment]::SetEnvironmentVariable(
+  "DATABRICKS_TOKEN",
+  "---> TOKEN <---", "User")
+							</code></pre>
+						</div>
+						<div class="os-tab">
+							<h4>🍎 macOS / Linux</h4>
+							<pre><code class="language-bash" data-trim>
+echo 'export DATABRICKS_TOKEN="---> TOKEN <---"' \
+  >> ~/.zshrc
+source ~/.zshrc
+							</code></pre>
+						</div>
+					</div>
+					<p class="text-small text-muted">Anschließend VS Code neu starten.</p>
+				</section>
+				<section>
+					<h1>Virtuelle Umgebung aktivieren</h1>
+					<p>VS Code aktiviert die venv normalerweise automatisch. Falls nicht:</p>
+					<div class="os-tabs">
+						<div class="os-tab">
+							<h4>🪟 Windows (PowerShell)</h4>
+							<pre><code class="language-powershell" data-trim>.\.venv\Scripts\Activate.ps1</code></pre>
+						</div>
+						<div class="os-tab">
+							<h4>🍎 macOS / Linux</h4>
+							<pre><code class="language-bash" data-trim>source .venv/bin/activate</code></pre>
+						</div>
+					</div>
+				</section>
+			</section>
 
+			<!-- ==================== DBT BUILD ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>dbt build</h1>
+					<h2>Projekt erstmalig bauen</h2>
+				</section>
+				<section>
+					<h1>Ausführen von dbt</h1>
+				<div class="callout callout-yellow">
+					<p><b>Hinweis:</b> Stellen Sie sicher, dass die virtuelle Umgebung aktiviert ist.</p>
+				</div>
+				<pre><code class="language-bash" data-trim>
 cd willibald_dwh
 dbt deps
 dbt build
 				</code></pre>
+				<div class="grid-3">
+					<div class="info-card">
+						<p class="number">7</p>
+						<p>Seeds</p>
+					</div>
+					<div class="info-card">
+						<p class="number">6</p>
+						<p>PSA-Views</p>
+					</div>
+					<div class="info-card">
+						<p class="number">19</p>
+						<p>DV-Modelle</p>
+					</div>
+				</div>
+				</section>
+			</section>
+
+			<!-- ==================== ERGEBNIS ==================== -->
+			<section class="result-slide">
+				<h1>Ergebnis der Übung</h1>
+				<ul>
+					<li>✅ GitHub-Account angelegt und im GitHub Classroom beigetreten</li>
+					<li>✅ Gruppen-Repository geklont und in VS Code geöffnet</li>
+					<li>✅ Databricks-Workspace erreichbar und Access Token generiert</li>
+					<li>✅ Python venv erstellt und Abhängigkeiten installiert</li>
+					<li>✅ <code>dbt build</code> läuft erfolgreich durch (32 Objekte erstellt)</li>
+				</ul>
+				<div class="pruefbar">
+					<b>Prüfbar durch Dozenten:</b> Tabellen im Databricks-Schema der Gruppe vorhanden.
+				</div>
 			</section>
 
 		</div>
@@ -322,17 +328,11 @@ dbt build
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
 
 </body>
-
 </html>

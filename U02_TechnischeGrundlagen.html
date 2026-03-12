@@ -4,164 +4,206 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - Übung 02 - Technische Grundlagen</title>
+	<title>BIS242 – Übung 02 – Technische Grundlagen</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>Technische Grundlagen</h2>
-				</div>
+
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Übung Business Intelligence</h1>
+				<h2>Technische Grundlagen</h2>
+				<p class="subtitle">Übung 02 · BIS242</p>
 			</section>
-			
+
+			<!-- ==================== ZIELE ==================== -->
 			<section>
-				<section>
-					<h1>Übungsübersicht</h1>
-					<ul>
-						<li>Aufbau / Technologie der Übungsumgebung</li>
-						<li>Beschreibung des Übungsdatenmodells (Quelle und Core-Warehouse)</li>
-						<li>Ablauf der Übung</li>
-					</ul>
+				<h1>Ziele der Übung</h1>
+				<ol class="steps">
+					<li>Übungsumgebung und Zusammenhänge verstehen</li>
+					<li>Willibald-Datenmodell kennenlernen</li>
+					<li>dbt Fundamentals-Kurs starten</li>
+					<li>Änderungen mit Git committen und pushen</li>
+				</ol>
+			</section>
+
+			<!-- ==================== UMGEBUNG ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Übungsumgebung</h1>
+					<h2>Überblick &amp; Zusammenhänge</h2>
 				</section>
 				<section>
-					<h1>Übersicht über die Übungsumgebung</h1>
-					<figure>
-						<img data-src="static/U02/Overview_Environment.svg">
-						<figcaption>
-							Eigene Darstellung
-						</figcaption>
-					</figure>
+					<h1>Gesamtüberblick</h1>
+					<p>Die folgende Grafik zeigt das Zusammenspiel aller Komponenten:</p>
+					<p class="text-center">
+						<img data-src="./static/U02/Overview_Environment.svg" height="420">
+					</p>
 				</section>
 				<section>
-					<h1>Übungsdatenmodell - Quellsystem</h1>
-					<figure>
-						<div class="grid_50">
-							<div class="griditem">
-								<a href="static/U02/webshop-willibald.png"><img data-src="static/U02/webshop-willibald.png" height="400"></a>
-							</div>
-							<div class="griditem">
-								<a href="static/U02/Roadshow.png"><img data-src="static/U02/Roadshow.png" height="400"></a>
-							</div>
+					<h1>Willibald-Webshop</h1>
+					<div class="grid-2">
+						<div>
+							<p>Unsere Übungsdaten stammen aus dem <b>Willibald-Webshop</b> – einem fiktiven Online-Shop für Spielzeug.</p>
+							<p>Die Quelldaten liegen als <b>dbt Seeds</b> (CSV-Dateien) im Repository und werden in Databricks geladen.</p>
 						</div>
-						<figcaption>
-							<a href="https://ddvug.net/willibalds-daen/">https://dwa-compare.info/</a>
-						</figcaption>
-					</figure>
+						<div class="text-center">
+							<img data-src="./static/U02/webshop-willibald.png" height="300">
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== DATENMODELL ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Datenmodell</h1>
+					<h2>Willibald-Webshop &amp; Data Vault</h2>
 				</section>
 				<section>
-					<h1>Übungsdatenmodell - Data Vault</h1>
-					<figure>
-						<img data-src="static/U02/willibald_datavault.svg" height="580">
-						<figcaption>
-							Eigene Darstellung
-						</figcaption>
-					</figure>
+					<h1>Quellsystem: Webshop-Datenmodell</h1>
+					<p class="text-center">
+						<img data-src="static/U02/Roadshow.png" height="420">
+					</p>
+					<p class="text-small text-muted">Quelle: Scalefree / Data Vault Roadshow</p>
 				</section>
 				<section>
-					<h1>Ablauf der Übung</h1>
+					<h1>Ziel: Data-Vault-Modell</h1>
+					<p class="text-center">
+						<img data-src="./static/U02/willibald_datavault.svg" height="430">
+					</p>
+					<p class="text-small text-muted">Hubs (gelb) · Links (grün) · Satelliten (blau)</p>
+				</section>
+				<section>
+					<h1>Übungsverlauf</h1>
 					<table>
-						<tr>
-							<th>Übungsinhalt</th>
-							<th>Technologie</th>
-						</tr>
-						<tr>
-							<td>Analyse sowie Dokumentation des Übungs-DWH-Projektes und Präsentation der Erkenntnisse.</td>
-							<td><a href="https://www.getdbt.com/">dbt</a></td>
-						</tr>
-						<tr>
-							<td>Modellieren und Beladen eines Sternschemas</td>
-							<td><a href="https://www.getdbt.com/">dbt</a></td>
-						</tr>
-						<tr>
-							
-							<td>Aufbau eines Dashboards zur Datenanalyse</td>
-							<td><a href="https://app.powerbi.com/">PowerBI</a></td>
-						</tr>
+						<thead>
+							<tr>
+								<th>Übung</th>
+								<th>Thema</th>
+								<th>Fokus</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>U01</b></td>
+								<td>Infrastruktur</td>
+								<td>Setup &amp; erster Build</td>
+							</tr>
+							<tr>
+								<td><b>U02</b></td>
+								<td>Grundlagen</td>
+								<td>Überblick &amp; dbt-Kurs</td>
+							</tr>
+							<tr>
+								<td><b>U03</b></td>
+								<td>dbt-Einarbeitung</td>
+								<td>Eigenes Modell erstellen</td>
+							</tr>
+							<tr>
+								<td><b>U04</b></td>
+								<td>Tests &amp; Macros</td>
+								<td>Qualitätssicherung</td>
+							</tr>
+							<tr>
+								<td><b>U05</b></td>
+								<td>Star-Schema</td>
+								<td>Dimensionale Modellierung</td>
+							</tr>
+							<tr>
+								<td><b>U06</b></td>
+								<td>Dashboard</td>
+								<td>Power BI &amp; Visualisierung</td>
+							</tr>
+						</tbody>
 					</table>
 				</section>
 			</section>
+
+			<!-- ==================== DBT KURS ==================== -->
 			<section>
-				<section>
-					<h1>Einführung in dbt</h1>
-					<div class="grid_50">
-						<div class="griditem">
-							<a href="https://courses.getdbt.com/courses/fundamentals"><img data-src="static/U02/dbtFundamentalsCourse.png" width="560" height="315"></a>
-						</div>
-						<div class="griditem">
-							<iframe width="560" height="315" data-src="https://www.youtube.com/embed/toSAAgLUHuk" frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-							allowfullscreen></iframe>
-						</div>
-					</div>
+				<section class="section-divider">
+					<h1>dbt Fundamentals</h1>
+					<h2>Online-Kurs</h2>
 				</section>
-			</section>
-						
-			<section>
 				<section>
-					<div class="r-fit-text">
-						<h1>Commit Ihrer Änderung erzeugen</h1>
-						
-						<div class="grid_50">
-							<div class="griditem">
-								<p>
-									Um Ihren Fortschritt zu sichern, übertragen Sie Ihr lokales Repository zu Github. Klicken Sie links im Menü auf "Source Control". Sie sehen eine Liste der Änderungen Ihres lokalen Repositorys.
-								</p>
-								<p>
-									git erfordert die Angabe einer E-Mailadresse und eines Benutzernamens, die dem Commit zugeordnet wird:
-								</p>
-								<pre>
-									<code data-trim>
-										git config user.email "max.mustermann@stud.hs-hannover.de"
-										git config user.name "Max Mustermann"
-									</code>
-								</pre>
-								<p>
-									Geben Sie im Message-Fenster eine kurze Änderungsbeschreibung ein. Zum Beispiel "Initializes dbt project". Klicken Sie dann auf "Commit".
-								</p>
-								<p>
-		
-								</p>
+					<h1>dbt Fundamentals-Kurs</h1>
+					<div class="grid-2">
+						<div>
+							<p>Arbeiten Sie den kostenlosen <b>dbt Fundamentals</b>-Kurs durch. Dort lernen Sie die Grundlagen von dbt interaktiv:</p>
+							<div class="callout callout-blue">
+								<p><b>→</b> <a href="https://learn.getdbt.com/courses/dbt-fundamentals">dbt Fundamentals auf learn.getdbt.com</a></p>
 							</div>
-							<div class="griditem">
-								<img data-src="static/U02/vscodeCommitFiles.png">
+							<div class="hint">
+								<b>Tipp:</b> Der Kurs dauert ca. 5 Stunden. Die ersten Module sind für die nächste Übung besonders relevant.
 							</div>
 						</div>
+						<div class="text-center">
+							<img data-src="./static/U02/dbtFundamentalsCourse.png" height="250">
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== GIT ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Git Workflow</h1>
+					<h2>Änderungen sichern</h2>
+				</section>
+				<section>
+					<h1>Commit &amp; Push</h1>
+					<p>Sichern Sie Ihre Änderungen regelmäßig mit Git:</p>
+					<ol class="steps">
+						<li>In VS Code die <b>Source Control</b>-Ansicht öffnen (Sidebar-Icon)</li>
+						<li>Geänderte Dateien mit <b>+</b> stagen</li>
+						<li>Commit-Nachricht eingeben und <b>✓ Commit</b> klicken</li>
+						<li>Mit <b>Push</b> die Änderungen auf GitHub hochladen</li>
+					</ol>
+					<div class="grid-2" style="margin-top: 0.5em;">
+						<div class="text-center">
+							<img data-src="./static/U02/vscodeCommitFiles.png" height="180">
+							<p class="text-small text-muted">Stage &amp; Commit</p>
+						</div>
+						<div class="text-center">
+							<img data-src="./static/U02/vscodePushChanges.png" height="180">
+							<p class="text-small text-muted">Push</p>
+						</div>
 					</div>
 				</section>
 				<section>
-					<div class="r-fit-text">
-						<h1>Pushen Ihrer Änderungen zu Github</h1>
-						<p>
-							Der eben erzeugte Commit, muss noch an Github übertragen (gepusht) werden. Auch dies kann mithilfe von Visual Studio Code erledigt werden:
-						</p>
-						<img data-src="static/U02/vscodePushChanges.png">
-						<p>
-							Da im Github-Repository noch kein Branch existiert, wird Visual Studio Code nachfragen, ob der lokale Branch zunächst veröffentlicht und dann gepusht werden soll. Bestätigen Sie dies.
-						</p>
-						<img data-src="static/U02/vscodePublishBranch.png">
+					<h1>Optionale Git-Übung</h1>
+					<p>Wenn Sie Git noch nicht kennen, empfehlen wir dieses interaktive Tutorial:</p>
+					<div class="callout callout-blue">
+						<p><b>→</b> <a href="https://learngitbranching.js.org/?locale=de_DE">Learn Git Branching (deutsch)</a></p>
 					</div>
+					<p class="text-small text-muted">Bearbeiten Sie mindestens die Abschnitte "Introduction Sequence" und "Ramping Up".</p>
 				</section>
 			</section>
-			<section>
-				<h1>Einstieg in Git</h1>
-				<p>
-					Um die Arbeit mit Git besser verstehen zu können, haben wir eine optionale Übung vorbereitet: <a href="U09_git.html">zur Übung</a>
-				</p>
-				<iframe data-src="U09_git.html" width="1000" height="450"></iframe>
+
+			<!-- ==================== ERGEBNIS ==================== -->
+			<section class="result-slide">
+				<h1>Ergebnis der Übung</h1>
+				<ul>
+					<li>✅ Übungsumgebung verstanden (lokale Entwicklung ↔ Databricks ↔ GitHub)</li>
+					<li>✅ Willibald-Datenmodell und Übungsverlauf überblickt</li>
+					<li>✅ dbt Fundamentals-Kurs begonnen</li>
+					<li>✅ Git Commit &amp; Push durchgeführt</li>
+				</ul>
+				<div class="pruefbar">
+					<b>Prüfbar durch Dozenten:</b> Commit-Aktivität im Gruppen-Repository auf GitHub sichtbar.
+				</div>
 			</section>
+
 		</div>
 	</div>
 
@@ -170,17 +212,11 @@
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
 
 </body>
-
 </html>

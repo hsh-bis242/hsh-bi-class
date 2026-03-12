@@ -1,0 +1,5 @@
+1) überprüfe die Vorlesungsfolien auf fachliche Richtigkeit und auf Aktualität. Überprüfe außerdem, ob ein roter Faden erkennbar ist. passe die folien inhaltich an.
+
+2) bringe auch die Vorlesungsfolien auf das neue design
+
+3) mache sinnvolle ergänzungen in den instructions files

@@ -4,164 +4,259 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-	<title>Hochschule Hannover - Fakult&auml;t IV - BIS - Business Intelligence - &Uuml;bung 03 - Einarbeitung GIT & DBT Projekt</title>
+	<title>BIS242 – Übung 03 – dbt-Einarbeitung</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
-
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
 </head>
 
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
-				<div class="r-fit-text">
-					<h1>Übung Business Intelligence</h1>
-					<h2>Einarbeitung GIT & DBT Projekt</h2>
-				</div>
+
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Übung Business Intelligence</h1>
+				<h2>dbt-Einarbeitung</h2>
+				<p class="subtitle">Übung 03 · BIS242</p>
 			</section>
+
+			<!-- ==================== ZIELE ==================== -->
 			<section>
+				<h1>Ziele der Übung</h1>
+				<ol class="steps">
+					<li>Git Branch für die Übung anlegen</li>
+					<li>dbt-Projektstruktur erkunden und verstehen</li>
+					<li>Eigenes dbt-Modell (SQL-View) erstellen</li>
+					<li>Modell in YAML dokumentieren</li>
+					<li>Pull Request auf GitHub erstellen</li>
+				</ol>
+			</section>
+
+			<!-- ==================== GIT BRANCH ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Vorbereitung</h1>
+					<h2>Git Branch &amp; venv</h2>
+				</section>
+				<section>
+					<h1>Neuen Git Branch anlegen</h1>
+					<p>Erstellen Sie einen eigenen Branch für diese Übung:</p>
+					<pre><code class="language-bash" data-trim>
+git checkout -b uebung03
+					</code></pre>
+					<p class="text-center"><img data-src="static/U03/git_uebung.png" height="150"></p>
+					<div class="hint">
+						<b>Tipp:</b> In VS Code können Sie Branches auch über die Status Bar (unten links) wechseln.
+					</div>
+				</section>
+				<section>
+					<h1>Virtuelle Umgebung aktivieren</h1>
+					<div class="os-tabs">
+						<div class="os-tab">
+							<h4>🪟 Windows</h4>
+							<pre><code class="language-powershell" data-trim>.\.venv\Scripts\Activate.ps1</code></pre>
+						</div>
+						<div class="os-tab">
+							<h4>🍎 macOS / Linux</h4>
+							<pre><code class="language-bash" data-trim>source .venv/bin/activate</code></pre>
+						</div>
+					</div>
+					<pre><code class="language-bash" data-trim>
+cd willibald_dwh
+dbt build
+					</code></pre>
+					<div class="callout callout-yellow">
+						<p><b>Hinweis:</b> Stellen Sie sicher, dass <code>dbt build</code> fehlerfrei durchläuft, bevor Sie fortfahren.</p>
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== PROJEKT ERKUNDEN ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Projekt erkunden</h1>
+					<h2>Verzeichnisstruktur &amp; Databricks</h2>
+				</section>
+				<section>
+					<h1>dbt-Projektstruktur</h1>
+					<p>Machen Sie sich mit der Verzeichnisstruktur unter <code>willibald_dwh/</code> vertraut:</p>
+					<div class="grid-2">
+						<div>
+							<ul>
+								<li><code>models/</code> – SQL-Modelle (Views/Tables)</li>
+								<li><code>macros/</code> – Wiederverwendbare SQL-Logik</li>
+								<li><code>seeds/</code> – CSV-Eingabedaten</li>
+								<li><code>snapshots/</code> – Historisierung</li>
+								<li><code>tests/</code> – Fachliche Tests</li>
+							</ul>
+						</div>
+						<div>
+							<ul>
+								<li><code>dbt_project.yml</code> – Projektconfig</li>
+								<li><code>profiles.yml</code> – Datenbankverbindung</li>
+								<li><code>packages.yml</code> – Abhängigkeiten</li>
+							</ul>
+							<div class="callout callout-gray" style="margin-top: 1em;">
+								<p class="text-small"><b>Generiert:</b> <code>target/</code>, <code>logs/</code>, <code>dbt_packages/</code> – nicht manuell bearbeiten.</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Databricks prüfen</h1>
+					<p>Öffnen Sie den <a href="https://dbc-15d76289-5b7c.cloud.databricks.com/">Databricks Workspace</a> und navigieren Sie zu:</p>
+					<pre><code data-trim>Catalog → hive_metastore → bis242_XX</code></pre>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Finden Sie die durch <code>dbt build</code> erstellten Tabellen und Views.
+						Schauen Sie sich die Daten in einigen Tabellen an – was fällt Ihnen auf?</p>
+					</div>
+				</section>
+				<section>
+					<h1>Bestehende Modelle verstehen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Öffnen Sie einzelne <code>.sql</code>-Dateien unter <code>models/</code>.
+						Versuchen Sie zu verstehen, wie die Modelle aufgebaut sind:</p>
+						<ul>
+							<li>Was macht <code>{{ ref('...') }}</code>?</li>
+							<li>Was steht in den <code>_*.yml</code>-Dateien?</li>
+							<li>Wie hängen <code>seeds/</code>, PSA-Views und RDV-Modelle zusammen?</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+
+			<!-- ==================== EIGENES MODELL ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Eigenes Modell</h1>
+					<h2>SQL-View erstellen</h2>
+				</section>
 				<section>
 					<h1>Aufgabenstellung</h1>
-					<ol>
-						<li>git branch erstellen</li>
-						<li>dbt Modell erstellen</li>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Erstellen Sie ein neues dbt-Modell, das <b>Bestellpositionen mit Produktinformationen</b> zusammenführt.</p>
 						<ul>
-							<li>.sql File erstellen</li>
-							<li>Modell ausführen</li>
-							<li>Daten überprüfen</li>
+							<li>Datei: <code>models/00_example/uebung3_{kuerzel}.sql</code></li>
+							<li>Nutzen Sie <code>{{ ref('...') }}</code> statt direkter Tabellennamen</li>
+							<li>Mindestens ein <b>JOIN</b> zwischen zwei Quelltabellen</li>
 						</ul>
-						<li>dbt Modell dokumentieren</li>
-						<ul>
-							<li>.yml File erstellen</li>
-							<li>Modellbeschreibung hinzufügen</li>
-							<li>dbt Dokumentation generieren</li>
-						</ul>						
-						<li>Änderungen in git pushen</li>
-						<li>Änderungen der Gruppenmitglieder pullen</li>
+					</div>
+					<div class="hint">
+						<b>Tipp:</b> Schauen Sie sich die Tabellen <code>webshop_bestellung</code>, <code>webshop_position</code>
+						und <code>webshop_produkt</code> in den Seeds an.
+					</div>
+				</section>
+				<section>
+					<h1>Hilfestellung: SQL-Grundgerüst</h1>
+					<pre><code class="language-sql" data-trim>
+-- models/00_example/uebung3_{kuerzel}.sql
+SELECT
+    ???
+FROM {{ ref('???') }} AS ???
+JOIN {{ ref('???') }} AS ???
+  ON ???
+					</code></pre>
+					<div class="callout callout-yellow">
+						<p><b>Hinweis:</b> Überlegen Sie, welche Spalten Sie aus den Seed-Tabellen
+						<code>webshop_position</code> und <code>webshop_produkt</code> auswählen wollen
+						und über welche Spalte der JOIN erfolgt.</p>
+					</div>
+				</section>
+				<section>
+					<h1>Modell bauen &amp; prüfen</h1>
+					<ol class="steps">
+						<li>Modell bauen: <code>dbt run -s uebung3_{kuerzel}</code></li>
+						<li>In Databricks prüfen: Wurde der View erstellt?</li>
+						<li>Stimmen die Daten? Führen Sie eine <code>SELECT</code>-Abfrage auf den View aus.</li>
 					</ol>
 				</section>
 			</section>
+
+			<!-- ==================== DOKUMENTATION ==================== -->
 			<section>
-				<section>
-					<h1>git Branch erstellen</h1>
-						<p>
-							branch erstellen über Command Line (1x pro Gruppe):
-						</p>
-						<pre>
-							<code class="language-bash" data-trim>
-								# in Projektverzeichnis navigieren
-								cd ..../bis242ws250x
-
-								# branch lokal erstellen und auschecken
-								git checkout -b uebung
-
-								# branch veröffentlichen
-								git push
-							</code>
-							<img data-src="static/U03/git_uebung.png">
-						</pre>
-						<p>Anschließend auf github.com überprüfen ob der branch erstellt wurde</p>
+				<section class="section-divider">
+					<h1>Dokumentation</h1>
+					<h2>YAML-Schema</h2>
 				</section>
-				<section>					<h1>Virtuelle Umgebung aktivieren</h1>
-					<p><b>Wichtig:</b> Vor dem Ausführen von dbt-Befehlen muss die virtuelle Umgebung aktiviert sein.</p>
-					<p>VS Code aktiviert die venv normalerweise automatisch. Falls nicht:</p>
-					<p><b>Windows (PowerShell):</b></p>
-					<pre><code class="language-powershell" data-trim>
-.\.venv\Scripts\Activate.ps1
-					</code></pre>
-					<p><b>macOS / Linux:</b></p>
+				<section>
+					<h1>Modell in YAML dokumentieren</h1>
+				<div class="task-box">
+					<h4>Aufgabe</h4>
+					<p>Erstellen Sie eine YAML-Datei <code>models/00_example/_example__models.yml</code>
+					und dokumentieren Sie Ihr Modell:</p>
+				</div>
+				<pre><code class="language-yaml" data-trim>
+version: 2
+
+models:
+  - name: uebung3_{kuerzel}
+    description: "???"
+    columns:
+      - name: ???
+        description: "???"
+				</code></pre>
+				<div class="hint">
+					<b>Tipp:</b> Eine gute Dokumentation hilft anderen Teammitgliedern zu verstehen,
+					was Ihr Modell macht und welche Spalten es enthält.
+				</div>
+				</section>
+			</section>
+
+			<!-- ==================== GIT & PR ==================== -->
+			<section>
+				<section class="section-divider">
+					<h1>Git &amp; Pull Request</h1>
+					<h2>Änderungen sichern</h2>
+				</section>
+				<section>
+					<h1>Änderungen pushen</h1>
+					<ol class="steps">
+						<li>Alle geänderten Dateien stagen und committen</li>
+						<li>Branch auf GitHub pushen</li>
+					</ol>
 					<pre><code class="language-bash" data-trim>
-source .venv/bin/activate
+git add .
+git commit -m "Übung 03: Eigenes Modell erstellt"
+git push -u origin uebung03
 					</code></pre>
+					<p class="text-center"><img data-src="static/U03/git_push.png" height="130"></p>
+				</section>
+				<section>
+					<h1>Pull Request erstellen</h1>
+					<div class="task-box">
+						<h4>Aufgabe</h4>
+						<p>Erstellen Sie auf GitHub einen <b>Pull Request</b> von <code>uebung03</code> nach <code>main</code>.</p>
+					</div>
+					<p class="text-center"><img data-src="static/U03/git_pull_request.png" height="200"></p>
+					<div class="warning">
+						<b>⚠️ Mergen Sie den PR noch nicht!</b> Der Dozent wird den PR reviewen.
+					</div>
 				</section>
 			</section>
-			<section>
-				<section>					<h1>dbt Modell erstellen</h1>
-						<p>
-							Im Ordner "uebung3" soll ein neues dbt Modell erstellt werden, siehe <a href="https://docs.getdbt.com/docs/build/sql-models">dbt Doku</a>
-						</p>
-						<ul>
-							<li>Webshop-Bestellungen vom 20.03.2022 inkl. Vor- und Nachname des Kunden</li>
-							<li>eigenes Namenskürzel im Modellnamen, z.B. uebung3_mv.sql</li>
-							<li>Materialisierung: Tabelle</li>
-							<li>Modell ausführen (am besten nur das neue Modell)</li>
-						</ul>
-						<p><b>Daten in Datbaricks überprüfen</b></p>
-				</section>
-				<section>
-					<h1>dbt Modell dokumentieren</h1>
-						<p>
-							Zu dem erstellten Modell soll eine kurze Beschreibung hinzugefügt werden
-						</p>
-						<ul>
-							<li>uebung3_{kürzel}.yml Datei mit Beschreibung erstellen, siehe <a href="https://docs.getdbt.com/docs/build/documentation#adding-descriptions-to-your-project">dbt Doku</a></li>
-							<li>HTML Dokumentation des dbt Modells erzeugen und aufrufen, siehe <a href="https://docs.getdbt.com/docs/build/documentation#generating-documentation">dbt Doku</a></li>
-						</ul>
-						<p><b>Screenshot des Modells aus der HTML Doku als "uebung3_doku_{kürzel}.png" in den Ordner uebung legen</b></p>
-				</section>
-				<section>
-					<h1>Änderungen in git pushen</h1>
-						<p>
-							Änderungen in VS Code überprüfen und über Command Line pushen
-						</p>
-						<img data-src="static/U03/git_push.png"">
-						<pre>
-							<code class="language-bash" data-trim>
-								# Änderungen in lokaler Staging Area hinzufügen
-								git add -A
 
-								# commit auf lokales Repository
-								git commit -m "kurze Beschreibung was geändert wurde"
-
-								# pushen
-								git push
-							</code>
-						</pre>
-						<p>Anschließend auf github.com überprüfen ob die Änderungen angekommen sind</p>
-				</section>
-				<section>
-					<h1>Änderungen der Gruppenmitglieder pullen</h1>
-						<pre>
-							<code class="language-bash" data-trim>
-								# lokales git synchronisieren
-								git fetch --all
-							</code>
-						</pre>
-						<img data-src="static/U03/git_push.png"">
-						<pre>
-							<code class="language-bash" data-trim>
-									# Änderungen in lokales Repository holen
-									git pull
-								</code>
-						</pre>
-						<p>Anschließend überprüfen ob die Files der Gruppenmitglieder vorhanden sind</p>
-				</section>
-				<section>
-					<h1>Pull Request uebung -> auf main erstellen</h1>
-						<img data-src="static/U03/git_pull_request.png"">
-						<ul>
-							<li>Repository auf github.com aufrufen</li>
-							<li>Pull Request erstellen: uebung -> main</li>
-							<li>Lecturer Gruppe als Reviewer hinterlegen</li>
-						</ul>				
-				</section>
-			</section>
-			<section>
+			<!-- ==================== ERGEBNIS ==================== -->
+			<section class="result-slide">
 				<h1>Ergebnis der Übung</h1>
-					<ul>
-						<li>Tabelle in Databricks erstellt</li>
-						<li>.sql und .yml Datei in git gepusht</li>
-						<li>dbt Doku generiert und Screenshot abgelegt</li>
-						<li>Pull Request erstellt</li>
-					</ul>
+				<ul>
+					<li>✅ dbt-Projektstruktur verstanden</li>
+					<li>✅ Eigenes SQL-Modell <code>uebung3_{kuerzel}.sql</code> erstellt</li>
+					<li>✅ YAML-Dokumentation <code>_example__models.yml</code> angelegt</li>
+					<li>✅ Pull Request von <code>uebung03</code> → <code>main</code> auf GitHub erstellt</li>
+				</ul>
+				<div class="pruefbar">
+					<b>Prüfbar durch Dozenten:</b> Pull Request im Gruppen-Repository auf GitHub;
+					View <code>uebung3_*</code> in Databricks vorhanden.
+				</div>
 			</section>
+
 		</div>
 	</div>
 
@@ -170,17 +265,11 @@ source .venv/bin/activate
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
-
-			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 		});
 	</script>
 
 </body>
-
 </html>

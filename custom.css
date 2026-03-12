@@ -1,30 +1,441 @@
-.container {
+/* ===========================================
+   BIS242 – Custom Exercise Styles
+   Extends the HSH reveal.js theme with 
+   modern layout utilities for exercises.
+   =========================================== */
+
+/* ---------- CSS Variables ---------- */
+:root {
+	--hsh-orange: #dc3c05;
+	--hsh-orange-light: #fff3ef;
+	--hsh-orange-mid: #fc8c65;
+	--hsh-dark: #2c2c2c;
+	--hsh-gray: #5a5a5a;
+	--hsh-gray-light: #f5f5f5;
+	--hsh-gray-border: #ddd;
+	--hsh-blue: #2e6da4;
+	--hsh-blue-light: #eef4fa;
+	--hsh-green: #3a7d44;
+	--hsh-green-light: #eef8ef;
+	--hsh-yellow: #b8860b;
+	--hsh-yellow-light: #fef9ec;
+}
+
+/* ---------- Base Overrides ---------- */
+
+/* Left-align text in content slides (override theme default center) */
+.reveal .slides section p {
+	text-align: left;
+}
+
+.reveal .slides section .text-center {
+	text-align: center !important;
+}
+
+/* Tighter paragraph spacing */
+.reveal .slides section p {
+	margin: 12px 0;
+}
+
+/* Better list spacing */
+.reveal .slides section ul,
+.reveal .slides section ol {
+	margin: 10px 0 10px 1.2em;
+}
+
+.reveal .slides section li {
+	margin-bottom: 6px;
+	line-height: 1.4;
+}
+
+/* Smaller code in pre blocks for more room */
+.reveal pre {
+	width: 95%;
+	font-size: 0.50em;
+	margin: 12px auto;
+	border-radius: 6px;
+}
+
+.reveal pre code {
+	padding: 12px 16px;
+	border-radius: 6px;
+	max-height: 360px;
+}
+
+/* Inline code styling */
+.reveal code:not(.hljs) {
+	background: var(--hsh-gray-light);
+	padding: 2px 6px;
+	border-radius: 3px;
+	font-size: 0.88em;
+	color: var(--hsh-dark);
+}
+
+/* ---------- Section Dividers ---------- */
+
+.reveal .slides section.section-divider {
+	text-align: center;
+}
+
+.reveal .slides section.section-divider h1 {
+	font-size: 1.4em;
+}
+
+.reveal .slides section.section-divider h2 {
+	color: var(--hsh-gray);
+	text-transform: none;
+	font-weight: 400;
+	font-size: 0.9em;
+}
+
+.reveal .slides section.section-divider p {
+	color: var(--hsh-gray);
+	text-align: center;
+}
+
+/* ---------- Title Slide ---------- */
+
+.reveal .slides section.title-slide {
+	text-align: center;
+}
+
+.reveal .slides section.title-slide h1 {
+	font-size: 1.3em;
+}
+
+.reveal .slides section.title-slide h2 {
+	color: var(--hsh-orange);
+	text-transform: none;
+	font-weight: 400;
+	font-size: 1em;
+	margin-top: 16px;
+}
+
+.reveal .slides section.title-slide .subtitle {
+	color: var(--hsh-gray);
+	font-size: 0.7em;
+	margin-top: 30px;
+	text-align: center;
+}
+
+/* ---------- Callout Boxes ---------- */
+
+.callout {
+	border-left: 4px solid var(--hsh-orange);
+	padding: 14px 18px;
+	margin: 14px 0;
+	background: var(--hsh-orange-light);
+	border-radius: 4px;
+}
+
+.callout p {
+	margin: 4px 0 !important;
+}
+
+.callout h4 {
+	font-size: 0.85em;
+	margin: 0 0 8px 0;
+	text-transform: none;
+	color: inherit;
+}
+
+.callout-blue {
+	border-left-color: var(--hsh-blue);
+	background: var(--hsh-blue-light);
+}
+
+.callout-green {
+	border-left-color: var(--hsh-green);
+	background: var(--hsh-green-light);
+}
+
+.callout-yellow {
+	border-left-color: var(--hsh-yellow);
+	background: var(--hsh-yellow-light);
+}
+
+.callout-gray {
+	border-left-color: #999;
+	background: var(--hsh-gray-light);
+}
+
+/* ---------- Task Box ---------- */
+
+.task-box {
+	background: var(--hsh-gray-light);
+	border: 1px solid var(--hsh-gray-border);
+	border-left: 4px solid var(--hsh-orange);
+	border-radius: 6px;
+	padding: 16px 20px;
+	margin: 12px 0;
+}
+
+.task-box h3,
+.task-box h4 {
+	color: var(--hsh-orange) !important;
+	font-size: 0.85em;
+	margin: 0 0 8px 0;
+	text-transform: none;
+}
+
+.task-box p,
+.task-box li {
+	font-size: 0.8em;
+}
+
+/* ---------- Step List ---------- */
+
+ol.steps {
+	list-style: none;
+	counter-reset: step-counter;
+	padding-left: 0;
+	margin: 14px 0;
+}
+
+ol.steps > li {
+	counter-increment: step-counter;
+	position: relative;
+	padding-left: 42px;
+	margin-bottom: 12px;
+	min-height: 32px;
+	line-height: 1.5;
+}
+
+ol.steps > li::before {
+	content: counter(step-counter);
+	position: absolute;
+	left: 0;
+	top: 2px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: var(--hsh-orange);
+	color: #fff;
+	font-size: 0.6em;
+	font-weight: 700;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 50px;
 }
 
-.arrow {
-    width: 100px;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 200px;
-    color: blue;
-  }
-  
-  .arrow::before {
-    content: '\2192'; /* Unicode for right arrow */
-    font-size: 60px;
-    color: blue;
-    transform: rotate(360deg);
-  }
+/* ---------- Tool Badge ---------- */
 
-.image {
-	width: 300px;
-	height: 200px;
-	object-fit: cover;
-	margin: 0 50px;
+.tool-badge {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 12px;
+	font-size: 0.6em;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	vertical-align: middle;
+	margin: 0 4px;
+}
+
+.tool-badge.git { background: #f05032; color: #fff; }
+.tool-badge.dbt { background: #ff694a; color: #fff; }
+.tool-badge.databricks { background: #ff3621; color: #fff; }
+.tool-badge.python { background: #3776ab; color: #fff; }
+.tool-badge.vscode { background: #007acc; color: #fff; }
+
+/* ---------- Result / Summary Section ---------- */
+
+.reveal .slides section.result-slide {
+	background: var(--hsh-gray-light);
+}
+
+.reveal .slides section.result-slide h1 {
+	color: var(--hsh-green);
+	border-bottom-color: var(--hsh-green);
+}
+
+.reveal .slides section.result-slide ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.reveal .slides section.result-slide li {
+	padding: 4px 0;
+}
+
+.reveal .slides section.result-slide .pruefbar {
+	margin-top: 16px;
+	padding: 10px 16px;
+	background: #fff;
+	border: 1px solid var(--hsh-gray-border);
+	border-left: 4px solid var(--hsh-blue);
+	border-radius: 4px;
+	font-size: 0.75em;
+}
+
+/* ---------- Grid Layouts ---------- */
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	align-items: start;
+}
+
+.grid-3 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 16px;
+	align-items: start;
+}
+
+.grid-2-1 {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 20px;
+	align-items: start;
+}
+
+.grid-1-2 {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 20px;
+	align-items: start;
+}
+
+/* ---------- Info Card ---------- */
+
+.info-card {
+	background: #fff;
+	border: 1px solid var(--hsh-gray-border);
+	border-radius: 6px;
+	padding: 16px;
+	text-align: center;
+}
+
+.info-card h3 {
+	color: var(--hsh-orange);
+	font-size: 0.75em;
+	margin: 0 0 8px 0;
+	text-transform: none;
+}
+
+.info-card p {
+	font-size: 0.7em;
+	text-align: center !important;
+	margin: 4px 0;
+	color: var(--hsh-gray);
+}
+
+.info-card .number {
+	font-size: 1.4em;
+	font-weight: 700;
+	color: var(--hsh-orange);
+	line-height: 1;
+}
+
+/* ---------- OS Tabs (Windows / macOS) ---------- */
+
+.os-tabs {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin: 10px 0;
+}
+
+.os-tab {
+	background: var(--hsh-gray-light);
+	border: 1px solid var(--hsh-gray-border);
+	border-radius: 6px;
+	padding: 12px 16px;
+}
+
+.os-tab h4 {
+	font-size: 0.7em;
+	color: var(--hsh-gray);
+	margin: 0 0 6px 0;
+	text-transform: none;
+}
+
+.os-tab pre {
+	width: 100% !important;
+	margin: 6px 0 0 0 !important;
+	font-size: 0.78em;
+}
+
+/* ---------- Warning / Hint Inline ---------- */
+
+.hint {
+	background: var(--hsh-yellow-light);
+	border: 1px solid var(--hsh-yellow);
+	border-radius: 4px;
+	padding: 8px 14px;
+	font-size: 0.78em;
+	margin: 8px 0;
+}
+
+.warning {
+	background: #fef2f0;
+	border: 1px solid var(--hsh-orange);
+	border-radius: 4px;
+	padding: 8px 14px;
+	font-size: 0.78em;
+	margin: 8px 0;
+}
+
+/* ---------- Utility ---------- */
+
+.text-small { font-size: 0.75em; }
+.text-muted { color: var(--hsh-gray) !important; }
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.mt-1 { margin-top: 10px !important; }
+.mb-1 { margin-bottom: 10px !important; }
+
+/* ---------- Backward Compat ---------- */
+
+.griditem p {
+	text-align: left;
+}
+
+figcaption {
+	font-size: x-small;
+}
+
+tr:hover {
+	background-color: var(--hsh-orange-mid);
+}
+
+.img-overlay-wrap {
+	position: relative;
+	display: inline-block;
+	transition: transform 150ms ease-in-out;
+}
+
+.img-overlay-wrap img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.img-overlay-wrap svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.customer-logo { padding: 30px; }
+
+.profile_image {
+	height: 300px;
+	border-right: solid var(--hsh-orange) 15px;
+	border-radius: 5px;
+}
+
+div.pdf-page {
+	background: rgba(255, 255, 255, 0) !important;
+}
+
+.tiny { font-size: 10px; }
+
+.box {
+	display: inline-block;
+	background-color: yellow;
+	padding: 4px 10px;
+	border: 1px solid var(--hsh-orange);
 }
