@@ -11,8 +11,7 @@
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
@@ -21,11 +20,11 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section>
-				<div class="r-fit-text">
-					<h1>Business Intelligence</h1>
-					<h2>Organisatorische Vorbemerkungen</h2>
-				</div>
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Vorlesung Business Intelligence</h1>
+				<h2>Organisatorische Vorbemerkungen</h2>
+				<p class="subtitle">Vorlesung 01 · BIS242</p>
 			</section>
 			<section>
 				<section>
@@ -103,11 +102,11 @@
 			<section>					
 				<section>
 					<h1><span style="font-weight:100">Lehrbeauftragter:</span> Maximilian Vollmer</h1>
-					<grid class="grid_50">
-						<div class="griditem">
+					<div class="grid-2">
+						<div>
 							<img class="profile_image" data-src="static/V01/maximilian.jpg">
 						</div>
-						<div class="griditem" style="font-size: 20px">
+						<div style="font-size: 20px">
 							<ul>
 								<li>Wirtschaftsinformatik B.SC.</li>
 								<li>Data Domain Architect</li>
@@ -125,17 +124,17 @@
 									<li>Data Analytics</li>
 								</ul>
 						</div>
-					</grid>
+					</div>
 					<img class="customer-logo" data-src="static/V01/logo-vw-nutzfahrzeuge.png" height="70">
 					<img class="customer-logo" data-src="static/V01/kkh_logo.svg" height="70">
 				</section>
 				<section>
 					<h1><span style="font-weight:100">Lehrbeauftragter:</span> Peter Grass</h1>
-					<grid class="grid_50">
-						<div class="griditem">
+					<div class="grid-2">
+						<div>
 							<img class="profile_image" data-src="static/V01/peter.jpg">
 						</div>
-						<div class="griditem" style="font-size: 20px">
+						<div style="font-size: 20px">
 							<ul>
 								<li>Wirtschaftsinformatik M.SC.</li>
 								<li>Data Warehouse Developer</li>
@@ -152,7 +151,7 @@
 									<li>Data Analytics</li>
 								</ul>
 						</div>
-					</grid>
+					</div>
 					<img class="customer-logo" data-src="static/V01/kkh_logo.svg" height="70">
 					<img class="customer-logo" data-src="static/V01/logo-vw-nutzfahrzeuge.png" height="70">
 				</section>
@@ -951,13 +950,13 @@
 				</section>
 				<section>
 					<h1>Literatur - Podcast</h1>
-					<div class="grid_50">
-						<div class="griditem">
+					<div class="grid-2">
+						<div>
 							<p>Der Podcast &uuml;ber Data, Dashboarding, Business Intelligence, Self Service, Analytics
 								& BI-Tools</p>
 							
 						</div>
-						<div class="griditem">
+						<div>
 							<a href="https://www.biordie.com/podcasts">
 								<img data-src="https://static.wixstatic.com/media/f12433_054f5c09084d42c28de2e0d2260b970f~mv2.jpg/v1/fill/w_438,h_438,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Podcast%20Cover_2022.jpg"
 									alt="Podcast Cover_2022.jpg"
@@ -969,15 +968,15 @@
 				</section>
 				<section>
 					<h1>Literatur - BI Spektrum</h1>
-					<div class="grid_50">
-						<div class="griditem">
+					<div class="grid-2">
+						<div>
 							<p>
 								Die Zeitschrift BI-Spektrum behandelt aktuelle Themen der Business Intelligence. Und
 								präsentiert Anwendungsfälle aus der Praxis.
 							</p>
 							
 						</div>
-						<div class="griditem">
+						<div>
 							<a href="https://opac.tib.eu/DB=4.1/XMLPRS=N/PPN?PPN=516801422">
 								<img data-src="static/V01/bispektrum.jpg">
 							</a>
@@ -1009,7 +1008,7 @@
 
 	<script>
 		// More info about initialization & config:
-		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/initialization/
 		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,

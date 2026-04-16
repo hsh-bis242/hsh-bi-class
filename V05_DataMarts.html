@@ -10,8 +10,7 @@
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/hsh.css">
-
-	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="custom.css">
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
 	<link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
@@ -21,11 +20,11 @@
 	<div class="reveal">
 		<div class="slides">
 
-			<section>
-				<div class="r-fit-text">
-					<h1>Business Intelligence</h1>
-					<h2>Data Marts</h2>
-				</div>
+			<!-- ==================== TITLE ==================== -->
+			<section class="title-slide">
+				<h1>Vorlesung Business Intelligence</h1>
+				<h2>Data Marts</h2>
+				<p class="subtitle">Vorlesung 05 · BIS242</p>
 			</section>
 			
 				<section>
@@ -120,20 +119,20 @@
 				<section>
 					<h1>Summentypen</h1>
 					<ul>
-						<li><strong>FLOW – Addictive Fact</strong>
+						<li><strong>FLOW – Additive Fact</strong>
 							<ul>
 								<li>zeitraumbezogen (pro Zeiteinheit) </li>
 								<li>Beliebig aggregierbar </li>
 								<li>Beispiel: Bestellmenge eines Artikels pro Tag </li>
 							</ul>
 						</li>
-						<li><strong>STOCK Maß über Zeitraum – semi-Addictive Fact</strong>
+						<li><strong>STOCK Maß über Zeitraum – semi-Additive Fact</strong>
 							<ul>
 								<li>Beliebig aggregierbar mit Ausnahme temporaler Dimension </li>
 								<li>Beispiel: Lagerbestand, Einwohnerzahl</li>
 							</ul>
 						</li>
-						<li><strong>VALUE – PER – UNIT(VPU) - non-Addictive Fact</strong>
+						<li><strong>VALUE – PER – UNIT(VPU) - non-Additive Fact</strong>
 							<ul>
 								<li>Zeitpunktbezogen (zum Zeitpunkt) </li>
 								<li>Aktuelle Zustände, die nicht summierbar sind </li>
@@ -1275,7 +1274,7 @@
 	
 	<script>
 		// More info about initialization & config:
-		// - https://revealjs.com/bnitialization/
+		// - https://revealjs.com/initialization/
 		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,

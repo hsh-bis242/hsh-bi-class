@@ -1,5 +1,8 @@
 # Checkliste Semesterwechsel
 
+> **Ausführliche Anleitung:** Siehe [`.github/skills/starting-new-semester/SKILL.md`](.github/skills/starting-new-semester/SKILL.md)
+> für eine vollständige, maschinenlesbare Schritt-für-Schritt-Anleitung mit allen betroffenen Dateien.
+
 Folgende Schritte sind zu Beginn jedes neuen Semesters erforderlich:
 
 ## 1. Databricks Workspace

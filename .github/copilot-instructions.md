@@ -36,6 +36,8 @@ Dieser Workspace enthält zwei zusammengehörige Repositories mit unterschiedlic
 
 ## Checkliste Semesterwechsel
 
+> **Vollständige Anleitung:** `.github/skills/starting-new-semester/SKILL.md` enthält eine detaillierte, maschinenlesbare Schritt-für-Schritt-Anleitung mit allen betroffenen Dateien und Suchbefehlen.
+
 Folgende Schritte sind zu Beginn jedes neuen Semesters erforderlich:
 
 1. **Neuen Databricks Workspace erstellen** und URL in `U01_InfrastrukturZugang.html` sowie in den Copilot-Instructions aktualisieren.
