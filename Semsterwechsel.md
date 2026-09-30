@@ -6,13 +6,13 @@ Folgende Schritte sind zu Beginn jedes neuen Semesters erforderlich:
 - Neuen Databricks-Community-Workspace erstellen.
 - Workspace-URL in `U01_InfrastrukturZugang.html` und in `.github/copilot-instructions.md` (beide Repos) aktualisieren.
 
-## 2. GitHub Classroom Assignment
-- Neues Assignment im Classroom `bis-242` erstellen (z. B. `bis-242-ws26`).
-- Einladungslink in `U01_InfrastrukturZugang.html` und in `.github/copilot-instructions.md` (beide Repos) aktualisieren.
+## 2. Gruppen-Repositories (kein GitHub Classroom mehr)
+- Einmalig statisch anlegen: `gruppen/create_group_repos.sh <prefix> <anzahl-gruppen>` (z. B. `bis-242-ws26 10`).
+- Beitritt der Studierenden läuft danach eigenständig per Self-Service-Issue "Gruppen-Beitritt" (siehe `.github/ISSUE_TEMPLATE/gruppe-beitritt.yml` + zugehörige Action).
+- Zugriff erfolgt über ein gruppenspezifisches GitHub-Team mit Push-Recht nur auf das eigene Repo.
 
-## 3. QR-Code Vorkenntnisse-Umfrage
-- Neue Umfrage erstellen und QR-Code generieren.
-- `static/U01/QR_Code_Umfrage.png` ersetzen.
+## 3. Vorkenntnisse
+- Werden mündlich in der Vorlesung abgefragt (keine QR-Code-Umfrage mehr nötig).
 
 ## 4. Moodle-Gruppen
 - Gruppen in Moodle anlegen oder zurücksetzen.

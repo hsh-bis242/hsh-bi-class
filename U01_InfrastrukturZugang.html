@@ -30,7 +30,7 @@
 				<h1>Ziele der Übung</h1>
 				<ol class="steps">
 					<li>Übungsgruppe in Moodle beitreten</li>
-					<li>GitHub-Account anlegen &amp; Classroom beitreten</li>
+					<li>GitHub-Account anlegen &amp; Gruppen-Repository beitreten</li>
 					<li>Databricks-Workspace einrichten &amp; Access Token generieren</li>
 					<li>Entwicklungsumgebung aufsetzen (lokal oder Codespaces)</li>
 					<li><code>dbt build</code> erfolgreich ausführen</li>
@@ -51,18 +51,34 @@
 					</div>
 				</section>
 				<section>
-					<h1>Abfrage Vorkenntnisse</h1>
-					<p class="text-center">Bitte scannen Sie den QR-Code und füllen Sie die kurze Umfrage aus:</p>
-					<p class="text-center">
-						<img data-src="static/U01/QR_Code_Umfrage.png" height="350">
-					</p>
+					<h1>Vorkenntnisse</h1>
+					<p>In &Uuml;bung und Vorlesung nutzen wir folgende Sprachen &amp; Tools:</p>
+					<div class="grid-4">
+						<div class="info-card">
+							<img data-src="static/U01/logo-sql.svg" height="60">
+							<p>SQL</p>
+						</div>
+						<div class="info-card">
+							<img data-src="static/U01/logo-python.svg" height="60">
+							<p>Python</p>
+						</div>
+						<div class="info-card">
+							<img data-src="static/U01/logo-powerbi.svg" height="60">
+							<p>Power BI</p>
+						</div>
+						<div class="info-card">
+							<span class="badge-dbt">dbt</span>
+							<p>dbt</p>
+						</div>
+					</div>
+					<aside class="notes">Vorkenntnisse werden mündlich abgefragt (kein QR-Code / keine Umfrage mehr).</aside>
 				</section>
 			</section>
 
 			<!-- ==================== GITHUB ==================== -->
 			<section>
 				<section class="section-divider">
-					<h1>GitHub &amp; Classroom</h1>
+					<h1>GitHub</h1>
 					<h2>Versionskontrolle einrichten</h2>
 				</section>
 				<section>
@@ -81,14 +97,26 @@
 					</div>
 				</section>
 				<section>
-					<h1>Beitritt zum GitHub Classroom</h1>
-					<p>Sobald Sie eingeloggt sind, treten Sie über den Einladungslink dem Classroom bei:</p>
-					<div class="callout">
-						<p><b>→</b> <a href="https://classroom.github.com/a/g8uBDJZ8">Zum GitHub Classroom Assignment (SS26)</a></p>
+					<h1>Zugriff auf Gruppen-Repository beantragen</h1>
+					<p>Öffnet ein GitHub-Issue nach Vorlage, um Zugriff auf das Repository <b>eurer</b> Gruppe zu erhalten:</p>
+					<div class="callout callout-blue">
+						<p><b>→</b> <a href="https://github.com/hsh-bis242/hsh-bi-class/issues/new?template=gruppe-beitritt.yml">Formular "Gruppen-Beitritt" öffnen</a></p>
 					</div>
-					<p>Wählen Sie Ihr Team (<b>gruppe01</b> – <b>gruppe10</b>, max. 3 Teilnehmer).</p>
-					<p>GitHub erstellt automatisch ein Repository für Ihre Gruppe, z.&nbsp;B.:</p>
-					<pre><code data-trim>https://github.com/hsh-bis242/bis-242-ss26-gruppe02</code></pre>
+					<p>Tragt eure <b>HSH-E-Mail-Adresse</b> und eure <b>Gruppennummer</b> ein und sendet das Issue ab. Euer GitHub-Benutzername wird automatisch anhand eures eingeloggten Accounts erkannt.</p>
+				</section>
+				<section>
+					<h1>Automatische Freischaltung</h1>
+					<p>Eine GitHub Action prüft eure Angaben automatisch und:</p>
+					<ul>
+						<li>fügt euch dem GitHub-Team eurer Gruppe hinzu (max. 3 Mitglieder)</li>
+						<li>kommentiert das Issue mit einem Link zu eurem Repository</li>
+						<li>schließt das Issue automatisch</li>
+					</ul>
+					<p>Ihr erhaltet daraufhin eine Einladung zur Organisation <code>hsh-bis242</code> und Zugriff auf euer Gruppen-Repository, z.&nbsp;B.:</p>
+					<pre><code data-trim>https://github.com/hsh-bis242/bis-242-ws26-gruppe02</code></pre>
+					<div class="hint">
+						<b>Tipp:</b> Falls das Issue offen bleibt oder ein Fehler gemeldet wird, prüft eure Angaben oder wendet euch an den Dozenten.
+					</div>
 				</section>
 			</section>
 
@@ -104,7 +132,7 @@
 						<div>
 							<p>Die Anmeldung erfolgt über Ihre <b>Hochschul-Mail-Adresse</b>.</p>
 							<div class="callout callout-blue">
-								<p><b>→</b> <a href="https://dbc-15d76289-5b7c.cloud.databricks.com/">Zum Databricks Workspace</a></p>
+								<p><b>→</b> <a href="https://dbc-9bacfc50-2c71.cloud.databricks.com/?autoLogin=true&amp;o=7474644194941190">Zum Databricks Workspace</a></p>
 							</div>
 						</div>
 						<div class="text-center">
@@ -200,7 +228,7 @@ export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"
 				<section>
 					<h1>Repository klonen (1/2)</h1>
 					<p>Öffnen Sie Ihr Gruppen-Repository auf GitHub:</p>
-					<pre><code data-trim>https://github.com/hsh-bis242/bis-242-ss26-gruppeXX</code></pre>
+					<pre><code data-trim>https://github.com/hsh-bis242/bis-242-ws26-gruppeXX</code></pre>
 					<p>Kopieren Sie die <b>Clone-URL</b>:</p>
 					<p class="text-center"><img data-src="static/U01/git-cloneURL.png" height="100"></p>
 					<div class="hint">
@@ -309,7 +337,7 @@ dbt build
 			<section class="result-slide">
 				<h1>Ergebnis der Übung</h1>
 				<ul>
-					<li>✅ GitHub-Account angelegt und im GitHub Classroom beigetreten</li>
+					<li>✅ GitHub-Account angelegt und Gruppen-Repository erhalten</li>
 					<li>✅ Gruppen-Repository geklont und in VS Code geöffnet</li>
 					<li>✅ Databricks-Workspace erreichbar und Access Token generiert</li>
 					<li>✅ Python venv erstellt und Abhängigkeiten installiert</li>

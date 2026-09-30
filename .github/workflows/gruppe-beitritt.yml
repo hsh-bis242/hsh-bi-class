@@ -1,0 +1,192 @@
+name: Gruppen-Beitritt verarbeiten
+
+# Self-Service Team-Beitritt (Ersatz für GitHub Classroom):
+# Ein Issue-Formular liefert HSH-E-Mail + Gruppennummer. Diese Action
+# 1) validiert das Format beider Angaben,
+# 2) prüft die Teamgröße (max. 3 Mitglieder),
+# 3) fügt den *authentifizierten* Issue-Ersteller (nicht frei eingebbar!)
+#    zum GitHub-Team der Gruppe hinzu,
+# 4) trägt Gruppe + GitHub-Name in die CSV ein (Commit, nur zur Doku),
+# 5) kommentiert das Ergebnis und schließt das Issue bei Erfolg.
+#
+# Sicherheits-Hinweise:
+# - Der GitHub-Benutzername wird NIE aus dem Issue-Text übernommen,
+#   sondern ausschließlich aus `github.event.issue.user.login` gelesen.
+#   Das verhindert, dass jemand im Namen eines anderen Accounts Zugriff
+#   anfordert.
+# - Gruppennummer und E-Mail werden vor jeder Verwendung per Regex
+#   validiert, bevor sie in API-Aufrufe oder Dateipfade einfließen.
+# - secrets.ORG_ADMIN_TOKEN (PAT mit `admin:org`) wird NUR für die
+#   Team-Mitgliedschaft verwendet, niemals für den CSV-Commit (dafür
+#   reicht das Standard-GITHUB_TOKEN mit `contents: write`).
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+  contents: write
+
+env:
+  ORG: hsh-bis242
+  PREFIX: bis-242-ws26
+  CSV_PATH: gruppen/ws26_github.csv
+  MAX_MEMBERS_PER_GROUP: 3
+
+jobs:
+  gruppen-beitritt:
+    if: contains(github.event.issue.labels.*.name, 'gruppen-beitritt')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Eingaben parsen und validieren
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.issue.body || "";
+
+            const emailMatch = body.match(/### HSH-E-Mail-Adresse\s*\n+\s*([^\n#]+)/i);
+            const gruppeMatch = body.match(/### Übungsgruppe\s*\n+\s*([^\n#]+)/i);
+
+            const email = (emailMatch ? emailMatch[1] : "").trim().toLowerCase();
+            const gruppe = (gruppeMatch ? gruppeMatch[1] : "").trim();
+
+            const emailOk = /^[a-z0-9._-]+@stud\.hs-hannover\.de$/.test(email);
+            const gruppeOk = /^(0[1-9]|10)$/.test(gruppe);
+
+            if (!emailOk || !gruppeOk) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: [
+                  "❌ Dein Antrag konnte nicht automatisch verarbeitet werden.",
+                  "",
+                  !emailOk ? "- Die HSH-E-Mail-Adresse ist ungültig oder fehlt (muss auf `@stud.hs-hannover.de` enden)." : "",
+                  !gruppeOk ? "- Die Gruppennummer ist ungültig (muss 01-10 sein)." : "",
+                  "",
+                  "Bitte korrigiere dein Issue oder wende dich an den Dozenten.",
+                ].filter(Boolean).join("\n"),
+              });
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ["braucht-dozent"],
+              });
+              return;
+            }
+
+            core.setOutput("email", email);
+            core.setOutput("gruppe", gruppe);
+
+      - name: Team-Mitgliedschaft setzen
+        id: team
+        if: steps.parse.outputs.gruppe
+        uses: actions/github-script@v7
+        env:
+          GRUPPE: ${{ steps.parse.outputs.gruppe }}
+        with:
+          github-token: ${{ secrets.ORG_ADMIN_TOKEN }}
+          script: |
+            const org = process.env.ORG;
+            const prefix = process.env.PREFIX;
+            const gruppe = process.env.GRUPPE;
+            const maxMembers = parseInt(process.env.MAX_MEMBERS_PER_GROUP, 10);
+            const team = `${prefix}-gruppe${gruppe}`;
+            const username = context.payload.issue.user.login;
+
+            let members = [];
+            try {
+              members = await github.paginate(github.rest.teams.listMembersInOrg, {
+                org, team_slug: team, per_page: 100,
+              });
+            } catch (err) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `❌ Team \`${team}\` wurde noch nicht angelegt. Bitte wende dich an den Dozenten.`,
+              });
+              core.setOutput("added", "false");
+              return;
+            }
+
+            const alreadyMember = members.some(m => m.login.toLowerCase() === username.toLowerCase());
+            if (!alreadyMember && members.length >= maxMembers) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: `❌ @${username} Gruppe ${gruppe} hat bereits ${maxMembers} Mitglieder. Bitte wähle in Moodle eine andere Gruppe oder wende dich an den Dozenten.`,
+              });
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ["braucht-dozent"],
+              });
+              core.setOutput("added", "false");
+              return;
+            }
+
+            await github.rest.teams.addOrUpdateMembershipForUserInOrg({
+              org, team_slug: team, username, role: "member",
+            });
+
+            const repo = `${prefix}-gruppe${gruppe}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `✅ @${username} wurde zu **Gruppe ${gruppe}** hinzugefügt.\n\nRepository: https://github.com/${org}/${repo}\n\nFalls du eine Einladung zur Organisation **${org}** per E-Mail erhältst, nimm diese bitte an.`,
+            });
+
+            core.setOutput("added", "true");
+            core.setOutput("username", username);
+
+      - name: Teilnehmerliste aktualisieren (CSV)
+        if: steps.team.outputs.added == 'true'
+        run: |
+          set -euo pipefail
+          EMAIL="${{ steps.parse.outputs.email }}"
+          GRUPPE="${{ steps.parse.outputs.gruppe }}"
+          GITHUB_USER="${{ steps.team.outputs.username }}"
+
+          if [[ ! -f "$CSV_PATH" ]]; then
+            echo "gruppe,name,email,github_username" > "$CSV_PATH"
+          fi
+
+          awk -F',' -v OFS=',' -v email="$EMAIL" -v gruppe="$GRUPPE" -v user="$GITHUB_USER" '
+            NR==1 { print; next }
+            {
+              e=$3; gsub(/^ +| +$/, "", e)
+              if (tolower(e) == email) { $1=gruppe; $4=user; found=1 }
+              print
+            }
+            END { if (!found) print gruppe ",," email "," user }
+          ' "$CSV_PATH" > "${CSV_PATH}.tmp" && mv "${CSV_PATH}.tmp" "$CSV_PATH"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$CSV_PATH"
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(gruppen): ${GITHUB_USER} zu Gruppe ${GRUPPE} hinzugefügt (Issue #${{ github.event.issue.number }})"
+            git push
+          fi
+
+      - name: Issue schließen
+        if: steps.team.outputs.added == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: "closed",
+            });

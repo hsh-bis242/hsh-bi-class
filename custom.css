@@ -291,6 +291,13 @@ ol.steps > li::before {
 	align-items: start;
 }
 
+.grid-4 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 16px;
+	align-items: start;
+}
+
 .grid-1-2 {
 	display: grid;
 	grid-template-columns: 1fr 2fr;
@@ -327,6 +334,19 @@ ol.steps > li::before {
 	font-weight: 700;
 	color: var(--hsh-orange);
 	line-height: 1;
+}
+
+.badge-dbt {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+	width: 60px;
+	border-radius: 8px;
+	background: #ff694b;
+	color: #fff;
+	font-weight: 700;
+	font-size: 1.1em;
 }
 
 /* ---------- OS Tabs (Windows / macOS) ---------- */

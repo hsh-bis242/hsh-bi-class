@@ -17,30 +17,30 @@ Dieser Workspace enthält zwei zusammengehörige Repositories mit unterschiedlic
 - Haupttechnologie: statische HTML-Folien auf Basis von `reveal.js` sowie CSS, JavaScript und statischen Assets.
 - Typische Nutzung: Pflege von Vorlesungsdecks, Präsentationslayout und Veröffentlichungslogik der Kurswebsite.
 
-## GitHub Classroom und Gruppenstruktur
+## Gruppen-Repositories (ohne GitHub Classroom)
 
-- Die Lehrveranstaltung nutzt **GitHub Classroom** zur Verwaltung der Gruppenrepositories.
-- Classroom-Name: `bis-242`
-- Aktuelles Assignment: `bis-242-ss26` (Sommersemester 2026)
-- Einladungslink (SS26): <https://classroom.github.com/a/g8uBDJZ8>
-- Es gibt max. 10 Teams (`gruppe01` bis `gruppe10`) mit jeweils max. 3 Teilnehmern.
-- Jedes Team erhält ein eigenes Repository (z. B. `hsh-bis242/bis-242-ss26-gruppe02`), das aus `hsh-bis242-bis-242-bis242base` als Template erzeugt wird.
-- Der Einladungslink ändert sich jedes Semester, wenn ein neues Assignment erstellt wird.
-- `hsh-bis242-bis-242-bis242base` dient als Template-Repository und wird nicht direkt von Studierenden bearbeitet.
+- GitHub Classroom wird **nicht mehr genutzt** (eingestellt).
+- Zu Semesterbeginn legt der Dozent einmalig **statisch** für alle Gruppen (`gruppe01`–`gruppe10`, max. 3 Teilnehmer) ein privates Repository aus dem Template-Repository `hsh-bis242-bis-242-bis242base` sowie ein gleichnamiges, noch leeres GitHub-Team an: [`gruppen/create_group_repos.sh`](../gruppen/create_group_repos.sh) (idempotent, per GitHub CLI `gh`).
+- Jede Gruppe erhält so ein eigenes **privates** Repository, z. B. `hsh-bis242/bis-242-ws26-gruppe02`.
+- Der Zugriff wird **ausschließlich** über das gruppenspezifische GitHub-Team gewährt, das nur auf das jeweils eigene Gruppen-Repo Push-Rechte hat (Least-Privilege: Studierende sehen keine fremden Gruppen-Repos).
+- **Self-Service-Beitritt:** Studierende beantragen ihre Teammitgliedschaft selbst über das GitHub-Issue-Formular [`gruppe-beitritt.yml`](../.github/ISSUE_TEMPLATE/gruppe-beitritt.yml) (HSH-E-Mail + Gruppennummer). Die Action [`gruppe-beitritt.yml`](../.github/workflows/gruppe-beitritt.yml) validiert die Eingaben, liest den GitHub-Benutzernamen direkt aus dem authentifizierten Issue-Ersteller (nie aus Freitext), prüft die Teamgröße (max. 3), fügt die Person automatisch zum Team hinzu, trägt Gruppe + GitHub-Name zur Dokumentation in die CSV ein und schließt das Issue.
+- `hsh-bis242-bis-242-bis242base` muss einmalig in den GitHub-Repo-Settings als **Template repository** markiert sein, damit `gh repo create --template` funktioniert.
+- Für die Action wird ein Secret `ORG_ADMIN_TOKEN` (PAT mit `admin:org`) im Repo hinterlegt, ausschließlich für die Team-Mitgliedschaft verwendet.
 
 ## Databricks Workspace
 
-- Aktuelle Workspace-URL: <https://dbc-15d76289-5b7c.cloud.databricks.com/>
+- Aktuelle Workspace-URL: <https://dbc-9bacfc50-2c71.cloud.databricks.com/?autoLogin=true&o=7474644194941190>
 - Zum Semesterwechsel muss ein neuer Databricks-Community-Workspace erstellt werden.
 - Die Workspace-URL muss anschließend in `U01_InfrastrukturZugang.html` und in diesen Instructions aktualisiert werden.
+
 
 ## Checkliste Semesterwechsel
 
 Folgende Schritte sind zu Beginn jedes neuen Semesters erforderlich:
 
 1. **Neuen Databricks Workspace erstellen** und URL in `U01_InfrastrukturZugang.html` sowie in den Copilot-Instructions aktualisieren.
-2. **Neues GitHub Classroom Assignment erstellen** (z. B. `bis-242-ws26`) und den Einladungslink in `U01_InfrastrukturZugang.html` sowie in den Copilot-Instructions aktualisieren.
-3. **Neuen QR-Code für die Vorkenntnisse-Umfrage** generieren und in `static/U01/QR_Code_Umfrage.png` ersetzen.
+2. **Gruppen-Repos + Teams statisch anlegen**: `gruppen/create_group_repos.sh <prefix> <anzahl-gruppen>` ausführen (z. B. `bis-242-ws26 10`). Der Beitritt der Studierenden läuft anschließend eigenständig per Self-Service-Issue.
+3. **Vorkenntnisse werden mündlich in der Vorlesung abgefragt** (keine QR-Code-Umfrage mehr nötig).
 4. **Moodle-Gruppen** anlegen bzw. zurücksetzen und den Link in `U01_InfrastrukturZugang.html` prüfen.
 5. **Semesterbezeichnungen** in den Übungsfolien aktualisieren (z. B. `242ss` → `242ws` oder umgekehrt).
 6. **`V01_OrganisatorischeVorbemerkungen.html`** auf aktuelle Termine und organisatorische Hinweise prüfen.

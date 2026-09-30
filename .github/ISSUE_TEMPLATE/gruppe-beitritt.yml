@@ -1,0 +1,47 @@
+name: "🧑‍🤝‍🧑 Gruppen-Beitritt (BIS242)"
+description: "Tritt deiner Übungsgruppe bei und erhalte automatisch Zugriff auf euer Gruppen-Repository."
+title: "Gruppen-Beitritt"
+labels: ["gruppen-beitritt"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dieses Formular gewährt dir automatisch Zugriff auf das **private Repository deiner Gruppe**.
+        Dein GitHub-Benutzername wird automatisch anhand deines eingeloggten Accounts erkannt –
+        du musst ihn **nicht** eintragen.
+
+        Voraussetzung: Du bist bereits in Moodle der entsprechenden Gruppe beigetreten und deine
+        HSH-E-Mail-Adresse steht auf der Teilnehmerliste des Dozenten.
+  - type: input
+    id: email
+    attributes:
+      label: HSH-E-Mail-Adresse
+      description: "Deine Hochschul-Mail-Adresse (z. B. max.mustermann@stud.hs-hannover.de)"
+      placeholder: "vorname.nachname@stud.hs-hannover.de"
+    validations:
+      required: true
+  - type: dropdown
+    id: gruppe
+    attributes:
+      label: Übungsgruppe
+      description: "In welcher Gruppe (BIS2420X) bist du in Moodle eingeschrieben?"
+      options:
+        - "01"
+        - "02"
+        - "03"
+        - "04"
+        - "05"
+        - "06"
+        - "07"
+        - "08"
+        - "09"
+        - "10"
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Bestätigung
+      options:
+        - label: "Ich bin in Moodle dieser Gruppe beigetreten und meine HSH-E-Mail steht oben korrekt."
+          required: true
