@@ -114,14 +114,14 @@ jobs:
                 org, team_slug: team, per_page: 100,
               });
             } catch (err) {
-              core.setOutput("result", "no-team");
+              core.setOutput("beitritt_status", "no-team");
               core.setOutput("username", username);
               return;
             }
 
             const alreadyMember = members.some(m => m.login.toLowerCase() === username.toLowerCase());
             if (!alreadyMember && members.length >= maxMembers) {
-              core.setOutput("result", "full");
+              core.setOutput("beitritt_status", "full");
               core.setOutput("username", username);
               return;
             }
@@ -130,15 +130,15 @@ jobs:
               org, team_slug: team, username, role: "member",
             });
 
-            core.setOutput("result", "added");
+            core.setOutput("beitritt_status", "added");
             core.setOutput("username", username);
 
       - name: Rückmeldung geben
-        if: steps.team.outputs.result
+        if: steps.team.outputs.beitritt_status
         uses: actions/github-script@v7
         env:
           GRUPPE: ${{ steps.parse.outputs.gruppe }}
-          RESULT: ${{ steps.team.outputs.result }}
+          RESULT: ${{ steps.team.outputs.beitritt_status }}
           USERNAME: ${{ steps.team.outputs.username }}
         with:
           script: |
@@ -184,7 +184,7 @@ jobs:
             });
 
       - name: Teilnehmerliste aktualisieren (CSV)
-        if: steps.team.outputs.result == 'added'
+        if: steps.team.outputs.beitritt_status == 'added'
         run: |
           set -euo pipefail
           EMAIL="${{ steps.parse.outputs.email }}"
@@ -214,7 +214,7 @@ jobs:
           fi
 
       - name: Issue schließen
-        if: steps.team.outputs.result == 'added'
+        if: steps.team.outputs.beitritt_status == 'added'
         uses: actions/github-script@v7
         with:
           script: |
