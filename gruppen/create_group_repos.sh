@@ -76,6 +76,14 @@ for i in $(seq -w 1 "$NUM_GROUPS"); do
 	else
 		gh api "orgs/${ORG}/teams" -f name="${team}" -f privacy=closed >/dev/null
 		echo "  • Team erstellt (noch ohne Mitglieder)."
+
+		# GitHub fügt den Ersteller eines Teams automatisch als Maintainer
+		# hinzu. Das verfälscht die Kapazitätsprüfung (max. 3) in der
+		# Self-Service-Action, da sie alle Team-Mitglieder zählt.
+		# Daher: Ersteller sofort wieder aus dem Team entfernen.
+		CREATOR="$(gh api user --jq .login)"
+		gh api -X DELETE "orgs/${ORG}/teams/${team}/memberships/${CREATOR}" >/dev/null 2>&1 || true
+		echo "  • Ersteller (${CREATOR}) aus Team entfernt (nur Studierende sollen zählen)."
 	fi
 
 	# 3) Team bekommt Push-Recht NUR auf dieses eine Repo
