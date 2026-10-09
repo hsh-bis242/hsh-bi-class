@@ -166,21 +166,40 @@
 						erfolgreich beantragte <a href="https://education.github.com/benefits">GitHub Education Benefits</a>.
 					</div>
 					<ol class="steps">
-						<li>Gruppen-Repository auf GitHub öffnen</li>
+						<li>Das <b>Gruppen-Repository</b> (<code>bis-242-ws26-gruppeXX</code>) auf GitHub öffnen</li>
 						<li><b>Code → Codespaces → Create codespace on main</b></li>
 						<li>GitHub startet eine VS-Code-Umgebung im Browser (Python vorinstalliert)</li>
 					</ol>
+					<div class="warning">
+						<b>⚠️ Wichtig:</b> Der Codespace muss im <b>Gruppen-Repository</b> erstellt werden,
+						nicht im Template-Repository und nicht in einem fremden Repository.
+					</div>
 				</section>
 				<section>
-					<h1>Abhängigkeiten &amp; Token</h1>
+					<h1>Token als Codespace Secret hinterlegen</h1>
+					<div class="warning">
+						<b>⚠️ Den Databricks Access Token immer als Codespace Secret hinterlegen.</b>
+						Ein per <code>export</code> gesetzter Token geht bei jedem Neustart des Codespace verloren.
+					</div>
+					<ol class="steps">
+						<li>GitHub → <b>Settings → Codespaces → Secrets → New secret</b></li>
+						<li>Name: <code>DATABRICKS_TOKEN</code>, Value: Ihr Token</li>
+						<li><b>Repository access:</b> das Gruppen-Repository <b>über die Suche</b> (Name <code>bis-242-ws26-gruppeXX</code> eintippen) auswählen – es wird in der Liste nicht immer direkt angezeigt</li>
+						<li>Codespace <b>neu starten</b> bzw. neu erstellen, damit das Secret verfügbar ist</li>
+					</ol>
+					<p class="text-small text-muted"><a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces">Dokumentation Codespaces Secrets</a></p>
+				</section>
+				<section>
+					<h1>Abhängigkeiten &amp; venv</h1>
 					<p>Im Codespace-Terminal ausführen:</p>
 					<pre><code class="language-bash" data-trim>
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-export DATABRICKS_TOKEN="---> TOKEN_EINFÜGEN <---"
 					</code></pre>
-					<div class="hint">
-						<b>Tipp:</b> Damit der Token über Neustarts erhalten bleibt, hinterlegen Sie ihn als
-						<a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces">Codespaces Secret</a>.
+					<div class="warning">
+						<b>⚠️ GANZ WICHTIG:</b> Die virtuelle Umgebung (<code>.venv</code>) muss <b>in jedem neuen Terminal</b>
+						aktiviert sein (<code>(.venv)</code> vor dem Prompt). Sonst funktionieren die <code>dbt</code>-Befehle nicht – auch in allen weiteren Übungen.
 					</div>
 				</section>
 			</section>

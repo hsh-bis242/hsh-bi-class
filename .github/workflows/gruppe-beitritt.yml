@@ -126,10 +126,13 @@ jobs:
               return;
             }
 
-            await github.rest.teams.addOrUpdateMembershipForUserInOrg({
+            const { data: membership } = await github.rest.teams.addOrUpdateMembershipForUserInOrg({
               org, team_slug: team, username, role: "member",
             });
 
+            // state "pending": Person ist noch nicht Org-Mitglied und muss die
+            // Einladung zur Organisation erst annehmen.
+            core.setOutput("membership_state", membership.state);
             core.setOutput("beitritt_status", "added");
             core.setOutput("username", username);
 
@@ -140,6 +143,7 @@ jobs:
           GRUPPE: ${{ steps.parse.outputs.gruppe }}
           RESULT: ${{ steps.team.outputs.beitritt_status }}
           USERNAME: ${{ steps.team.outputs.username }}
+          MEMBERSHIP_STATE: ${{ steps.team.outputs.membership_state }}
         with:
           script: |
             const org = process.env.ORG;
@@ -176,12 +180,24 @@ jobs:
             }
 
             const repo = `${prefix}-gruppe${gruppe}`;
+            const pending = process.env.MEMBERSHIP_STATE === "pending";
+            const body = pending
+              ? `⚠️ @${username} wurde für **Gruppe ${gruppe}** vorgemerkt, hat aber **noch keinen Zugriff**.\n\n**Du musst zuerst die Einladung zur Organisation ${org} annehmen:**\n1. Öffne https://github.com/${org} (oder die Einladungs-E-Mail von GitHub) und klicke auf **Join ${org}**.\n2. Danach hast du automatisch Zugriff auf https://github.com/${org}/${repo}.\n\nDas Issue bleibt zur Kontrolle offen und wird vom Dozenten geschlossen.`
+              : `✅ @${username} wurde zu **Gruppe ${gruppe}** hinzugefügt.\n\nRepository: https://github.com/${org}/${repo}`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `✅ @${username} wurde zu **Gruppe ${gruppe}** hinzugefügt.\n\nRepository: https://github.com/${org}/${repo}\n\nFalls du eine Einladung zur Organisation **${org}** per E-Mail erhältst, nimm diese bitte an.`,
+              body,
             });
+            if (pending) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ["einladung-ausstehend"],
+              });
+            }
 
       - name: Teilnehmerliste aktualisieren (CSV)
         if: steps.team.outputs.beitritt_status == 'added'
@@ -214,7 +230,7 @@ jobs:
           fi
 
       - name: Issue schließen
-        if: steps.team.outputs.beitritt_status == 'added'
+        if: steps.team.outputs.beitritt_status == 'added' && steps.team.outputs.membership_state != 'pending'
         uses: actions/github-script@v7
         with:
           script: |

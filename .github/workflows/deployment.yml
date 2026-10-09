@@ -4,26 +4,44 @@ on:
   push:
     branches:
       - main  # Set a branch to deploy
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     name: deploy
+    timeout-minutes: 15
     steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-        - name: Build project
-          uses: actions/setup-node@v3
-          with:
-            node-version: 18
-        - run: npm install
-        - run: npm run build --if-present
-        - name: Upload files
-          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-          with:
-              username: "sftp_user@bis-242.doerffler.com"
-              server: "ssh.strato.de"
-              port: 22
-              remote_path: '/'
-              sftp_only: true
-              password: ${{ secrets.ftp_password }}
+      # dist/ und plugin/ sind eingecheckt -> kein npm install/build noetig
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install lftp
+        run: sudo apt-get install -y --no-install-recommends lftp
+
+      # Inkrementeller Upload: nur neue/geaenderte Dateien (Vergleich per Groesse),
+      # ohne node_modules, .git, Loesungen, Gruppen-Daten und sonstige Nicht-Website-Dateien.
+      - name: Upload changed files
+        env:
+          SFTP_USER: sftp_user@bis-242.doerffler.com
+          SFTP_PASS: ${{ secrets.ftp_password }}
+        run: |
+          lftp -u "$SFTP_USER","$SFTP_PASS" sftp://ssh.strato.de:22 <<'EOF'
+          set sftp:auto-confirm yes
+          set net:max-retries 3
+          set net:timeout 30
+          mirror -R --ignore-time --parallel=5 --verbose=1 \
+            --exclude-glob .git/ --exclude-glob .github/ --exclude-glob node_modules/ \
+            --exclude-glob loesungen/ --exclude-glob gruppen/ \
+            --exclude-glob '*.py' --exclude-glob '*.txt' \
+            --exclude-glob package.json --exclude-glob package-lock.json --exclude-glob gulpfile.js \
+            --exclude-glob '*__backup.html' \
+            . /
+          bye
+          EOF
