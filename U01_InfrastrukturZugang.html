@@ -190,6 +190,20 @@
 					<p class="text-small text-muted"><a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces">Dokumentation Codespaces Secrets</a></p>
 				</section>
 				<section>
+					<h1>Secret nachträglich angelegt?</h1>
+					<div class="warning">
+						<b>⚠️ Ein Codespace liest Secrets nur beim Start.</b>
+						Haben Sie das Secret erst <b>nach</b> dem Erstellen des Codespace angelegt oder geändert, kennt der laufende Codespace es <b>nicht</b> – auch nicht nach „Reload Window".
+					</div>
+					<ol class="steps">
+						<li>Codespace <b>stoppen</b>: <code>F1</code> → <b>Codespaces: Stop Current Codespace</b> (oder auf github.com/codespaces → <b>⋯ → Stop codespace</b>)</li>
+						<li>Codespace über github.com/codespaces wieder <b>starten</b> – die Secrets werden dabei neu geladen</li>
+						<li>Falls das nicht hilft: <code>F1</code> → <b>Codespaces: Rebuild Container</b></li>
+						<li>Prüfen im Terminal:<br><code>echo ${DATABRICKS_TOKEN:+gesetzt}</code> → muss <code>gesetzt</code> ausgeben</li>
+					</ol>
+					<p class="text-small text-muted">Bleibt die Ausgabe leer: Secret-Name (<code>DATABRICKS_TOKEN</code>) und Repository access (Gruppen-Repo) prüfen.</p>
+				</section>
+				<section>
 					<h1>Abhängigkeiten &amp; venv</h1>
 					<p>Im Codespace-Terminal ausführen:</p>
 					<pre><code class="language-bash" data-trim>
