@@ -33,7 +33,7 @@
 					<li>GitHub-Account anlegen &amp; Gruppen-Repository beitreten</li>
 					<li>Databricks-Workspace einrichten &amp; Access Token generieren</li>
 					<li>Entwicklungsumgebung aufsetzen (lokal oder Codespaces)</li>
-					<li><code>dbt build</code> erfolgreich ausführen</li>
+					<li>Verbindung mit <code>dbt debug</code> testen, <code>profiles.yml</code> anpassen und <code>dbt build</code> erfolgreich ausführen</li>
 				</ol>
 			</section>
 
@@ -336,16 +336,37 @@ source ~/.zshrc
 			<!-- ==================== DBT BUILD ==================== -->
 			<section>
 				<section class="section-divider">
-					<h1>dbt build</h1>
-					<h2>Projekt erstmalig bauen</h2>
+					<h1>dbt debug &amp; build</h1>
+					<h2>Verbindung testen, Projekt erstmalig bauen</h2>
 				</section>
 				<section>
-					<h1>Ausführen von dbt</h1>
+					<h1>Schritt 1: Verbindung testen</h1>
 				<div class="callout callout-yellow">
 					<p><b>Hinweis:</b> Stellen Sie sicher, dass die virtuelle Umgebung aktiviert ist.</p>
 				</div>
 				<pre><code class="language-bash" data-trim>
 cd willibald_dwh
+dbt debug
+				</code></pre>
+				<p>Am Ende muss <code>All checks passed!</code> erscheinen.</p>
+				<div class="warning">
+					<b>⚠️ Noch kein <code>dbt deps</code> / <code>dbt build</code>!</b> Zuerst muss die <code>profiles.yml</code> auf Ihre Gruppe angepasst werden (nächste Folie).
+				</div>
+				</section>
+				<section>
+					<h1>Schritt 2: profiles.yml anpassen</h1>
+				<p>Öffnen Sie <code>willibald_dwh/profiles.yml</code> und tragen Sie bei <code>database</code> den <b>Catalog Ihrer Gruppe</b> ein (<code>XX</code> = Gruppennummer):</p>
+				<pre><code class="language-yaml" data-trim>
+      database: bis242_XX    # z. B. bis242_02 für Gruppe 02
+				</code></pre>
+				<div class="warning">
+					<b>⚠️ Nicht</b> <code>bis242_00</code> verwenden – das ist der Dozenten-Catalog.
+				</div>
+				<p>Danach <code>dbt debug</code> erneut ausführen – es muss weiterhin <code>All checks passed!</code> erscheinen.</p>
+				</section>
+				<section>
+					<h1>Schritt 3: dbt build</h1>
+				<pre><code class="language-bash" data-trim>
 dbt deps
 dbt build
 				</code></pre>

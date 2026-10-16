@@ -287,6 +287,13 @@ def grant_permissions(
                 print(f"  OK   ALL PRIVILEGES bis242_{nr} -> {email}")
             else:
                 print(f"  FAIL ALL PRIVILEGES bis242_{nr} -> {email} - {result.get('status')}")
+            statement = f"GRANT MANAGE ON CATALOG bis242_{nr} TO `{email}`"
+            result = run_sql_statement(session, host, warehouse_id, statement)
+            state = result.get("status", {}).get("state")
+            if state == "SUCCEEDED":
+                print(f"  OK   MANAGE bis242_{nr} -> {email}")
+            else:
+                print(f"  FAIL MANAGE bis242_{nr} -> {email} - {result.get('status')}")
 
 
 def grant_token_permission(session: requests.Session, host: str) -> None:

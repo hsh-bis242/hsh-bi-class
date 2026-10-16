@@ -112,26 +112,40 @@ CREATE CATALOG IF NOT EXISTS bis242_10 COMMENT 'BIS242 WS26 – Gruppe 10';
 -- nicht an die SCIM-Gruppen.
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_02 TO `jonathan.jacob@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_02 TO `jonathan.jacob@stud.hs-hannover.de`;
 GRANT ALL PRIVILEGES ON CATALOG bis242_02 TO `ethan.menzel@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_02 TO `ethan.menzel@stud.hs-hannover.de`;
 GRANT ALL PRIVILEGES ON CATALOG bis242_02 TO `bogdan.mosmann@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_02 TO `bogdan.mosmann@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_03 TO `daniel.engel@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_03 TO `daniel.engel@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_04 TO `mohammad-javad.nuri@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_04 TO `mohammad-javad.nuri@stud.hs-hannover.de`;
 GRANT ALL PRIVILEGES ON CATALOG bis242_04 TO `aleksandr.trifonov@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_04 TO `aleksandr.trifonov@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_05 TO `umar.ruslanovic-humasev@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_05 TO `umar.ruslanovic-humasev@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_06 TO `ky-duyen.doan@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_06 TO `ky-duyen.doan@stud.hs-hannover.de`;
 GRANT ALL PRIVILEGES ON CATALOG bis242_06 TO `bettina.habenicht@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_06 TO `bettina.habenicht@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_07 TO `tobias.kraemer@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_07 TO `tobias.kraemer@stud.hs-hannover.de`;
 GRANT ALL PRIVILEGES ON CATALOG bis242_07 TO `fynn.nehmer@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_07 TO `fynn.nehmer@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_08 TO `bouchra.elbarji@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_08 TO `bouchra.elbarji@stud.hs-hannover.de`;
 
 GRANT ALL PRIVILEGES ON CATALOG bis242_09 TO `joyce-mirella.kuetche-dongue@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_09 TO `joyce-mirella.kuetche-dongue@stud.hs-hannover.de`;
 GRANT ALL PRIVILEGES ON CATALOG bis242_09 TO `fotso-tuedom.solaine-christy@stud.hs-hannover.de`;
+GRANT MANAGE ON CATALOG bis242_09 TO `fotso-tuedom.solaine-christy@stud.hs-hannover.de`;
 
 -- Gruppe 01 und 10 sind aktuell leer – keine Grants nötig.
 
